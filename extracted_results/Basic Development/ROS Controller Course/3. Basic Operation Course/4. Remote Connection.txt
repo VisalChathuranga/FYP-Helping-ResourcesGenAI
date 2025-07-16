@@ -1,0 +1,928 @@
+
+=== Page 1 ===
+Hivweander Shenzhen Hiwonder Technology Co,Ltd
+
+4. Remote Connection
+
+This section applied to the users who need to perform remote login via SSH
+
+when the development board does not have a separate monitor connected.
+
+1 SSH Remote Connection
+
+1.1SSH Introduction
+
+SSH is a network protocol (with a default port number of 22) used for
+encrypted login between computers, allowing remote control via command line.
+The Jetson Orin Nano system has SSH services enabled by default, so as long
+as the network connection is working properly, you can log in directly using
+
+SSH.
+
+If you need to use SSH, it is necessary to obtain the IP address of the
+development board. The development board has a built-in SSH service,
+
+allowing direct access via IP address.
+
+1.2 Preparations
+
+Before getting started, some preparations are necessary. In addition to the
+
+development board, the items below need to be prepared.
+1) Amobile phone
+
+2) A laptop (If you’re using a desktop, a USB wireless network adapter
+
+needs to be prepared.)
+
+3) A wireless network adapter for Jetson Orin Nano. Insert the network
+
+adapter into any USB port on the development board.
+
+4) Acard reader and an SD card or SSD with pre-installed official system
+
+image.
+
+
+
+=== Page 2 ===
+5) MobaxXterm tool (The remote login tool can be accessed in “02 Tool’. )
+
+MobaXterm Pe
+rsonal_22.1.exe
+
+1.3 Check IP without a Screen
+
+You can find the corresponding IP address of the development board by
+referring to the content in “2. Configuration Guide ->2. Flashing Firmware
+
+Using SDK Manger Tool -> 4.5.1 4.5.1 Check IP through the Router”
+
+1.4Check IP with a Screen
+
+Follow the steps below to obtain the IP address of the development board:
+
+1) Create a hotspot on your phone. Here uses the hotspot name
+
+(hiwonder_5G) and the password (hiwonder).
+
+2) Connect the PC to the created hotspot.
+
+fo Hiwonder
+
+fe
+
+&— hiwonder 5G
+(le See
+
+
+
+
+=== Page 3 ===
+3) Power on the development board (it needs to be connected to a
+
+screen), and connect it to the same WI-FI as your computer.
+
+if? sw od) & O
+=> Wi-Fi Networks
+e
+
+x Ethernet (usb0) Unmanaged @
+Wi-Fi is OFF
+4 wi-Fi Off v
+
+Select Network
+
+Turn On
+
+Wi-Fi Settings
+
+Cancel
+
+“<=> Wi-Fi Networks
+e
+
+www
+
+hiwonder
+
+AGFW_TD_2.4G
+
+code
+
+TP-LINK_GUEST_031F a9 Authentication required
+hiwonder_5G Passwords or encryption keys are required to
+
+access the wireless network “hiwonder_5G”.
+AGFW_TD_5G
+
+hiwonderl
+
+AGFW-RPI
+
+Cancel Connect
+
+4) After a successful connection, you need to obtain the IP address of the
+
+>
+
+development board. Double click®aiiliaall to open the terminal. Enter the
+following command and press Enter.
+
+ifconfig
+
+:-$ ifconfig
+
+5) The device “wlan0” in the image below displays the current status of
+the current development board’s network adapter. After connecting to the
+
+hotspot, the assigned IP address is “192.168.1.102”. Please record the IP
+
+3
+
+
+
+=== Page 4 ===
+address.
+
+wlanO: flags=4163<UP ,BROADCAST,RUNNING,MULTICAST> mtu 1500
+inet 192.168.1.102 netmask 255.255.255.0 broadcast 192.168.1.255
+inet6 fe80::8f71:8c71:af96:ae03 prefixlen 64 scopeid 0x20<Link>
+ether 48:8f:4c:f9:9e:1f txqueuelen 1000 (Ethernet)
+
+RX packets 221 bytes 6182251 (6.1 MB)
+
+RX errors © dropped 8 overruns © frame 0
+
+TX packets 187 bytes 384239 (384.2 KB)
+
+TX errors © dropped © overruns © carrier 0 collisions 0
+
+1.5Remote Connection via SSH
+
+1) After the above preparations are complete, open the MobaXterm on
+
+your computer.
+
+Terminal § View Xserver Tools Games Settings Macros Help
+
+Tools Games 5 s View Split MultiExec Tunneling Pac
+
+3) Click “SSH”, input the IP address of the development board
+“492.168.1.102”, and then click “OK”.
+
+
+
+=== Page 5 ===
+Session settings
+[@] bs o & no @ -
+
+ial File Shell Browser Mosh AwsS VS
+
+edition of MobaxXterm
+
+| Basic SSH settings
+
+| Remote host 7/192.168.1.102 C1 Specify username |
+
+| Advanced SSH settings Terminal settings 7< Network settings % Bookmark settings
+
+Secure Shell (SSH) session
+
+® Cancel
+
+Note: Your computer and the development board need to remain on the same
+
+network.
+
+4) The interface will prompt you to enter a username and password
+(default username: ubuntu, password: ubuntu; use the credentials you set up).
+After entering, press the Enter key. Please note that as in Linux systems, the
+
+password will not be visually displayed as you type it.
+
+El login as: ubuntuff
+
+Note:The username name must be input in the lowercase mode. Even if the
+
+username includes uppercase letters, it must be entered in lowercase during login.
+
+5) If the password is entered correctly, you will successfully login the
+
+system. The system interface will appear as shown in the image below:
+
+
+
+=== Page 6 ===
+(SSH clic X server and network tools)
+
+SSH session to ubuntu@1i92.16
+¢ Direct SSH
+
+* SSH compression
+
+* SSH-browser
+
+* X11-forwarding : (remote display is forwarded through SSH)
+
+For more 0, ctrl+click on help or visit our wi
+
+Welcome to Ubuntu 22.04.4 LTS (GNU/Linux 5.15.136-tegra aarch64)
+
+* Documentation: https: //help.ubuntu.com
+* Management: https: //lLandscape.canonical.com
+* Support: https: //ubuntu.com/pro
+
+This system has been minimized by removing packages and content that are
+not required on a system that users do not log into.
+
+To restore this content, you can run the ‘unminimize' command.
+Expanded Security Maintenance for Applications is not
+
+6 updates can be applied immediately.
+
+3 of these updates are standard security updates.
+
+To see these additional updates run: apt list —
+
+28 additional security updates can be applied with ESM Apps.
+Learn more about enabling ESM Apps service at https: //ubuntu.com/esm
+
+L in: Thu Jan 1 08:00:40 1970 from 68.55.1006
+ubuntu@ubuntu:~$ fj
+
+1.6 Transfer Files from PC to Jetson Orin Nano
+
+1) After connecting via SSH, drag the target file into the MobaxXterm file
+
+area.
+
+eo: A > bod
+a * & & & Be vyreta #¥ @ p, 4
+Session Servers Tools Games _ Sessions View Split MultiExec Tunneling Packages Settings Help X server
+Quick connect Gem {S)9. 192.168.11.161
+Bi tOniho kil
+|7mome/hiwonder/ v| Welcome to Ubuntu 18.04.5 LTS (GNU/Linux 4.9.253-tegra aarch64)
+a
+
+v Name
+
+* Documentation: https: //help.ubuntu.com
+ms. * Management:
+.cache * Support:
+.config This system has been minimized by removing packages and content that are
+
+.gconf not required on a system that users do not log into.
+
+-gnupg
+
+local To restore this content, you can run the ‘unminimize' command.
+
+sie esti — 335 updates can be applied immediately.
+
+‘Pki 281 of these updates are standard security updates.
+Desktop To see these additional updates run: apt list —
+BHA
+
+{8th L Fri Sep 30 18 :15 2022 from 1
+
+bei To run a command as administrator (user "root"),
+re See "man sudo_root" for details.
+
+2) The file will be automatically transferred to the home directory of
+
+
+
+=== Page 7 ===
+Jetson Orin Nano system. The command “Is” is entered to view all files.
+
+1.7 Transfer Files from Jetson Orin Nano to PC
+
+1) After connecting via SSH, drag the target file in the MobaxXterm file
+area to your computer desktop. The file will be automatically transferred to the
+desktop.
+
+/home/ubuntu/
+* Documenta
+
+* Managemen
+sudo_as_admin_successful * Support:
+
+~ Name
+
+.viminfo
+This system
+not required
+To restore t
+Expanded Sec
+
+@ updates ca
+
+38 additiona
+| Remote monitoring Learn more a
+
+[_] Follow terminal folder
+
+ubuntu@ubunt
+UNREGISTERED VERSION - Please support MobaXterm by subscribir
+
+2 Configure Virtual Desktop
+
+If you want to use this development without connecting to an external
+screen, please refer to this section. After performing this step, the screen
+
+will not display when connected.
+
+
+
+=== Page 8 ===
+2.1 Check the IP of Development Board
+
+You can find the corresponding IP address of the development board by
+referring to the content in “2. Configuration Guide ->2. Flashing Firmware
+
+Using SDK Manger Tool -> 4.5.1 4.5.1 Check IP through the Router”
+
+2.2Connect to Development Board
+
+Refer to the steps in 1.4 to input the queried IP address and connect to the
+
+development board.
+
+forwarded through SSH)
+
+content, you can ru
+
+nded Security Ma
+
+ith ESM Apps
+ttps: //ubuntu. com/esm
+
+2.3 Install Necessary Libraries
+
+1) Enter the following command and press Enter to install
+
+“xserver-xorg-core-hwe-18.04’.
+
+sudo apt-get install xserver-xorg-core-hwe-18.04
+
+sudo apt-get install xserver-xorg-core-hwe-18. 04
+
+2) Install “xserver-xorg-video-dummy’” by entering the command:
+
+sudo apt-get install xserver-xorg-video-dummy
+
+
+
+=== Page 9 ===
+sudo apt-get instal | xserver-xorg-video-dummyl
+
+2.4Configure Remote Desktop
+
+1) Enter the command and press Enter to configure virtual desktop file.
+
+sudo vim /usr/share/X11/xorg.conf.d/xorg.conf
+
+sudo vim /usr/share/X11/xorg. conf. d/xorg. conf
+
+2) Copy the code below into the file, then click the middle mouse in the
+
+command-line window after copying:
+
+Section "Monitor"
+Identifier "Monitore"
+HorizSync 28.0-80.0
+VertRefresh 48.0-75.0
+
+Modeline "1920x1080_60.00" 172.80 1920 2040 2248 2576 1080 1081 1084 1118
+-HSync +Vsync
+
+EndSection
+
+Section "Device"
+Identifier "Carde"
+Driver "dummy"
+VideoRam 256000
+
+EndSection
+
+Section "Screen"
+
+DefaultDepth 24
+
+Identifier "Screene"
+
+Device "Carde"
+
+Monitor "Monitore"
+
+SubSection "Display"
+
+
+
+
+=== Page 10 ===
+Depth 24
+Modes "1920x1080 60.00"
+EndSubSection
+
+EndSection
+
+It will appear as the image shown below after entering:
+
+Once done, press “Esc” and input “:wq”, press Enter to save and exit.
+
+3) Restart the robot by executing the following command.
+
+sudo reboot
+
+sudo reboot
+
+2.5Restore Screen Display
+
+Enter the command and press Enter to delete the virtual desktop configuration
+
+file. After restarting, the scree will display.
+
+sudo rm -r /usr/share/X11/xorg.conf.d/xorg.conf
+
+sudo vim /usr/share/X11/xorg. conf. d/xorg. conf
+
+10
+
+
+
+=== Page 11 ===
+3 Remote Desktop Configuration and Usage
+
+3.1 Nomachine
+
+NoMachine allows users to access and control remote Windows, Linux PCs, or
+other devices from another computer, enabling work or entertainment
+
+operations.
+
+NoMachine's remote desktop technology uses a new remote protocol that
+extracts desktop data and only transmits certain parameters. It also encrypts
+data transmission via SSH, offering faster speeds and higher security
+
+compared to VNC or direct XDMCP.
+
+3.2 Preparations
+
+Before getting started, some preparations are necessary. In addition to the
+
+development board, the items below need to be prepared.
+1) Amobile phone
+
+2) A laptop (If you’re using a desktop, a USB wireless network adapter
+
+needs to be prepared.)
+
+3) A wireless network adapter for Jetson Orin Nano. Insert the network
+
+adapter into any USB port on the development board.
+
+4) Acard reader and an SD card or SSD with pre-installed official system
+
+image.
+
+5) Nomachine software.
+
+LY
+
+nomachine_7.1.
+3_l.exe
+
+11
+
+
+
+=== Page 12 ===
+3.3 Check IP without a Screen
+
+You can find the corresponding IP address of the development board by
+referring to the content in “2. Configuration Guide ->2. Flashing Firmware
+
+Using SDK Manger Tool -> 4.5.1 4.5.1 Check IP through the Router”
+
+3.4Configure NoMachine on Jetson Orin Nano
+
+1) Enter the URL “https: //www.nomachine.com/download” in a web
+
+browser on your computer to go the NoMachine download page.
+
+Find “NoMachine for ARM” on the page, and click it to enter the ARM version
+
+download page.
+
+NoMachine Embedded Editions
+
+For your Linux ARM boards and devices
+
+ontrol your Raspberry Pi, BeagleBone Black, Radxa Rock or other Linux ARM device from anywhere in the world by installing NoMachine. You can transform your
+pocket-sized board in to a powerful remote desktop client or serve:
+
+F.2~
+
+(( Xs AL
+684 ARM ee
+
+12
+
+
+
+
+=== Page 13 ===
+2) Then click “NoMachine for ARM ARMv8 DEB’ to go to the download
+page.
+
+NoMachine for ARM
+
+If you have an ARM device such as a Jetson Nano/Xavier, BeagleBone, Radxa Rock, Banana Pi or Odroid C2, the sky's your limit to how you use it. By installing
+NoMachine you can transform your device into both a connecting client as well as a powerful remote server. You can remotely control it from wherever you are
+work on documents, transfer files back and forth, view vi
+below, please
+
+in our Knowledge Base
+
+s and other multi-media running on it, and much more. Suitable packages for ARM can be found
+
+ect according to the architecture of your device and the distribution installed. For more details about supported distributions, consult the article
+
+NoMachine for ARMv7
+& NoMachine for A R
+& NoMachin
+
+& NoMachine for A
+
+NoMachine for ARMv8
+
+& NoMachine f
+
+3) Click “Download” to begin downloading Nomachine.
+
+NoMachine for ARM - arm64
+
+Version 8121
+
+Package size 48.96 MB
+
+Package type: DEB
+
+MDS signature. 6cS9e2accc3da338cfe81d4409cic2c65
+
+Ubuntu 14.04/16.04/18.04/20.04, Debian 8/9/10
+
+4) Connect to the development board using the obtained IP address, and
+then follow “1.6 Transfer Files from PC to Jetson Orin Nano’, drag the
+
+installation package to the root directory.
+
+5) Enter the command, replacing “nomachine_8.13.1_1_arm64.deb” with
+the actual file name you downloaded. Press Enter to execute, and wait for
+
+the installation to complete.
+sudo dpkg -i nomachine_8.13.1_1_arm64.deb
+
+sudo dpkg nomachine_8. 13. 1_1_arm64. deb Jj
+
+13
+
+
+
+=== Page 14 ===
+3.5 NoMachine Installation and Operation
+
+3.5.1 Install NoMachine
+
+1) Navigate to the directory where you extract NoMachine installation
+package. Double click to open the NoMachine installation package
+
+“nomachine_7.1.3_1.exe’.
+
+2) Click “Next”.
+
+'& Setup - NoMachine
+
+NOMACHINE Welcome to the NoMachine Setup
+Wizard
+
+This will install NoMachine 7.1.3 on your computer.
+
+It is recommended that you close all other NoMachine
+programs before continuing.
+
+Click Next to continue or Cancel to exit Setup.
+
+The network computing Company
+
+3) Select the installation language as “English”, check “I accept the
+
+agreement” and click “Next”.
+
+14
+
+
+
+=== Page 15 ===
+1 Setup - NoMachine
+
+License Agreement
+Please read the following important information before continuing.
+
+Please read the following License Agreement. You must accept the terms of this
+agreement before continuing with the installation.
+
+Language
+
+End-User License Agreement
+INoMachine - Luxembourg
+NoMachine Product License
+
+Copyright (c) 2002-2021 NoMachine S.a.r.|. All Rights Reserved.
+
+@)I accept the agreement
+
+OI do not accept the agreement
+
+1 Setup - NoMachine
+
+Where should NoMachine be installed?
+
+} Setup will install NoMachine into the following folder.
+
+To continue, click Next. If you would like to select a different folder, dick Browse.
+
+C:\Program Files (x86) \NoMachine | Browse...
+
+Atleast 139.9 MB of free disk space is required.
+
+5) When the following prompt appears, click “Finish”.
+
+15
+
+
+
+=== Page 16 ===
+'& Setup - NoMachine
+
+NOMACHINE Completing the NoMachine Setup
+Wizard
+
+Setup has finished installing NoMachine on your computer.
+
+Click Finish to exit Setup.
+
+The network Computing Company
+
+6) Click “Yes” to restart your computer. (Do not skip this step!)
+
+Setup - NoMachine
+
+To complete the installation of NoMachine, setup must restart your
+computer.
+
+Would you like to restart now?
+
+3.5.2 NoMachine Operations
+
+1) Open NoMachine, enter the obtained IP address “192.168.1.102” in
+the search bar, and click “Connect to new host 192.168.1.102” to create a
+connection to this address.
+
+Machines NOMACHINE
+© Add o ® Connect |] 192.168.1.102 © | Hi View GF Order — %q Settings
+ta@® <Configure connection to new host 192,168.1.102>
+
+16
+
+
+
+=== Page 17 ===
+2) Set the username and password for login. Then click “login”, and you
+
+will see the remote desktop of the development board.
+
+Please type your username and password to login.
+
+} Username — ubuntu
+a@ta Password eeeeee
+[¥] Save this password in the connection file
+
+| Cancel Login
+
+3.5.3 Connect Using a Data Cable
+
+You can improve performance by enabling a remote NDIS compatible
+
+device. The specific steps are as follows:
+
+Note: If you need to use this method to connect the development board, you
+
+will need to use another method to enter the system for configuration.
+Open a terminal and enter the command:
+
+sudo sed -i 's#exit 0#echo device > /sys/class/usb_role/usb2-0-role-switch/role\nexit 0#g'
+
+/opt/nvidia/l4t-usb-device-mode/nv-l4t-usb-device-mode-start.sh
+
+Or use our pre-configured image. You can refer to the content “2 Development
+Board Configuration -> 3 Flashing the System Using an SSD” to perform the system
+
+flashing.
+
+1) Power on the Jetson Orin Nano, then connect a USB cable (a standard
+Type-C data cable will work) to the location highlighted in the red box on the
+Jetson Orin Nano as shown in the image below, with the other end connected
+
+to your computer.
+
+17
+
+
+
+=== Page 18 ===
+2) The connection result is as pictured:
+
+3) After completing the driver installation, open NoMachine. Enter the IP
+
+address “192.168.55.1” to establish a connection.
+
+18
+
+
+
+=== Page 19 ===
+ff) NoMachine = oO x
+
+Machines NOMACHINE
+
+© Add ] 2 192.168.55.1 [x] EEE View GP Order %q Settings
+
+a <Connect to new host 192.168.55.1> a «Configure connection to new host 192.168,.55.1=
+
+vr.
+
+Connection to
+192.168.55.1, Linux
+@ NX
+
+4 Control Jetson Orin Nano via a USB Cable
+
+Note: This method only provides a connection between the computer and the
+Jetson Orin Nano board within the local network. If the local network is not
+connected to the public internet, the Jetson Orin Nano will still be unable to access
+external resources.
+
+Additionally, please connect the Jetson Orin Nano to the power supply first, and
+
+wait for it to boot up before connecting the USB cable.
+
+Note: If you need to use this method to connect the development board, you
+
+will need to use another method to enter the system for configuration.
+Open a terminal and enter the command:
+
+sudo sed -i 's#exit 0#echo device > /sys/class/usb_role/usb2-0-role-switch/role\nexit 0#g'
+
+/opt/nvidia/l4t-usb-device-mode/nv-l4t-usb-device-mode-start.sh
+
+Or use our pre-configured image. You can refer to the content “2 Development
+Board Configuration -> 3 Flashing the System Using an SSD” to perform the system
+
+flashing”.
+
+4.1 Connection
+
+1) Power on the Jetson Orin Nano, then connect a USB cable (a standard
+
+Type-C data cable will work) to the location highlighted in the red box on the
+19
+
+
+
+=== Page 20 ===
+Jetson Orin Nano as shown in the image below, with the other end connected
+
+to your computer.
+
+2) The connection result is as pictured:
+
+20
+
+
+
+=== Page 21 ===
+4.2 Check Device IP Address
+
+1) As shown in the image, right-click the network connection icon and
+
+select ‘Open ‘Network & Internet’ settings.
+
+Ree
+FTF E840 Internet"i2S
+
+15:01
+2022/10/11 =RA—
+
+bal
+
+BMSaaaal
+
+a, beset Spy
+
+Nenbsicieciavakal
+Cee AMS AD.
+
+The adapter inside the red box is the one we need to use.
+
+ox Host-Only Network ~)) VMware Network Adapter =) VMware Network Adapter
+&. VMnet1 VMnet2
+a = f
+
+ualBox Host-Only Ethernet
+
+3) Right-click on “Status.”
+
+21
+
+
+
+=== Page 22 ===
+wR. RRM
+
+Remote NDIS Compa{ 9 256)
+=
+
+D8F(I)
+LI 2 2(6))
+
+SEES)
+9 Heo)
+9 222.)
+
+4) Click on “Details.”
+
+Q DARI 23 tae x
+FU
+=e
+
+IPv4 34: FCM ASHE
+IPv6 332: ZX Internet iFiNiR
+RAK: BBR
+Sia: 00:02:17
+iZB: 425.9 Mbps
+
+If the information shown in the image below appears, it indicates that we can
+remotely access the development board via “192.168.55.1” (this IP can be
+
+used for “1 SSH Remote Connection and 3 Remote Desktop Configuration
+
+and Use’).
+
+22
+
+
+
+=== Page 23 ===
+BBR DHCP
+IPv4 deur
+
+IPv4 FES
+RSBANHA
+BATE
+IPv4 SRA
+
+IPv4 DNS fesse
+IPv4 WINS fRS338
+GBR NetBlOS over Tc...
+3SE-245 1Pv6 Het
+IPv6 Bhi
+
+IPv6 DNS fee
+
+|
+
+Remote NDIS Compatible Device #22
+3E-99-B5-D7-30-50
+
+i=}
+os
+
+192.168.55.100
+
+255.255.255.0
+
+20225710R 118 SRR— 15:10:47
+20225F10R 118 SRR— 15:14:09
+
+fe80::a00e:81b9:744:72d0%18
+
+fec0:0:0:fffF:1961
+fec0:0:0:FFfF::2%1
+fec0:0:0:fffF:3961
+
+23
+
+

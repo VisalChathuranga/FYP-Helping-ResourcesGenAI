@@ -1,0 +1,1271 @@
+
+=== Page 1 ===
+Hivweander Shenzhen Hiwonder Technology Co,Ltd
+
+Lesson 15 ROS2 Launch Multiple Node
+Startup and Configuration Script
+
+1. Launch Introduction
+
+In the realm of ROS, initiating a node often entails the tedious process of
+opening a new terminal window and executing a command. This repetitive
+sequence of operations can quickly become cumbersome. Is there a more
+efficient approach? Enter launch files. These specialized scripts offer a
+solution by enabling the simultaneous launch and configuration of multiple
+nodes within the ROS ecosystem. With launch files, the complexity of node
+deployment is significantly reduced, providing a streamlined solution for
+managing ROS-based systems.
+
+In ROS2, Launch is used for multi-node startup, configuring program execution
+parameters, and other functionalities. ROS2 Launch files can be in XML,
+YAML, or Python formats. This section of the course uses Python format for
+Launch files as an example. Compared to the other two formats, Python format
+
+offers more flexibility:
+
+@ Python provides a wide range of libraries that can be used within the
+
+launch file.
+
+@ ROS2 generic and specific launch features are written in Python, allowing
+access to launch features that may not be publicly available in XML and
+
+YAML.
+
+When writing ROS2 launch files in Python, the main focus is on abstracting
+each node, file, or script into an action and using a unified interface for startup.
+
+The main structure is as follows:
+
+def generate_launch_description():
+
+
+
+
+=== Page 2 ===
+bet IVW/E) mM Oo a) t Shenzhen Hiwonder Technology Co,Ltd
+
+return LaunchDescription([
+
+action_1,
+
+action_2,
+
+action_n
+
+})
+
+2. Single Node Launch File
+
+2.1 Create single_node.launch.py
+
+1) Click on S| and select “System Tools —Terminator’ in sequence.
+
+it) Programming
+
+@) intemet
+wy
+
+ib | Sound & Video
+
+i) Graphics
+
+{0 system Tools
+
+q } » Accessories
+
+res) Help
+| Preferences
+
+/ Run
+
+¥
+ra Shutdown
+
+2) Enter command “cd hiwonder_ws/src/” to switch to the src folder within
+
+the hiwonder_ws workspace.
+
+
+
+=== Page 3 ===
+HSI W/EQXMOCT Shenzhen Hiwonder Technology Co,Ltd
+
+ubuntu@raspberrypi:~$ cd hiwonder_ws/src/
+
+ubuntu@raspberrypi:~/hiwonder_ws/src$ i}
+
+3) Enter the command “ros2 pkg create DDS_qos_demo --build-type
+ament_python --dependencies rclpy’ and press Enter to create a
+
+function package named launch_demo, adding a dependency on rclpy.
+
+ubuntu@raspberrypi:~/hiwonder_ws/src$ ros2 pkg create Launch_demo --build-type a
+
+ment_python --dependencies rclpyff
+
+4) Enter the command “cd launch_demo/” to switch the directory of the
+
+launch_demo package,
+
+ubuntu@raspberrypi:~/hiwonder_ws/src$ cd Launch_demo/
+
+ubuntu@raspberrypi: ~/hiwonder_ws/src/ Launch_demo$
+
+5) Enter the command “mkdir launch’ to create the launch folder.
+
+ubuntu@raspberrypi:~/hiwonder_ws/src/launch_demo$ mkdir launch
+
+6) Enter the command “cd launch’ to switch to the launch folder.
+
+ubuntu@raspberrypi:~/hiwonder_ws/src/launch_demo$ cd Launch
+
+ubuntu@raspberrypi: ~/hiwonder_ws/src/ Launch_demo/ Launch$
+
+7) Enter the command “vim single_node.launch.py” to edit the program
+and copy the following program. If you need to make modifications, please
+
+press “i” to enter the insert mode. Once you've finished modifications,
+
+please press “Esc” and input “:wq” to save and exit.
+
+ubuntu@raspberrypi:~/hiwonder_ws/src/topic_demo/topic_demo$ vim topic_pub. pyfj
+
+from launch import LaunchDescription # The description file for
+launch file
+from launch_ros.actions import Node # The description class for
+
+node startup
+
+def generate_launch_description(): # Automatically generate
+
+launch file function
+
+
+
+
+=== Page 4 ===
+HIVVE9MCOCT Shenzhen Hiwonder Technology Co,Ltd
+
+return LaunchDescription([ # Return launch file
+
+description information
+
+Node( # Configure the startup
+
+of a node
+
+package="'hello_world_demo’, # The package where the
+
+node is located
+
+executable="hello_world’, # Node executable files
+
+:wall
+
+8) Enter the command “chmod +x single_node.launch.py” and press Enter
+to grant the executable permission to the saved single_node.launch.py
+
+file.
+
+ubuntu@raspberrypi:~/hiwonder_ws/src/launch_demo/lLaunch$ chmod +x single_node.la
+unch
+
+ubuntu@raspberrypi: ~/hiwonder_ws/src/lLaunch_demo/ Launch$ |
+
+2.2 setup.py File Settings
+
+The setup.py file defines the metadata and build configuration for a ROS2
+package, providing information such as package metadata, dependencies,
+build configuration, and installation logic. It helps developers correctly build,
+install, and use ROS2 packages. It is necessary to write the program entry
+
+points single_node.launch.py into the setup.py file.
+
+
+
+=== Page 5 ===
+HIVVE9MCOCT Shenzhen Hiwonder Technology Co,Ltd
+
+1) Enter the command “cd ..” to navigate to the parent directory.
+
+ubuntu@raspberrypi:~/hiwonder_ws/src/launch_demo/ lLaunch$ cd
+
+ubuntu@raspberrypi:~/hiwonder_ws/src/launch_demo$ il
+
+2) Enter the command “vim setup.py” and press Enter to open the setup.py
+
+file.
+
+ubuntu@raspberrypi:~/hiwonder_ws/src/launch_demo$ vim setup.py
+
+3) Press “i” to enter the insert mode, and then enter the following code to the
+
+corresponding position.
+
+from setuptools import find_packages, setup
+import os
+from glob import glob
+
+(os.path.join(‘share’, package_name, ‘launch'), glob(os.path.join(‘launch’,
+
+* launch.py’))),
+
+ubuntu@raspberrypi: ~/hiwonder_ws/src/launch_demo 101x24
+setuptools Tind_packages, setup
+os
+glob glob
+package_name =
+
+setup(
+name=package_name,
+version= ,
+packages=find_packages(excLude=[ }),
+data_files=[
+
+[ + package_name]),
+( + package_name, [ ]),
+(os.path.join(' , package_name, h'), glob(os.path.join(
+(os.path. join( , Package_name, ), glob(os.path.join(
+(os.path. join( , Ppackage_name, ), glob(os.path. join(
+
+,
+install_requires=[ iF
+zip_safe=
+
+maintainer=
+
+maintainer_email=
+
+description=
+
+- INSERT --
+
+4) Enter “:wq’ to save and exit the file.
+
+
+
+
+=== Page 6 ===
+Hiweander Shenzhen Hiwonder Technology Co,Ltd
+
+],
+install_requires=[
+zip_safe= -
+maintainer= ,
+
+maintainer_email=
+description=
+
+:waf
+
+2.3 Compilation and Execution
+
+1) After granting the executable permission, enter the command “cd
+
+~/hiwonder_ws/” to switch to the directory of the workspace.
+
+ubuntu@raspberrypi: ~/hiwonder_ws/src/hello_world_demo$ cd ~/hiwonder_ws/
+
+ubuntu@raspberrypi: ~/hiwonder_ws$ |
+
+2) Enter the command “colcon build” and press Enter to compile the
+
+packages within the workspace.
+
+ubuntu@raspberrypi:~/hiwonder_ws$ colcon build
+
+3) Enter the command “source ./install/setup.bash” and press Enter to
+
+make the environment variables take effect.
+
+ubuntu@raspberrypi:~/hiwonder_ws$ source ./install/setup.bash
+
+4) Enter the command “ros2 launch launch_demo
+single_node.launch.py’” and press Enter to start single_node.launch.py file.
+
+ubuntu@raspberrypi:~$/ ros2 launch lLaunch_demo single_node. Launch. py
+
+[INFO] [launch]: All log files can be found below /home/ubuntu/.ros/log/2024-01-29-02-44-56-330823-ra
+spberrypi-125
+
+[INFO] [launch]: Default logging verbosity is set to INFO
+
+[INFO] [hello world-1]: process started with pid [126]
+
+[hello_world-1] [INFO] [1706496296.926882405] [hello_world_demo]: Hello World
+[hello_world-1] [INFO] [1706496297.428765081] [hello_world_demo]: Hello World
+[hello_world-1] [INFO] [1706496297.930032612] [hello_world_demo]: Hello World
+[hello_world-1] [INFO] [1706496298.431273776] [hello_world_demo]: Hello World
+
+2.4 Program Analysis
+
+To describe a launch task for the "hello_world" node using a Node, including
+the package name and executable file, and to return a LaunchDescription
+object containing this node task, implement the generation of a launch file to
+
+describe and start the "hello_world" node.
+
+
+
+=== Page 7 ===
+Hiweander Shenzhen Hiwonder Technology Co,Ltd
+
+Launch LaunchDescription
+Launch_ros.actions Node
+
+():
+
+LaunchDescription([
+Node(
+package=
+executable=
+
+3. Multiple Node Launch File
+
+3.1 Create multi_node.launch.py
+
+1) Enter the command “cd hiwonder_ws/src/launch_demo/launch’ to
+
+switch the launch folder within the launch_demo workspace.
+
+ubuntu@raspberrypi:~$ cd hiwonder_ws/src/launch_demo/ launch
+
+ubuntu@raspberrypi:~/hiwonder_ws/src/  lLaunch_demo/ Launch$
+
+2) Enter the command “vim multi_node.launch.py” to edit the program
+and copy the following program. If you need to make modifications, please
+
+press “i” to enter the insert mode. Once you've finished modifications, please
+
+press “Esc” and input “:wq” to save and exit.
+
+ubuntu@raspberrypi:~/hiwonder_ws/src/topic_demo/topic_demo$ vim topic_pub. pyfj
+
+from launch import LaunchDescription # The description file for
+launch file
+from launch_ros.actions import Node # The description class for
+
+node startup
+
+def generate_launch_description(): # Automatically generate
+
+launch file function
+
+return LaunchDescription([ # Return launch file
+
+
+
+
+=== Page 8 ===
+HIVVE9MCOCT Shenzhen Hiwonder Technology Co,Ltd
+
+description information
+
+Node( # Configure the startup
+
+of a node
+
+package='topic_demo'’, # The package where the
+
+node is located
+
+executable='topic_pub', # Node executable files
+),
+Node( # Configure the startup
+of a node
+package='topic_demo'’, # The package where the
+
+node is located
+
+executable='topic_sub’, # Node executable
+
+files ),
+
+:wald
+
+3) Enter the command “chmod +x multi_node.launch.py” and press Enter
+to grant the executable permission to the saved multi_node.launch.py
+
+file.
+
+ubuntu@raspberrypi:~/hiwonder_ws/src/Launch_demo/launch$ chmod +x multi_node. launch. py
+
+ubuntu@raspberrypi: ~/hiwonder_ws/src/Launch_demo/ Launch$ i
+
+
+
+=== Page 9 ===
+t >
+Hivvent ioer Shenzhen Hiwonder Technology Co,Ltd
+
+3.2 Compilation and Execution
+
+1) After granting the executable permission, enter the command “cd
+
+~/hiwonder_wsi/” to switch to the directory of the workspace.
+
+ubuntu@raspberrypi:~/hiwonder_ws/src/hello_world_demo$ cd ~/hiwonder_ws/
+
+ubuntu@raspberrypi: ~/hiwonder_ws$ il
+
+2) Enter the command “colcon build” and press Enter to compile the
+
+packages within the workspace.
+
+ubuntu@raspberrypi:~/hiwonder_ws$ colcon build
+
+3) Enter the command “source ./install/setup.bash” and press Enter to
+
+make the environment variables take effect.
+
+ubuntu@raspberrypi:~/hiwonder_ws$ source ./install/setup.bash
+
+4) Enter the command “ros2 launch launch_demo multi_node.launch.py”
+
+and press Enter to start single_node.launch.py file.
+
+ubuntu@raspberrypi:~$|ros2 Launch Launch_demo multi_node. Launch.py
+[INFO] [launch]: All log files can be found below /home/ubuntu/.ros/log/2024-01-29-02-59-33-472130-ra
+spberrypi-160
+
+[INFO] [launch]: Default logging verbosity is set to INFO
+
+[INFO] [topic_pub-1]: process started with pid [161]
+
+[INFO] [topic_sub-2]: process started with pid [163]
+
+[topic_sub-2] [INFO] [1706497174.504283132] [minimal_subscriber]: heard: " World:
+
+[topic_sub-2] [INFO] [1706497174.988132575] [minimal_subscriber]: heard: " World:
+[topic_sub-2] [INFO] [1706497175.488120599] [minimal_subscriber]: heard: " World:
+[topic_sub-2] [INFO] [1706497175.988234457] [minimal_subscriber]: heard: " World:
+[topic_sub-2] [INFO] [1706497176.488416704] [minimal_subscriber]: heard: " World:
+[topic_sub-2] [INFO] [1706497176.988116785] [minimal_subscriber]: heard: " World:
+[topic_sub-2] [INFO] [1706497177.488334477] [minimal_subscriber]: heard: " World:
+[topic_sub-2] [INFO] [1706497177.988232411] [minimal_subscriber]: heard: " World:
+
+NOOhwWNEH @
+
+3.3 Program Analysis
+
+Describing two node launch tasks (one publishing node and one subscribing
+node) under the topic_demo package through Node, and adding both node
+tasks to a LaunchDescription object for return, generating a descriptive
+
+launch file to automatically start these two nodes interacting with each other.
+
+
+
+=== Page 10 ===
+Hiweander Shenzhen Hiwonder Technology Co,Ltd
+
+Launch LaunchDescription
+Llaunch_ros.actions Node
+
+():
+
+LaunchDescription( [
+Node(
+
+package=
+
+executabLe=
+),
+Node(
+
+package=
+
+executable=
+
+),
+
+4. Remapping Launch File
+
+In the ROS community, there are abundant resources. When using code from
+others, it's common to find that the topic names for communication don't quite
+match our requirements. Is it possible to rename such resources? To enhance
+
+software reusability, ROS provides a mechanism for resource remapping
+4.1 Create remapping.launch.py
+
+1) Enter the command “cd hiwonder_ws/src/launch_demo/launch’ to
+
+switch the launch folder within the launch_demo workspace.
+
+ubuntu@raspberrypi:~$ cd hiwonder_ws/src/launch_demo/ launch
+
+ubuntu@raspberrypi: ~/hiwonder_ws/src/Launch_demo/ Launch$
+
+2) Enter the command “vim remapping.launch.py’” to edit the program and
+copy the following program. If you need to make modifications, please
+
+press “i” to enter the insert mode. Once you've finished modifications,
+
+please press “Esc” and input “:wq” to save and exit.
+
+ubuntu@raspberrypi: ~/hiwonder_ws/src/Launch_demo/launch$ vim remapping. Launch. py
+
+from launch import LaunchDescription # The description file for
+launch file
+
+from launch_ros.actions import Node # The description class for
+node startup
+
+
+
+
+=== Page 11 ===
+HIVVE9MCOCT Shenzhen Hiwonder Technology Co,Ltd
+
+def generate_launch_description(): # Automatically generate
+
+launch file function
+
+return LaunchDescription([ # Return launch file
+
+description information
+
+Node( # Configure the startup
+
+of a node
+
+package='topic_demo'’, # The package where the
+
+node is located
+
+executable='topic_pub', # The package where the node is
+
+located
+
+remappings=[("/topic","topic_pub")]
+
+:wald
+
+4) Enter the command “chmod +x remapping.launch.py” and press Enter
+to grant the executable permission to the saved remapping.launch.py
+
+file.
+
+ubuntu@raspberrypi:~/hiwonder_ws/src/launch_demo/launch$ chmod +x remapping. Launch.py
+
+ubuntu@raspberrypi:~/hiwonder_ws/src/ lLaunch_demo/ Launch$ ]
+
+4.2 Compilation and Execution
+
+1) After granting the executable permission, enter the command “cd
+
+
+
+=== Page 12 ===
+HIVVE9MCOCT Shenzhen Hiwonder Technology Co,Ltd
+
+~/hiwonder_ws/” to switch to the directory of the workspace.
+
+ubuntu@raspberrypi: ~/hiwonder_ws/src/hello_world_demo$ cd ~/hiwonder_ws/
+
+ubuntu@raspberrypi: ~/hiwonder_ws$ il
+
+2) Enter the command “colcon build” and press Enter to compile the
+
+packages within the workspace.
+
+ubuntu@raspberrypi:~/hiwonder_ws$ colcon build
+
+3) Enter the command “source ./install/setup.bash” and press Enter to
+
+make the environment variables take effect.
+
+ubuntu@raspberrypi:~/hiwonder_ws$ source ./install/setup.bash
+
+4) Enter the command “ros2 launch launch_demo multi_node.launch.py”
+and press Enter to start remapping.launch.py file. The original topic
+name is "/topic", and after remapping, the topic name becomes
+
+"/topic_pub".
+
+ubuntu@raspberrypi:~$ |ros2 Launch Launch_demo remapping. Launch. py
+[INFO] [launch]: ALL log files can be found below /home/ubuntu/.ros/log/2024-01-29-03-23-58-673471-ra
+
+spberrypi-197
+[INFO] [launch]: Default logging verbosity is set to INFO
+[INFO] [topic_pub-1]: process started with pid [198]
+
+5) Right-click with the mouse, select "Split Vertically", and click to create a
+new terminal window.
+
+roscore http://raspberrypi:11311/ 123x29
+
+. logging to /home/u rC 74¢ se - icdbd79/ros Launch-raspberrypi-821. log
+ing log directory for disk usage. Thi
+Ctrl-C to interrupt
+checking log file disk usage. Usage is <1
+
+started roslaunch server http://raspberrypi: 41
+ros_comm version 1.14.13
+
+o: melodic
+
+auto-starting new master
+process[master]: started with pid [835]
+ROS_MASTER_URI=http://raspberrypi:11311/
+
+6) Enter the command "ros2 topic list" to view the current list of topics. The
+
+
+
+=== Page 13 ===
+HIVVE9MCOCT Shenzhen Hiwonder Technology Co,Ltd
+
+original topic name is "/topic", and after remapping, the topic name
+
+becomes "/topic_pub"
+
+ubuntu@raspberrypi: ~ 39x24
+ubuntu@raspberrypi:~$ ros2 topic List
+/parameter_events
+
+/rosout
+/topic_pub
+ubuntu@raspberrypi:~$ Jj
+
+4.3 Program Analysis
+
+Through Node action, a launch task to execute the topic_pub node from the
+topic_demo package was described. Additionally, the topic name published
+by the node was remapped from "/topic" to "topic_pub" using the remappings
+parameter. Finally, this node task was added to a LaunchDescription object
+and returned. The purpose is to automatically generate a launch file for the
+described node tasks and achieve topic name remapping configuration.
+
+Launch LaunchDescription
+launch_ros.actions Node
+
+LaunchDescription([
+Node(
+
+package=
+executabLe=
+remappings=[ (
+
+5. Parameter Configuration Launch File
+
+5.1 Create param.launch.py
+
+1) Enter the command “cd hiwonder_ws/src/launch_demo/launch’ to
+
+
+
+=== Page 14 ===
+Hivweander Shenzhen Hiwonder Technology Co,Ltd
+
+switch the launch folder within the launch_demo workspace.
+
+ubuntu@raspberrypi:~$ cd hiwonder_ws/src/launch_demo/ launch
+
+ubuntu@raspberrypi: ~/hiwonder_ws/src/ Launch_demo/ Launch$
+
+2) Enter the command “vim param.launch.py’ to edit the program and
+copy the following program. If you need to make modifications, please
+press “i” to enter the insert mode. Once you've finished modifications,
+
+please press “Esc” and input “:wq” to save and exit.
+
+ubuntu@raspberrypi: ~/hiwonder_ws/src/Launch_demo/launch$ vim param. Launch. py |
+
+from launch import LaunchDescription # The description
+
+file for launch file
+
+from launch.actions import DeclareLaunchArgument # Declaration of
+
+the Argument Class Used Inside the Launch File
+
+from launch.substitutions import LaunchConfiguration, TextSubstitution
+
+from launch_ros.actions import Node # The Description
+
+Class for Node Launch
+
+def generate_launch_description(): # Automatically
+
+generate launch file function
+background_r_launch_arg = DeclareLaunchArgument(
+
+‘packground_r’, default_value=TextSubstitution(text='0') # Create a
+
+parameter (arg) inside a Launch file named background_r
+
+)
+
+background_g_launch_arg = DeclareLaunchArgument(
+
+
+
+
+=== Page 15 ===
+Hivweander Shenzhen Hiwonder Technology Co,Ltd
+
+‘packground_g', default_value=TextSubstitution(text='120') # Create
+
+a parameter (arg) inside a Launch file named background_r
+
+)
+
+background_b_launch_arg = DeclareLaunchArgument(
+
+‘packground_b', default_value=TextSubstitution(text='90') # Create
+
+a parameter (arg) inside a Launch file named background_r
+
+return LaunchDescription([ #
+
+Return the Description Information of the Launch File
+
+background_r_launch_arg, #
+
+Invoke the Parameter (arg) Created Above
+background_g_launch_arg,
+background_b_launch_arg,
+
+Node( #
+
+Configure the startup of a node
+
+package='turtlesim’,
+
+executable='turtlesim_node’, #
+Configure the startup of a node
+name='sim’, #
+
+Rename the node
+
+
+
+
+=== Page 16 ===
+HIVVE9MCOCT Shenzhen Hiwonder Technology Co,Ltd
+
+parameters=[{ #
+
+ROS parameter list
+
+‘packground_r': LaunchConfiguration(‘background_r'), #
+
+Create parameter background_r
+
+‘packground_g': LaunchConfiguration(‘background_g'), #
+
+Create parameter background_g
+
+‘packground_b': LaunchConfiguration(‘background_b'), #
+
+Create parameter background_b
+
+}]
+
+‘wall
+
+5) Enter the command “chmod +x param.launch.py” and press Enter to
+
+grant the executable permission to the saved remapping.launch.py file.
+
+ubuntu@raspberrypi:~/hiwonder_ws/src/lLaunch_demo/launch$ chmod +x param. Launch. py
+
+ubuntu@raspberrypi: ~/hiwonder_ws/src/Launch_demo/ Launch$ I
+
+5.2 Compilation and Execution
+
+1) After granting the executable permission, enter the command “cd
+
+~/hiwonder_ws/” to switch to the directory of the workspace.
+
+ubuntu@raspberrypi: ~/hiwonder_ws/src/hello_world_demo$ cd ~/hiwonder_ws/
+
+ubuntu@raspberrypi: ~/hiwonder_ws$ |
+
+2) Enter the command “colcon build” and press Enter to compile the
+
+packages within the workspace.
+
+
+
+=== Page 17 ===
+Hivwoander Shenzhen Hiwonder Technology Co,Ltd
+
+ubuntu@raspberrypi:~/hiwonder_ws$ colcon build
+
+3) Enter the command “source ./install/setup.bash’” and press Enter to
+
+make the environment variables take effect.
+
+4) Enter the command "ros2 launch launch_demo param.launch.py" and
+
+press Enter to start the param.launch.py file.
+[INFO
+[turt
+
+glx: failed
+yr: failed to load
+
+5.3 Program Analysis
+
+Through DeclareLaunchArgument, three parameters, background_r, g,
+and b, were declared, with default values set for these parameters. Then, the
+launch task of the turtlesim node was described through Node, injecting these
+three parameters into the node parameters using LaunchConfiguration. This
+
+generates a launch file with parameter definitions. By using the launch file, you
+
+
+
+=== Page 18 ===
+can dynamically set the background color parameter to control the background
+
+color of the turtle simulator.
+
+launch import LaunchDescription # launch3yz # & #4
+launch.actions import DeclareLaunchArgument # FREB launch # AW & Fi BY Argument2&
+launch. substitutions I LaunchConfiguration, TextSubstitution
+
+launch_ros.actions im; Node # i mi oD mY RE
+
+def generate_launch_description(): # Bm me launche th BR
+background_r_launch_arg = DeclareLaunchArgument (
+, default_value=TextSubstitution(text='0') # #1 — TP Launchy # A BM ( arg) background_r
+)
+background_g_launch_arg = DeclareLaunchArgument (
+, default_value=TextSubstitution(text= # @) @— + LaunchX # A @& ( arg) background _g
+
+)
+background_b_launch_arg = DeclareLaunchArgument (
+, default_value=TextSubstitution(text= # @)@— + Launchx # A #@& ( arg) background_b
+
+)
+
+return LaunchDescription([ # BB launcher HRB
+background_r_launch_arg, # WAU +t tlh SH (arg)
+background_g_launch_arg,
+background_b_launch_arg,
+Node( #EE-T*+7 AHEM
+package= P
+executable= P #PAMEHDEA
+name= ; WHAM BE
+parameters=[{ # ROSS BF R
+: LaunchConfiguration( , i @ @ MH background_r
+: LaunchConfiguration( }; # fi 3 @ HH background _g
+: LaunchConfiguration( . fi @ @ & background_b
+
+6.YAML Parameters Launch File
+
+6.1 Create param_yaml.launch.py
+
+1) Enter the command “cd hiwonder_ws/src/launch_demo/launch’ to
+
+switch the launch folder within the launch_demo workspace.
+
+ubuntu@raspberrypi:~$ cd hiwonder_ws/src/launch_demo/ launch
+
+ubuntu@raspberrypi:~/hiwonder_ws/src/  lLaunch_demo/ Launch$
+
+2) Enter the command “vim param_yaml.launch.py” to edit the program
+and copy the following program. If you need to make modifications, please
+press “i” to enter the insert mode. Once you've finished modifications,
+please press “Esc” and input “:wq” to save and exit.
+
+ubuntu@raspberrypi:~/hiwonder_ws/src/launch_demo/lLaunch$ vim param_yam1l. launch.p
+
+yil
+
+
+
+
+=== Page 19 ===
+Hivweander Shenzhen Hiwonder Technology Co,Ltd
+
+import os
+
+from ament_index_python.packages import get_package_share_directory #
+
+Method for Querying Package Path
+
+from launch import LaunchDescription #The Description Class for Node
+
+Launch
+
+from launch_ros.actions import Node # The Description Class for Node
+
+Launch
+def generate_launch_description(): # Automatically generate launch file
+function
+
+config = os.path.join( # Find the Full Path of the Parameter
+File
+
+get_package_share_directory(‘launch_demo’),
+‘config’,
+‘turtlesim.yaml'
+
+)
+
+return LaunchDescription([ # Return the Description Information
+
+of the Launch File
+
+Node( # Configure the startup of a node
+
+package='turtlesim’, # The package where the node is
+
+
+
+
+=== Page 20 ===
+HIVVE9MCOCT Shenzhen Hiwonder Technology Co,Ltd
+
+located
+executable='turtlesim_node', # Executable File Name of the Node
+namespace='turtlesim2’, # Namespace of the Node
+name='sim'’, # Rename the node
+parameters=[config] # Load parameter file
+)
+})
+
+‘wall
+
+6) Enter the command “chmod +x param_yaml.launch.py” and press Enter
+to grant the executable permission to the saved param_yaml.launch.py
+
+file.
+
+ubuntu@raspberrypi:~/hiwonder_ws/src/lLaunch_demo/launch$ chmod +x param_yam1. lau
+nch. py
+
+ubuntu@raspberrypi: ~/hiwonder_ws/src/ Launch_demo/ Launch$ |
+
+6.2 setup.py File Settings
+
+The setup.py file defines the metadata and build configuration for a ROS2
+package, providing information such as package metadata, dependencies,
+build configuration, and installation logic. It helps developers correctly build,
+install, and use ROS2 packages. It is necessary to write the program entry
+
+points for param_yaml.launch.p into the setup.py file.
+
+1) Enter the command “cd ..” to navigate to the parent directory.
+
+
+
+=== Page 21 ===
+ubuntu@raspberrypi:~/hiwonder_ws/src/launch_demo/ lLaunch$ cd
+
+ubuntu@raspberrypi:~/hiwonder_ws/src/launch_demo$ il
+
+2) Enter the command “vim setup.py” and press Enter to open the setup.py
+
+file.
+
+ubuntu@raspberrypi:~/hiwonder_ws/src/launch_demo$ vim setup.py
+
+3) Press “i” to enter the insert mode, and then enter the following code to the
+
+corresponding position.
+
+(os.path.join(‘share’, package_name, 'config'), glob(os.path.join(‘config’, '*.*"))),
+
+setuptools find_packages, setup
+os
+glob glob
+package_name = ‘'launch_demo
+
+setup(
+
+name=package_name,
+
+version='0.0.0',
+
+packages=find_packages(exclLude=['test']),
+
+data_files=[
+
+('share/ament_index/resource_index/packages',
+
+['resource/' + package_name]),
+('share + package_name, ['package.x }),
+os.path.join('share', package_name, ‘launch’ : : . 1 2)
+(os.path.join('share', package_name, ‘config'), glob(os.path.join('config', ‘'*.*
+(os.path.join('share', package_name, ‘rviz'), glob(os.path.join('rviz', .
+
+],
+install_requires=['setuptools'],
+zip_safe= ;
+maintainer='ubuntu',
+maintainer_email='ubuntu@todo.todo',
+description='TODO: Package description’,
+
+='TODO: License declaration',
+
+4) Enter “:wq’ to save and exit the file.
+
+],
+
+install_requires=['setuptools'],
+zip_safe= ,
+maintainer='ubuntu',
+
+maintainer_email='ubuntu@todo.todo',
+description='TODO: Package description’,
+
+='TODO: License declaration’,
+
+ae)
+6.3 Compilation and Execution
+
+1) After granting the executable permission, enter the command “cd
+
+~/hiwonder_ws/” to switch to the directory of the workspace.
+
+
+
+=== Page 22 ===
+HIVVE9MCOCT Shenzhen Hiwonder Technology Co,Ltd
+
+ubuntu@raspberrypi: ~/hiwonder_ws/src/hello_world_demo$ cd ~/hiwonder_ws/
+
+ubuntu@raspberrypi: ~/hiwonder_ws$ il
+
+2) Enter the command “colcon build” and press Enter to compile the
+
+packages within the workspace.
+
+ubuntu@raspberrypi:~/hiwonder_ws$ colcon build
+
+3) Enter the command “source ./install/setup.bash” and press Enter to
+
+make the environment variables take effect.
+
+ubuntu@raspberrypi:~/hiwonder_ws$ source ./install/setup.bash
+
+4) Enter the command “ros2 launch launch_demo
+
+param_yaml.launch.py’” and press Enter to start param_yaml.launch.py file.
+
+ubuntu@raspberrypi:~$|ros2 Launch Launch_demo param_yamL. Launch. py
+
+[INFO] [launch]: All log files can be found below /home/ubuntu/.ros/log/2024-01-29-03-57-37-719249-ras
+pberrypi-419
+
+[INFO] [launch]: Default logging verbosity is set to INFO
+
+[INFO] [turtlesim_node-1]: process started with pid [420]
+
+[turtlesim_node-1] QStandardPaths: XDG_RUNTIME_DIR not set, defaulting to '/tmp/runtime-ubuntu'
+[turtlesim_node-1] [INFO] [1706500657.905322051] [turtlesim2.sim]: Starting turtlesim with node name /
+turtlesim2/sim
+
+[turtlesim_node-1] [INFO] [1706500657.911099878] [turtlesim2.sim]: Spawning turtle [turtle1] at x=[5.5
+44445 =
+
+6.4 Program Analysis
+
+Through Node, describe a launch task for a turtlesim node, setting the
+
+
+
+=== Page 23 ===
+HIVVE9MCOCT Shenzhen Hiwonder Technology Co,Ltd
+
+package name, executable file name, namespace, and name label. Load the
+configuration file turtlesim.yaml from the specified path using parameters.
+Finally, add this task to LaunchDescription and return it, generating a launch
+file to describe and launch the turtlesim node with parameters.
+
+os
+
+ament_index_python. packages get_package_share_directory
+
+launch LaunchDescription
+launch_ros.actions Node
+
+():
+
+config = os.path. join(
+get_package_share_directory(
+
+’
+
+LaunchDescription([
+Node(
+package= ‘i
+executab Le=
+namespace=
+name= ;
+parameters=[config]
+
+7.Launch the Launch File
+
+7.1 Create launch_include.launch.py
+
+1) Enter the command “cd hiwonder_ws/src/launch_demo/launch’ to
+
+switch the launch folder within the launch_demo workspace.
+
+ubuntu@raspberrypi:~$ cd hiwonder_ws/src/launch_demo/ launch
+
+ubuntu@raspberrypi:~/hiwonder_ws/src/  lLaunch_demo/ Launch$
+
+2) Enter the command “vim launch_include.launch.py” to edit the program
+and copy the following program. If you need to make modifications, please
+
+press “i” to enter the insert mode. Once you've finished modifications,
+
+please press “Esc” and input “:wq” to save and exit.
+
+import os
+
+
+
+
+=== Page 24 ===
+Hivweander Shenzhen Hiwonder Technology Co,Ltd
+
+from ament_index_python.packages import get_package_share_directory #
+
+Method for Querying Package Path
+
+from launch import LaunchDescription # The Description
+
+Class for Node Launch
+
+from launch.actions import IncludeLaunchDescription # The Description
+
+Class for Node Launch
+
+from launch.launch_description_sources import
+
+PythonLaunchDescriptionSource
+
+from launch.actions import GroupAction # Execution Actions
+
+in Launch File
+
+from launch_ros.actions import PushRosNamespace # ROS
+
+Namespace Configuration
+
+def generate_launch_description(): # Function for
+
+[Automatic Generation of Launch Files
+
+hello_world = IncludeLaunchDescription( # Include Another
+
+Launch File from a Specified Path
+PythonLaunchDescriptionSource([os.path.join(
+get_package_share_directory(‘launch_demo’), ‘launch’),
+
+‘/single_node.launch.py’])
+
+
+
+
+=== Page 25 ===
+HIVVE9MCOCT Shenzhen Hiwonder Technology Co,Ltd
+
+return LaunchDescription([ # Return the
+
+Description Information of the Launch File
+
+hello_world
+
+:wald
+
+7) Enter the command “chmod +x launch_include.launch.py” and press
+Enter to grant the executable permission to the saved
+
+launch_include.launch.py file.
+
+ubuntu@raspberrypi: ~/hiwonder_ws/src/Launch_demo/ lLaunch$ chmod +x Launch_include. Launch. py
+
+ubuntu@raspberrypi: ~/hiwonder_ws/src/lLaunch_demo/ Launch$ i
+
+7.2 Compilation and Execution
+
+1) After granting the executable permission, enter the command “cd
+
+~/hiwonder_ws/” to switch to the directory of the workspace.
+
+ubuntu@raspberrypi: ~/hiwonder_ws/src/hello_world_demo$ cd ~/hiwonder_ws/
+
+ubuntu@raspberrypi: ~/hiwonder_ws$ |
+
+2) Enter the command “colcon build” and press Enter to compile the
+
+packages within the workspace.
+
+ubuntu@raspberrypi:~/hiwonder_ws$ colcon build
+
+3) Enter the command “source ./install/setup.bash” and press Enter to
+
+make the environment variables take effect.
+
+ubuntu@raspberrypi:~/hiwonder_ws$ source ./install/setup.bash
+
+
+
+
+=== Page 26 ===
+HIVVE9MCOCT Shenzhen Hiwonder Technology Co,Ltd
+
+5) Enter the command “ros2 launch launch_demo
+launch_include.launch.py” and press Enter to start
+
+launch_include.launch.py file.
+
+ubuntu@raspberrypi:~$ ros2 Launch launch_demo Launch_include. Launch.py
+
+[INFO] [launch]: All Tog Tiles Can be found below 7home7UbUNtU7- TOS7 16g/ 2024 -01-29-04-08-56-256102-ras
+pberrypi-437
+
+[INFO] [launch]: Default logging verbosity is set to INFO
+
+[INFO] [hello_world-1]: process started with pid [438]
+
+[heLlo_world-1] [INFO] [1706501336.651495522] [hello_world_demo]: World
+[hello_world-1] [INFO] [1706501337.152876092] [hello_world_demo]: World
+[heLlo_world-1] [INFO] [1706501337.654117719] [hello_world_demo]: World
+[hello_world-1] [INFO] [1706501338.155382328] [hello_world_demo]: World
+[hello_world-1] [INFO] [1706501338.656693476] [hello_world_demo]: World
+
+7.3 Program Analysis
+
+Using the IncludeLaunchDescription action, another launch file described by
+single_node.launch.py from the specified path is imported, and this task is
+added to the LaunchDescription object for return. This generates a main
+
+launch file to include and run the node tasks defined in the child launch file.
+
+os
+ament_index_python. packages get_package_share_directory
+
+launch LaunchDescription
+
+launch.actions Inc LudeLaunchDescription
+
+launch. Launch_description_sources PythonLaunchDescriptionSource
+launch.actions GroupAction
+
+launch_ros.actions PushRosNamespace
+
+():
+hello_world = IncludeLaunchDescription(
+PythonLaunchDescriptionSource( [os. path. join(
+get_package_share_directory/( ),
+
+])
+
+LaunchDescription([
+helLlo_wor ld
+
+])
+
+
+

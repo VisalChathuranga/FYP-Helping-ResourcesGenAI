@@ -1,0 +1,710 @@
+
+=== Page 1 ===
+Hiwoander Shenzhen Hiwonder Technology Co,Ltd
+
+Lesson 7 Linux Permission
+
+In operating system, permissions are required to access the file, enter the
+
+directory and change the file.
+
+In Linux, different users, including supper user (root) and normal user,
+have different permission. Super user can do anything on Linux almost without
+
+limitation, while normal user can only operate within permissions.
+
+For example, in the same file, super user can edit it, while normal user can
+
+only read it without other operations.
+1. Change User
+
+It is simple to change user through command. But we need to set a fixed
+password first, as root password is generated randomly whenever Ubuntu
+
+reboots by default.
+
+1) Open command line terminal and input “sudo passwd” command.
+Then input the password and press Enter to set root password. Pay attention
+you are required to input the password twice. (Note: the password you input
+
+will be hidden and you can just press Enter after inputting)
+
+hiwonder@ubuntu-virtual-machine: ~
+
+File Edit View Search Terminal Help
+
+- :~$ sudo passwd
+[sudo] password for hiwonder:
+
+Enter new UNIX password:
+
+Retype new UNIX password:
+
+passwd: password updated successfully
+
+:~$ ff
+
+:~S su
+Password:
+root@ubuntu-virtual-machine: /home/hiwonder# |
+
+2) After setting root password, input “su”, and then input the password
+
+
+
+=== Page 2 ===
+Hiwoander Shenzhen Hiwonder Technology Co,Ltd
+
+currently set and press Enter. When § at the end of the command changes to
+#, it means that the directory is switched to root directory.
+
+:~S su
+Password:
+
+rooti@ubuntu-virtual-machine: /home/hiwonder# im
+
+2. File Permission
+
+Files can be written, read and executed. And files can be divided into
+
+three types by visitor:
+1 Owner: user of files
+2 Group: group files belong to
+3, Other
+
+Owner, group and other indicate roles, such as programmer, while root
+
+user and normal user refer to specific person, such as you.
+And each role has three permissions.
+r: read
+
+read permission grants the ability to read a file. When set for a directory,
+
+what is in the directory cannot be viewed.
+w: write
+
+The write permission grants the ability to write data to the file. When set
+
+for a directory, the files in the directory cannot be deleted.
+X: execute
+
+The execute permission grants the ability to execute a file, which is
+
+inapplicable to non-executable file. When set for directory, we cannot enter the
+
+
+
+=== Page 3 ===
+Hiwoander Shenzhen Hiwonder Technology Co,Ltd
+
+directory.
+Linux Octal Explanation
+r-- 4 Read permission only
+-w- 2 Write permission only
+--X 1 Execute permission only
+r-X 5 Read and execute
+permission
+rw- 6 Read and write
+permission
+-wWX 3 Write and execute
+permission
+rwx 7 Wire, read and execute
+
+permission
+
+3. Change Permission
+
+chmod command is used to change permission, which is divided into two
+
+ways. One is change the permission through number code, the other is change
+
+the permission through character code.
+
+1) Open the terminal interface, and input “touch test.txt” command to
+
+create txt file.
+
+
+
+
+=== Page 4 ===
+Shenzhen Hiwonder Ts nnology Co,Ltd
+
+hiwonder@ubuntu: ~
+
+File Edit View Search Terminal Help
+
+nonder@ubuntu:~S [touch test.txt
+hiwonder@ubuntu:~$
+
+2) Then enter “Is -al” command to list the files under this path and display
+
+their specific properties.
+er@ubuntu:~$ ls -al
+
+hiwonder@ubuntu: ~
+
+File Edit View Search Terminal Help
+
+1 hiwonder hiwonder 1276 Jul
+
+1 hiwonder hiwonder 220 Jul
+
+1 hiwonder hiwonder 3771 Jul
+
+15 hiwonder hiwonder 4096 Jul
+
+11 hiwonder hiwonder 4096 Jul
+
+drwxr-xr-x 2 hiwonder hiwonder 4096 Jul
+2
+
+2
+
+1
+
+03:55 .bash_history
+21:22 .bash_logout
+21:22 .bashrc
+
+01:54 .c
+
+00:53
+
+03:02
+
+21:40
+
+21:40 [ L
+
+21:22 examples.desktop
+ye PHEW f ’
+
+01:54 .ICEauthority
+21:40. cal
+
+21:40
+
+01:56 =tur
+
+21:22 .profile
+
+21:40
+
+23:37
+
+01:08 .sudo_as_admin_successful
+21:40 at
+
+02:
+
+-fW-r--r--
+-rw-r--r--
+
+drwxr-xr-x hiwonder hiwonder 4096 Jul
+drwxr-xr-x hiwonder hiwonder 4096 Jul
+hiwonder hiwonder 8980 Jul
+hiwonder hiwonder 4096 Jul
+hiwonder hiwonder 1916 Jul
+hiwonder hiwonder 4096 Jul
+drwxr-xr-x hiwonder hiwonder 4096 Jul
+drwxr-xr-x hiwonder hiwonder 4096 Jul
+-fW-f--r-- hiwonder hiwonder 807 Jul
+drwxr-xr-x hiwonder hiwonder 4096 Jul
+hiwonder hiwonder 4096 Jul
+hiwonder hiwonder ® Jul
+drwxr-xr-x hiwonder hiwonder 4096 Jul
+drwxrwxr -x hiwonder hiwonder 4096
+
+AAW Aun uVanwnuawnwuwunuwnaaawnun a
+
+i"
+4 =
+'
+~
+=
+=
+a
+oO
+su |
+= 3
+a)
+bes |
+@
+wu
+c
+o-
+@
+cthet
+a)
+“
+ct
+ct
+a
+ct
+
+twolrUe
+
+1 hiwonder -xinputrec
+
+As the picture shown above, the owners of the files are granted with read
+
+and write permission, while group and other users only have read permission.
+
+For example, we can grant execute permission to group and other users.
+
+Input “chmod 777 test.txt” command.
+
+r oot@hiwonder -virtual-machine: /home/hiwonder# chmod 777 test.txt
+
+root@hiwonder-virtual-machine: /home/hiwonder#
+
+3) Next, input “Is -al” again to check whether the permission is changed.
+
+
+
+=== Page 5 ===
+Shenzhen Hiwonder Te hnology Co,Ltd
+
+hiwonder@ubuntu: ~
+
+File Edit View Search Terminal Help
+
+hiwonder hiwonder 1276 Jul
+hiwonder hiwonder 220 Jul
+hiwonder hiwonder 3771 Jul
+
+15 hiwonder hiwonder 4096 Jul
+
+11 hiwonder hiwonder 4096 Jul
+hiwonder hiwonder 4096 Jul
+hiwonder hiwonder 4096 Jul
+hiwonder hiwonder 4096 Jul
+hiwonder hiwonder 8980 Jul
+hiwonder hiwonder 4096 Jul
+hiwonder hiwonder 1916 Jul
+hiwonder hiwonder 4096 Jul
+hiwonder hiwonder 4096 Jul
+hiwonder hiwonder 4096 Jul
+hiwonder hiwonder 807 Jul
+hiwonder hiwonder 4096 Jul
+hiwonder hiwonder 4096 Jul
+hiwonder hiwonder ® Jul
+hiwonder hiwonder 4096 Jul
+hiwonder hiwonder Jul
+hiwonder hiwonder
+
+03:55 .bash_history
+21:22 .bash_logout
+21:22 .bashrc
+
+01:54 .
+
+00:53 .
+
+03:02 L
+
+21:40
+
+21:40 [ '
+
+21:22 examples.desktop
+23237 3
+
+01:54 .ICEauthority
+21:40. =al
+
+21:40
+
+01:56
+
+21:22 .profile
+
+21:40 F
+
+Zat3aT «s
+
+61:08 .sudo_as_admin_successful
+21:40
+
+02:01
+
+AAW AuwnuVGQauwuuauwununnaajnauwua
+
+hiwonder hiwonder : -xinputrec
+untu:~$
+
+All permissions of these three roles can be changed through number code
+for one time. For changing permission through character code, please check
+
+the operations below.
+
+Compared with number code, it is more flexible to change permission
+through character code. We can set individual permission for one role, for
+
+example enter command “touch test_1.txt” to create a txt file named test_1
+
+hiwonder@ubuntu: ~
+
+File Edit View Search Terminal Help
+
+onder@u iz~$ touch test_1.txt
+er@ oe |
+
+4) Next, input “Is -al” command to view the file permission.
+
+
+
+=== Page 6 ===
+hiwonder@ubuntu: ~
+
+File Edit View Search Terminal Help
+
+-fw-r--r-- 1 hiwonder hiwonder 220 Jul
+
+-rw-r--rF-- 1 hiwonder hiwonder 3771 Jul
+
+15 hiwonder hiwonder 4096 Jul
+
+hiwonder hiwonder 4096 Jul
+
+drwxr-xr-x hiwonder hiwonder 4096 Jul
+
+drwxr-xr-x hiwonder hiwonder 4096 Jul
+
+drwxr-xr-x hiwonder hiwonder 4096 Jul
+
+hiwonder hiwonder 8980 Jul
+
+hiwonder hiwonder 4096 Jul
+
+hiwonder hiwonder 1916 Jul
+
+hiwonder hiwonder 4096 Jul
+
+drwxr-xr-x hiwonder hiwonder 4096 Jul
+
+drwxr-xr-x hiwonder hiwonder 4096 Jul
+
+-fw-f--r-- hiwonder hiwonder 807 Jul
+
+drwxr-xr-x hiwonder hiwonder 4096 Jul
+
+hiwonder hiwonder 4096 Jul
+
+-fW-P--r-- hiwonder hiwonder ® Jul
+
+drwxr-xr-x hiwonder hiwonder 4096 Jul
+
+drwxrwxr-x hiwonder hiwonder 4096 Jul
+hiwonder hiwonder
+
+21:22 .bash_logout
+21:22
+01:54
+00:53
+03:02
+21:40
+21:40 Downloads
+21:22 examples.desktop
+23:37 .gnupg
+01:54 .ICcEauthority
+21:40 .local
+21:40 Mu
+01:56 Pictures
+21:22 .profile
+21:40 Public
+23:37 .ssh
+01:08 .sudo_as_admin_successful
+21:40 Templates
+62:01 test
+test_1.txt
+
+Videos
+-xinputrec
+
+a)
+drwxr-xr-x hiwonder hiwonder 4096
+-fwW-fw-r-- hiwonder hiwonder 131
+hiwonder@ubuntu:~$
+
+Aungamunauwnuwnun awn auwuuwunuwnaanawnun
+
+5) Take granting execute permission to owner, group and other users
+
+separately for example.
+
+The commands are as follow.
+
+chmod u+x test_1.txt
+chmod g+x test_1.txt
+
+chmod o+x test_1.txt
+
+6) As the same, we can modify x(execute) as r (read) or w(write) to set
+
+read or write permission.
+
+hiwonder@ubuntu:~$ chmod u+x test_1.txt
+hiwonder@ubuntu:~$ chmod g+x test_1.txt
+
+hiwonder@ubuntu:~$ chmod o+x test_1.txt
+hiwonder@ubuntu:~$
+
+7) After setting, input “Is -al” command to check the properties.
+
+
+
+=== Page 7 ===
+Hiwoander Shenzhen Hiwonder Technology Co,Ltd
+
+hiwonder@ubuntu: ~
+
+File Edit View Search Terminal Help
+
+hiwonder hiwonder 220 Jul
+hiwonder hiwonder 3771 Jul
+hiwonder hiwonder 4096 Jul
+hiwonder hiwonder 4096 Jul
+hiwonder hiwonder 4096 Jul
+hiwonder hiwonder 4096 Jul
+hiwonder hiwonder 4096 Jul
+hiwonder hiwonder 8980 Jul
+hiwonder hiwonder 4096 Jul
+hiwonder hiwonder 1916 Jul
+hiwonder hiwonder 4096 Jul
+hiwonder hiwonder 4096 Jul
+hiwonder hiwonder 4096 Jul
+hiwonder hiwonder 807 Jul
+hiwonder hiwonder 4096 Jul
+hiwonder hiwonder 4096 Jul
+hiwonder hiwonder ® Jul
+drwxr-xr-x hiwonder hiwonder 4096 Jul
+drwxrwxr -x hiwonder hiwonder 4096 Jul
+- FWXEWXE -X hiwonder hiwonder ® Jul
+- FWXPWXPWwXx Niwonder hiwonder ® Jul
+drwxr-xr-x hiwonder hiwonder Jul
+-fwW-fw-r-- hiwonder hiwonder Jul
+
+Se
+
+21:22 .bash_logout
+21:22 .bashrc
+
+01:54
+
+00:53
+
+03:02
+
+21:40
+
+21:40 D :
+21:22 examples.desktop
+23°37
+
+61:54 .ICEauthority
+21:40 ¢
+
+21:40
+
+01:56
+
+21:22 .profile
+21:40 Li
+
+PA BIS. Yd
+
+01:08 .sudo_as_admin_successful
+21:40
+
+02:01
+
+04:00
+
+03:55
+
+21:40
+
+61:32 .xinputrec
+
+AuUuQanunaruwununauwnunauwuuwununaanaunun
+
+8) If you don’t want to set separately, for example, we can input “chmod
+atw test_1.txt” command to set write permission for three roles. And “a”
+
+represents three roles.
+
+:~$ chmod a+w test_1.txt
+:~$ fi
+
+9) Next, input “Is -al” command to check the properties.
+
+
+
+=== Page 8 ===
+Hiwoander Shenzhen Hiwonder Technology Co,Ltd
+
+hiwonder@ubuntu: ~
+
+File Edit View Search Terminal Help
+
+hiwonder hiwonder 220 Jul
+hiwonder hiwonder 3771 Jul
+hiwonder hiwonder 4096 Jul
+hiwonder hiwonder 4096 Jul
+hiwonder hiwonder 4096 Jul
+hiwonder hiwonder 4096 Jul
+hiwonder hiwonder 4096 Jul
+hiwonder hiwonder 8980 Jul
+hiwonder hiwonder 4096 Jul
+hiwonder hiwonder 1916 Jul
+hiwonder hiwonder 4096 Jul
+hiwonder hiwonder 4096 Jul
+hiwonder hiwonder 4096 Jul
+hiwonder hiwonder 807 Jul
+hiwonder hiwonder 4096 Jul
+hiwonder hiwonder 4096 Jul
+hiwonder hiwonder ® Jul
+hiwonder hiwonder 4096 Jul
+hiwonder hiwonder 4096 Jul
++ FWXPWXEWX hiwonder hiwonder ® Jul
+~1 WAI WAI WA HLWOURUE! MLWUTUC! U JUC
+drwxr-xr-x hiwonder hiwonder 4096 Jul
+-fW-rw-r-- hiwonder hiwonder 131 Jul
+
+:~$ A
+
+21:22 .bash_logout
+21:22 .bashrc
+
+01:54
+
+00:53
+
+03:02
+
+21:40
+
+21:40
+
+21:22 examples.desktop
+23°37
+
+01:54 .IcEauthority
+21:40 l
+
+21:40
+
+01:56 es
+21:22 .profile
+21:40
+
+Lae ado
+
+01:08 .sudo_as_admin_successful
+21:40
+
+02:01
+
+04:00
+
+UD.I2
+
+21:40
+
+01:32 .xinputrc
+
+aww
+
+Aun gamrnunaunwnuunauwnuaunuuna an
+
+If want to remove the permission from visitor, we can change “+” as “-”.
+
+For example, remove the execute permission of other users.
+
+10) Input “chmod o-x test_1.txt” command.
+
+:~$ chmod o-x test_1.txt
+2~S
+
+11) Then enter “Ils -al” command to view the properties.
+
+
+
+=== Page 9 ===
+Hiwoander Shenzhen Hiwonder Technology Co,Ltd
+
+hiwonder@ubuntu: ~
+
+File Edit View Search Terminal Help
+
+hiwonder hiwonder 220 Jul
+hiwonder hiwonder 3771 Jul
+hiwonder hiwonder 4096 Jul
+hiwonder hiwonder 4096 Jul
+hiwonder hiwonder 4096 Jul
+hiwonder hiwonder 4096 Jul
+hiwonder hiwonder 4096 Jul
+hiwonder hiwonder 8980 Jul
+hiwonder hiwonder 4096 Jul
+hiwonder hiwonder 1916 Jul
+hiwonder hiwonder 4096 Jul
+drwxr-xr-x hiwonder hiwonder 4096 Jul
+drwxr-xr-x hiwonder hiwonder 4096 Jul
+-fW-f--F-- hiwonder hiwonder 807 Jul
+drwxr-xr-x hiwonder hiwonder 4096 Jul
+hiwonder hiwonder 4096 Jul
+hiwonder hiwonder ® Jul
+drwxr-xr-x hiwonder hiwonder 4096 Jul
+drwxrwxr-x hiwonder hiwonder 4096 Jul
+b CWXEWXEW- hiwonder hiwonder © Jul
+- [WX PWXPWX hiwonder hiwonder ® Jul
+drwxr-xr-x hiwonder hiwonder 4096 Jul
+-fW-fw-r-- hiwonder hiwonder 131 Jul
+
+21:22 .bash_logout
+21:22 .bashrc
+01:54
+
+00:53
+
+03:02
+
+21:40
+
+21:40
+
+21:22 examples.desktop
+23:37 .¢
+
+01:54 .ICEauthority
+
+21:40
+
+21:40
+
+01:56
+
+21:22 .profile
+21:40
+
+23337.
+
+01:08 .sudo as _admin_successful
+21:40
+
+02:01
+
+04:00
+
+03:55
+
+21:40 \
+
+01:32 .xinputrec
+
+Aun QnaamOuwnawuwunwnQaunWiowwuuwnunaaniuu
+
+
+

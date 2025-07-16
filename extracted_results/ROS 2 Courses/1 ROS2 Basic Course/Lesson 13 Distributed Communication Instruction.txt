@@ -1,0 +1,161 @@
+
+=== Page 1 ===
+Hivweander Shenzhen Hiwonder Technology Co,Ltd
+
+Lesson 13 Distributed Communication
+
+Instruction
+
+1. Introduction
+
+Multicomputer communication refers to the process of information
+transmission and exchange between multiple computers or nodes in a
+
+network.
+
+The ROS-based intermediate piece is DDS. In the same network, the
+distributed communication can be implemented by using the domain DDS’s ID
+mechanics (ROS_DOMAIN_ID). The general progress: before starting nodes,
+the value of domain ID can be set. If different nodes have the same domain ID,
+they can freely discover and communicate with each other. Conversely, if the
+domain ID values are different, communication cannot be established. By
+default, all nodes use a domain ID of 0 at startup. In other words, as long as
+you ensure that they are in the same network, no configuration is required, and
+
+nodes on different ROS2 devices can achieve distributed communication.
+
+The distributed communication has extensive application scenarios such as
+autonomous vehicle formations, drone formations, remote control, and so on.
+
+The interaction of these data relies on distributed communication.
+
+2. ROS2 Distributed Network Group
+
+ROS2 provides a mechanism called DOMAIN, similar to grouping, where
+
+terminals within the same DOMAIN can communicate.
+
+By default, all ROS2 nodes uses a domain ID of 0. To avoid messages
+
+confusion, devices from different groups running ROS2 within the same
+
+
+
+=== Page 2 ===
+Hivweander Shenzhen Hiwonder Technology Co,Ltd
+
+network should use different domain ID. It is recommended to use ID between
+
+0-101.
+
+1) Click ® and select “System Tools ->Terminator” in sequence.
+
+@ Programming
+
+@) internet
+‘a interne
+
+iol Sound & Video
+
+i) Graphics
+
+ay System Tools "| Rerminator
+@ Accessories
+
+res) Help
+
+= Preferences
+
+Run
+
+¥
+ra Shutdown
+
+2) Enter the command “vim ~/.bashrc’” to open the bashrc file suing VIM
+
+text editor.
+
+pberrypi: ~ 80x24
+ubuntu@raspberrypi:~$ vim ~/.bashrc
+
+3) Press “i” to enter the insert mode, and enter “export
+
+ROS_DOMAIN_ID=25” in corresponding location. After you've finishing
+
+modifications, press “Esc” and enter “:wq” to save and exit.
+
+
+
+=== Page 3 ===
+Hivweander Shenzhen Hiwonder Technology Co,Ltd
+
+/etc/bash_complLetion
+/etc/bash_compLetion
+
+/opt/ros/humble/setup.bash
+
+~/hiwonder_ws/install/setup.bash
+
+-- INSERT --
+
+4) Enter the command “source ~/.bashre” to make the environment
+
+variables make effect.
+
+ubuntu@raspberrypi:~$ source ~/.bashrc
+
+ubuntu@raspberrypi: ~$ il
+
+Add the statement “export ROS_DOMAIN_ID=25” to the barshrc files of
+other terminals to assign them to the same group (i.e., domain ID 25), enabling
+distributed communication. If different domain IDs are assigned,
+
+communication between them will not be possible.
+
+3. Comparison of ROS1 and ROS in Distributed
+
+Communication Mechanisms.
+
+The distributed Communication Mechanism of ROS1:
+
+@ Utilizes anonymous TCP/IP-based communication for distributed
+
+communication.
+@ Communication adopts publish/subscribe mode through central master
+
+@ Nodes need to actively register with the master to obtain information about
+
+peer nodes.
+@ The reliability of communication depends on the central node master.
+
+o
+
+
+
+=== Page 4 ===
+Hivweander Shenzhen Hiwonder Technology Co,Ltd
+
+The distributed communication mechanism of ROS2:
+@ Utilizing the common transmission protocols such as TCP, UDP, DDS, etc.
+
+@ Introduce distributed service discovery with mechanisms for discovery,
+
+authentication and authorization mechanism.
+
+@ Nodes communicate directly with peer nodes without without the need for
+
+a central mater.
+
+@ ZeroMQ is deployed by default to build communication middleware,
+
+enabling decentralized distributed communication.
+
+@ Support both point-to-point and multicast communication, providing better
+
+scalability.
+
+@ Stronger fault tolerance, ensuring communication can be maintained even
+
+if nodes go offline.
+
+

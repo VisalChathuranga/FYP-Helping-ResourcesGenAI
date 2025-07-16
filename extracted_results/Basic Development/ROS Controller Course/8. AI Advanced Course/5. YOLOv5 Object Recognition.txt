@@ -1,0 +1,271 @@
+
+=== Page 1 ===
+Hivweander Shenzhen Hiwonder Technology Co,Ltd
+Lesson 5 YOLOv5 Object Recognition
+
+1. Prior Bounding Box
+
+When an image is input into model, object detection area requires us to
+offer, while prior bounding box is that box used to mark the object detection
+
+area on image before detection.
+
+2. Prediction Box
+
+The prediction box is not required to set manually, which is the output
+result of the model. When the first batch of training data is input into model, the
+prediction box will be automatically generated with it. The position in which the
+object of same type appear more frequently are set as the center of the
+
+prediction box.
+
+
+
+=== Page 2 ===
+— IVC) rr) co ("Shenzhen Hiwonder Technology Co,Ltd
+
+3. Anchor Box
+
+After the prediction box is generated, deviation may occur in its size and
+position. At this time, the anchor box serves to calibrate the size and position
+
+of the prediction box.
+
+The generation position of anchor box is determined by prediction box. In
+order to influence the position of the next generation of the prediction box, the
+
+anchor box is generated at the relative center of the prediction box.
+
+
+
+
+=== Page 3 ===
+Hivweander Shenzhen Hiwonder Technology Co,Ltd
+
+4. Realization Process
+
+After the data is calibrated, a prior bounding box appears on image. Then,
+the image data is input to the model, the model generates a prediction box
+based on the position of the prior bounding box. Having generated the
+prediction box, an anchor box will appear automatically. Lastly, the weights
+
+from this training are updated into model.
+
+Each newly generated prediction will be influenced by the last generated
+anchor box. Repeating the operations above continuously, the deviation of the
+size and position of the prediction box will be gradually erased until it coincides
+
+with the priori box.
+
+RE
+
+5. Installation & Experience
+
+@ The input command should be case sensitive, and “Tab” key can be
+
+used to complement the key words.
+
+If you use the system image we provide, you can find the corresponding
+program in the folder “3 Basic Operation Course -> 2. Introduction to
+
+System Desktop .”
+
+5.1 Installation
+
+Use NoMachine to connect to Jetson Orin Nano, then access the remote
+
+desktop.
+
+
+
+=== Page 4 ===
+Hivweander Shenzhen Hiwonder Technology Co,Ltd
+
+1) Drag the file “yolov5.zip” provided in “Appendix/Al Courses” to the
+
+remote system desktop.
+
+>» JetsonOrinNano > f= > Bim > ALR
+
+A ZR
+
+Hi
+fe
+
+i
+
+F tensorflow-2.11.0+nv23.01-cp38-cp3... 20
+F torch-1.12.0a0+2c916ef.nv22.3-cp38-... 20
+8 torchvision-(V0.13.0)
+
+ALA > +
+
+2) Right click on a blank area of the system desktop to select “Open in
+
+Terminal” to open the command-line terminal.
+New Folder
+
+Show Desktop in Files
+Open in Terminal
+
+Change Background...
+
+Display Settings
+
+Settings
+
+3) Enter the command to extract the file.
+
+unzip yolov5.zip
+
+S$ unzip yolovS.zip
+
+4) Enter the command to modify the dependencies in the txt file.
+
+gedit yolov5/requirements.txt
+
+$ gedit yolovS/requirements.txt
+
+5) Since torch and torchvision are already installed, comment out the
+lines indicated by the red box in the image by adding a ‘# at the beginning of
+the lines. Then, press ‘Ctrl + S' or click 'Save' in the top right corner to save
+
+and exit. If they were not previously installed, you can skip this step.
+
+
+
+=== Page 5 ===
+Hivweander Shenzhen Hiwonder Technology Co,Ltd
+
+requirements.txt
+
+1# YOLOVS #” requirements
+2# Usage: pip install -r requirements.txt
+3
+
+5 gitpython
+6 ipython # interactive notebook
+7 matplotlib>=3.2.2
+8 numpy>=1.18.5
+9 opencv-python>=4.1.1
+10 Pillow>=7.1.2
+1ipsutil # system resources
+12 PyYAML>=5.3.1
+13 requests>=2.23.0
+14 scipy>=1.4.1
+hop>=0 ‘ OP g OD
+16# torch>=1.7.0 # see https://pytorch.org/get-started/locally (recommended)
+17 # torchviston>=0.8.1
+. I
+
+dm>=4
+
+Stqdm ~ 04.
+19 # protobuf<=3.20.1 # https://github.com/ultralytics/yolov5/issues/8012
+
+20
+
+21 # Logging -------<-9- <<< 9 9 eer nn re een ne rie ence eee esc e reece wees ee eseseres
+22 tensorboard>=2.4.1
+
+222 clearmls-1 7? A
+
+6) Then enter the command to install the related image libraries such as
+libjpeg, libpython3, libvocade and other dynamic libaray dependencies for the
+
+Python interpreter.
+
+sudo apt-get install libjpeg-dev zlibig-dev libpython3-dev libavcodec-dev
+
+libavformat-dev libswscale-dev
+
+: $ sudo apt-get install libjpeg-dev zlibig-dev Libpython3-dev Libavcodec-dev libavformat-dev lLibswscale-dev
+Reading package lists... Done
+
+Building dependency tree
+Reading state information... Done
+
+7) Enter the command to navigate to the extracted YoloV5 folder:
+
+cd yolov5/
+
+4 $ cd yolovs/
+: $
+
+8) Enter the command:
+
+pip3 install -r requirements.txt
+
+“fF requirements. txt
+
+9) If no error occurs during the installation and the prompt message
+
+appears at the end, it means that the installation was successful:
+
+
+
+=== Page 6 ===
+Hivweander Shenzhen Hiwonder Technology Co,Ltd
+
+Installing collected packages: pytz, pure-eval, pickleshare, backcall, zipp, tzdata, traitlets, tqdm, smmap, scipy, python-dateutil,
+ygments, prompt-toolkit, Pillow, parso, opencv-python, fonttools, executing, contourpy, charset-normalizer, asttokens, thop, stack-d
+ta, request pandas, matplotlib-inline, jedi, importlib-resources, gitdb, matplotlib, ipython, gitpython, seaborn
+successfully installed Pillow-10.2.0 asttokens-2.4.1 backcall-0.2.0 charset-normalizer-3.3.2 contourpy-1.1.1 executing-2.0.1 fonttool
+
+is-4.49.0 gitdb ‘ itpy Pe importlib-re : ipython-8.12.3 jedi-0.19.1 matplotlib-3.7.5 matplotlib-inline-0.1.6
+bpencv-python-4.9.0. 0.3 parso-0.8.3 pickles -©.7.5 prompt-toolkit-3.0.43 pure-eval-0.2.2 pygments-2.17.2 python-dateut
+i1-2.8.2 pytz 4. 2.31.0 scipy-1.10.1 se .13.2 smmap-5.0.1 stack-data-0.6.3 thop-0.1.1.pos 9072238 tqdm-4.66.2 t
+raitlets-5.14.
+
+1) Double click MEMMMUEM on the system desktop to open a
+
+command-line terminal.
+2) Enter the command to run the Yolov5 detection script:
+
+python3 detect.py
+
+E S$ python3 detect.py
+
+weights=yolov5s.pt, source=data/images, data=data/coco128.yaml, imgsz=[6
+40, 640], conf_thres=0.25, iou_thres=0.45, max_det=1000, device=, view_img=False
+, save_txt=False, save_conf=False, save_crop=False, nosave=False, classes=None,
+agnostic_nms=False, augment=False, visualize=False, update=False, project=runs/d
+etect, name=exp, exist_ok=False, line _thickness=3, hide labels=False, hide conf=
+False, half=False, dnn=False, vid_stride=1
+YOLOVS # 2022-11-22 Python-3.8.10 torch-1.12.0a0+2c916ef.nv22.3 CUDA:0 (Orin, 7
+337MiB)
+
+Fusing layers...
+
+YOLOvVS5s summary: 213 Layers, 7225885 parameters, 0 gradients
+
+image 1/2 /home/ubuntu/Desktop/yolov5/data/images/bus.jpg: 640x480 4 persons, 1
+bus, 35.8ms
+
+image 2/2 /home/ubuntu/Desktop/yolov5/data/images/zidane.jpg: 384x640 2 persons,
+2 ties, 39.9ms
+
+Speed: 1.9ms pre-process, 37.8ms inference, 4.0ms NMS per image at shape (1, 3,
+640, 640)
+
+Results saved to runs/detect/exp
+
+3) If no errors occur, it indicated that Yolov5 is set up successfully, and
+
+the recognition results will be stored in the “yolov5/runs/detect/exp’” directory:
+
+
+
+=== Page 7 ===
+4) Similarly, you can also read and detect the USB camera after
+
+connecting it by entering the following command:
+
+python3 detect.py --source @
+
+python3 detect.py --source 0
+
+Goaocvoaeooaaad
+
+
+

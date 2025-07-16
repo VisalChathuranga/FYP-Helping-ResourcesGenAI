@@ -1,0 +1,710 @@
+
+=== Page 1 ===
+Hivweander Shenzhen Hiwonder Technology Co,Ltd
+
+Lesson 4 UART Communication
+Configuration and Programming
+
+1. Introduction to VART Communication
+
+Communication protocol plays an important role in enabling
+communication between devices. They are designed in different ways
+depending on the system requirements, and there protocols have specific
+rules that must be agreed upon by the devices to achieve successful
+
+communication.
+
+Embedded systems, microcontrollers, and computers mostly use UART
+as a form of device-to-device hardware communication protocol. Among the
+available communication protocols, UART uses only two wires for its transmit
+
+and receive ends.
+
+Although it is a widely used method for hardware communication, it has
+not always been fully optimized. When using the UART module within
+microcontrollers, the correct implementation of the frame protocol is often
+
+overlooked.
+
+By definition, UART is a hardware communication protocol that uses
+asynchronous serial communication at a configurable speed. Asynchronous
+means there is no clock signal to synchronize the output bits from the
+
+transmitting device to the receiving end.
+Each UART device has two signal lines named:
+Transmitter (Tx)
+Receiver (Rx)
+
+The primary purpose of the transmitter and receiver lines in each device is
+
+to send and receive serial data for serial communication.
+
+
+
+=== Page 2 ===
+b— IVE) mM Oo a) t Shenzhen Hiwonder Technology Co,Ltd
+
+rT et
+|
+
+i }
+
+L N
+
+WW
+
+)
+
+1 0)
+
+tee
+
+The UART sends data to the control data bus, which transmits data in
+parallel form. As a result, the data is now serially transmitted bit by bit over the
+transmission line (wire) to the receiving UART. In turn, this converts the serial
+
+data back into parallel data for the receiving device.
+
+The UART lines serve as a communication medium, sending and
+receiving data from one to another. It’ s important to note that UART devices
+
+have dedicated transmit and receive pins for sending or receiving data.
+
+For UART and most serial communication, the same baud rate needs to
+be set on both the transmitting and receiving devices. The baud rate is the rate
+at which information is transmitted to the communication channel. In the
+context of a serial port, the baud rate set will determine the maximum number
+
+of bits transmitted per second.
+
+In UART, data is transmitted in the form of packets. The process of
+connecting the transmitter and receiver involves creating serial data packets
+and controlling these physical hardware lines. A data packet consists of a start
+
+bit, data frame, parity bit, and stop bit.
+
+
+
+=== Page 3 ===
+ry IV/EM oer Shenzhen Hiwonder Technology Co,Ltd
+Start Bit Data Frame Parity Bits | Stop Bits
+(1 bit) (5 to 9 Data Bits ) (0 to 1 bit )}( 1 to 2 bits )
+e Start Bit
+
+The UART data transmission line usually remains at a high voltage level when
+not transmitting data. To begin data transmission, the transmitting UART pulls
+the transmission line low for one (1) clock cycle. When the receiving UART
+detects the voltage transition from high to low, it starts reading the bits in the
+
+data frame at the baud rate frequency.
+
+start Bit Data Frame Stop Bits
+(1 bit) ( 5 to 9 Data Bits ) ( 1 to 2 bits )
+
+@ Data Frame
+
+The data frame contains the actual data being transmitted. If a parity bit is
+used, the data frame can be five (5) to eight (8) bits long. If no parity bit is used,
+the data frame can be nine (9) bits long. In most cases, the least significant bit
+
+is transmitted first.
+
+Data Frame Stop Bits
+(1 bit) (5 to 9 Data Bits ) (1 to 2 bits )
+@ Parity
+
+Parity describes whether a number is even or odd. The parity bit is a method
+used by the receiving UART to check if the data has changed during
+transmission. Bits can be altered due to electromagnetic interference,
+
+mismatched baud rates, or long-distance data transmission.
+
+
+
+=== Page 4 ===
+Hivweander Shenzhen Hiwonder Technology Co,Ltd
+
+After the receiving UART reads the data frame, it counts the number of bits
+that are 1 and checks whether the total count is even or odd. If the parity bit is
+0 (even parity), the number of 1s or logic high levels in the data frame should
+total to an even number. If the parity bit is 1 (odd parity), the number of 1s or
+
+logic high levels in the data frame should total to an odd number.
+
+When the parity bit matches the data, the UART knows that the transmission is
+error-free. However, if the parity bit is 0 and the total count is odd, or if the
+parity bit is 1 and the total count is even, the UART knows that the bits in the
+
+data frame have changed.
+
+Start Bit Data Frame Parity Bits | Stop Bits
+(1 bit 5 to 9 Data Bits ) (0 to 1 bit) | Lt 2 ous
+
+@ Stop Bit
+
+To signal the end of a data packet, the transmitting UART drives the data
+transmission line from low voltage to high voltage, maintaining this state for
+
+one (1) to two (2) bit durations.
+
+Start Bit Data Frame Stop Bits
+(1 bit) 5 to 9 Data Bits ( 1 to 2 bits )
+
+2. Preparation on Your Computer
+
+2.1 Install Serial Debugging Tool
+
+Double click “serial_port_utility_539_3728.exe’” in the same the folder to
+
+install program. Please refer to the following steps.
+
+
+
+=== Page 5 ===
+bo IWS mM Oo eS t Shenzhen Hiwonder Technology Co,Ltd
+BESSSS
+
+seu ER RAS AAAS ©
+
+WATE RUA
+
+WB = - Serial Port Utility HRA 5.2.3
+
+oa
+SHES ET RMA DSBS So
+
+TAFSRR PSUS © POTESEER STE LIE WARE ©
+
+ALITHON STUDIO SOFTWARE LICENSE TERMS
+SERIAL PORT UTILITY
+
+Serial Utility is a shareware, i.e. you can test this fully functional demo for 30 days.
+After this trial period you must register or delete the program from your hard disk.
+You may also freely redistribute this program in an unchanged form.
+
+ORFMEIH RO
+
+
+
+
+=== Page 6 ===
+tt IWEM Oo =e Shenzhen Hiwonder Technology Co,Ltd
+
+GB = - Serial Port Utility HRA 5.2.3
+
+CEB REE
+£R48}5 Serial Port Utility $2477 mp B ?
+
+||) SeeRteRRtazeA sera port nity SITS PSEAH»
+
+ch" Po SHS o MORAGA RE MASE: ocean".
+
+EDS A 30.8 MB AYE] AMER a]
+
+£30 [Dew] WH
+
+It is recommended to select other installation path.
+
+GB = - Serial Port Utility HRA 5.2.3
+
+PR PRP
+PREP M Shas eRe?
+
+RA
+
+: = SEARS PTE TE DSU aE ESE BRE ES ARE to
+ch ha SSS o DORA R EMA cai alei"
+
+RIFE)...
+
+£30 [Dew] WH
+
+RA
+
+
+
+=== Page 7 ===
+tt IWEM Oo =e Shenzhen Hiwonder Technology Co,Ltd
+
+GB = - Serial Port Utility HRA 5.2.3
+
+TAPERED
+ABA SATS TOPPA AMES ?
+
+Rae BERS PEA Serial Port Utility APTAMNINES > Aa b—
+
+gulp
+
+t-¢0 [0]
+
+GB = - Serial Port Utility HRA 5.2.3
+
+A Bz
+SEATS PPLE ES A eA Serial Port Utility BIERATAR Aap °
+
+rach See SRL o HORAMES EMBER: Wed b—s"s
+
+Binun:
+E:|\Serial Port Utility
+
+FRB AER:
+Serial Port Utility
+
+BHANIEH :
+BATON E Fst:
+Biz mR AsO)
+
+t-+¢o [220] ps
+
+
+
+
+=== Page 8 ===
+bo IWS mM Oo eS t Shenzhen Hiwonder Technology Co,Ltd
+
+WB = - Serial Port Utility HRA 5.2.3
+
+fa
+Te TESER EEA IAS DISSE o
+
+DORE a" P—a"e
+
+Features:
+
+Communicate with Serial Port, such as RS232, RS485 and RS422
+Asynchronous sending and receiving data
+
+Support Multiple Port
+
+Support binary panel and TLS
+
+Support terminal window and remote access
+
+Dedicated input panel for structured data
+
+Multiple customized panel for user’s specific data
+
+Send receive and view data in Text, Hex and Decimal format
+
+Send data repeatedly with specified interval automatically
+
+Send single data and group data automatically according to auto send rules
+|Built-in checksum for Parity, Modular sum and Position-dependent checksums
+
+ia)
+
+WB = - Serial Port Utility HRA 5.2.3
+
+Serial Port Utility 222¢32A&
+
+Seah 1S FF OTE AAAS ih See 7 Serial Port Utility > (th iyFA
+4E FA] AIS SERRE SMT ©
+
+Rh Ae RAE o
+
+| £-+®)
+
+
+
+
+=== Page 9 ===
+Hivweander Shenzhen Hiwonder Technology Co,Ltd
+
+3. Preparations on Jetson Orin Nano
+
+3.1 Install Library Files
+
+>
+Power on Jetson Orin Nano board. Double click al to open the terminal.
+Enter the command and press Enter to execute the program. Then open the
+
+terminal and install the serial function library by entering the command:
+
+sudo apt-get install python3-serial
+
+sudo apt-get instaLl python3-serte
+
+3.2 Set Serial Port Permissions
+
+If you are using the system image we provide, you can find the corresponding
+program in the folder “3 Jetson Orin Nano Basic Operation -> 2.
+Introduction to System Desktop .”
+
+This method requires that the purchased kit includes the expansion board.
+
+1) Power on Jetson Orin Nano and connect it to the remote system
+
+desktop via NoMachine.
+
+2) Minimize the NoMachine window and drag the "UART.rules" file to the
+
+NoMachine system desktop.
+
+Be xs ate.
+son 20 me ESS wR a
+
+Orin NanoFFae > FREE > SSR MRR > S4R
+
+>
+3) ae | MATS, RTASR ROMA S ARAN.
+
+9
+
+
+
+=== Page 10 ===
+Hivweander Shenzhen Hiwonder Technology Co,Ltd
+>_
+
+4) Double click | Enter the following command, and press Enter
+to copy the serial port rule file into the system.
+
+sudo cp ~/Desktop/UART.rules /etc/udev/rules.d/
+
+sudo cp ~/Desktop/UART.rules /etc/udev/rules.d/
+
+>
+5) Double click i to open a new terminal. Enter the command,
+and press Enter to read and update the rules.
+
+sudo udevadm control --reload-rules
+sudo service udev restart
+sudo udevadm trigger
+
+sudo udevadm control --reload-rules
+sudo service udev restart
+sudo udevadm trigger
+
+3.2 Hardware Wiring Instructions
+
+According to the Jetson Orin Nano pinout diagram, the pins below will be used:
+
+251 Rel
+re |e
+
+(en
+Pea a eel
+ig oo
+
+10
+
+
+
+=== Page 11 ===
+4 IVW/EDM oer Shenzhen Hiwonder Technology Co,Ltd
+Use a USB-to-TTL module to connect Jetson Orin Nano to PC using a
+
+female-to-female Dupond wire, as follow:
+Jetson Orin Nano Pin 8 (TXD) <--> USB-to-TTL Module RXD
+Jetson Orin Nano Pin 10 (RXD) <--> USB-to-TTL Module TXD
+
+Jetson Orin Nano Pin 6 (GND) <--> USB-to-TTL Module GND
+
+4. Example Program - Send and Receive
+
+This section shows how to display the received string sent from the Jetson
+Orin Nano using a serial port debugging assistant on the computer. Characters
+sent from the computer through the serial port debugging assistant can also be
+
+displayed on the Jetson Orin Nano.
+
+4.1 Start Serial Debugging Tool
+
+After inserting the USB-to-TTL tool into any USB port on the computer,
+open the Device Manager and check if the port is recognized, as shown in the
+
+image below:
+
+v a WIN-1ENGA441T6K
+“@ IDE ATA/ATAPI $2555
+@ NoMachine USB Host Adapter
+Tl WSD FIPS
+hy) S228
+
+@ 3fS=0 (COM2)
+
+ae
+
+Bite
+
+BD ahs
+
+SS ae
+
+@ a7
+
+v & Sites
+
+Bg PCIesS
+Ea PC! 2G S SAB Sa
+ba SM Seeesles
+BR Waves Audio Effects Component
+
+11
+
+
+
+=== Page 12 ===
+ry IWED i) Oo i) t Shenzhen Hiwonder Technology Co,Ltd
+
+If the port with the CH340 identifier does not appear, check if the CH340
+
+driver is installed on the computer (the driver package can be found in the
+
+directory of this section). If the driver is installed but the port is still not
+
+recognized, try using a different USB port for troubleshooting.
+
+Double-click the installed “Serial Port Utility”.
+
+After opening the Serial Port Utility, select the port with the CH340
+
+Serial Port
+
+Utility
+
+identifier. Set the baud rate, data bits, and other properties according to the
+
+settings shown in the image below. Then, click P to proceed.
+
+@ Serial Port Utility - Personal Edition
+File Edit View Tools Control Help
+
+Boppigci+—i0
+
+~Serial Port Setting -
+
+Perea (COMS(USB-SERIAL CHa
+Baudrate [115200 |
+Data Bits[st—“‘SéSC‘CSS
+Parity [Nome (itis iS
+Stop Bits {1 a
+Flow Type [None i (ti‘séSFY
+
+-Receive Setting
+
+6 Text © Hex
+Il Auto Feed Line
+
+[ Display Send
+
+l Display Time
+
+Send Setting
+@ Text © Hex
+
+l Loop |1000 =] ms
+
+oO x
+Oo
+Send
+[hello ey)
+Tx: 0 Bytes
+
+COM9 OPENED, 115200, 8, NONE, 1, OFF | Rx: 0 Bytes
+
+12
+
+
+
+
+=== Page 13 ===
+Hivweander Shenzhen Hiwonder Technology Co,Ltd
+
+@ Serial Port Utility - Personal Edition — oO x
+
+File Edit View Tools Control Help
+BoP IEC|\+—|/n&
+
+Serial Port Setting
+
+ererea(COMO(USB-SERTAL CH peal
+Baudrate |115200 z|
+Data Bits [8 a
+Parity None =i (ati‘és
+Stop Bits |1 z|
+Flow Type |None iy
+
+Receive Setting
+© Text Hex
+
+[~ Auto Feed Line
+
+[ Display Send
+
+l Display Time
+
+Send Setting
+
+@ Text Hex
+
+l” Loop 1000 =i ms
+
+Send
+|hello |
+
+COM9 OPENED, 115200, 8, NONE, 1, OFF | Rx: 0 Bytes Tx: 0 Bytes A
+
+4.2 Import Example Program
+
+1) Power on Jetson Orin Nano and connect it to the remote system
+
+desktop via NoMachine.
+
+2) Minimize the NoMachine window and drag the "UART.py" file to the
+
+NoMachine system desktop.
+
+3) Enter the command to add execution permission to the program.
+
+13
+
+
+
+=== Page 14 ===
+Hivweander Shenzhen Hiwonder Technology Co,Ltd
+
+chmod atx /home/ubuntu/Desktop/UART.py
+
+chmod a+x /home/ubuntu/Desktop/UART.py
+
+4.3 Run Program
+
+1) Turn on Jetson Orin Nano, and connect it to the remote system
+desktop via NoMachine.
+
+2) Double click to open the terminal.
+
+3) Enter the command to switch the desktop.
+
+cd Desktop/
+
+:~$§ cd Desktop/
+
+4) Run the test code by entering the command:
+
+python3 UART.py
+
+: $ python3 UART.py
+UART Demonstration Program
+
+NVIDIA Jetson Orin Nano Developer Kit
+
+4.4 Check Outcome
+
+4.4.1 Serial Port Debugging Terminal
+
+In the serial port debugging assistant, you can receive messages sent
+
+from the Jetson Orin Nano. Set the baud rate to 115200, as shown below:
+
+
+
+=== Page 15 ===
+bo IWS | Oo a) t Shenzhen Hiwonder Technology Co,Ltd
+
+@ Serial Port Utility - Personal Edition - Oo x
+
+File Edit View Tools Control Help
+
+|Blo|pPImCc|+—|ns
+
+- Serial Port Setting
+
+Port [COM9(USB-SERIAL CH340) ~|
+Baudrate fuse tt~é—tsi
+Data Bits gs |
+Parity [None —i(i‘éC iS
+Stop Bits fo
+Flow Type [None =i (asti(‘éCY
+
+, Receive Setting
+
+UART Demonstration Program
+NUIDIA Jetson Orin Nano Kit
+
+@ Text © Hex
+
+Il Auto Feed Line
+l Display Send
+l Display Time
+
+; Send Setting
+@ Text © Hex
+
+Il” Loop [1000 =| ms
+. Send |
+
+| { COM9 OPENED, 115200, 8, NONE, 1, OFF | Rx: 57 Bytes | Tx: 0 Bytes | C:/Users/Administrator/log_20230717.txt |
+
+You can type something in the field below, for example, "hello," and then click
+
+Send.
+
+@ Serial Port Utility - Personal Edition - Oo x
+File Edit View Tools Control Help
+
+|Blo|/P IMC +—|0e
+, Serial Port Setting
+Port [COMO (USB-SERIAL CH340) |
+Baudrate fuiszee ti“ (ttst*~<‘s:;*ésS Yd
+Data Bits |
+Stop Bits |
+Flow Type rn |
+
+; Receive Setting -
+
+UART Demonstration Program
+NUIDIA Jetson Orin Nano Kit
+hello
+
+ig Text © Hex |
+T Auto Feed Line
+
+l Display Send
+
+l Display Time
+
+; Send Setting
+@ Text © Hex
+
+T™ Loop 1000 =] ms hello
+z
+
+hello Ne
+
+| [COM OPENED, 115200, 8, NONE, 1, OFF | Rx: 64 Bytes | Tx: 6 Bytes | C:/Users/Administrator/log_20230717.txt | A
+
+15
+
+
+
+=== Page 16 ===
+Hivweander Shenzhen Hiwonder Technology Co,Ltd
+
+4.4.2 Jetson Orin Nano Terminal
+
+On the command line interface of Jetson Orin Nano, you can receive
+
+messages sent from the computer.
+
+UART Demonstration Program
+NVIDIA Jetson Orin Nano Developer Kit
+b'h'
+
+)
+)
+)
+)
+8)
+
+'
+’
+’ ’
+1
+
+r ’
+
+16
+
+

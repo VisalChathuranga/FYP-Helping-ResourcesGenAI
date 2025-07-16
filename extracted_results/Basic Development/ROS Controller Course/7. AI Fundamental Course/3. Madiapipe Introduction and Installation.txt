@@ -1,0 +1,139 @@
+
+=== Page 1 ===
+HIW/E9MOCT Shenzhen Hiwonder Technology Co,Ltd
+
+Madiapipe Introduction and
+Installation
+
+1. Introduction to MediaPipe
+
+MediaPipe is an open-source multimedia machine learning framework. It
+can run cross-platform on mobile devices, workstations and servers, with
+support for mobile GPU acceleration. MediaPipe also supports TensorFlow
+and TF Lite inference engines, allowing any TensorFlow and TF Lite models to
+be used within MediaPipe. Additionally, on mobile and embedded platforms,
+
+MediaPipe supports GPU acceleration on the device itself.
+
+2. MediaPipe Pros and Cons
+
+2.1 MediaPipe Pros
+
+1) MediaPipe supports various platforms and languages, including iOS,
+Android, C++, Python, JAVAScript, Coral, etc.
+
+2) Swift running. Models can run in real-time.
+
+3) Models and codes are with high reuse rate.
+
+2.2 MediaPipe Cons
+
+1) For mobile devices, MediaPipe will occupy 10M or above.
+
+2) As it greatly depends on Tensorflow, you need to alter large amount of
+codes if you want to change it to other machine learning frameworks, which is
+not friendly to machine learning developer.
+
+3) It adopts static image which can improve efficiency, but make it difficult to
+
+find out the errors.
+
+
+
+=== Page 2 ===
+HIW/E9MOCT Shenzhen Hiwonder Technology Co,Ltd
+3. How to use MediaPipe
+The figure below shows how to use MediaPipe. The solid line represents the
+
+part to coded, and the dotted line indicates the part not to coded. MediaPipe
+
+can offer the result and the function realization framework quickly.
+
+( Data i |
+
+To Process | .| Convert, || Build
+Data Data | | Model
+
+,, Output | __
+Data >» Compute
+
+Result ;
+
+HF
+
+4. Install MediaPipe
+
+1) Power on Jetson Orin Nano, and connect it to the remote system
+desktop using NoMachine.
+
+2) Double click to open the terminal.
+
+3) Enter the command below to install and update the APT download list.
+sudo apt update
+
+4) Enter the command to install pip.
+
+sudo apt install python3-pip
+
+:~$ sudo apt install python3-pip
+Reading package Lists... Done
+Building dependency tree
+
+Reading state information... Done
+The following packages were automatically installed and are no Longer required:
+
+
+
+
+=== Page 3 ===
+Hiweander Shenzhen Hiwonder Technology Co,Ltd
+
+5) Enter the command to update pip.
+
+python3 -m pip3 install --upgrade pip3
+
+python3 -m pip3 install --upgrade pip3
+
+6) Then enter the command to install.
+
+pip3 install -i https://pypi.tuna.tsinghua.edu.cn/simple mediapipe
+
+pip3 install -i https://pypi.tuna.tsinghua.edu.cn/simple mediapipe
+
+7) Enter the command to uninstall Numpy.
+
+pip3 uninstall numpy
+
+pip3 uninstall numpy
+
+If Numpy is higher than 2.0 version, it can not be used with Mediapipe, and the
+version needs to be downgraded. After entering this command, if it shows that
+NumPy version is 1.x, you can type “n” in the subsequent prompt to cancel
+
+uninstallation.
+
+- $ pip3 uninstall numpy
+
+Found existing installation: numpy 2.0.1
+
+Uninstalling numpy-2.0.1:
+
+Would remove:
+
+/home/ubuntu/.local/bin/f2py
+/home/ubuntu/.local/bin/numpy-config
+/home/ubuntu/.local/lib/python3.10/site-packages/numpy-2.0.1.dist-info/*
+/home/ubuntu/.local/lib/python3.10/site-packages/numpy.libs/libgfortran-daac5196-038a5e3c.s0.5.0
+
+/home/ubuntu/.local/lib/python3.10/site-packages/numpy.libs/libscipy_openblas64_-3ca770d1.so
+/home/ubuntu/.local/lib/python3.10/site-packages/numpy/*
+Proceed (Y/n)? y
+Successfully uninstalled numpy-2.0.1
+
+8) Run the command to install NumPy.
+pip3 install numpy==1.21.5
+
+pip3 install numpy==1.21.5§§
+
+
+

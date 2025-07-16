@@ -1,0 +1,201 @@
+
+=== Page 1 ===
+Hiweander Shenzhen Hiwonder Technology Co,Ltd
+Lesson 7 3D Facial Detection
+
+1. Program Logic
+
+First, it's important to understand that the machine learning pipeline (linear
+model, akin to a pipeline) consists of two real-time deep neural network
+models working in tandem: one for detecting face locations by processing the
+complete image, and another for operating on these locations and predicting
+
+approximate 3D facial landmarks through regression.
+
+For 3D facial landmarks, we use transfer learning to train a network with
+multiple objectives. This network predicts 3D landmark coordinates on
+synthetic rendering data and annotates 2D semantic contours on real-world
+data. The resulting network, based on both synthetic and real-world data,
+
+provides accurate 3D landmark predictions.
+
+The 3D landmark network receives cropped video frames as input without
+requiring additional depth input. The model outputs the positions of 3D points
+
+and the probability that the face appears and is reasonably aligned in the input.
+
+Next, process the image through flipping, color space conversion, and
+other adjustments. Then, compare the face detection model’s minimum
+
+confidence to determine if the face detection was successful.
+
+Finally, render the detected faces in the image as 3D meshes.
+
+2. Operation Steps
+
+@ The input command should be case sensitive, and “Tab” key can be
+
+used to complement the key words.
+
+
+
+
+=== Page 2 ===
+HIW/E9MOCT Shenzhen Hiwonder Technology Co,Ltd
+
+If you use the system image we provide, you can find the corresponding
+
+program in the folder “3 Basic Operation Course -> 2. Introduction to
+
+System Desktop .”
+
+1) Power on Jetson Orin Nano board, and connect it to the remote
+
+system desktop using NoMachine.
+
+2) Connect it to the network. For specific operations, please refer to the
+tutorials located in “3. Basic Operation Course -> 3. Network Configuration
+(Wired and Wireless)” to access the network. Some models may need to be
+
+re-downloaded.
+
+3) When entering the system desktop, drag the program file
+
+“face_mesh.py” under the same directory to the remote desktop.
+
+ly
+
+» Camera.py
+
++ face _detect.p
+
+') mp face_detect.py
+
+_) mp_gesture.py
+
+} objectron.py
+
+“# pose.py
+
+» self_segmentation.py
+
+4) Then right click on the blank area of the system desktop, and select
+
+“Open in Terminal” to open the command-line terminal:
+
+New Folder
+
+Show Desktop in Files
+Open in Terminal
+
+Change Background...
+
+Display Settings
+
+Settings
+
+
+
+
+=== Page 3 ===
+Hiweander Shenzhen Hiwonder Technology Co,Ltd
+
+5) Enter the following command and press Enter to run 3D object
+
+detection.
+
+python3 face_mesh.py
+
+: S python3 face mesh.py
+
+6) To close the program, please use the shortcut key “Ctrl+C” to exit the
+
+program.
+
+3. Program Outcome
+
+After starting the program, if the camera detects a face, it will display the
+
+3D outline of the face in the transmitted image.
+
+MediaPipe Face Mesh
+
+
+
+
+=== Page 4 ===
+Hiweander Shenzhen Hiwonder Technology Co,Ltd
+
+4. Program Analysis
+
+@ Build a Face Mesh Model
+
+Import the face mesh model from the MediaPipe toolkit.
+
+The first parameter, max_num_faces, is the maximum number of faces
+
+to detect, with a default value of 1.
+
+The second parameter, min_detection_confidence, is the minimum
+confidence for face detection, with a default value of 0.5. The range is [0.0,
+
+1.0].
+
+The third parameter, min_tracking_confidence, is the minimum
+confidence for face tracking. Setting it to a higher value can improve the
+
+robustness of the solution, but it may result in increased latency.
+
+@ Retrieve Live Camera Feed
+
+Invoke the VideoCapture() function from cv2 library to retrieve the
+
+camera feed.
+
+The parameter within the function parenthesis refers to the camera
+
+interface. You can also use “O” to access the default camera.
+
+If the current device has only one camera connected, either “O” or “-1” can
+be used as the camera ID. If multiple cameras are connected, “O” presents the
+first camera, “1” represents the second camera, and so on for additional
+
+cameras.
+
+
+
+=== Page 5 ===
+Hivwoander Shenzhen Hiwonder Technology Co,Ltd
+
+CV2. » CV2Z.
+
+Convert the color space by calling the cvtColor() function from the cv2
+library. Before performing detection on the image, you need to convert the
+
+image to the RGB color space.
+
+@ Face Detection
+
+Based on the previously built face mesh model, detect faces in the image.
+
+@ Draw Facial Mesh
+
+Use the mp_drawing.draw_landmarks() function to draw the facial mesh
+
+of the detected face in the image.
+
+.-multi_face_ landmarks:
+
+@ Display the Transmitted Image
+
+Use the imshow() function from the cv2 library to display the camera feed
+
+in a specified window.
+
+The first parameter inside the function’s parentheses, "MediaPipe Face
+
+Mesh’, is the window name, and the second parameter, image, is the image to
+
+be displayed.
+
+

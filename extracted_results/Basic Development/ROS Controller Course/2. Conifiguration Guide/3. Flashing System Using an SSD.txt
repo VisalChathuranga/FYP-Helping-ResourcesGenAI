@@ -1,0 +1,757 @@
+
+=== Page 1 ===
+Hivweander Shenzhen Hiwonder Technology Co,Ltd
+3. Flashing System Using an SSD
+1. Getting Started
+
+1.1 Hardware Preparations:
+
+Prepare yourself an SSD, a Jetson Orin Nano development board, a
+
+computer (with Windows 10 as the operating system).
+
+1.2 Software Preparations:
+
+It is necessary to install the SSD initialization tool (DiskGenius.exe) and
+the image flashing tool (Win32Disklmager). This section will use these two
+
+tools as an example for instructions.
+
+Prior to the image flashing, you can delete all unnecessary partitions on the
+SSD using SSD initialization tool (the installation package can be found in the
+
+Appendix). After that, proceed with the flashing.
+
+After the flashing is complete, multiple prompts for independent disks may
+
+appear. Please do not click “Format”, just simply cancel the prompts.
+
+G=] Microsoft Windows 4
+
+fFaskahas H: PASH AIBSES SATU.
+
+SPS eS arte?
+
+2. Delete Partitions on the SSD
+
+Note: if the SSD is blank, you can directly skip this part.
+
+1
+
+
+
+=== Page 2 ===
+Hivweander Shenzhen Hiwonder Technology Co,Ltd
+
+1) Remove the SSD from the development board, the insert the SSD into
+
+the enclosure and connect the enclosure to the computer.
+
+RUIDUN® 1.2 2280 NVME 256GB
+it &
+
+WENA Rates oc +3 ay.an0
+
+=e Pn
+Be S/N:24030001033
+
+SRwe RD 4 PEW SLOLOOOEOPZ:N/S
+SHO" a
+& >> g59S7-S8ly-N/d
+
+wereccencmeme HUB)! 0)! MINNIS EU ELNUNERINR Hi 1M
+; es
+@99SZ SWAN 0827 ZW ,NnGing
+
+2) In the appendix folder, ;ocate the DiskGenius.exe tool for formatting
+the NVMe system, or use the disk management toll on your computer to format
+the drive. Make sure to select the correct NVMe drive and avoid selecting the
+
+wrong drive letter to prevent formatting your computer’s drive.
+
+[ DiskGenius V5.1.2.766 x64 New version found: V5.6.0.1565Release notes are as follows:4. Supports copying EFS-encrypted files in NTFS, FAT32, exFAT, and Ref file systems.
+
+4 Bie Disk Partition Tools View Help
+
+ae = Di ie All-In-One Solution For WV Share On Twitter
+& 34 en anc EI 2 LJ = SKVENIUS partition Management & Data Recovery favor nee
+o
+
+Disk 0 Adapter:NVMe Model: WDPCSNS40SDDPNPF-512G S/N:222325800491 Capacity:476.9GB(488386MB) Cylinders:62260 Heads:255 Sectors per Track:63 Total Sectors: 1000215216
+
+3) If you use the DiskGenius.exe tool to delete the unnecessary partitions
+
+on the NVMe drive:
+
+
+
+=== Page 3 ===
+bo IWS mM Oo eS t Shenzhen Hiwonder Technology Co,Ltd
+
+* | Partitions Files Sector Editor
+
+Ey saa 512G(477GB) ;
+"<a ESP(O) Volume Label Seq.(Stat) Files
+ge MSR(1) <» TBC(0) 1) Linu.
+, BS Acer(C) <» RP1(1) 1 Linu.
+Bia] RD1:Massstor Backup Partition Table(F2) Linu.
+“—e TBC(O) re] Restore Partition Table(F3) Linu,
+~— RP1(1) ina:
+~S EBT(2) 1°) Search Lost Partitions(Partition Recovery(L)
+~-< WB0(3)
+agp BPF(4) a Recover Lost Files(U) Ma
+hg BPF-DTB(5| 9) Rebuild Master Boot Record(M) 91FC:
+‘Seed Fx(6) Clear Reserved Sectors(E)
+_<@ DTB(8)
+~<e LNX(9)
+Se EKS(10)
+ee BMP(11)
+~~ RP4(12) ) Convert Te GUID Partition Table (P)
+t}-<@ Partition(1) — af
+c Convert To MBR Partition Table (8)
+Convert To Basic Disk (DB)
+Appoint Disk Geometry(G)
+Modify MBR Signature / Disk GUID
+View S.M.A.R.T. Information(§)
+S€ Verify Or Repair Bad Sectors(Y)
+Reset Bad Sector Records
+Convert Boot Mode »
+Change Device State »
+TRIM Opti ization
+Create New Virtual Disk File(N) >
+{© Open Virtual Disk File()
+Close Virtual Disk File(C)
+4) After successfully deleting, the result will show as follows:
+BB DiskGenius V5.1.2.766 x64 New version found: V5.6.0.1565Release notes are as follows:24. When backing up a partition to an image file on a network disk, the image file is no longer splitby268. —- O xX |
+
+File Disk Partition Tools View Help
+
+SE DiskGentus parson nenetement& ata Reaver
+
+Save All
+
+x | Partitions Fes Sector Editor
+Volume Label Seq.(Stat) Fle System ID StartCyinder Head Sector EndCyinder Head Sector Capacty Attribute
+
+USB SN:
+Partition Table Style:
+
+121220160204
+
+MassStorageDevice GPT
+
+91FC289A-1E03-495A-9DAD-732401089949
+Removable Disk
+
+7764
+255
+
+
+
+=== Page 4 ===
+bo IWS mM Oo eS t Shenzhen Hiwonder Technology Co,Ltd
+
+5) Establish a new partition, allowing the computer to recognize normally.
+
+If a message pops up, click “OK” to proceed.
+
+BD DiskGenius V5.1.2.766 x64 New version found: V5.6.0.1565Release notes are as follows:28. Fixed the issue that errors occurred when reading files larger than 4GB on exFAT partitions = o
+File Disk Partition Tools View Hel
+fa O.
+Pastitior
+Save All Recovery Recovery
+
+1 <>
+
+Basic Free
+59.56B
+GPT
+
+Disk 1 Adapter:USB Model:MassStorageDevice S/N: 121220160204 Capacity:59.5G8(60906M8) Cyinders:7764 Heads:255 Sectors per Track:63 Total Sectors: 124735488
+
+“* | Partitions Fies Sector Editor
+& E) HDO:woPCSNS40SDDPNPF-512G(477GB)
+
+“Mi-In-One Solution For
+Q | w & om DiskGentus >, Partition Management & Data Recovery | shar on Fecatot
+
+elete arte
+
+B-<@ ESP(0) Volume Label Seq.(Stat) FileSystem ID StartCylinder Head Sector EndCylinder Head Sector Capadty Attribute
+<e MSR(1) Create ESP and MSR partition x
+(-< Acer(C:)
+@-<e Recovery(3) Should ESP and/or MSR partition be created before creating new partition?
+&-< dada(D:)
+© RDiMassStorageDevice(59GB)
+Cicreate ES? partition Size of ESP: 300 ™B
+(CD create MSR partition |
+natal TYPE: ——_@ ain to Integral Multiples of Sectors: 2048 Sector (1048576 Byte) v sez2016h2et
+Disk GUID: |
+Attribute: Remark: Microsoft Reserved Partition is used to reserve space ahead of time for other use,
+
+and it does not contain any meaningful data itself. Microsoft requires an MSR on every GPT | =
+
+Cylinders: disk, and recommends it to be created as the disk is initially partitioned. It may later
+
+Heads: automatically shrink on behalf of other partitions, for example during the conversion from basic
+
+Sectors per tre ‘sk to dynamic disk. z =
+
+Capacity: ‘The EFI System Partition(ESP) is a partition on a data storage device that is used by 63864569856
+pacity: ____ machines that adhere to the Extensible Firmware Interface. It contains the bootloader
+
+Total Sectors: programs for all operating systems installed (n other partitions) on the device, device driver 512 Bytes
+
+files (used by the firmware at boot time) for other devices, and system utility programs that 512 Bytes
+
+are intended to be run before an operating system is booted. EF
+If current disk is installed on the UEFI BIOS computer or may be used under UEFI BIOS
+
+Space Type: computer in the future, an ESP partition should be created.
+
+Capacity: 63864569856
+Total Sectors: Cancel
+Starting Sectot }
+
+BB DiskGenius V5.1.2.766 x64 New version found: V5.6.0.1565Release notes are as follows:31. Fixed the issue that the destination disk displayed incorrectly after cloning LVM disks - Oo x
+
+File Disk Partition SG View Help
+
+QeGedw
+
+All-In-One Solution For
+al DiskGenmus Partition Management & Data Recovery
+
+i
+Save all Fetbvey recorey pation
+
+1 <>
+
+w Partion
+
+| Disk 1 Adapter:USB Model:MassStorageDevice S/N:121220160204 Capacity:59.5GB(60906MB) Cylinders:7764 Heads:255 Sectors per Track:63 Total Sectors: 124735488
+
+——— ee =
+© [=] HDO:WOPCSNS40SDDPNPF-512G(4776B) Crete New Perttion
+
+[-<s ESP(0) Volume Label F _ ylinder Head Sector Capacity Attribute
+“< MSR(1) Select Partition Type:
+<e Acer(C:) O Primary Partition I
+(8-<@ Recovery(3)
+ip-<» dada(0:) Extended Partition
+) Logical Partition
+File System Type:
+FAT32 (MS Basic Data) v
+
+Adapter Type: 121220160204
+
+Mae oe File System ID: 0C GPT
+
+Disk GUID: s
+
+Attribute: Size of Partition (0 - 59 GB):
+
+Cylinders: bid ae 4 |
+
+Heads:
+
+Sectors per track: @ Align to Integral Multiples of Sectors:
+
+Capacity: 63864569856
+
+Total Sectors: [2048 Sector (1048576Byte) =| ae
+
+512 Bytes
+| Cluster Size: Default(32K8) vi
+Space Type: Volume Label:
+= | ———
+
+Capacity: adieenced 63864569856
+
+Total Sectors:
+
+Starting Sector:
+
+a
+ene
+
+6) Then click “Save”
+
+
+
+=== Page 5 ===
+b— IVE) mM Oo a) t Shenzhen Hiwonder Technology Co,Ltd
+
+B DiskGenius V5.1.2.766 x64 New version found: V5.6.0.1565Release notes are as follows:31. Fixed the issue that the destination disk displayed incorrectly after cloning LVM disks. — a x
+isk Partition Tools View Help
+OK ~z = 7) W % DiskG All-in-One Solution For re On Titer
+covey Recovery Patton Pariten Format Delete fvtign ISKGVENIUS partition Management & Data Recovery £ share on Facebook ff
+x
+<>
+Basic
+GPT
+Disk 1 Adapter:USB MassStorageDevice S/N:121220160204 Capacity:59.5GB(60906MB) Cylinders:7764 Heads:255 Sectors per Track:63 Total Sectors: 124735488
+=~ | Partitions Files Sector Editor
++ ab iaguatass ls i) | Seq.(Stat) File System ID StartCylinder Head Sector EndCylinder Head Sector Capacity Attribute
+<@ MSR(1) <@ Unformatted(0) ON FAT32 o 32 33 74 = 75 55 59.5GB
+-< Acer(C:)
+(®-“# Recovery(3)
+{< dada(D:)
+© 2} RD1:MassStorageDevice(59GB)
+<@ Unformatted(0)
+Adapter Type: USB SN: 121220160204
+Model: MassStorageDevice _ Partition Table Style: GPT
+Disk GUID: 91FC289A-1E03-495A-9DAD-732401089949
+Attribute: Removable Disk |
+Cylinders: 7764
+Heads: 255
+Sectors per track: 63
+Capacity: 59.5GB Total Bytes: 63864569856
+Total Sectors: 124735488 Sector Size: 512 Bytes
+Physical Sector Size: 512 Bytes
+
+7) Once successful, you will see the information as pictured:
+
+| B DiskGenius V5.1.2.766 x64 New version found: V5.6.0.1565Release notes are as follows:33. Fixed that issue that the partition diagram wat not updated after restoring a partition from animagefilee — QO xX
+File Disk Partition Tools View Help
+
+r — P = ——$  $_$_$_ — al
+‘AA ~ = All-In-One Solution For
+| RRS, adbey Ed 1am @ LJ Fel Disk Genius partition Management & Data Recovery eae
+
+IX @>
+Basic
+
+oT
+|| Disk 1 Adapter:USB Model:MassStorageDevice S/N:121220160204 Capacity:59.5GB(60906MB) Cylinders:7764 Heads:255 Sectors per Track:63 Total Sectors: 124735488
+
+2% | Partitions Fies — Sector Editor
+© ) HDO:wDPCSNS40SDDPNPF-512G(477GB)
+
+p< ESP(0) Volume Label Seq.(Stat) FileSystem ID StartCylinder Head Sector EndCylinder Head Sector Capacity Attribute
+<@ MSR(1)
+-< Acer(C:)
+@-<» Recovery(3)
+-< dada(D:)
+© {) RD1:MassStorageDevice(59GB)
+“<@ Unformatted(0)
+Adapter Type: USB SN: 121220160204
+Model: MassStorageDevice _ Partition Table Style: GPT
+Disk GUID: 91FC289A-1E03-495A-9DAD-732401089949
+Attribute: Removable Disk
+Cylinders: 7764
+Heads: 255
+Sectors per track: 63
+Capacity: 59.5GB Total Bytes: 63864569856
+Total Sectors: 124735488 Sector Size: 512 Bytes
+Physical Sector Size: 512 Bytes
+
+3. Flash Image
+
+1) Open the image flashing tool (Win32Disklmager), then click =! to
+select the image file (users need to extract the image file yourself; the image
+
+shown is for your reference only, please refer to the actual image file). Select
+
+5
+
+
+
+=== Page 6 ===
+ry IV/EM Oo i) t Shenzhen Hiwonder Technology Co,Ltd
+
+the drive letter of the SSD in the “Device” bar, and click “Write” to start flashing
+
+the image.
+‘ Win32 Disk Imager = Oo x
+Image File 1 Device
+E/itivatin ear nd | _____S
+[_] "05 Hash 2
+
+Progress
+
+Version: 0.7 Cancel
+
+Note: Do not store the image file under a path containing any Chinese character.
+
+2) If the following prompts appears, click “Yes’.
+
+% Confirm overwrite D4
+Writing to a physical device can corrupt the device.
+
+(Target Device: [F:\] *")
+Are you sure you want to continue?
+
+3) If the “Write Successful’ is prompted, the flashing was successful. If
+an error is reported, please disable any firewall software, reinsert the SSD, and
+
+repeat the steps in this section.
+
+@ Complete
+(i) Write Successful.
+
+Note: After the flashing is complete, if any prompt asking whether to format the
+
+partition appears, simply ignore it.
+
+4) Wait for the image flashing to complete, the reinsert the SSD back into
+
+
+
+=== Page 7 ===
+Hivweander Shenzhen Hiwonder Technology Co,Ltd
+
+the development board. After powering it on for a while, it should successfully
+
+boot up.
+
+4. Expand System Image
+
+After a successful flashing, insert the SSD into the Jetson Orin Nano, then
+
+power it on. Follow the steps below to expand the system image.
+
+1) Ifthe gparted software is not installed, enter the following command to
+
+download it:
+sudo apt install gparted
+
+:~$ sudo apt install gparted
+
+2) Run the command to open the software and input the password “ubuntu”:
+
+sudo gparted
+
+:~$ sudo gparted
+[sudo] password for ubuntu:
+
+3) Confirm the corresponding NVMe SSD is ‘/dev/nvmeO0n1’ (please see the
+actual one), with the APP partition corresponding to ‘/dev/nvmeOn1p1’.
+
+Note: it is crucial to select the correct disk number in this step.
+
+You may see that a part of APP partition is gray. You need to expand the gray
+area to white, which is normal. Colors represent: yellow indicates used space,
+white indicates unused space, and gray indicates unavailable space. This is
+
+because the restored system was compressed, so the internal space needs to
+
+be rechecked and expanded to the full partition capacity.
+
+
+
+=== Page 8 ===
+ry IWED i) Oo i) t Shenzhen Hiwonder Technology Co,Ltd
+
+/dev/nvmeOn1 - GParted
+
+GParted Edit View Device Partition Help
+
+(9) /dev/nvmeont (238.47 GiB) ~
+
+184.87 GIB
+yartitior Name File System Mount Point Size Use J
+
+/Vevsivinecunips Gw Kererourw z= unKnoOwlh #46.UU KID aad sl
+/dev/nvme0nip4 @ reserved _for_chain_ A_user J unknown 32.00 MiB _ -
+/dev/nvmednipS @ kernel_b HE ounknown 64.00 MiB _ -
+/dev/nvmeonip6 @ kernel-dtb_b HE ounknown 448.00 KiB _ -
+/dev/nvme0nip7 @ reserved_for_chain_B_user MM unknown 32.00 MiB — -
+/dev/nvmeonips @ recovery HE ouunknown 80.00 MiB _ -
+/dev/nvmeonip9 @ recovery-dtb HE ouunknown 512.00 KiB _ -
+/dev/nvme0n1p10@ RECROOTFS HE unknown 300.00 MiB _ -
+/dev/nvmeOnip11 — esp Gy Fat32 64.00 MiB 1.07 MiB 62.93 Mil
+/dev/nvme0n1p12@ recovery alt HB ouunknown 80.00 MiB _ -
+/dev/nvme0n1p13 @ recovery-dtb_alt HE ounknown 512.00 KiB _ -
+/dev/nvme0n1p14@ esp_alt HE ounknown 64.00 MiB
+
+/dev/nvmeOnip1 & APP 52.84GiB 44.41GiB 8.43Gi
+
+0 operations pending
+
+4) Right click on the yellow space and click “Unmount” to unmount the
+
+partition.
+
+/dev/nvmeon1 - GParted — oO
+
+GParted Edit View Device Partition Help
+
+a © w@ rN (@) /dev/nvmeont (238.47 GiB) ~
+52.84 GiB ew set | 184.87 GiB
+
+/Gev/nvMeUn Ips GP reser veg_ror_cnd >i Resize/Move | S52.UU MID = ba |
+/dev/nvmeonipS @ kernel_b 64.00 MiB _ +
+/dev/nvmeonip6 @ kernel-dtb_b 448.00 KiB _ ~
+/dev/nvmeonip7 @ reserved for_cha _ 32.00 MiB a -
+/dev/nvmeonips @ recovery $ dash 4 80.00 MiB _ -
+/dev/nvmeonip9 @ recovery-dtb 512.00 KiB _ -
+/dev/nvme0n1p10@ RECROOTFS 300.00 MiB _ -
+/dev/nvmeOntp11 —s esp Name Partition 64.00 MiB 1.07 MiB 62.93 MiE
+/dev/nvme0n1p12@ recovery _alt Manage Flags 80.00 MiB _ -
+/dev/nvme0n1p13@ recovery-dtb_alt 512.00 KiB — ~
+/dev/nvmeon1p14@ esp_alt 64.00 MiB _ -
+
+/dev/nvme0nip1 @, App
+unallocated
+
+i
+184.87 GiB - |
+| ® information
+
+0 operations pending
+
+5) Click on the yellow space again and select “Resize/move’” to expand the
+
+partition.
+
+
+
+=== Page 9 ===
+ry IVW/E) i) Oo i) t Shenzhen Hiwonder Technology Co,Ltd
+
+/dev/nvmeOn1 - GParted Oo
+
+GParted Edit View Device Partition Help
+
+490 @ F ‘el mm « (B) /dev/nvmeont (238.47 GiB) ~
+
+AAA AT | © Delete
+
+Partition Name 91 Resize/M punt Point Size Used Unused
+/Vev/nvMeun ips GW Kennerourw es ze/ ove 446.UU KID ial |
+/dev/nvme0nip4 @ reserved_ for, | Copy 32.00 MiB - -
+/dev/nvmeonipS @ kernel_b R] Paste 64.00 MiB _ -
+/dev/nvmeonip6 @ kernel-dtb_b | 3 Formatto Y 448.00 KiB - -
+/dev/nvmeonip7? @ reserved for) Open encryption 32.00 MiB - -
+/dev/nvme0nips @ recovery utube 80.00 MiB - -
+/dev/nvme0nip9 @ recovery-dtb caine Parton 512.00 KiB _ -
+/dev/nvme0n1p10@ RECROOTFS eunnione 300.00 MiB ss +
+/dev/nvmeOnip11 esp ; 9 9 64.00 MiB 1.07 MiB 62.93 Mil
+/dev/nvme0n1p12@ recovery_alt onerx 80.00 MiB a -
+/dev/nvme0n1p13@ recovery-dtb_ Label File System 512.00 KiB _ -
+/dev/nvmeonip14@ esp_alt New UUID 64.00 MiB _ -
+
+/dev/nvmeOnip1 & APP @ information
+
+0 operations pending
+
+6) Drag the right edge of the yellow-white area highlighted in the red box blow
+to far right.
+
+Resize /dev/nvmeOn1p1
+
+Minimum size: 54111 MiB Maximum size: 243416 MiB
+
+Free space preceding (MiB): }
+
+New size (MiB):
+
+Free space following (MiB): 189305
+
+Align to: MiB
+
+Cancel >| Resize
+
+7) Then click “Resize” to expand the partition.
+
+
+
+=== Page 10 ===
+| IWS mM | i=l. Shenzhen Hiwonder Technology Co,Ltd
+
+Resize /dev/nvmeOnip1
+
+es
+
+Minimum size: 54111 MiB Maximum size: 243416 MiB
+Free space preceding (MiB): | 0
+New size (MiB):
+Free space Following (MiB): 0 -
+Align to: MiB ¥ |
+
+8) Click “J” to complete the expansion.
+
+/\ Are you sure you want to apply the pending operations?
+
+Editing partitions has the potential to cause LOSS of DATA.
+You are advised to backup your data before proceeding.
+
+9) After completion, you should see the gray area turn white.
+
+10
+
+
+
+=== Page 11 ===
+Hivweander Shenzhen Hiwonder Technology Co,Ltd
+
+/dev/nvmeOn1 - GParted — oO a
+
+GParted Edit View Device Partition Help
+
+4 § | in (9) /dev/nvmeon1 (238.47 GiB)
+237.71 GiB
+
+/GeEv/nvMeun ips Vy ernie | | caricreceer 04:00 mio = =
+/dev/nvmeonip3 @ kernel-dtb HB unknown 448.00 KiB _ -
+/dev/nvmeonip4 @ reserved for_chain_A_user [ff unknown 32.00 MiB _ -_
+/dev/nvmeonipS @ kernel_b HB unknown 64.00 MiB - -
+/dev/nvmeonip6 @ kernel-dtb_b HB unknown 448.00 KiB _ -
+/dev/nvme0nip7 @ reserved for_chain_B user [Mf unknown 32.00 MiB _ _
+/dev/nvme0nips @ recovery HB unknown 80.00 MiB _ -
+/dev/nvmeonip9 @ recovery-dtb HB unknown 512.00 KiB _ -
+/dev/nvme0n1p10@ RECROOTFS HB unknown 300.00 MiB _ _
+/dev/nvme0nip11 —s esp ia Fat32 64.00 MiB 1.07MiB 62.93 MiB
+/dev/nvme0n1p12@ recovery_alt HB unknown 80.00 MiB _ _
+/dev/nvme0n1p13@ recovery-dtb_alt HB unknown 512.00 KiB _ -
+/dev/nvme0n1p14@ esp _alt HB unknown 64.00 MiB _ _
+
+0 operations pending
+
+10) After that, you can enter the command “df -h” to check and confirm that
+
+the memory expansion was successful.
+
+$ df -h
+Filesvstem Size Used Avail Use% Mounted on
+/dev/nvmeOnip1 234G 44G 181G 20% /
+none 3.5G GO 3.5G O% /dev
+tmpfs 3.6G 36K 3.6G 1% /dev/shm
+
+tmpfs 734M 27M 707M 4% /run
+
+tmpfs 5.0M 4.0K 5.0M 1% /run/lock
+tmpfs 3.6G © 3.6G 0% /sys/fs/cgroup
+tmpfs 734M 24K 734M 1% /run/user/1000
+
+5. System Image Directory Instruction
+
+11
+
+
+
+=== Page 12 ===
+(}-
+
+Hiwe
+
+Documents Downloads
+
+example_
+
+f ider Shenzhen Hiwonder Technology Co,Ltd
+
+labellmg Music Pictures
+
+documents
+
+Public ros2_ws Templates
+
+e
+
+tmp_NV_ xml2yolo.
+L4T_ py
+DOCKER....
+
+test.txt
+
+tensorrtx-
+yolov5-v7.0
+
+oi fig
+
+Videos yolov5 data_
+gather.py
+
+Compared to the official image, the provided image includes some additional
+
+files. All the libraries or resources required for the courses have already been
+
+installed. You can refer to the table below:
+
+example_documents
+example_
+documents
+
+Store the required resources and source
+
+code
+
+<
+3
+9
+a
+
+Labelimg Image annotation software
+labelimg
+ros2_ws ROS2 workspace
+ros2_ws
+Yolov5 Yolov5 folder
+
+12
+
+
+
+=== Page 13 ===
+HIVV/E9MCOECT Shenzhen Hiwonder Technology Co,Ltd
+
+tensorrtx-
+yolov5-v7.0
+
+tensorrtx-yolov5-v7.0
+
+Tensorrtx folder
+
+e
+
+data_gather.py
+
+Used to take photos and collect datasets
+
+data_
+gather.py
+e Used to convert the xml files to txt files
+xml2yolo.py
+xml2yolo. for YOLO model training
+py
+« }} Home / example_documents Q =e iv = - x
+* Starred ai_demo board_ documents opencv_ ros2_install
+demo demo
+GG} Home
+©) Desktop
+
+ai_demo
+
+Stores examples corresponding to
+
+ai_ demo the Al course
+
+a Stores examples for the
+board_demo development board and expansion
+
+board_
+
+demo
+
+board
+
+13
+
+
+
+
+=== Page 14 ===
+bet IVW/E) mM Oo a) t Shenzhen Hiwonder Technology Co,Ltd
+
+Stores some crucial installation
+documents
+documents packages
+aa Store OpenCV application
+opencv_demo
+opencv_ examples
+demo
+
+14
+
+

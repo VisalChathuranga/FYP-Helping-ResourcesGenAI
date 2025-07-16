@@ -1,0 +1,296 @@
+
+=== Page 1 ===
+LJ *
+MHiv/ent ioer Shenzhen Hiwonder Technology Co,Ltd
+
+Lesson 1 Python Introduction and
+Installation
+
+1. Python Introduction
+
+1.1 Object Oriented Introduction
+
+Python is a object oriented programming language. Object Oriented is a
+method of software development and a programming paradigm. Difference
+
+between Object Oriented and Procedure Oriented is as follow.
+
+Focus on procedure, analyze the steps to
+
+Procedure Oriented solve problems and implement the steps
+
+sequentially with functions.
+
+Focus on object, decompose things that
+
+make up the problem into several objects
+Object Oriented
+and describe the behavior of an object in
+
+the overall solution.
+
+1.2 Python Introduction
+
+First released in 1991, Python is a cross-platform programming language.
+And it gets its name from comedy troupe Monty Python preferred by its
+developer.
+
+Python provides ample API (Application Programming Interface) and tools,
+
+1
+
+
+
+=== Page 2 ===
+Hiwoander Shenzhen Hiwonder Technology Co,Ltd
+
+which enables the programmer to write extension modules in C, C++ and
+Cython. In addition, Python compiler can also be integrated into the program
+which requires scripting language, so it is frequently used to integrate and
+
+package the program written in other languages.
+
+Thanks to its syntax, dynamic typing and nature of interpreted language,
+Python is the programming language adopted by most platforms to write script
+and develop application. As the version keeps updating and new functions are
+added, Python is gradually applied in the development of independent and
+
+large-scale project.
+
+Note: Python2.0 is no longer maintained by the official since 2020, so
+
+it is recommended to use Python3.0 or above.
+
+1.3 Python Feature
+
+1) Easy to master: Python has small amount of keywords, simple
+
+structure and clear syntax definition.
+
+2) Easy to read and maintain: the definition of Python code is distinct and
+
+it is easy to maintain the source code.
+
+3) Fast running: base layer, multiple standard libraries and the third-party
+
+libraries are written in C, which attributes to fast running.
+4) Free and open-source
+
+5) Abundant libraries: Python comes with large standard library which
+can handle various tasks, including regular expressions, documentation
+generation, unit testing, threading, databases, web browsers, CGI, FTP, and
+
+other system-related operations.
+
+6) Transplantable: as Python is open-source, it can be transplanted to
+
+2
+
+
+
+=== Page 3 ===
+Hiwoander Shenzhen Hiwonder Technology Co,Ltd
+
+various platforms, such as Linux and Windows.
+
+2. Python Installation
+
+Note: the following operations are based on Ubuntu18.04. As
+Ubuntu18.04 comes with Python 3.6.9, users who use this system can
+
+skip Python installation.
+
+Before installing Python, install virtual machine for system configuration.
+For specific instructions, please refers to the file in “2. Linux Basic
+Lesson->Lesson 2 Environment Configuration in Windows and Lesson 3
+
+Linux Installation and Source Replacement”.
+
+1) Install Python with Ubuntu official apt tool package.
+
+Note: please strictly distinguish lower case and upper case, and
+
+keywords can be complemented by “Tab” key.
+
+>
+2) Start virtual machine, and click BBY and then click or press
+
+“Ctri+Alt+T” to open command line terminal.
+
+3) Take installing python3.8 for example. Input command “sudo apt-get
+install python3.8” command, and then input the password and press Enter to
+
+install.
+
+:~§ sudo apt-get install python3.8
+
+4) If the prompt about whether to continue execution, please input “Y”
+and press Enter. If no error is reported, it means that Python3.8 is installed
+
+successfully.
+
+Need to get 4,542 kB of archives.
+
+After this operation, 18.4 MB of additional disk space will be used.
+Do you want to continue? [Y/n] y
+
+
+
+
+=== Page 4 ===
+bf IJ ° 5) a | er Shenzhen Hiwonder Technology Co,Ltd
+5) Input “python3.8 -V” command and press Enter to check whether the
+
+version is Python3.8.
+
+:~$ python3.8 -V
+
+Python 3.8.0
+
+3. pyCharm Installation
+
+3.1 Download pyCharm
+
+1) Input command “sudo apt install snapd snapd-xdg-open’ to install snap
+
+installation package.
+
+:-$ sudo apt install snapd snapd-xdg-open
+
+2) Input command “snap refresh” to refresh snap.
+
+ine:-$ Snap refresh
+
+3) Input command “sudo snap install pycharm-community --classic’”
+
+to install pyCharm
+
+t-§ sudo snap install pycharnm-community --classic
+
+3.2 Open pyCharm
+
+1) Open menu and find pyCharm
+
+
+
+=== Page 5 ===
+Shenzhen Hiwonder Technology Co,Ltd
+
+BME 10: 40 P 7 ae AW Or
+
+Qy Qt,
+
+Rae Qs ikites Qs BF
+
+SEDO SG:
+
+a €£ 8
+
+Shotwell Thunderbird
+
+2) Create new pyCharm project and configure. Click “New Project’.
+
+
+
+=== Page 6 ===
+a IWE) M Oo = t Shenzhen Hiwonder Technology Co,Ltd
+
+Welcome to PyCharm
+
+Welcome to PyCharm
+
+Take a quick onboarding tour
+
+3) Select “Previously configured interpreter” and click B
+
+
+
+=== Page 7 ===
+Shenzhen Hiwonder Technology Co,Ltd
+
+4) Select “System interpreter”
+
+Add Python Interpreter
+
+5) Click “create”
+
+
+
+=== Page 8 ===
+Shenzhen Hiwonder Technology Co,Ltd
+
+Interpreter
+
+Create
+6) Lastly, you will enter this interface.
+
+pythonProject - main.py
+
+pythonProject mai
+
+F Project
+
+pythonProject
+
+& Terminal
+
+3.3 Usage of pyCharm
+
+
+
+=== Page 9 ===
+Shenzhen Hiwonder Te: nnology Co.Ltd
+
+1) The user interface of pyCharm is as follow.
+
+pythonProject - main.py
+
+Project +
+
+i ec
+é pythonProject
+-
+
+oe
+~
+=
+3
+be
+a
+Bs
+
+3) Click “New>Python file”
+
+
+
+=== Page 10 ===
+a IWE) M Oo ES t Shenzhen Hiwonder Technology Co,Ltd
+
+ie
+
+im pythonProject
+
+FF Project
+
+New Pytnon file
+
+6) Right click coding area to select “run”. You can check the output result
+on the output terminal.
+
+
+
+=== Page 11 ===
+a IWE) M Oo ES t Shenzhen Hiwonder Technology Co,Ltd
+
+)
+zt
+ome
+a
+
+To learn more information, please visit pyCharm official website:
+
+https://www.jetbrains.com/zh-cn/pycharm/
+
+11
+
+

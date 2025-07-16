@@ -1,0 +1,536 @@
+
+=== Page 1 ===
+Hivweander Shenzhen Hiwonder Technology Co,Ltd
+5. NVIME System Backup
+
+This part needs to operated on the virtual machine.
+
+1. Backup with a Hard Drive Enclosure
+
+1.1 Preparations
+
+Remove the SSD from the main board and insert it into an enclosure
+connected to the virtual machine. At this point, the computer will then
+
+automatically recognize the SSD (an SSD enclosure is required).
+
+Open the terminal on the virtual machine, and install the partition
+
+management tool by entering the command:
+
+sudo apt install gparted
+
+:~$ sudo apt install gparted
+[sudo] password for ubuntu:
+
+Reading package lists... Done
+Building dependency tree
+Reading state information... Done
+
+1.2 Connect the Hard Disk to Virtual Machine
+
+According to the image below, connect the hard drive to the virtual
+machine. The device name ‘Realtek RTL9210' may vary depending on the
+type of SSD enclosure used. Make sure the corresponding device is
+
+connected to the virtual machine.
+
+
+
+=== Page 2 ===
+wy upuntu_ros¢_numopie - viviware vvOrKkstation
+40 #80 28M eo eeO eH Jf-~ & © 2/0 dN) ble
+& © He) >
+
+/ CD/DVD (SATA)
+
+FINS Reese ee ne
+su
+
+Ctrl+Shift+P CD/DVD 2 (SATA)
+5D Sore
+IF) PuppyPi_VM Si BS Ctrl+Alt+Del(E)
+[Fj] ROS1 MRBAAR() Ctrl+G
+[fe ubuntu_ros2_hum SSH(H) 5
+[fe tREB(N) >
+RES (C) Ctrl+Alt+PrtScn
+
+VY BRSEFERGS)
+
+& #3™) >
+
+BFS VMware Tools(1.
+
+[Ee #6)... Ctrl+D
+
+1.3 Resize the Image
+
+1) Open anew terminal and open the gparted by run the command:
+
+sudo gparted
+
+sudo gparted |
+
+Enter the password when the following prompt appears: ubuntu
+
+[sudo] password for ubuntu:
+
+2) Choose the corresponding hard disk.
+
+/dev/sdb - GParted =) fap
+
+GParted Edit View Device Partition 2 (Bl /dev/sda (120.00 GiB)
+faeeee ener ay
+
+e ©
+/dev/sdb1
+237.02 GiB
+
+3) Unmount the hard disk
+
+(238.47 ih)
+
+
+
+
+=== Page 3 ===
+~ @ (B) /dev/sdb (238.47 GiB) v
+
+/dev/sdb1
+} 237.02 GiB aN
+|
+
+1S |
+/Sev/sOD4 @w A_Teserved On_USer me unknown 31.02 mil 1 Resize/Move td
+/dev/sdbS @ B kernel HB unknown 128.00 Mil ta
+/dev/sdb6 @ B kernel-dtb HB unknown 768.00 Kil ‘| Past ta
+/dev/sdb7 @ B_reserved_on_user [Mf unknown 31.62 Mil 2 Formatt ta
+/dev/sdb8 @ recovery Hi unknown 80.00 Mil ta
+
+/dev/sdb9 @ recovery-dtb HB unknown 512.00 | | ta
+/dev/sdb10@ esp Hi SSéfat32 =
+
+64.00 Mil — sp
+i Name Partition
+/dev/sdb11@ recovery alt Hi unknown 80.00 Mil - ta
+/dev/sdb12@ recovery-dtb_alt HB unknown 512.00 Kil anage rags ta
+/dev/sdb13@ esp _alt Hi unknown 64.00 Mil ta
+/dev/sdb14@ uDA HB unknown 400.00 Mil Soe ta
+/dev/sdb15@ reserved HB unknown 479.50 Mil JUIE ta
+/dev/sdb1 & APP aC rsrAze| @ Information Bia |
+4) Resize the image.
+ee ee vee eee
+Fes ~ @ (@) /dev/sdb (238.47 GiB) ~
+
+Y=]
+ll el © Delete Delete {
+
+08 =
+
+— mist wate
+
+7OeV/S004 eo acrever ved_Oon_USer mg unknown 31 Copy Chriac
+/dev/sdbS @ B kernel HB unknown 128 — msftdata
+/dev/sdb6 @ B kernel-dtb HB unknown 768 . — msftdata
+
+5) Slide the bar to the far left until it cannot move further to determine that
+the current hard drive usage is 23032M. Then, add 5000M as extra space. (If
+you directly enter 23032M, it may prevent the system from booting, so adjust
+
+the slider accordingly and then press 'Resize/Move.')
+
+Resize/Move /dev/sdb1 x j Resize/Move /dev/sdb1 x i
+{} {_}
+Minimum size: 23032 MiB Maximum size: 242709 MiB Minimum size: 23032 MiB Maximum size: 242709 MiB
+Free space preceding (MiB): | ee Free space preceding (MiB): 0 +
+New size (MiB): 23032 + New size (MiB): 28032| - +
+Free space following (MiB): | 219677 _ Free space following (MiB): 214677 - +
+Align to: MiB v Align to: MiB v
+Cancel —| Resize/Move Cancel — >| Resize/Move
+
+6) Click o and select “Apply” to confirm and apply the changes.
+
+
+
+=== Page 4 ===
+GParted Edit View Device Partition Help
+
+oO Oe mmr? 22217" ~
+Partition Name File Svstem Size Used Unused Flaas
+
+Apply operations to device
+
+/\\ Are you sure you want to apply the pending operations?
+
+Editing partitions has the potential to cause LOSS of DATA.
+You are advised to backup your data before proceeding.
+
+Cancel
+
+7) Wait for the partition to complete, then click “Close”.
+
+Applying pending operations x
+Depending on the number and type of operations this might take a long time.
+
+Shrink /dev/sdb1 from 237.02 GiB to 27.38 GiB
+
+a
+e2fsck -f -y -v -C 0 '/dev/sdbt'
+
+Completed Operations:
+
+> Details
+
+Cancel
+
+Applying pending operations B
+Depending on the number and type of operations this might take a long time.
+
+Completed Operations:
+
+> Details
+
+8) Close the gparted.
+
+
+
+=== Page 5 ===
+/dev/sdb - GParted ~ x
+GParted Edit View Device Partition Help
+
+(vy) (@) /dev/sdb (238.47 GiB) ~
+
+oe >
+MMMM 1: scious
+
+1.4 Output the Image
+
+1) Enter the following command to confirm the image size:
+
+sudo fdisk -l
+
+sudo fdisk -l
+
+You can see that the image size is 27.4G. We need to record the number
+
+under ‘End’: 60461055.
+
+Device Start End Sectors Size Type
+
+/dev/sdb1 3050048 60461055 57411008 27.4G Microsoft basic data
+/dev/sdb2 40 262183 262144 128M Microsoft basic data
+/dev/sdb3 262184 263719 1536 768K Microsoft basic data
+/dev/sdb4 263720 328487 64768 31.6M Microsoft basic data
+/dev/sdb5 328488 590631 262144 128M Microsoft basic data
+/dev/sdb6 590632 592167 1536 768K Microsoft basic data
+/dev/sdb7 592168 656935 64768 31.6M Microsoft basic data
+/dev/sdb8 656936 820775 163840 80M Microsoft basic data
+/dev/sdb9 820776 821799 1024 512K Microsoft basic data
+/dev/sdb10 821800 952871 131072 64M EFI System
+/dev/sdbi1 952872 1116711 163840 80M Microsoft basic data
+/dev/sdb12 1116712 1117735 1024 512K Microsoft basic data
+/dev/sdb13 1117736 1248807 131072 64M Microsoft basic data
+/dev/sdb14 1248832 2068031 819200 400M Microsoft basic data
+/dev/sdb1i5 2068032 3050047 982016 479.5M Microsoft basic data
+
+2) Run the following command to out the image:
+
+sudo dd if=/dev/sdb of=./orin_nano.img bs=512 count=60461056
+
+sudo dd if=/dev/sdb of=./orin_nano.img bs=512 count=60461056f
+
+3) This output shows data for the device /dev/sdb. The image is located
+in the current directory with the name orin_nano.img. The block size is 512,
+
+and the total size is 60461056. Originally, the total size was 60461055, so we
+
+5
+
+
+
+=== Page 6 ===
+need to add a little extra space to ensure the image will boot correctly.
+
+Therefore, we need to increase the total size by 1.
+
+4) Open a new terminal and check the output process by entering:
+
+sudo watch -n 5 pkill -USR1 “dd$
+
+sudo watch -n 5 pkill -USR1 “ddS$
+
+Enter the password when the following prompt appear: ubuntu
+
+[sudo] password for ubuntu:
+
+You can see the output process in the previous command line:
+
+202860+0 records in
+202859+0 records out
+
+687863808 bytes (3.7 GB, 3.4 GiB) copied, 96.8258 s, 38.1 MB/s
+
+2. Backup Using the Motherboard
+
+2.1 Modify Parameters
+
+This method requires that you have used the SDK Manager within the virtual
+
+machine to flash the image in order to have the corresponding resources available.
+
+Before performing a backup or flashing, make sure to put the development
+board into Force Recovery mode. You can refer to '2. Jetson Orin Nano
+Configuration -> 2. SDK Management Tool Firmware Flashing -> 4. Install System’ to
+learn how to put the development board into Force Recovery mode before starting
+
+the backup or flashing process.
+
+When backing up, ensure that the virtual machine has enough space to store
+the image. For example, if the SSD is 256GB, the virtual machine should have more
+
+than 256GB of available space.
+
+
+
+
+=== Page 7 ===
+Enter the command ‘df -h’ to check the remaining space.
+
+1) Enter the command to navigate to the backup script location:
+
+cd
+/home/ubuntu/nvidia/nvidia_sdk/JetPack_6.0_Linux_JETSON_ORIN_NA
+NO_TARGETS/Linux_for_Tegra/tools/backup_restore
+
+:-$ cd /home/ubuntu/nvidia/nvidia_sdk/JetPack_6.0 Linux_JETSON_ORIN_NANO
+
+TARGETS/Linux_for_Tegra/tools/backup_ restore
+
+2) Enter the command to modify the script and change the read location.
+
+vim nvbackup_partitions.sh
+
+$ vim nvbackup_partitions.sh |
+
+3) Locate the position shown in the image below and change it to the
+content highlighted in the red box. After making the changes, press the 'ESC'
+
+key, type “:wq”, and press Enter to save and exit.
+
+mountpotint
+umount
+
+cleanup EXIT
+
+print_message
+
+2.2 Back up Image
+
+1) Open a new terminal and enter the command to navigate to the
+
+backup location:
+
+cd
+/home/ubuntu/nvidia/nvidia_sdk/JetPack_6.0_Linux_JETSON_ORIN_NA
+
+7
+
+
+
+=== Page 8 ===
+NO_TARGETS/Linux_for_Tegra/
+
+:-$ cd /home/ubuntu/nvidia/nvidia_sdk/JetPack_6.0_Linux_JETSON_ORIN_NANO
+
+| TARGETS/Linux_for_Tegra/
+
+2) Enter the command to back up the image:
+
+sudo ./tools/backup_restore/l4t_backup_restore.sh -e nvme0n1 -b
+
+jetson-orin-nano-devkit
+
+$ sudo ./tools/backup_restore/14t_backup_restore.sh -e nvme@ni -b jetson-orin-nano-devkit
+
+During the flashing process, the motherboard will reboot. The virtual machine
+will display 'Waiting for target to boot-up...". You need to select the device to
+connect to the virtual machine according to the content shown in the image
+
+below.
+
+Activities © Terminal 1 vay
+m ubuntu@ubuntu-virtual-machine: ~/nvidia/nvidia_sdk/JetPack_6.0_Linux_JETSON_ORIN_NANO_TARGETS/Linux_for_Tegra
+
+[  ©.1088 ] Added binary blob_adsp-fw_sigheader.bin.encrypt of size 414960
+
+[ ©.1089 ] Added binary blob_spe_t234_sigheader.bin.encrypt of size 270336
+
+[ ©.1091 ] Added binary blob_tos-optee_t234_sigheader.img.encrypt of size 1633344
+
+[ ©.1092 ] Added binary blob_eks_t234_sigheader.img.encrypt of size 9232
+
+[ ©.1093 ] Added binary blob _boot®.img of siz 088o
+
+[ 0.1422 ] Added binary blob_tegra234-p3768-0000+p3767-0003-nv.dtb of size 244096
+
+[ 0.1976 ] tegrarcm_v2 --instance — — mpemader .bct.encrypt --download blob blob.bin
+
+[ ©.1979 ] BL: version 1.4.0.2-t2
+0.3241 Send bet. a ” ”
+
+i eee ' Sania anise SRARNIRAEIS NVIDIA Linux for Tears HRSA
+
+E
+
+3.7659 ] RCM-boot started Oweaien
+Jhone /ubuntu/nvidia/nvidia_sdk/JetP
+
+IRL
+
+A ubuntu_ros2_humble
+tart the flashing procel
+
+Waiting for target to boot-u;
+Waiting for target to boo
+Waiting for target to boo
+Waiting for target to boo
+Waiting for target to boo
+Waiting for target to boo
+Waiting for target to boo
+Waiting for target to boo
+Waiting for target to boo
+Waiting for target to boo
+Waiting for target to boot-u;
+Waiting for target to boot-u;
+Waiting for target to boot-u;
+Waiting for target to boot-u
+Waiting for target to boot-u;
+Waiting for target to boo
+Waiting for target to boo
+Waiting for target to boot-up...
+Waiting for target to boot-up...
+Waiting for target to boot-up...
+Waiting for target to boot-u;
+Waiting for target to boot-u;
+Waiting for target to boot-u;
+Waiting for target to boo
+Waiting for target to boot-u;
+Waiting for target to boot-u
+
+® Waiting for target to boot-up...
+
+= waiting for target to boot-up...
+
+After the backup is completed, the image is stored in the following path:
+
+“/home/ubuntu/nvidia/nvidia_sdk/JetPack_6.0_Linux_JETSON_ORIN_NA
+NO_TARGETS/Linux_for_Tegra/tools/backup_restore”
+
+The file is stored in a folder named “image”.
+
+z $ ls
+14t_backup_restore. func README_backup_restore.txt
+
+
+
+=== Page 9 ===
+2.3 Flash Image
+
+1) Ensure that the backup image is stored in the following path:
+
+“/home/ubuntu/nvidia/nvidia_sdk/JetPack_6.0_Linux_JETSON_ORIN NANO
+
+_TARGETS/Linux_for_Tegra/tools/backup_restore” in a folder named “image”.
+
+2) Open a new terminal. Run the following command to navigate to the folder
+
+location.
+
+cd
+/home/ubuntu/nvidia/nvidia_sdk/JetPack_6.0_Linux_JETSON_ORIN_NANO_TARGE
+
+TS/Linux_for_Tegra/
+
+:-$ cd /home/ubuntu/nvidia/nvidia_sdk/JetPack_6.0_Linux_JETSON_ORIN_NANO
+
+| TARGETS/Linux_for_Tegra/
+
+3) Enter the command to begin flashing the image:
+
+sudo ./tools/backup_restore/l4t_backup_restore.sh -e nvme0n1 -r
+
+jetson-orin-nano-devkit
+
+$ sudo ./tools/backup_restore/14t_backup_restore.sh -e nvme@n1 -r jetson-orin-nano-devkit]
+
+During the flashing process, the mainboard will restart, and the virtual machine
+will display the message “Waiting for target to boot-up...”. We need to
+connect the device to connect the device to the virtual machine according to
+
+the instructions shown in the image below:
+
+
+
+=== Page 10 ===
+Activities Terminal
+ubuntu@ubuntu-virtual-machine: ~/nvidia/nvidia_sdk/JetPack_6.0_Linux_JETSON_ORIN_NANO_TARGETS/Linux_for_Tegra
+
+.1088 ] Added binary blob_adsp-fw_sigheader.bin.encrypt of size 414960
+
+-1089 ] Added binary blob_spe_t234_sigheader.bin.encrypt of size 270336
+
+-1091 ] Added binary blob_tos-optee_t234_sigheader.img.encrypt of size 1633344
+
+-1092 ] Added binary blob_eks_t234_sigheader.img.encrypt of size 9232
+
+-1093 ] Added binary blob_boot0.img of size 63610880
+
+-1422 ] Added binary blob_tegra234-p3768-0000+p3767-0003-nv.dtb of size 244096
+
+-1976 ] tegrarcm_v2 --instance Te " ‘: «bet. --download blob blob.bin
++1979 ] BL: version 1.4.0.2-t2
+-3241 ] Sending bct_mem
+
+13306 ] Sending blob SARIS NVIDIA Linux for Tegra iS HeBIA
+
+w®220000000
+
++7659 ] RCM-boot started Owen
+
+/home/ubuntu/nvidia/nvidia_sdk/JetP)pMmoeesees ea
+EUS
+
+Step 3: Start the flashing proce|
+
+Waiting for target to boot-up.
+Waiting for target to boot-up.
+Waiting for target to boot-up.
+Waiting for target to boot-up..
+Waiting for target to boot-up.
+Waiting for target to boot-up.
+Waiting for target to boot-up.
+Waiting for target to boot-up.
+Waiting for target to boot-up.
+Waiting for target to boot-up.
+Waiting for target to boot-up.
+Waiting for target to boot-up.
+Waiting for target to boot-up.
+Waiting for target to boot-up.
+Waiting for target to boot-up.
+Waiting for target to boot-up.
+Waiting for target to boot-up.
+Waiting for target to boot-up.
+Waiting for target to boot-up.
+Waiting for target to boot-up.
+Waiting for target to boot-up.
+Waiting for target to boot-up.
+Waiting for target to boot-up.
+Waiting for target to boot-up.
+Waiting for target to boot-up.
+Waiting for target to boot-up.
+Waiting for target to boot-up.
+Waiting for target to boot-up...
+
+10
+
+

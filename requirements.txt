@@ -1,0 +1,10 @@
+sentence-transformers==2.2.2
+langchain
+flask
+pypdf
+python-dotenv
+faiss-cpu  
+langchain_community
+langchain-google-genai 
+langchain_experimental
+-e .

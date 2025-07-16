@@ -1,0 +1,764 @@
+
+=== Page 1 ===
+Hivweander Shenzhen Hiwonder Technology Co,Ltd
+Lesson 8 ROS2 Topic
+
+1. Topic Communication Introduction
+
+Topic communication is the most common way of communication in ROS2.
+Publishers publish data on specific topics, and subscribers who subscribe to
+
+those topics can receive the data.
+
+Topic communication is based on publish and subscribe models as pictured:
+
+NODE
+
+Message
+
+Publisher
+
+The characteristic of the topic data transmission is from one node to another.
+The object sending data is called the publisher, while the object receiving data
+is called the subscriber. Each topic requires a name, and the transmitted data
+
+also requires a fixed data type.
+
+
+
+=== Page 2 ===
+Hivweander Shenzhen Hiwonder Technology Co,Ltd
+2. Create Topic
+
+2.1 Create Publisher
+
+1) Click ® and select “System Tools ->Terminator” in sequence.
+
+@ Programming
+
+@) internet
+Lay interne
+
+ib Sound & Video
+
+i) Graphics
+
+{5 system Tools
+@ Accessories
+res) Help
+
+= Preferences
+
+Run
+
+¥
+ra Shutdown
+
+2) Enter the command “cd hiwonder_ws/src/” to switch to the src folder
+
+within hiwonder_ws workspace.
+
+3) Enter the command “ros2 pkg create topic_demo --build-type
+
+ament_python --dependencies rclpy” and press Enter to create a package
+
+named “topic_demo’ with rclpy dependency.
+
+ubuntu@raspberrypi:~/hiwonder_ws/src$ ros2 pkg create topic_demo --build-type am
+
+ent_python --dependencies rclpyf
+
+4) Enter the command “rclpy dependency’ to switch to the “topic_demo”
+
+package.
+
+ubuntu@raspberrypi:~/hiwonder_ws/src$ cd topic_demo/topic_demo/
+
+ubuntu@raspberrypi:~/hiwonder_ws/src/topic_demo/topic_demo$ |
+
+5) Enter the command “vim topic_pub.py” to edit the program, copy the
+
+
+
+=== Page 3 ===
+Hivweander Shenzhen Hiwonder Technology Co,Ltd
+
+following program. If modification is required, you can press “i” to modify the
+
+program. After modification, press “Esc” and eneter “:wq’ to save and exit.
+
+ubuntu@raspberrypi:~/hiwonder_ws/src/topic_demo/topic_demo$ vim topic_pub. py
+
+import rclpy
+
+from rclpy.node import Node
+
+from std_msgs.msg import String
+
+# Define a NinimalPublisher class inhering from the Node.
+
+class MinimalPublisher(Node):
+
+# The initialization method of the Class
+def init__(self):
+
+# Call the initialize method of the Node class to set the node name as
+
+“minimal_publisher”.
+
+super().__init__(‘minimal_publisher')
+
+# Create a publisher to publish messages of String type to “topic”,
+
+with a queue size of 10.
+
+self.publisher_ = self.create_publisher(String, ‘topic’, 10)
+
+# Create a timer to trigger the time_callback method every 0.5
+
+Seconds.
+
+
+
+
+=== Page 4 ===
+Hivweander Shenzhen Hiwonder Technology Co,Ltd
+
+timer_period = 0.5 #second
+
+self.timer = self.create_timer(timer_period, self.timer_callback)
+
+# Counter, used to generate numbers in the message
+
+self.i = 0
+
+# Define timer callback function
+def timer_callback(self):
+# Create a message of type String
+
+msg = String()
+
+# Set the message data as “Hello World: number”
+
+msg.data = 'Hello World: %d' % self. i
+
+# Publish message
+
+self.publisher_.publish(msg)
+
+# Increment the counter
+
+self.i += 1
+
+# Main function
+
+
+
+
+=== Page 5 ===
+Hivweander Shenzhen Hiwonder Technology Co,Ltd
+
+def main(args=None):
+# Initialize ROS2 node
+
+rclpy.init(args=args)
+
+# Create MinimalPublisher object
+
+minimal_publisher = MinimalPublisher()
+
+# Enter the event loop of ROS2 node
+
+rclpy.spin(minimal_publisher)
+
+# Destroy node object
+
+minimal_publisher.destroy_node()
+
+# Shut down ROS2 node
+
+rclpy.shutdown()
+
+# If this script is the main program, main function is executed.
+
+if name__ =='_main_":
+
+main()
+
+
+
+
+=== Page 6 ===
+Hiweander Shenzhen Hiwonder Technology Co,Ltd
+
+main( )
+
+:waofl
+
+6) Enter the command “chmod +x topic_pub.py” and press Enter to
+
+grant the executable permission to the saved topic_pub.py file.
+
+ubuntu@raspberrypi:~/hiwonder_ws/src/topic_demo/topic_demo$ chmod +x topic_pub.p
+
+2.2 Create Subscriber
+
+1) Enter the command “vim topic_sub.py” to edit the program. Copy the
+following program. If modification is required, you can press “i” to modify
+the program. After modification, press “Esc” and eneter “:wq’ to save and
+
+exit.
+
+ubuntu@raspberrypi: ~/hiwonder_ws/src/topic_demo/topic_demo$ vim topic_sub.pyff
+
+import rclpy
+
+from rclpy.node import Node
+
+from std_msgs.msg import String
+
+# Define a NinimalPublisher class inhering from the Node.
+
+class MinimalSubscriber(Node):
+
+# The initialization method of the Class
+
+def init__(self):
+
+# Call the initialization method of the Node class
+
+
+
+
+=== Page 7 ===
+Hivweander Shenzhen Hiwonder Technology Co,Ltd
+
+super().__ init__(‘minimal_subscriber’)
+
+# Create a subscriber to subscribe to the messages of String type on
+the “topic”, Set the callback function to listener_callback and the queue size to
+
+10.
+
+self.subscription = self.create_subscription(String, ‘topic’,
+
+self.listener_callback, 10)
+
+# Define message callback function
+def listener_callback(self, msg):
+# Get the logger and print the received message.
+
+self.get_logger().info('l heard: "%s" % msg.data)
+
+# Main function
+def main(args=None):
+# Initialize ROS2 node
+
+rclpy.init(args=args)
+
+# Create MinimalSubscriber object
+
+minimal_subscriber = MinimalSubscriber()
+
+# Enter the event loop of ROS2 node
+
+
+
+
+=== Page 8 ===
+Hiweander Shenzhen Hiwonder Technology Co,Ltd
+
+rclpy.spin(minimal_subscriber)
+
+# Destroy node object
+
+minimal_subscriber.destroy_node()
+
+# Shut down ROS2 node
+
+rclpy.shutdown()
+
+# If this script is the main program, the main function is executed.
+
+if name__ =='_main_":
+
+main()
+
+__name__ ==
+
+main( )
+
+‘wall
+
+1) Enter the command “chmod +x topic_sub.py” and press Enter to
+
+grant the executable permission to the saved topic_sub.py file.
+
+ubuntu@raspberrypi:~/hiwonder_ws/src/topic_demo/topic_demo$ chmod +x topic_sub.p
+
+y
+
+3. setup.py File Settings
+
+The setup.py file defines the metadata and build configuration for a ROS2
+package, providing information such as package metadata, dependencies,
+build configuration, and installation logic. It helps developers correctly build,
+
+install, and use ROS2 packages. It is necessary to write the program entry
+
+
+
+=== Page 9 ===
+HIVVE9MCOCT Shenzhen Hiwonder Technology Co,Ltd
+
+points for topic_pub.py and topic_sub.py into the setup.py file.
+
+1) Enter the command “cd ..” to switch to the parent directory.
+
+ubuntu@raspberrypi: ~/hiwonder_ws/src/topic_demo/topic_demo$ cd ..
+
+ubuntu@raspberrypi: ~/hiwonder_ws/src/topic_demo$ |
+
+2) Enter the command “vim setup.py” and press Enter to open the setup.py
+
+file.
+
+ubuntu@raspberrypi:~/hiwonder_ws/src/topic_demo$ vim setup.py
+
+3) Press “i” to enter the editing mode, and then enter the following code to the
+
+corresponding position.
+
+'topic_pub = topic_demo.topic_pub:main'’,
+
+'topic_sub = topic_demo.topic_sub:main'
+
+maintainer=
+maintainer_email=
+description=
+
+tests _require=[
+entry_points={
+
+- INSERT --
+
+4) Enter “:wq’ to save and exit the file.
+
+
+
+
+=== Page 10 ===
+HIVVE9MCOCT Shenzhen Hiwonder Technology Co,Ltd
+
+4. Compilation and Execution
+
+1) After granting the executable permission, enter the command “cd
+
+~/hiwonder_ws/” to switch to the directory of the workspace.
+
+ubuntu@raspberrypi: ~/hiwonder_ws/src/hello_world_demo$ cd ~/hiwonder_ws/
+
+ubuntu@raspberrypi: ~/hiwonder_ws$ il
+
+2) Enter the command “colcon build” and press Enter to compile the
+
+packages within the workspace.
+
+ubuntu@raspberrypi:~/hiwonder_ws$ colcon build
+
+3) Enter the command “source ./install/setup.bash” and press Enter to
+
+make the environment variables take effect.
+
+ubuntu@raspberrypi:~/hiwonder_ws$ source ./install/setup.bash
+
+4) Enter the command “ros2 run topic_demo topic_pub” and press
+
+Enter to start topic_pub topic publishing node.
+
+ubuntu@raspberrypi:~$ ros2 run topic_demo topic_pub
+
+5) Right click to select “Split Vertically” to create a new terminal window.
+
+icdbd79/ros Launch-raspberrypi-821. log
+<1
+
+started roslaunch server http://raspberrypi: 41
+ros_comm version 1.14.13
+
+stro: melodic
+
+rosversion: 1.14.13
+
+NODES
+
+auto-starting new master
+process[master]: started with pid [835]
+ROS_MASTER_URI=http://raspberrypi:11311/
+
+6) Enter the command “ros2 run topic_demo topic_sub” and press
+
+Enter to start the topic_sub topic publishing node.
+
+
+
+=== Page 11 ===
+Hiweander Shenzhen Hiwonder Technology Co,Ltd
+
+ubuntu@raspberrypi: ~ 55x24
+ubuntu@raspberrypi:~$_ros2 run topic demo topic sub
+[INFO] [1706184173.982846838] [minimal_subscriber]: I h
+eard: "Hello World: 245"
+
+[INFO] [1706184174.469819298] [minimal_subscriber]: I h
+eard: "Hello World: 246"
+
+[INFO] [1706184174.969716061] [minimal_subscriber]: I h
+eard: "Hello World: 247"
+
+5. Program Analysis
+
+5.1 Publish Topic
+
+According to the realization result, the logic progress for the program is shown
+
+Import packages Create publishers
+
+as pictured:
+
+Set callback function
+Destroy node ;
+and close interface Publish topic data
+
+Create a publisher named as minimal_publisher. This publisher publishes a
+
+message with an incremental number every to the “topic” topic every 0.5
+seconds. During program execution, ROS 2 node is initialized first. Then, a
+
+MinimalPublisher object is created, and the program enters the ROS 2 node's
+
+
+
+=== Page 12 ===
+event loop. When the program is interrupted, the node object is destroyed, and
+
+the ROS 2 node is shut down.
+
+@ Main Function
+
+# RR
+
+def main(args=None):
+# PRAILROS 20 wi
+rcLpy.init(args=args)
+
+# i) # MinimalPublisherktt R&
+minimal_publisher = MinimalPubLlisher ( )
+
+# #AROS 20 MMB EH
+rcLpy.spin(minimal_publisher )
+
+# HS TH mt R
+
+minimal_publisher.destroy_node( )
+
+# KAROS 275 wa
+rclpy.shutdown()
+
+First, invoke the rclpy.init() function to initialize ROS2 Python interface. Then
+instantiate the MinimalPublisher() file. Finally, execute the minimal_publisher
+
+within the event loop of the ROS2 node.
+
+@ MinimalPublisher Class
+
+# 3 <— 4 @ R B Nodeff) MinimalPublisher2
+class MinimalPublisher (Node) :
+
+# ROM MKAR
+i def init (self):
+# WF NodeE HM Mit AK , &@R WA BMA ‘minimal publisher’
+super().__init__( )
+
+#RB—-T+RES , RBStrings RABD 'topic', AAAANH10
+self.publisher_ = self.create_publisher(String, , )
+
+# MR—SENB , H0.5H MH R— Ktimer_callbackA ik
+timer_period = #®
+self.timer = self.create_timer(timer_period, self.timer_callback)
+
+#UuREe , AFERBBPHORS
+
+self.i =
+
+# ENE BE We
+def timer_callback(self):
+# t)@—‘*stringt HHS
+
+msg = String()
+
+# WEA BMRA 'Hello world: RF'
+sg.data = % self.i
+
+# REARS
+self.publisher_.publish(msg)
+
+#vRSe
+
+self.i +=
+
+First, create a node named minimal_publisher, then create a publisher
+
+named “publisher_”. The timier_callback() callback function prints a message
+
+
+
+=== Page 13 ===
+Hivweander Shenzhen Hiwonder Technology Co,Ltd
+
+with an incremental number to the node’s log at intervals of 0.5 second.
+
+5.2 Subscribe to Topic
+
+According to the realization result, the logic progress for the program is shown
+
+as pictured:
+
+Import packages Create subscribers
+
+Set callback function
+
+Destroy node Print subscribed
+and close interface messages
+
+Create a subscriber named as minimal_sublisher. This subscriber prints the
+subscribed messages to logger. During program execution, ROS 2 node is
+initialized first. Then, a MinimalPublisher object is created, and the program
+enters the ROS 2 node's event loop. When the program is interrupted, the
+
+node object is destroyed, and the ROS 2 node is shut down.
+
+@ Main Function
+
+
+
+=== Page 14 ===
+HIVVE9MCOCT Shenzhen Hiwonder Technology Co,Ltd
+
+(args= ):
+
+rclpy.init(args=args)
+
+minimal_subscriber = MinimalSubscriber( )
+
+rclpy.spin(minimal_subscriber )
+
+minimal_subscriber.destroy_node( )
+
+rclLpy.shutdown( )
+
+First, invoke the rclpy.init() function to initialize ROS2 Python interface. Then
+instantiate the MinimalPublisher() file. Finally, execute the minimal_publisher
+
+within the event loop of the ROS2 node.
+
+@ MinimalSublisher Class
+
+(Node):
+
+(self):
+
+().__init__( )
+self.subscription = self.create_subscription(String, , self. listener_callback, )
+
+(self, msg):
+
+self.get_logger().info( % msg.data)
+
+First create a node named minimal_sublisher. Then create a subscriber named
+subscription. In the listener_callback() callback function, the received message
+
+content is printed to the logger.
+
+6. Customize Interface
+
+Both topic_pub.py and topic_pub.py utilizes ROS official interfaces.
+
+
+
+=== Page 15 ===
+HIVVE9MCOCT Shenzhen Hiwonder Technology Co,Ltd
+
+ubuntu@raspberrypi: ~/hiwonder_ws/src/topic_demo/topic_demo 106x35
+
+rclpy
+rclpy.node Node
+
+std_msgs.msg String
+
+(Node):
+
+(self):
+
+ubuntu@raspberrypi: ~/hiwonder_ws/src/topic_demo/topic_demo 106x35
+rclpy
+rclpy.node Node
+
+std_msgs.msg String
+
+(Node):
+
+(self):
+
+().__init__(
+
+Though it is a way good practice to use a pre-defined interfaces, it may
+necessary to define custom messages and services. The following will
+
+demonstrate how to create custom interface definitions.
+
+1) Enter the command “cd ~/hiwonder_ws/src/” to switch to the src
+
+folder wthin the hiwonder_ws workspace.
+
+ubuntu@raspberrypi:~/hiwonder_ws/src/topic_demo$ cd ~/hiwonder_ws/src/
+
+ubuntu@raspberrypi: ~/hiwonder_ws/src$ |
+
+2) Enter the command “ros2 pkg create demo_interfaces --build-type
+ament_cmake_ --dependencies rcicpp’” and press Enter to create a
+
+package named “demo_interfaces’.
+
+ubuntu@raspberrypi:~/hiwonder_ws/src$ ros? pkg create demo_interfaces --build-type ament_cmake
+
+--dependencies rclcpp
+
+3) Enter the command “demo_interfaces’” to enter the custom interface
+
+package.
+
+ubuntu@raspberrypi:~/hiwonder_ws/src$ cd demo_interfaces
+
+ubuntu@raspberrypi:~/hiwonder_ws/src/demo_interfaces$
+
+4) Enter the command “mkdir msg’ to create a folder.
+
+
+
+
+=== Page 16 ===
+HIVVE9MCOCT Shenzhen Hiwonder Technology Co,Ltd
+
+ubuntu@raspberrypi:~/hiwonder_ws/src/demo_interfaces$ mkdir msg
+
+5) Enter the command “cd msg’ to enter the msg folder.
+
+ubuntu@raspberrypi: ~/hiwonder_ws/src/demo_interfaces$ cd msg
+ubuntu@raspberrypi:~/hiwonder_ws/src/demo_interfaces/msg$ i
+
+6) Enter the command “vim String.msg” to edit the program. Enter
+“string data’. If you need to make modifications, you can press “i”. After
+
+modification, enter “:wq” to save and exit.
+
+ubuntu@raspberrypi: ~/hiwonder_ws/src/demo_interfaces/msg$ vim String.msgf
+
+ubuntu@raspberrypi: ~/hiwonder_ws/src/demo_interfaces/msg 80x24
+string datalj
+
+wa
+
+7) Enter “ed ..” to navigate back to the parent directory, then enter “vim
+
+CMakeLists.txt” to open the file using the Vim text editor. Copy the following
+program and paste it into the specific location as pictured.If you need to make
+
+modifications, press "i" to enter insert mode. Once you've finished editing,
+
+press "Esc", then type ":wq" to save and exit.
+
+find_package(rosidl_default_generators REQUIRED)
+rosidl_generate_interfaces( ${PROJECT_NAME}
+
+"msg/String.msg"
+
+
+
+
+=== Page 17 ===
+(ament_cmake REQUIRED)
+
+(rosidl_default_generators REQUIRED)
+rosidl_generate_interfaces(
+
+"msg/String.msg"
+
+)
+
+if(BUILD_TESTING)
+(ament_Lint_auto REQUIRED)
+
+(ament_cmake_copyright_FOUND TRUE)
+
+8) Enter the command “vim package.xml’” again to open the file using
+the Vim text editor. If you need to make modifications, press "i" to enter insert
+mode. Once you've finished editing, press "Esc", then type ":wq" to save and
+
+exit.
+
+<build_depend>rosidl_default_generators</build_depend>
+<exec_depend>rosidl_default_runtime</exec_depend>
+
+<member_of_group>rosidl_interface_packages</member_of_group>
+
+rort ="2"
+demo_interfaces
+0.0.0
+TODO: Package description
+
+="ubuntu@todo.todo">ubuntu
+TODO: License declaration
+
+ament_cmake
+
+rosidl_default_generators
+action_msgs
+
+rosidl_default_generators
+rosidl_default_runtime
+rosidl_interface_packages
+
+bestrtts chala
+
+- INSERT --
+
+9) Reference the step 1), 2) and 3) in “4. Compilation and Execution” to
+
+
+
+=== Page 18 ===
+HIVVE9MCOCT Shenzhen Hiwonder Technology Co,Ltd
+
+compile the workspace.
+
+10) Modify the code inside the red box below, replace it with the statement
+“from demo_interfaces.msg import String”. This change enables the use of
+
+custom messages and maintains the same functionality as before.
+
+ubuntu@raspberrypi: ~/hiwonder_ws/src/topic_demo/topic_demo 106x35
+
+rclpy
+rclpy.node Node
+
+std_msgs.msg String
+
+(Node):
+
+(self):
+
+().__init__(
+
+
+

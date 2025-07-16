@@ -1,0 +1,2000 @@
+
+=== Page 1 ===
+Hiwoander Shenzhen Hiwonder Technology Co,Ltd
+Vision Application
+
+
+
+
+=== Page 2 ===
+Hiweander Shenzhen Hiwonder Technology Co,Ltd
+
+Catalog
+Application Overview 2.2... ... ccc ccc cece cece eee eee eee eee eee e eens
+1. Hand Tracking ..... ccc ec ccc ee cece ee eee eee eee ee eee eee e teense
+1.1 Program LOGic 2... . ec cece ccc cee ee ee eee eee ee eee eee eees
+1.2 Operation StepS .. 0... cece ccc cece eee eee eee eee teens
+1.3 OUTCOME 2... ccc eee eee eee eee eee eee eee e eens
+1.4 Program Analysis ......... cece ccc cece eee eee eee eee rete eee eee
+2. Color Recognition and Sorting .......... cece ccc cee eee eee eens 12
+2.1 Program LOGIC 2.1... ec cece ce eee eee ee ee eee ee eee eee eees 12
+2.2 Operation StepS .... cece ccc eee ee ee ee eee eee tenes 13
+2.3 OULCOME 2... eee ccc cee eee eee ee ee eect teeter eeees 14
+2.4 Program AnalySis ........ cece eee cece eee cere cece eee eee eeees 15
+2.5 Gripping Calibration .. 0... .. cece ccc ccc cece eee eee cece cena 20
+3. Color Tracking 2... ... ccc ccc ccc ccc eee eee eee eee eee teeters tees 22
+3.1 Program LOGIC 1... . cece cc ccc ee ee cece eee eee eee eect renee 22
+3.2 Operation StepS 2... ccc ce ccc eee eee eee tree eee eee ees 22
+3.3 OULCOME 2... cece ccc eee eee eee eee eee eee e eee eeee 23
+3.4 Program AnalySiS ....... cc cece ccc eee cece eee eee eee cece eens 24
+3.5 Extension Function .......... ccc eee ec ccc ce cece reece eee eens 29
+4. Line-Following Obstacle Clearance ............ cc ccc cece eee eects 31
+4.1 Program Logic 2... ccc ec eect ee eee ee eee ee eee eee eens 31
+4.2 Operation StepS ..... cece cc eee eee eee eect eens 31
+
+
+
+=== Page 3 ===
+Hiweander Shenzhen Hiwonder Technology Co,Ltd
+
+4.3 OUTCOME 2... ec cee cee ee ee eee ee ee eee eee e ee ees 33
+4.4 Program AnalySis ......... cece cece ee eee eee eect eee eee cease 33
+4.5 Gripping Adjustment ....... 0. ccc cc ccc cece cece eee eee e eens 38
+5. Waste Sorting ... 2... ccc ccc cece eee eee eee eee eee ee eee eens 39
+5.1 Program LOGIC .. 1... cece ee ccc ce ect ee eee eee eee eee e eee 39
+5.2 Operation StepS 2... ccc cece cece eee eee eect eee eee eee e ees 40
+5.3 OULCOME 2... cece ec eee eee eee eee eee ee eee e eee eeee 41
+5.4 Program AnalySiS ....... ccc ccc ce cee cece eee cece eee ee eee sees 41
+6. Fixed Point Navigation ........ cece cc ee ccc ee eee eee e ee eee eee eee 47
+6.1 Program LOGIC .. 1... cece ec ce cee ct eee ee eee eee eee eee eee 47
+6.2 Operation StepS 2... cece ce ccc ec eee eect eect e eee eens 47
+6.3 OUTCOME 2... cece eee eee eee eee eee eee ee eee eeee 48
+6.4 Program AnalySisS ........ cc cece cc eee cee eee ee eee eee eee eee 49
+6.5 Gripping Calibration ........ cece ccc cece cece eee cece e eens 53
+
+
+
+=== Page 4 ===
+HIW/E9MOCT Shenzhen Hiwonder Technology Co,Ltd
+
+Application Overview
+
+The robotic arm is a mechanical device that is able to simulate the human
+arms and is widely used in various fields such as industrial, medical and
+
+military. Here are several application scenarios of robotic arms:
+
+1. Industrial automation: The application of robotic arms in industrial
+production is particularly widespread, they can be used for tasks such as
+handling, assembly, welding, painting, etc., greatly improving production
+
+efficiency and quality.
+
+2. Medical Assistance Therapy: Robotic arms can be used in operating
+room to provide doctors with higher precision in surgical procedure, reducing
+
+surgical errors and other adverse outcomes.
+
+3. Electronic Equipment Maintenance: Robotic arms can be used for
+electronic equipment maintenance, especially in compact spaces or high-risk
+
+environments, where they can prevent personnel from being injured.
+
+4. Space Exploration: The application of robotic arms in space
+exploration missions, such as probing planetary surfaces, collecting samples,
+
+and other tasks, is an extremely important technological means.
+
+In conclusion, the application scenarios of robotic arms are extremely diverse.
+With the continuous advancement of technology, the use of robotic arms in
+various fields will become increasingly widespread. Therefore, this document
+will introduce the relevant applications of the robotic arm on JetAuto, allowing
+
+users to experience the different functional effects of visual robotic arms.
+
+
+
+=== Page 5 ===
+Hiweander Shenzhen Hiwonder Technology Co,Ltd
+
+1. Hand tracking
+
+2. Color recognition
+and sorting
+
+3. Color tracing
+
+Robot Arm Vision Applicaion
+
+4. Line-following
+obstacle clearing
+
+5. Waste Sorting
+
+6. Fixed Point Navigation
+
+The diagram above illustrates the structure of "Robotic Arm Visual
+Applications" functionality, including hand tracking, color recognition and
+sorting, color tracking, line-following clearance, waste sorting, navigation and
+
+transportation. The following content will be written based on this diagram.
+
+1.Hand Tracking
+
+1.1 Program Logic
+
+What is the application scenario of the hand tracking?
+
+1. Virtual realization hand tracking technology can be used in virtual
+realization games, enabling players to control game characters' movements,
+
+attacks, and other actions through gestures.
+
+2. Medical hand tracking technology can be used in rehabilitation training
+
+to help patients regain hand functionality.
+
+3. Educational hand tracking technology can be used in the field of
+education, allowing students to engage in interactive learning through
+
+gestures.
+
+
+
+=== Page 6 ===
+HIW/E9MOCT Shenzhen Hiwonder Technology Co,Ltd
+
+4. Smart home hand tracking technology can be used in smart homes,
+allowing users to control home devices’ switches, adjustments, and other
+
+operations through gestures.
+
+5. Industrial production hand tracking technology can be used in industrial
+production, allowing workers to control robots' operations through gestures,
+
+thus improving production efficiency.
+
+The hand features detection in JetAuto utilizes MediaPipe, an open-source
+multimedia machine learning model application framework. It can run
+cross-platform on mobile devices, workstations, and servers, and supports
+mobile GPU acceleration. It also supports the inference engines of TensorFlow
+and TF Lite, allowing any TensorFlow and TF Lite models to be used with
+MediaPipe. Additionally, on mobile and embedded platforms, MediaPipe also
+supports device-native GPU acceleration.
+
+Firstly, it is necessary to build a hand recognition model and subscribe to the
+topic messages published by the camera node to obtain images. Then,
+process the images, such as flipping, and detect hand information within the
+images. Next, based on the lines connecting the keypoints of the hand, obtain
+the position of the center point of the hand. Finally, control the robotic arm to
+
+follow the up-and-down movement of the hand's center point.
+The source code of the program is located in:
+
+/home/ubuntu/ros2_ws/src/example/example/hand_track/hand_track_no
+
+de.py
+
+1.2 Operation Steps
+
+Note: The entered command should be case sensitive and “Tab” key can be used to
+
+
+
+=== Page 7 ===
+HIW/E9MOCT Shenzhen Hiwonder Technology Co,Ltd
+
+complement the key words.
+
+1) Start JetAuto and connect it to NoMachine.
+
+2) Double click on | to open the command line terminal.
+
+3) Input the command and press Enter to disable the app service.
+sudo systemctl stop start_app_node.service
+
+4) Input the command to start the program.
+
+ros2 launch example hand_track_node.launch.py
+
+launch example hand_track_node. launch. py
+
+5) To exit this mode, press 'Ctrl+C' on the terminal interface. If this fails,
+you can open a new ROS2 command line terminal and input the command to
+
+close all current ROS2 functions.
+
+~/.stop_ros.sh
+
+1.3 Outcome
+
+After the game starts, the robotic arm will restore its initial posture. Place your
+hand in front of the camera of the robotic arm. When you move your hand up
+
+and down, robotic arm will move with your hand.
+
+Note: This mode may cause the program to freeze when displaying the feedback
+screen, so the feedback screen will not be shown during execution. If you need to
+view the feedback screen, you can open a new command line terminal, enter the
+
+command "rqt," and select /hand_ detect/image_result.
+
+
+
+
+=== Page 8 ===
+Hiweander Shenzhen Hiwonder Technology Co,Ltd
+
+Default - rqt
+
+File Plugins Running Perspectives Help
+
+Gilimage View
+
+/hand_detect/image_result ~1 8
+
+e_result_mouse left Smooth scaling
+
+DeI@ -ox
+
+o |< 10.00m (>| | [|
+
+1.4 Program Analysis
+
+Launch Analysis:
+
+hand_track_node.launch.py
+
+The program is saved in:
+
+depth camera _launch Start the camera
+Invoked launch controller launch Chassis control
+
+kinematics launch Kinematics
+
+Gesture detection
+node
+
+Gesture tracking
+node
+
+hand _detect_node
+Invoked node
+
+hand _track_node
+
+ros2_ws/src/example/example/hand_track/hand_track_node.launch.py
+
+@ Read the package path
+
+Read the paths of the peripherals, controller, and kinematics packages.
+
+
+
+=== Page 9 ===
+t =
+Hivvent ioer Shenzhen Hiwonder Technology Co,Ltd
+
+@ Initiate other Launch files
+
+depth_camera_launch: Used to initiate the depth camera
+
+controller_launch: Used to initiate base control, servo control, etc.
+
+kinematics_launch: Used to initiate kinematic algorithms
+
+@ Initiate Node
+hand_detect_node: Used to launch hand detection
+
+hand_track_node: Used to launch hand tracking
+
+Source Code Analysis:
+
+
+
+=== Page 10 ===
+Hiweonder Shenzhen Hiwonder Technology Co,Ltd
+
+Function main Run the main function of this file
+7 init Initialization
+get node state Node status
+Terminate program
+shutdown callback function
+init process Body recognition function
+- Class HandTrackNode Hand !tracking class!’ 1115 Class main function
+
+Init_action  jnitialize robot arm action
+
+init_process Initialize program
+
+Calculate the servo
+
+send_request angle using kinematics
+
+get_hand_ callback Get hand recognition result
+
+The program is saved in:
+
+“ros2_ws/src/example/example/hand_track/hand_track_node.py”
+
+3 impo
+9 impo
+© impor
+1 from
+2 from
+3 from k
+4 from
+from
+6 from k
+7 from
+8 from
+from
+© from k sé
+1 from ve ° C € bus_servo_¢ tre import set
+
+# AEN
+
+The main function is used to invoke the hand recognition class startup node.
+@ HandTrackNode Class
+
+init_process:
+
+10
+
+
+
+=== Page 11 ===
+def init_process(self):
+
+Initialize the action and start the main function ‘main’ to publish the initialization
+
+status of the current node.
+send_request:
+
+def send_request(self, clie
+
+° and future.result
+return future.result()
+
+Used to publish the recognized hand position to the kinematic node and obtain
+
+the servo angle of the kinematic feedback.
+
+get_hand_callback:
+
+def get_hand_callback(se
+if msg.width !- :
+
+enter
+else:
+
+Utilized to get the current hand recognition result.
+
+main:
+
+Based on the results of hand recognition, control the pan-tilt servo using PID;
+
+employ PID to control the required height of the current robotic arm, and derive
+
+11
+
+
+
+=== Page 12 ===
+HIW/E9MOCT Shenzhen Hiwonder Technology Co,Ltd
+
+servo angles through kinematics; finally, publish the current servo parameters
+
+to complete the tracking process.
+
+2.Color Recognition and Sorting
+
+2.1 Program Logic
+
+With the further development of automation technology, production line in
+manufacturing enterprises are increasingly moving towards automation and
+intelligence.As a result, a large number of automated devices are gradually
+being introduced into the production lines. Among them, in the process if
+martial color recognition, positioning, and sorting, visual systems are required
+for tasks such as image acquisition and data analysis to effectively identify and
+locate the color of the samples. Motion control technology provides effective
+solutions for visual color recognition, positioning, and sorting to improve the
+
+production capacity of enterprises.
+
+The vision detection method using motion control technology features fast
+detection speed, good reliability, and high efficiency. It can achieve
+non-contact and non-destructive testing. Machine vision color recognition,
+positioning, and sorting have good applicability in various industries and have
+
+widespread market applications.
+
+First, subscribe to the topic messages published by the color recognition
+
+node to obtain recognition color information and images.
+
+Next, invoke the initialization action group file to prepare the robotic arm for
+
+the desired posture.
+
+Finally, based on the required color information, match the corresponding
+sorting actions and then execute the sorting actions to sort the color blocks into
+
+the respective areas.
+
+12
+
+
+
+=== Page 13 ===
+Hiweander Shenzhen Hiwonder Technology Co,Ltd
+
+The robot performs sorting tasks after recognizing the colored blocks from
+its own perspective. Prior to starting, ensure that the blocks required for this
+
+game are prepared.
+
+The source code of the program is located in
+/home/ubuntu/ros2_ws/src/example/example/color_sorting/color_sorting
+
+_node.py
+
+2.2 Operation Steps
+
+Note: The entered command should be case sensitive and “Tab” key can be used to
+
+complement the key words.
+
+1) Start JetAuto and connect it to NoMachine.
+
+2) Double click on bo to open the command line terminal.
+3) Input the command and press Enter to disable the app service.
+
+sudo systemctl stop start_app_node.service
+
+d stop start_app node.service
+
+4) Input the command and press Enter to start the program.
+
+ros2 launch example color_sorting_node.launch.py
+
+Launch example color_sorting_ node. launch.py
+
+5) The image interface of the camera when the program starts is as follows.
+
+13
+
+
+
+=== Page 14 ===
+6) To close this operation, press "Ctrl+C" in the terminal. If that fails, you can
+
+open a new command-line terminal and execute the following command to
+
+stop all ROS functions:
+
+~/.stop_ros.sh
+
+2.3 Outcome
+
+After the game starts, the robotic arm turns left to prepare itself for the sorting.
+Place the target block within the yellow box in the middle of the transmitted
+image. Once the block is recognized, the robotic am will transport them to their
+
+corresponding areas.
+
+The red color block will be transported to the position directly in front and
+
+center of the robot; the green color block will be transported to the position in
+
+14
+
+
+
+=== Page 15 ===
+Shenzhen Hiwonder Technology Co,Ltd
+
+front of the robot, towards its left side; the blue color block will be transported
+
+to the position in front of the robot, towards its right side.
+
+image
+
+2.4 Program Analysis
+
+Launch analysis:
+
+color detect launch Color detection
+
+Invoked launch
+« \ controller lau nch Chassis control
+color sorting node.launch.py
+
+Invoked node color sorting node Color sorting
+
+The program is saved in
+
+ros2_ws/src/example/example/color_sorting/color_sorting_node.launch.
+
+”
+
+py
+
+15
+
+
+
+=== Page 16 ===
+Hiweonder Shenzhen Hiwonder Technology Co,Ltd
+
+“color_detect_launch’ is used to launch color recognition.
+
+‘controller_launch’ is used to launch control of the base, servos, and other
+
+components.
+
+@ Start Node
+
+color_sorting_node is employed to initiate the color sorting node.
+
+Code analysis:
+
+16
+
+
+
+=== Page 17 ===
+Hiweonder Shenzhen Hiwonder Technology Co,Ltd
+
+Function main Run the main function of this file
+
+—_ init initiatization
+
+| get_node state Node status
+
+i Terminate program
+| shutdown callback function
+
+Body recognition
+function
+
+' main Class main function
+color sorting node. ; ito sorting
+& E = StaFESIV Ca Ilback callback function
+Class ColorSortingNode Color sorting class | ~
+
+ini La PIOCess Program initialization
+
+init_process
+
+Calculate servo
+angle using kinematics
+Image
+
+\ image callback callback function
+
+send request
+
+Get color
+recognition result
+
+get_color callback
+
+Stop color sorting
+
+\ stop srv callback
+= = callback function
+
+\ pick — Used to pick objects
+Program path:
+
+"ros2_ws/src/example/example/color_sorting/color_sorting_node.py"
+
+@ Main Function
+
+The main function calls the hand recognition class to start the node.
+@ ColorSortingNode
+
+init_process:
+
+Initializes arm movements and starts the pick function and main function in
+
+multiple threads, then publishes the current node state.
+
+get_node_state:
+
+17
+
+
+
+=== Page 18 ===
+Works in conjunction with init_process to initialize the node state.
+
+shutdown:
+
+def shutdown(self,
+
+elf.running
+
+Callback function to shut down the program; sets the running parameter to
+
+false and terminates the program.
+
+send_request:
+
+def send_request(self, client, msg)
+
+Future EL call async(msg)
+while :
+one() and future.t
+return future.result(
+
+Publishes the recognized hand position to the kinematics node and receives
+
+servo angle feedback from kinematics.
+start_srv_callback:
+
+v_callback
+
+18
+
+
+
+=== Page 19 ===
+Upon invocation, reads ROI parameters, sets the desired color for picking,
+publishes color information to the color recognition node, and starts the sorting
+
+process.
+
+stop_srv_callback:
+
+def stop_srv_callback(sel
+
+ger().
+False
+{
+
+Upon invocation, stops the current program and publishes empty information
+
+to the color recognition node to halt recognition.
+
+get_color_callback:
+
+def get_color_callback(sel
+7 }.data
+
+data
+
+Upon invocation, reads the color of the knife recognized by the color
+
+recognition node.
+
+Upon invocation, uses action groups for gripping, runs different action groups
+
+based on recognized colors, and places objects in three different positions.
+
+19
+
+
+
+=== Page 20 ===
+Hiweonder Shenzhen Hiwonder Technology Co,Ltd
+
+main:
+
+Upon invocation, determines whether sorting should begin based on required
+
+colors and ROI.
+
+image_callback:
+
+Upon invocation, receives camera data and places it in a queue for easy
+
+access.
+
+2.5 Gripping Calibration
+
+The default recognition and gripping area of the program is located in the
+middle. In normal circumstances, no adjustment is necessary. However, due to
+differences in camera parameters, there may be situations where the robot
+arm cannot grip the blocks. This can be addressed by adjusting the position of
+
+this area through program instructions. The specific steps are as follow:
+
+1) Start JetAuto and connect it to NoMachine.
+
+20
+
+
+
+=== Page 21 ===
+Hiweonder Shenzhen Hiwonder Technology Co,Ltd
+
+2) Double click on bo to open the command line terminal.
+
+3) Execute the command to initiate the testing program.
+
+ros2 launch example color_sorting_node.launch.py debug:=true
+
+Launch example color_sorting node.launch.py debug:=true
+
+4) After the robotic arm moves to the gripping position, place the color block at
+the center of the gripper. Wait for the arm to reset, marking the position of the
+recognized box. Then, wait for the arm to perform the gripping action, marking
+the grip position. Upon calibration completion, the pixel coordinates of the color
+
+block in the image and a completion message will be printed in the terminal.
+
+5) Run the program according to the instructions provided in ‘2.2 Operation
+
+Steps’.
+
+21
+
+
+
+=== Page 22 ===
+HIW/E9MOCT Shenzhen Hiwonder Technology Co,Ltd
+3. Color Tracking
+
+3.1 Program Logic
+
+The first-person view is the perspective of the robot itself. In this game, robot
+
+will take the first-person view to complete the color tracking task.
+Before starting the game, prepare yourself the required colored blocks.
+
+First of all, subscribe to the topic messages published by color recognition
+
+node to obtain the color information.
+
+Subsequently, after matching the target color, obtain the center of the target
+
+image.
+
+Finally, by using inverse kinematics, calculate the required angle to align the
+center position of the screen with the center of the target image. Publish the
+corresponding topic message, control the servo motion and make the robotic
+
+arm follow the movement of the target.
+The source code of the program is stored in:
+
+/home/ubuntu/ros2_ws/src/example/example/color_track/color_track_no
+
+de.py
+
+3.2 Operation Steps
+
+Note: the input command should be case sensitive, and the “Tab” key can be used
+
+to complement the key words.
+
+1) Start JetAuto and connect it to NoMachine.
+
+2) Double click on bo to open the ROS1 command line terminal.
+
+3) Input the command and press Enter to disable the app service.
+
+22
+
+
+
+=== Page 23 ===
+Hiweander Shenzhen Hiwonder Technology Co,Ltd
+
+sudo systemctl stop start_app_node.service
+
+d stop start_app node.service
+
+4) Input the command to start the game.
+
+ros2 launch example color_track_node.launch.py
+
+Launch example color_track_node.lLaunch.py
+
+5) To deactivate this mode, you can press "Ctrl+C" in the terminal interface. If
+closing fails, you can open a new command line terminal and enter a
+
+command to shut down all current ROS functionalities.
+
+~/.stop_ros.sh
+
+3.3 Outcome
+
+After the game starts, place the red block in front of the camera. The
+recognized color will be displayed in the image and the robotic arm will follow
+
+the movement of the target block.
+
+23
+
+
+
+=== Page 24 ===
+Wiimage View De -Oo
+
+/color_detect/image_result “ETI ) 10.00m >| &
+
+jage_result_mouse_left Smooth scaling 0° Gray ’
+
+3.4 Program Analysis
+
+Launch analysis:
+
+color track _node.launch.py
+
+Program path:
+
+controller launch — Chassis
+—— Invoked launch < kinematics launch Kinematics
+
+color detect launch Color detection
+
+~— Started node color track node Sorel ress
+
+“ros2_ws/src/example/example/color_track/color_track_node.launch.p”
+
+24
+
+
+
+=== Page 25 ===
+Hiweonder Shenzhen Hiwonder Technology Co,Ltd
+
+@ Initiate other Launch files
+
+color_detect_launch is used to launch color recognition.
+
+controller_launch is used to launch control of the base, servos, and other
+
+components.
+
+kinematics_launch starts the kinematics algorithm, calculating the required
+
+servo angles for the robotic arm based on the recognized information.
+
+@ Start Node
+
+color_track_node is employed to initiate the color sorting node.
+
+Code analysis:
+
+25
+
+
+
+=== Page 26 ===
+Hiweonder Shenzhen Hiwonder Technology Co,Ltd
+
+- Function
+main Run the main function of this file
+
+_ init Initialization
+
+get_node state Node status
+
+Terminate program
+callback function
+
+| init process _ Program
+initialization
+color _track_node.py init action Initialize action
+
+Calculate servo angle
+— Class ColorTrackNode \ send request using Kiveriies
+
+| shutdown
+
+| set color srv callback Set target color
+
+Initiate program
+callback function
+Stop program
+callback function
+
+start_srv_callback
+
+| stop srv callback
+
+Get color
+
+get color callback ‘cs
+| zs = recognition result
+
+main Class main function
+
+Program path:
+
+“ros2_ws/src/example/example/color_track/color_track_node.py”
+
+@ Main Function
+
+The main function calls the hand recognition class to start the node.
+@ ColorTrackNode
+
+init_process:
+
+Initializes arm movements and starts the pick function and main function in
+
+multiple threads, then publishes the current node state.
+
+init_action:
+
+26
+
+
+
+=== Page 27 ===
+Hiweonder Shenzhen Hiwonder Technology Co,Ltd
+
+Initialize all actions of the robot, returning the robotic arm to the gripping
+
+position.
+
+get_node_state:
+
+Works in conjunction with init_process to initialize the node state.
+
+shutdown:
+
+Callback function to shut down the program; sets the running parameter to
+
+false and terminates the program.
+
+send_request:
+
+Publishes the recognized hand position to the kinematics node and receives
+
+servo angle feedback from kinematics.
+
+set_color_srv_callback:
+
+27
+
+
+
+=== Page 28 ===
+Used to set the target color for recognition, configured through a service.
+
+start_srv_callback:
+
+callback
+
+Upon invocation, reads ROI parameters, sets the desired color for picking,
+publishes color information to the color recognition node, and starts the sorting
+
+process.
+
+stop_srv_callback:
+
+Upon invocation, stops the current program and publishes empty information
+
+to the color recognition node to halt recognition.
+
+get_color_callback:
+
+28
+
+
+
+=== Page 29 ===
+get_color_callback(sel
+
+lata
+
+color currently recognized by the color recognition node.
+
+main:
+
+Upon invocation, it will determine whether to start sorting based on the color to
+
+be sorted and the ROI.
+
+3.5 Extension Function
+
+The program defaults to recognize red. However, you can change the
+recognition color to green or blue through modifying the codes in
+corresponding program. In this section, the default recognition color is
+
+changed to green as example. The specific operation steps area as follow:
+
+1) Start JetAuto and connect it to NoMachine.
+
+2) Double click on boc to open the command line terminal.
+
+29
+
+
+
+=== Page 30 ===
+SI nel Hiwond inoiozy Oo Tt
+
+3) Input the command and press Enter to navigate to the program directory.
+cd /home/ubuntu/ros2_ws/src/example/example/color_track/
+
+[co /home/ubuntu/ros2_ws/stc/example/example/color_track/ |
+4) Input the command and hit Enter key to open the program file.
+
+vim color_track_node.py
+
+color track node.py
+
+5) Press “i” key to enter edit mode and modify the assignment of the
+
+“request.data” parameter to “green”.
+
+(self):
+self.timer.cancel()
+
+self .init_action()
+if self.get_parameter('start').value:
+self.start_srv_callback(Trigger.Request(), Trigger .Response())
+
+~set_color_srv_callback( request, SetString.Response())
+
+threading. Thread(target=self.main, daemon= ).start()
+self.create_service(Trigger, init_finish', self.get_node_state)
+self.get_logger().info( '\033[1;32 % t E*)
+
+6) After the modification is completed, enter “:wq” to save and exit the
+program file.
+
+/bin/zsh 132x33
+self.set_color_client = self.create_client(SetColorDetectParam, , callback_group=timer_cb_group
+
+self.set_color_client.wait_for_service()
+
+self. kinematics_ client = self.create_client(SetRobotPose,
+self .kinematics_client.wait_for_service()
+
+self.timer = self.create_timer( , self.init_process, callback_group=timer_cb_group)
+
+(self):
+self.timer.cancel()
+
+self.init_action()
+
+if self.get_parameter( )-value:
+self.start_srv_callback(Trigger .Request(), Trigger .Response())
+request = SetString.Request()
+request.data =
+self.set_color_srv_callback€request, SetString.Response()
+
+threading. Thread(target=self.main, daemon= ).start()
+self.create_service(Trigger, , self.get_node_state)
+self.get_logger().info('\033 \033 %
+
+(self, request, response):
+response.success =
+
+return response
+
+(self, signum, frame):
+self.running =
+
+(self):
+
+utf-8[unix] == [183]trailing
+
+7) Operate the game based on “3.2 Operation Steps’.
+
+30
+
+
+
+=== Page 31 ===
+HIW/E9MOCT Shenzhen Hiwonder Technology Co,Ltd
+
+4. Line-Following Obstacle Clearance
+
+4.1 Program Logic
+
+Line-following and obstacle clearance involves the robot advancing along a
+
+black line while automatically removing colored obstacles on the line.
+
+Before starting, prepare by placing the black line and position the robot in front
+of it, ensuring there are no other objects of the same color nearby to prevent
+
+interference. Place colored obstacles on the black line track.
+
+First, subscribe to the topics published by the color recognition node and radar
+
+node to obtain recognized color information, image data, and radar data.
+
+Next, determine the center coordinates of the line image within the frame,
+calculate the deviation from the center of the frame, update the PID data, and
+
+adjust the robot's path accordingly.
+
+Finally, when a colored obstacle is detected on the line, trigger the obstacle
+
+removal action group to use the robotic arm to remove the colored obstacle.
+
+/home/ubuntu/ros2_ws/src/example/example/line_follow_clean/line_follo
+
+w_clean_node.py
+
+4.2 Operation Steps
+
+Note: the input command should be case sensitive, and the “Tab” key can be used
+
+to complement the key words.
+
+1) Start JetAuto and connect it to NoMachine.
+
+2) Double click on bo to open the command line terminal.
+
+3) Input the command and press Enter to disable the app auto-start service.
+
+31
+
+
+
+=== Page 32 ===
+oy IW) | Oo a) t Shenzhen Hiwonder Technology Co,Ltd
+
+5) The camera image interface when the program starts is shown below.
+
+li
+
+6) To close this operation, press "Ctrl+C" in the terminal. If that fails, you can
+
+open a new command-line terminal and execute the following command to
+
+stop all ROS functions
+
+32
+
+
+
+=== Page 33 ===
+Hiweander Shenzhen Hiwonder Technology Co,Ltd
+
+4.3 Outcome
+
+After the game starts, JetAuto moves alone the recognized black line. When it
+encounters the colored block obstacles along the way, it will pause, grip the
+
+obstacle and place it on the left side. Afterward, it will continue moving forward.
+
+4.4 Program Analysis
+Launch Analysis:
+
+controller launch Chassis
+
+Invoked launch lidar launch — Lidar
+
+line_follow_clean_node.launch.p
+
+\ color detect launch Color detection
+
+y
+
+a Coloe trackin
+Initiated Node line follow_clean_ node node .
+
+Program path:
+
+“ros2_ws/src/example/example/line_follow_clean/line_follow_clean_nod
+
+e.launch.py”
+
+@ Starting Other Launch Files
+
+33
+
+
+
+=== Page 34 ===
+‘color_detect_launch’ is used to start color recognition.
+
+‘controller_launch’ is used to start control of the base, servos, and other
+
+components.
+‘lidar_launch’ starts the lidar.
+
+@ Initiate Node
+
+‘line_follow_clean_node is used to start the line-following sorting node.
+
+Source code analysis:
+
+Function, main Run the main fuction of this file
+
+_ init Initialization
+
+get_node state Node status
+Terminate program
+shutdown callback function
+Calculate servo angle
+using kinematics.
+Initiate program
+
+start_srv_callback :
+| . f TI d Line following —— callback function
+Iné_Tolow_ciean_noae.py obstacle clearing} stop srv_callback Stop program
+LineFollowCleanNode class callback function
+
+Load Get color
+recognition result
+
+send request
+
+get_color_callback
+
+\. init_process Program initialization
+
+pick Picking action
+
+main Class main function
+
+Image callback
+
+\\ image_callback function
+
+lidar_callback Lidar callback function
+Program path:
+“/ros2_ws/src/example/example/line_follow_clean/line_follow_clean_nod
+
+e.py”
+
+34
+
+
+
+=== Page 35 ===
+Hiweonder Shenzhen Hiwonder Technology Co,Ltd
+
+@ Main Function
+
+The main function calls the hand recognition class to start the node.
+@ LineFollowCleanNode
+
+init_process:
+
+Initializes the robotic arm actions, starts the pick and main functions in multiple
+
+threads, and publishes the current node state.
+
+get_node_state:
+
+Works in conjunction with ‘init_process’ to initialize the node state.
+
+shutdown:
+
+Callback function to shut down the program, sets the ‘running’ parameter to
+
+false, and terminates the program.
+
+send_request:
+
+35
+
+
+
+=== Page 36 ===
+send_request(self, client, msg):
+
+Future = c C.call_ async(msg
+while :
+if fu -done() and future.f
+return future.result(
+
+Publishes the recognized hand position to the kinematics node and receives
+
+servo angle feedback.
+
+start_srv_callback:
+
+def start_srv_callback
+
+Upon invocation, reads ROI parameters, sets the desired color for picking,
+publishes color information to the color recognition node, and starts the sorting
+
+process.
+
+stop_srv_callback:
+
+Upon invocation, stops the current program and publishes empty information
+
+to the color recognition node to halt recognition.
+
+get_color_callback:
+
+36
+
+
+
+=== Page 37 ===
+def get_color_callback(
+ne xX = None
+
+194
+
+195
+
+197
+198
+199
+
+Upon invocation, reads the color currently recognized by the color recognition
+
+node.
+
+pick:
+
+Upon invocation, executes the picking and obstacle clearing action groups.
+
+main:
+
+Upon invocation, determines whether to start sorting based on the required
+
+colors and ROI.
+
+image_callback:
+
+37
+
+
+
+=== Page 38 ===
+t =
+Hivvent ioer Shenzhen Hiwonder Technology Co,Ltd
+
+Reads image information and places it in a queue for easy access.
+
+lidar_callback:
+
+Reads Lidar information, processes data based on the model, and calculates
+
+the nearest position.
+
+4.5 Gripping Adjustment
+
+In the program, the recognition and gripping area are located in the middle of
+the image by default, no need for adjustment. However, due to the discrepancy
+in camera parameters, there might be cases where the robot arm cannot grip
+the color black. In such situations, you can adjust the position of this area
+
+using commands. Here are the specific steps:
+
+1) Start JetAuto and connect it to NoMachine.
+
+2) Double click on bo to open the ROS1 command line terminal.
+3) Run the following command to initiate the testing program.
+
+ros2 launch example line_follow_clean_node.launch.py debug:=true
+
+38
+
+
+
+=== Page 39 ===
+Hiweonder Shenzhen Hiwonder Technology Co,Ltd
+
+Launch example Line_follow_clean_node.launch.py debug:=true
+
+4) In this mode, the robot will terminate line following but retain the block
+picking action. After JetAuto reaches the gripping position, place the block in
+the middle of the gripper and wait for robotic arm to restore its initial posture,
+mark the position of the recognition box, then wait for the robotic arm to
+perform the gripping action. Once the calibration is complete, it will print out the
+pixel coordinates of the block on the screen and a completion message in the
+
+terminal.
+
+5) Finally, run the program according to “4.2 Operation Steps”.
+
+5. Waste Sorting
+
+5.1 Program Logic
+
+Waste sorting involves the robot recognizing waste cards in front of the camera,
+
+and transporting them to the fixed waste card classification areas.
+
+Before the game, prepare the waste cards. You can find the image collection of
+
+39
+
+
+
+=== Page 40 ===
+HIW/E9MOCT Shenzhen Hiwonder Technology Co,Ltd
+
+the waste cards under the same directory and print them out.
+
+First, subscribe to the topic massage published by the YOLOv5 target
+
+detection node to obtain the recognized card information and the card images.
+
+Next, match the obtained card information to find out the corresponding waste
+
+classification.
+
+Finally, based on the waste classification, execute the corresponding sorting
+
+action group to complete the task.
+The source code of the program is stored in
+
+/home/ubuntu/ros2_ws/src/example/example/garbage_classification/gar
+
+bage_classification.py
+
+5.2 Operation Steps
+
+Note: the input command should be case sensitive, and the “Tab” key can be used
+
+to complement the key words.
+
+1) Start JetAuto and connect it to NoMachine.
+
+2) Double click on | to open the command line terminal.
+
+3) Input the command below and press Enter to disable the app service.
+sudo systemctl stop start_app_node.service
+
+4) Enter the command and press Enter to start the garbage sorting mode:
+
+ros2 launch example garbage_classification.launch.py
+
+Launch example garbage classification. launch.py
+
+5) To close this operation, press "Ctrl+C" in the terminal. If that fails, you can
+40
+
+
+
+=== Page 41 ===
+Hiweander Shenzhen Hiwonder Technology Co,Ltd
+
+open a new command-line terminal and execute the following command to
+
+stop all ROS functions.
+
+~/.stop_ros.sh
+
+5.3 Outcome
+
+After the game starts, JetAuto recognizes the waste card within the image.
+Then place the waste card within the yellow box on the image, the robotic arm
+
+will grip the card and transport it to the respective waste classification area.
+
+Food waste Place in the robot's front-left area
+Hazardous Waste Place in the robot's left side
+
+Other Waste Place in the robot's right side
+Recyclable Waste Place in the robot's front-right area
+
+5.4 Program Analysis
+
+Launch Analysis:
+
+—— Invoked launch controller launch — Chassis
+
+garbage classification.launch.p
+
+y ——  __ Started Node garbage classification_node Waste sorting node
+
+Program path:
+
+41
+
+
+
+=== Page 42 ===
+“/ros2_ws/src/example/example/garbage_classification/garbage_classifi
+
+cation.launch.py”
+
+@ Launching Other Launch Files
+
+‘controller_launch’ is used to start control of the base, servos, and other
+
+components.
+
+@ Starting Node
+
+“garbage_classification_node’ is used to start the garbage classification node.
+
+Source Code Analysis:
+
+42
+
+
+
+=== Page 43 ===
+Hiweonder Shenzhen Hiwonder Technology Co,Ltd
+
+Function main Run the main function of this file
+
+_init___ Initialization
+init_process Program initialization
+get_node state Node status
+
+play Picking action
+Calculate servo angle
+
+send_request using kinematics
+og: . y Initiate program
+garbage classification.py Waste sorting | start srv_callback celibeck function
+Class GarbageClassificationNode class
+
+Stop program
+callback function
+Terminate program
+
+stop_srv_callback
+shutdown
+image_callback Image callback function
+
+pick Picking function
+
+|| main Class main function
+° Get the waste
+get_object_callback — ¢lagsification result
+
+Program path:
+
+“/ros2_ws/src/example/example/garbage_classification/garbage_classifi
+
+cation.py”
+
+@ Main Function
+
+The main function calls the hand recognition class to start the node.
+@ GarbageClassificationNode
+
+init_process:
+
+Initializes the robotic arm actions, starts the pick and main functions in multiple
+
+43
+
+
+
+=== Page 44 ===
+Hiweonder Shenzhen Hiwonder Technology Co,Ltd
+
+threads, and publishes the current node state.
+
+get_node_state:
+
+Works in conjunction with ‘init_process’ to initialize the node state.
+
+play:
+
+Upon invocation, plays the corresponding category of garbage voice prompt.
+
+shutdown:
+
+Callback function to shut down the program; sets the ‘running’ parameter to
+
+false and terminates the program.
+
+send_request:
+
+Publishes the recognized hand position to the kinematics node and receives
+
+servo angle feedback.
+
+start_srv_callback:
+
+Upon invocation, starts YOLOv5 recognition for garbage classification,
+
+44
+
+
+
+=== Page 45 ===
+providing feedback on the current program status.
+
+stop_srv_callback:
+
+def stop_srv_c
+
+t
+
+return response
+
+Upon invocation, stops the current program and halts YOLOv5 recognition.
+
+image_callback:
+
+def image_callback(s¢
+
+def pick(
+while
+
+Upon invocation, calls the corresponding action group based on the
+
+recognized garbage category.
+
+get_color_callback:
+
+45
+
+
+
+=== Page 46 ===
+Upon invocation, runs the picking and obstacle clearing action group.
+
+main:
+
+Upon invocation, determines whether to start sorting based on the required
+
+colors and ROI.
+
+get_object_callback:
+
+Reads recognition information from YOLOv5.
+
+46
+
+
+
+=== Page 47 ===
+Hiweander Shenzhen Hiwonder Technology Co,Ltd
+
+6. Fixed Point Navigation
+
+6.1 Program Logic
+
+First, subscribe to the topics published by the camera node to obtain
+
+images.
+
+Next, activate the navigation service to receive the location information of
+
+the destination.
+
+Finally, upon reaching the destination and detecting the target block, the
+servo control node publishes topic messages to command the robotic arm to
+
+complete the gripping and transporting tasks.
+
+6.2 Operation Steps
+
+Note: the input command should be case sensitive, and the “Tab” key can be used
+
+to complement the key words.
+
+1) Before starting the game, it’s necessary to complete the mapping task
+in the field of the navigation and transportation, prepare the colored blocks and
+mark the placement position in red within the area. To access more details
+about Lidar mapping, please refer to ‘5 Mapping & Navigation Course\ 1
+
+Mapping’
+
+2) Start JetAuto and connect it to NoMachine.
+
+3) Click-on to start the command-line terminal.
+
+4) Input the command and press Enter to disable the app service.
+
+sudo systemctl stop start_app_node.service
+
+d stop start_app node.service
+
+5) Input the command to start the game.
+
+47
+
+
+
+=== Page 48 ===
+Hiweander Shenzhen Hiwonder Technology Co,Ltd
+
+ros2 launch example navigation_transport.launch.py map:=map_01
+
+(Note: by default, after gripping the colored block, the robot will directly
+place ti down upon reaching the next target point. If you need to place it
+at a specific target location, you can add “place_without_color:=false” to
+
+the end of the command.)
+
+1 hiwonder_example navigation_transport.lLaunch map:=map_ 01
+
+6) To close this operation, press "Ctrl+C" in the terminal. If that fails, you
+can open a new command-line terminal and execute the following command to
+
+stop all ROS functions:
+
+~/.stop_ros.sh
+
+6.3 Outcome
+
+After opening RVIZ, you need to first check if the position of the robot on the
+map aligns with its actual potion. If they do not align, manual adjustment may
+be required. You can utilize the "2D Pose Estimate" tool in RVIZ to perform
+
+this adjustment.
+
+There are three tools in the menu bar, including 2D Pose Estimate, 2D Nav
+
+Goal and Publish Point.
+
+Lj Select i Focus Camera © Measure / 2D Pose Estimate A 2D Nav Goal @ Publish Point
+
+“2D Pose Estimate’ is used to set the initial position of JetAuto, “2D Nav Goal
+is used to set a target point and “Publish Point” is used to set multiple target
+
+points.
+
+Click “2D Nav Goal” in the menu bar, and select one point by clicking the
+
+48
+
+
+
+=== Page 49 ===
+Hiweander Shenzhen Hiwonder Technology Co,Ltd
+
+mouse as the target destination. After the point is set, JetAuto will
+
+automatically generate the route and move toward the point.
+
+[-JSelect + i »Focus Camera © Measure / 2D Pose Estimate 7 2D Nav Goal @ Publish Point
+
+After navigating to the location with the blue block, the robot will automatically
+
+grasp the block upon recognition. Then, it will navigate to the placement area
+with the red mark. Upon arrival, the robot will automatically place the block,
+
+completing the transportation task.
+
+Note: when the program starts, it can merely complete the entire process once. If
+you need to perform another gripping and placing cycle, you will need to restart the
+
+game.
+
+6.4 Program Analysis
+
+Launch analysis:
+
+Aligning and
+
+automatic pick launch wat
+= = ______ picking program
+
+| navigation launch — Navigation
+
+_—— Invoked launch :
+\ rviz_ launch Check navigation through RVIZ
+
+navigation _transport.launch.py |
+
+\ bri ngup launch Action initialization
+
+oo. Navigation and transport
+~~ Enabled Node navigation transport_node node
+
+The source code of this program is located in
+
+“ros2_ws/src/example/example/navigation_transport/navigation_transpo
+
+rt.launch.py”
+
+49
+
+
+
+=== Page 50 ===
+9
+
+@ Start other Launch files
+
+automatic_pick_launch: Automatically picks up items based on color
+
+alignment.
+
+navigation_launch: Launches navigation.
+
+rviz_launch: Uses RVIZ to visualize navigation effects.
+bringup_launch: Initializes actions.
+
+@ Start the Node
+
+58
+
+
+
+=== Page 51 ===
+Hiweonder Shenzhen Hiwonder Technology Co,Ltd
+
+navigation_transport_node: Starts the navigation transport node.
+
+Source Code Analysis
+
+- Function main Run the main function of this file
+
+__init__ Initialization
+get_node state Node status
+
+. - set_parameter _ |nitiali
+navigation transport.py Navigation | Ll ong
+Class NavigationTransport irenspent send_request awoke packing
+
+class ) and placing service
+3 t picki
+\\_ start_pick_srv_callback navn tlat
+|
+start_place_srv_callback Set placing point
+
+goal_callback pyblish callback function
+
+Program Path:
+
+ros2_ws/src/example/example/navigation_transport/navigation_transpor
+
+t.py
+
+@ Main Function
+
+The main function calls the hand recognition class to start the node.
+
+@ NavigationTransport
+
+get_node_state:
+
+return re
+
+Works in conjunction with ‘init_process’ to initialize the node state.
+
+shutdown:
+
+Callback function to shut down the program; sets the ‘running’ parameter to
+
+51
+
+
+
+=== Page 52 ===
+Hiweonder Shenzhen Hiwonder Technology Co,Ltd
+
+false and terminates the program.
+
+send_request:
+
+Publishes certain recognized information to a specific service
+
+start_pick_srv_callback:
+
+Upon invocation, sets navigation points in RVIZ to begin picking up items
+
+based on their location.
+
+start_place_srv_callback:
+
+Upon invocation, sets navigation points in RVIZ to begin placing items based
+
+on their location.
+
+goal_callback:
+
+52
+
+
+
+=== Page 53 ===
+Hiweonder Shenzhen Hiwonder Technology Co,Ltd
+
+def
+
+\o33 1%5\033
+
+Callback function for navigation points; switches between pick and place
+
+modes based on the current set navigation points.
+
+6.5 Gripping Calibration
+
+The default recognition and gripping area of the program is located in the
+center of the image. No adjustments are required for the normal circumstance.
+If the robotic arm fails to grip the colored blocks during the game, you can
+adjust the position of this area through the program command. The specific
+
+steps are as follow:
+
+1) Start JetAuto and connect it to NoMachine remote control software.
+
+2) Click on | to open the command line terminal.
+
+3) Input the command to disable the app auto-start service:
+sudo systemctl stop start_app_node.service
+4) Execute the following command to start gripping position calibration.
+
+ros2 launch example automatic_pick.launch.py debug:=true
+
+Launch example automatic_pick. launch. py debug:=true
+
+53
+
+
+
+=== Page 54 ===
+Hiweander Shenzhen Hiwonder Technology Co,Ltd
+
+5) After the robotic arm reaches the gripping position, place the colored block
+at the center of the gripper and wait for the robotic arm to reset before griping
+again, indicating the calibration is completed. Upon the completion of the
+calibration, the terminal will print the pixel coordinates of the colored block in
+
+the image and the “pick finish” prompt message.
+
+[INFO] [1696513467.142774]: start pick
+375
+375
+374
+375
+376
+
+375
+
+375
+
+375
+
+374
+
+375
+
+375
+finish
+
+The data after automatic calibration will be saved in the
+"[home/ros_ws/src/hiwonder_example/config/automatic_pick_rol.yam|"
+
+file.
+
+“pick_stop_pixel_coordinate’” refers to the pixel coordinates of the gripping
+position in the image. The first parameter represents the x-axis coordinate.
+Decreasing this value shifts the horizontal position to the left, while increasing
+it shifts the gripping horizontal position to the right. The second parameter
+represents the y-axis coordinate. Decreasing this value moves the gripping
+position closer, while increasing it moves the gripping position farther away.
+Generally, you can rely on automatic calibration results, but you can also
+
+adjust it according to your personal preference.
+
+“place_stop_pixel_coordinate" refers the pixel coordinates of the placement
+position in the image. The first parameter represents the x-axis coordinate.
+Increasing this value shifts the placement position to the left, while decreasing
+it shifts the placement position to the right. The second parameter represents
+the y-axis coordinate. Decreasing this value adjusts the placement position
+
+closer, while increasing it moves the gripping position farther away. (Note:
+
+54
+
+
+
+=== Page 55 ===
+Hivwoander Shenzhen Hiwonder Technology Co,Ltd
+
+Automatic calibration solely calibrates the coordinates of the gripping position.
+The coordinates of the placement position are not automatically calibrated. If a
+placement target is set and the placement effect is not satisfactory, manual
+
+adjustment is required. )
+
+automatic_pick_roi.yaml (~/ros_ws/src/hiwonder_example/config) - gedit
+
+Doan? fA, automatic_pick_roi.yaml
+pick_stop_pixel_coordinate:
+- 338
+- 405
+place_stop_pixel_coordinate:
+
+- 336
+- 358]
+
+6) Upon the completion of the modification, please start the game according to
+
+“6.2 Operation Steps’.
+
+55
+
+

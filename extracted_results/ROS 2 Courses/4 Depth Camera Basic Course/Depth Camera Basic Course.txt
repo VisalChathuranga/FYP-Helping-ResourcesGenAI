@@ -1,0 +1,1680 @@
+
+=== Page 1 ===
+| IWE) M Oo = t Shenzhen Hiwonder Technology Co,Ltd
+
+Depth Camera Basic Course
+
+
+
+
+=== Page 2 ===
+bf IVW/EDM | er Shenzhen Hiwonder Technology Co,Ltd
+Catalog
+
+1. Depth Camera Configuration ......... ccc ccc cece cee teens
+
+1.1 Install and Configure ROS2 ........ ccc cece cece eee tees
+
+1.2 Version Options ...... ccc ccc ccc eee eee eee eee eee eee eee
+
+1.3 Check Ubuntu's Software and Update Sources .......... 0c eee eens
+
+1.4 Set Encoding Format ........ ccc ccc cc eee cere eee ee eees
+
+1.5 Set the Download Source for ROS2 ....... cc eee eee eee ee eens
+
+1.5.1 Enable the Ubuntu Universe Repository ................e eee eee
+
+1.5.2 Update the software packages and install the curl and gnupg tools . 9
+
+1.5.3 Set the public key 2... ccc ccc cece eee eee eee eee 10
+
+1.5.4 Set Download Source ... 2... cece ce ccc eee eee tenes 11
+
+1.6 Install ROS2 2... ccc ec ce ec eee eee ee eee eee eees 11
+
+1.7 Install Additional Dependency ........... cece ee ee eee ee eee tees 12
+
+1.8 Set Environment Variables ...... 0... 0. ccc ec eee eee eee 13
+
+1.9 Test ROS2 System 2... ccc ccc cc cece eee eee eee eeee 14
+1.10 Network Configuration .... 2... cece ccc ee eee cece ee eees 14
+
+1.11 Install Dependency ........ ccc cee cee ccc ee eee cere e eens 17
+
+2. Construct WorkSpace ...... cece cece eee ee eee eee cece renee 18
+3. Install Depth Camera ROS SDK ........ cece cece cece ee eee een es 19
+4. Usage of Depth Camera ........ cece cc ccc ccc eee ee eee eee eeee 22
+4.1 Enable Camera Service ......... cece cece cece eee eee ee eees 22
+
+
+
+=== Page 3 ===
+| iIiwWeonder Shenzhen Hiwonder Technology Co,Ltd
+
+4.2 View Image Using rqt_image_view Tool ........... cece eee eee ee eee 22
+
+4.3 View Image USINg rVIZ .. 6... ec cece eee eee eee e ee eee eees 24
+
+4.4 LDP Protection 20... ccc ccc cc cee ee et eee eee eee e eens 28
+
+5. Data Type and Point Cloud .. 1... cece cece cece cece ee eee eees 31
+5.1 Introduction to Point Cloud 2.6... .. cece ec ccc cece eee ee eens 31
+
+5.2 Understanding Point Cloud Data Types ........... 0. cece ee eee eens 31
+
+5.3 Point CIOUd 2.6... ccc cece cee cece eee eee cece ee eees 32
+5.3.1 Depth Camera Point Cloud ......... cece eee eee eee eee 32
+
+5.3.2 Depth Camera Infrared Image ........... cece eee eee eee eee 34
+
+
+
+=== Page 4 ===
+Hiwoander Shenzhen Hiwonder Technology Co,Ltd
+
+1. Depth Camera Configuration
+
+Note:
+
+41) This document uses Ubuntu 20.04 and ROS2 Foxy as examples for
+installation. The system and ROS versions should not be lower than Ubuntu 20.04
+and ROS2 Foxy, as software versions below these are outdated. Using outdated
+software means you will not receive security and maintenance updates, and
+compatibility issues will pose significant challenges, potentially leading to
+
+unsolvable problems.
+
+2 Before starting the configuration, please install virtual machine software
+and import Ubuntu 20.04. Refer to "1 Tutorials\ 2 Basic Development Courses\ 1
+
+Linux Basic Course".
+
+3) Next, install ROS Foxy. Refer to "Configuration and Testing Based on ROS2
+in Linux" in the same path as this document. This document will not provide further
+
+details on the aforementioned installations.
+
+1.1 Install and Configure ROS2
+
+The virtual machine system image provided already has the ROS2
+
+environment configured. This step is for reference only.
+
+
+
+=== Page 5 ===
+HIVW/E9MCOECT Shenzhen Hiwonder Technology Co,Ltd
+
+1) Before starting this course, please refer to "1 Tutorials\ 2 Basic
+
+Development Courses\ 1 Linux Basic Course\ Lesson 3 Linux Installation and
+Source Replacement" to install the virtual machine client and import the ROS2
+Ubuntu image (the official image is located in the "6 Virtual
+
+Machines\ubuntu_ros2_humble" folder).
+
+2 The image file we provide is in the "6 Virtual
+Machines\ubuntu_ros2_humble" folder, and the ROS2 environment is already
+configured. Users can refer to this section for a brief overview of the ROS2 system
+
+installation and environment setup.
+
+This tutorial must be used in a virtual machine. The camera functionality package is
+
+already configured on the robot, so please do not reconfigure it on the camera.
+
+1.2 Version Options
+
+Different versions of ROS2 are installed on different versions of Ubuntu. In this
+section, we will use the virtual machine with Ubuntu 20.04, which corresponds
+
+to ROS2 Foxy.
+
+ROS2hRAS Ape) SIP ELIE RS IA] Ubuntuhgas
+
+Ardent Apalone 2017.12 2018.12 Ubuntu 16.04 (Xenial Xerus
+
+Bouncy Bolson 2018.7 2019.7 Ubuntu 16.04 (Xenial Xerus Ubuntu 15.04 (Bionic Beaver)
+
+Crystal Clemmys 2018.12 2019 Ubuntu 18.04 (Bionic Beaver.
+Dashing Diademata 2019.5 2021 Ubuntu 13.04 (Bionic Beaver
+
+Eloquent Elusor 2019.11 2020.11 Ubuntu 18.04 (Bionic Beaver
+
+Foxy Fitzroy 2020.6 2023.5 Ubuntu 20.04 (Focal Fossa
+
+Galactic Geochelone 2021.5 2022.11 Ubuntu 20.04 (Focal Fossa
+
+Humble Hawksbill
+
+Ubuntu 22.04 (Jammy Jellyfish
+
+
+
+=== Page 6 ===
+Hiwoander Shenzhen Hiwonder Technology Co,Ltd
+
+1.3 Check Ubuntu's Software and Update Sources
+
+1) Locate ‘System&Update’.
+
+® Od ®@ A
+
+Remmina Rhythmbox Settings Shotwell Software & Up...
+
+TeXinfo Thunderbird Mail Transmission
+
+2) Make sure to check the option for internet downloads and change the
+
+download source to the local region's source.
+
+Software & Updates = i
+
+Ubuntu Software Other Software Updates Authentication Additional Drivers Developer Options Ubuntu Pro
+
+Downloadable from the Internet
+
+Canonical-supported free and open-source software (main)
+Community-maintained free and open-source software (universe)
+Proprietary drivers for devices (restricted)
+
+Software restricted by copyright or legal issues (multiverse)
+
+Source code
+
+Download from: _ https://mirrors.tuna.tsinghua.edu.cn/ubuntu v
+
+Installable from CD-ROM/DVD
+
+Installation medium with Ubuntu 22.04 Jammy Jellyfish’
+Officially supported
+Restricted copyright
+
+Revert Close
+
+
+
+
+=== Page 7 ===
+Hiwoander Shenzhen Hiwonder Technology Co,Ltd
+1.4 Set Encoding Format
+
+1) Start the virtual machine, and press ‘Ctri+Alt+T’ key to start the terminal.
+2) Input
+sudo locale-gen en_US en_US.UTF-8
+
+Set the Ubuntu locale to en_US.UTF-8. After entering the command, press
+Enter, then enter the virtual machine's password, "hiwonder" (users should
+enter the password they have set for their own virtual machine; in our case, the
+
+password is "hiwonder").
+
+:~$ sudo locale-gen en_US en_US.UTF-8
+[sudo] password for ubuntu:
+Generating locales (this might take a while)...
+
+en_US.ISO-8859-1... done
+en_US.UTF-8... done
+Generation complete.
+
+3) Run the command below and press Enter key to update the language
+
+environment.
+
+sudo update-locale LC_ALL=en_US.UTF-8 LANG=en_US.UTF-8
+
+:~§ sudo update-locale LC_ALL=en_US.UTF-8 LANG=en_
+US.UTF-8
+
+2~$
+
+4) Enter the command, press Enter, and export the environment variables to
+
+take effect immediately.
+
+export LANG=en_US.UTF-8
+
+:~$ export LANG=en_US.UTF-8
+
+:~$ ff
+
+1.5 Set the Download Source for ROS2
+
+1.5.1 Enable the Ubuntu Universe Repository
+
+1) Enter the command to check if the Universe repository is enabled:
+
+7
+
+
+
+=== Page 8 ===
+Hiwoander Shenzhen Hiwonder Technology Co,Ltd
+
+apt-cache policy | grep universe
+
+:~$) apt-cache policy | grep universe
+
+2) If the output is as follows, it indicates that it has been enabled, and you can
+
+proceed to configure it further in section 1.4.1.
+http://mirrors.aliyun.com/ubuntu focal-security/ 1386 Packages
+release v=20.04,o0=Ubuntu,a=focal-security,n=focal, l=Ubuntu,c= ,b=i3
+
+http://mirrors.aliyun.com/ubuntu focal-security/ amd64 Packages
+release v=20.04,o0=Ubuntu,a=focal-security,n=focal, l=Ubuntu,c= ,b=am
+
+http://mirrors.aliyun.com/ubuntu focal-backports/ 1386 Packages
+release v=20.04,o0=Ubuntu, a=focal-backports ,n=focal, l=Ubuntu,c= sdb=t
+
+http://mirrors.aliyun.com/ubuntu focal-backports/ amd64 Packages
+release v=20.04,o=Ubuntu,a=focal-backports ,n=focal, l=Ubuntu,c= ,b=a
+
+http://mirrors.aliyun.com/ubuntu focal-updates/ 1386 Packages
+release v=20.04,o0=Ubuntu,a=focal-updates ,n=focal, l=Ubuntu,c= ,b=138
+
+3) If you see the following prompt, it means it has not been enabled.
+
+:~$ apt-cache policy | grep universe
+E: Cache is out of sync, can't x-ref a package file
+
+4) Enter the command to install the software package
+
+“software-properties-common":
+
+sudo apt install software-properties-common
+
+:~$) sudo apt install software-properties-common
+Reading package lists... Done
+Building dependency tree
+Reading state information... Done
+software-properties-common is already the newest version (0.99.9.8).
+software-properties-common set to manually installed.
+The following packages were automatically installed and are no longer required:
+
+5) Enter the command to add the PPA to the Universe repository and
+
+automatically import the public key:
+
+sudo add-apt-repository universe
+
+:~$}sudo add-apt-repository universe
+
+‘universe’ distribution component is already enabled for all sources.
+
+
+
+=== Page 9 ===
+Shenznen Hiw mael echnoiogy (Co,Ltd
+
+6) You can enter the command again to check if it has been enabled:
+
+apt-cache policy | grep universe
+
+2 apt-cache policy | grep universe
+http://mirrors.aliyun.com/ubuntu Tocal-security/ ~. tss0 Packages
+release v=20.04,o=Ubuntu,a=focal-security,n= focus ay buna: c=universe,b=13
+
+http://mirrors.aliyun.com/ubuntu focal-security/)\ -°«*>= amd64 Packages
+release v=20.04,o=Ubuntu,a=focal-security,n=focal, l=Ubuntu,c=)) °° ><,b=am
+
+http://mirrors.aliyun.com/ubuntu focal-backports/\ vo >< 1386 Packages
+
+release v=20.04,o0=Ubuntu,a=focal-backports,n=focal, l=Ubuntu,c=) 5 ver><,b=i
+
+http: //mirrors.aliyun.com/ubuntu focal-backports/ #9) .«*>« amd64 Packages
+release v=20.04,0=Ubuntu,a=focal-backports,n=focal, l=Ubuntu,c=)) o> >«,b=a
+
+http://mirrors.aliyun.com/ubuntu focal-updates/ » »-°>- 1386 Packages
+release v=20.04,o=Ubuntu,a=focal-updates ,n=focal, l=Ubuntu,c=" 5 >> >«,b=i38
+
+1.5.2 Update the software packages and install the curl and gnupg tools
+1) Enter the command to update the software installation packages:
+
+sudo apt update
+
+:~$|sudo_apt update |
+2:1 http://mirrors.ali .com/ubuntu focal InRelease
+:2 http://mirrors.ali .com/ubuntu focal-updates InRelease [114 kB]
+73 http://mirrors.ali .com/ubuntu focal-backports InRelease [108 kB]
+7:4 http://mirrors.ali .com/ubuntu focal-security InRelease [114 kB]
+:5 http://mirrors.ali .com/ubuntu focal/main DEP-11 64x64@2 Icons [15.8 kB
+
+2) After the update is complete, it will appear as shown in the following
+image.
+
+Get:29 http://mirrors.aliyun.com/ubuntu focal-security/multiverse amd64 DEP-11
+Metadata [2,464 B]
+Get:30 http://mirrors.aliyun.com/ubuntu focal-security/multiverse DEP-11 64x64@
+2 Icons [29 B]
+
+a: B/s
+
+Reading package lists... Done
+Building dependency tree
+
+Reading state information... Done
+All packages are up to date.
+
+3) Enter the command to install the curl and gnupg tools:
+
+sudo apt install curl gnupg2 Isb-release
+
+
+
+=== Page 10 ===
+She hen Hiwond echnology Co,Ltd
+
+sudo apt install curl gnupg2 lsb-release
+
+Reading package lists... Done
+
+Building dependency tree
+
+Reading state information... Done
+
+lsb-release is already the newest version (11.1.0ubuntu2).
+lsb-release set to manually installed.
+
+4) During the installation process, if you see the prompt as shown in the
+
+following image, simply enter "y" and press Enter.
+
+Use ‘sudo apt autoremove' to remove them.
+The following NEW packages will be installed:
+curl gnupg2
+© upgraded, 2 newly installed, © to remove and © not upgraded.
+Need to get 167 kB of archives.
+After this operation, 464 k additional disk space will be used.
+Do you want to continue?
+
+5) After the installation is complete, it will appear as shown in the following
+
+image:
+
+Get:2 http://mirrors.aliyun.com/ubuntu focal-updates/universe amd64 gnupg2 all
+2.2.19-3ubuntu2.2 [5,316 B]
+
+Fetched 167 kB in 2s (77.9 kB/s)
+
+Selecting previously unselected package curl.
+
+(Reading database ... 225190 files and directories currently installed.)
+Preparing to unpack .../curl_7.68.0-1ubuntu2.14 amd64.deb ...
+
+Unpacking curl (7.68.0-1ubuntu2.14) ...
+
+Selecting previously unselected package gnupg2.
+
+Preparing to unpack .../gnupg2_2.2.19-3ubuntu2.2_all.deb ...
+
+Unpacking gnupg2 (2.2.19-3ubuntu2.2) ...
+
+Setting up gnupg2 (2.2.19-3ubuntu2.2) ...
+
+Setting up curl (7.68.0-1ubuntu2.14) ...
+
+Processing triggers for man-db (2.9.1-1) .
+
+1.5.3 Set the public key
+Enter the following command:
+
+curl -s https://raw.githubusercontent.com/ros/rosdistro/master/ros.asc |
+
+sudo apt-key add -
+
+z~$ curl -s https://raw.githubusercontent.com/ros/
+
+rosdistro/master/ros.asc sudo apt-key add -
+OK
+:-$ ff
+
+If the following error appears, re-enter the command:
+
+curl http://repo.ros2.org/repos.key | sudo apt-key add -
+
+10
+
+
+
+=== Page 11 ===
+Hiwoander Shenzhen Hiwonder Technology Co,Ltd
+
+:~$ curl -s https://raw.githubusercontent.com/ros/rosdistro/maste
+r/ros.asc | sudo apt-key add -
+
+[sudo] password for hiwonder:
+gpg: no valid OpenPGP data found.
+
+1.5.4 Set Download Source
+Enter the following command:
+
+sudo sh -c 'echo "deb [arch=$(dpkg --print-architecture)]
+http://packages.ros.org/ros2/ubuntu $(Isb_release -cs) main" >
+
+letc/apt/sources.list.d/ros2-latest.list’
+
+t~$ sudo sh -c ‘echo "deb [arch=$(dpkg --print-arc
+hitecture)] http://packages.ros.org/ros2/ubuntu $(1lsb_ release -cs) main" > /etc
+
+/apt/sources.list.d/ros2-latest.list'
+:-3 Ef
+
+1.6 Install ROS2
+
+1) Enter the below command to update the software feature pack.
+
+sudo apt update
+
+:~$|sudo apt update
+://mirrors.aliyun.com/ubuntu focal InRelease
+://mirrors.aliyun.com/ubuntu focal-updates InRelease [114 kB]
+://mirrors.aliyun.com/ubuntu focal-backports InRelease [108 kB]
+://packages.ros.org/ros2/ubuntu focal InRelease [4,685 B]
+://mirrors.aliyun.com/ubuntu focal-security InRelease [114 kB]
+://packages.ros.org/ros2/ubuntu focal/main amd64 Packages [1,151 kB]
+
+2) After the update is complete, it will appear as shown below.
+
+Get:16 http://mirrors.aliyun.com/ubuntu focal-security/multiverse amd64 DEP-11
+Metadata [2,468 B]
+
+Fetched 5,288 kB in 12s (427 kB/s)
+
+Reading package lists... Done
+
+Building dependency tree
+
+Reading state information... Done
+
+All packages are up to date.
+
+=~ id
+
+3) Run the below command:
+
+sudo apt install ros-foxy-desktop
+
+Press Enter. When prompted whether to install, type "y" and press Enter again.
+
+11
+
+
+
+=== Page 12 ===
+Shenznen Hiw mcadel echnoiogy (Co,Ltd
+Wait for the download and installation to complete. Depending on your network
+
+conditions, this process may take about 10 minutes, so please be patient.
+
+Reading package lists... Done
+
+sudo apt install ros-foxy-desktop
+Building dependency tree
+
+Reading state information... Done
+
+xliproto-input-dev xiiproto-randr-dev x1iiproto-scrnsaver-dev
+
+x1iproto-xext-dev x1liproto-xf86vidmode-dev x1iproto-xinerama-dev
+xorg-sgml-doctools xtrans-dev zlibig-dev
+
+© upgraded, 953 newly installed, © to remove and 0 not upgraded.
+
+Need to get 475 MB of archives.
+
+After this operation, 2,668 MB additional disk space will be used.
+
+Do you want to continue? [Y/n
+
+4) After the installation is complete, it will appear as shown below.
+
+Setting up ros-foxy-geometry2 (0.13.13-1focal.20221013.004359) ...
+Setting up ros-foxy-rviz-common (8.2.7-1focal.20221013.003214) ...
+Setting up ros-foxy-rqt-common-plugins (1.0.0-1focal.20221013.012401) ...
+Setting up ros-foxy-ros-base (0.9.2-1focal.20221013.012938) ...
+Setting up ros-foxy-rviz-default-plugins (8.2.7-1focal.20221013.012643) ...
+Setting up ros-foxy-rviz2 (8.2.7-1focal.20221013.020616) ...
+Setting up ros-foxy-desktop (0.9.2-1focal.20221013.021123) ...
+Processing triggers for libc-bin ge oupanens-9) wane
+2~$
+
+1.7 Install Additional Dependency
+
+1) Enter the command, press Enter, and input the virtual machine password
+
+"hiwonder’ to install the autocomplete tool:
+
+sudo apt install python3-argcomplete
+
+sudo apt install python3-argcomplete
+
+[sudo] password for ubuntu:
+Reading package lists... Done
+Building dependency tree
+Reading state information... Done
+
+The following packages were automatically installed and are no longer required:
+adium-theme-ubuntu command-not-found-data diffstat enchant example-content
+fwupdate geoip-database gnome-software-common gnome-user-guide
+guile-2.0-Libs ifupdown imagemagick-6-common iputils-arping
+Libappstream-glib8 lLibarchive-zip-perl lLibargon2-0 libart-2.0-2
+
+2) After the installation is complete, it will appear as shown below.
+
+12
+
+
+
+=== Page 13 ===
+STIL ne n Hiw ma f inolog\ { o.Ltd
+
+Selecting previously unselected package python3-argcomp E
+
+(Reading database ... 285089 files and directories currently installed.)
+Preparing to unpack .../python3-argcomplete_1.8.1-1.3ubuntui_all.deb .
+Unpacking python3-argcomplete (1.8.1-1.3ubuntu1) ..
+
+Setting up python3-argcomplete (1.8.1-1.3ubuntu1) ...
+Processing triggers for man-db re pa “Ke
+2=S
+
+3) Input the following command and hit Enter key to install the compilation
+
+tool. Then enter ‘y’ to confirm the installation.
+
+sudo apt install python3-colcon-common-extensions
+
+python3-colcon-common-extenst
+
+. Done
+Building dependency tree
+Reading state information... Done
+
+© upgraded, 35 newly installed, 0 to remove and © not upgraded.
+
+Need to get 766 kB of archives.
+
+After this operation, 4,769 kB_of additional disk space will be used.
+Do you want to continue? [Y/n]
+
+4) After the installation is complete, it will appear as shown below.
+
+Setting python3-colcon-recursive-crawl (0.2.1-1) ...
+Setting python3-colcon-cmake (0.2.27-1) ...
+
+Setting python3-colcon-notification (0.2.14-1) ...
+Setting python3-colcon-cd (0.1.1-1) ...
+
+Setting python3-colcon-ros (0.3.23-1) .
+
+Setting python3-colcon-common-extensions (0.3.0-1) ...
+Processing triggers for man-db (2.9.1-1) ...
+
+:-$
+
+1.8 Set Environment Variables
+
+Sequentially enter the following commands, pressing Enter after each one, to
+
+complete the environment variable setup:
+echo "source /opt/ros/foxy/setup.bash" >> ~/.bashrce
+
+source ~/.bashrc
+
+:~$ echo "source /opt/ros/foxy/setup.bash" >> ~/.b
+
+source ~/.bashrc
+
+13
+
+
+
+=== Page 14 ===
+bf iIiwWeonder Shenzhen Hiwonder Technology Co,Ltd
+1.9 Test ROS2 System
+
+1) Enter the command to run a talker.
+
+ros2 run demo_nodes_cpp talker
+
+:~$|ros2 run demo_nodes cpp talker
+[1667186428.542832588] [talker]: Publishing: ‘Hello World:
+[1667186429 .542654738] [talker]: Publishing: 'Hello World:
+
+[1667186430.542757313] [talker]: Publishing: 'Hello World:
+[1667186431.542860113] [talker]: Publishing: ‘Hello World:
+[1667186432.542704202] [talker]: Publishing: 'Hello World:
+1667186433 .543069939 talker]: Publishing: 'Hello World:
+
+2) Press "Ctri+Alt+T" to open a new terminal, then enter the command to run
+
+a listener.
+
+ros2 run demo_nodes_py listener
+
+:~$)}ros2 run demo_nodes py Listener
+
+[INFO] [1667186523.213157479] [listener]: I heard: [Hello World:
+[INFO] [1667186524.197304126] [listener]: I heard: [Hello World:
+[INFO] [1667186525.196535619] [listener]: I heard: [Hello World:
+[INFO] [1667186526.196780338] [listener]: I heard: [Hello World:
+[INFO] [1667186527.196269022] [listener]: I heard: [Hello World:
+[INFO] [1667186528.196268775] [listener]: I heard: [Hello World:
+[1667186529.196815578] [listener]: I heard: [Hello World:
+1667186530.195096077 listener]: I heard: World:
+
+3) Press "Ctrl+C" to stop the execution. If stopping fails, you can repeat
+
+pressing "Ctrl+C" multiple times until it stops.
+
+1.10 Network Configuration
+
+1) Open virtual machine
+
+2) Click-on Edit and choose Virtual Network Editor.
+
+14
+
+
+
+=== Page 15 ===
+| IWEM Oo © Shenzhen Hiwonder Technology Co,Ltd
+ee ] VM Jabs Help i >
+
+Library Cut Ctrie x
+) Copy CtrieC
+= Paste Ctr
+Virtual Network Editor...
+Preferences... tri+P
+
+3) Tick ‘Bridged’, and choose the corresponding wireless network card.
+
+VMnet Information
+@ Bridged (connect VMs directly to the external network)
+
+sai |
+Automatic
+
+ONAT (shared Bluetooth Device (Personal Area Network)
+
+PCIe GBE Family Controller
+30 Wireless LAN 302.
+
+VMnet Information
+@ Bridged (connect VMs directly to the external network)
+
+CO)NAT (shared host's IP address with VMs)
+
+NAT Settings...
+O)Host-only (connect VMs internally in a private network)
+Connect a host virtual adapter to this network
+Host virtual adapter name: VMware Network Adapter ¥Mnetd
+Use local DHCP service to distribute IP address to VMs DHCP Settings...
+
+Subnet IP; ; ; ‘ Subnet mask; ; ‘ ;
+
+RestreDefauts| | import... || Spot. |[E or) careel | tony) | He
+
+4) Select the imported virtual machine, then click on ‘Power on this virtual
+machine’.
+
+15
+
+
+
+=== Page 16 ===
+Hiwoander Shenzhen Hiwonder Technology Co,Ltd
+
+a ubuntu_ros2_humble - VMware Workstation
+
+File Edit View VM Tabs Help [> + ie) Sif io
+et x 4 Home [FP] ubuntu_ros2_humble
+Type here to search 7
+> Power on this virtual machine a
+[Fe Edit virtual machine settings
+y Devices
+
+ES Memory 8 GB
+
+"Processors 4
+
+©)\Hard Disk (SCSI) 20 GB
+
+©) CD/DVD (SATA) Using file ubunt...
+CD/DVD 2 (SATA) Using file ubunt...
+
+(| Floppy Using file ubunt...
+
+523 Network Adapter NAT
+
+“=| USB Controller Present
+
+(_1 Display Auto detect
+
+5) Click on iid to open terminal. Or press the short-cut ‘CtrI+Alt+t’ to
+
+open the command-line terminal.
+
+6) Enter command to check whether the network connection is successful.
+
+ping www.baidu.com
+
+S$ ping www.baidu.com
+
+If the terminal prints following content, that means network connection is
+
+successful.
+
+:~$ ping www.baidu.com
+-a.shifen.com (14.119.104.254) 56(84) bytes of data.
+from 14.119.104.254 (14.119.104.254): icmp_seq=1 ttl=128 time=7.
+from 14.119.104.254 (14.119.104.254): icmp _seq=2 ttl=128 time=7.
+from 14.119.104.254 (14.119.104.254): icmp_seq=3 ttl=128 time=7.
+from 14.119.104.254 (14.119.104.254): icmp_seq=4 ttl=128 time=7.
+from 14.119.104.254 (14.119.104.254): icmp _seq=5 ttl=128 time=7.
+
+If it shows that “Name or service not known’, that means virtual machine fails
+
+to connect to the network.
+
+ping: www.baidu.com: Name or service not known
+
+16
+
+
+
+=== Page 17 ===
+Hiwoander Shenzhen Hiwonder Technology Co,Ltd
+
+7) Execute this step only when network connection is failed. Enter command
+
+“ip a’ to check the ID of network card.
+
+i~S 1p a
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group defaul
+t qlen 1000
+
+Link/lLoopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+
+inet 12] cope host lo
+valic Network er preferred lft forever
+inete : MMB c host
+
+valigytic |cicver preferred lft forever
+
+2: |}ens33: JEBROADCAST ,MULTICAST ,UP,LOWER_UP> mtu 1500 qdisc fq _codel state UP gro
+up default glen 1000
+Link/ether 00:0c:29:0c:8c:ad brd ff: ff: ff: ff: ff: ff
+inet 192.168.25.129/24 brd 192.168.25.255 scope global dynamic noprefixroute
+ens33
+valid lft 1157sec preferred lft 1157sec
+inet6 fe80::df5b:a4ed:ab0f:b4d1/64 scope Link noprefixroute
+
+8) Execute this step only when network connection is failed. Enter command
+and press Enter. “ens33” is the ID of network card. You need to modify the
+
+entered command based to suit the specific case at hand.
+
+sudo dhclient ens33
+
+:~S sudo dhclient ens33
+
+Repeat step 6. If the terminal prints following content, that means network
+
+connection is successful.
+
+:~$ ping www.baidu.com
+-a.shifen.com (14.119.104.254) 56(84) bytes of data.
+from -119.104.254 (14.119.104.254): icmp _seq=1 ttl=128
+from -119.104.254 (14.119.104.254): icmp _seq=2 ttl=128
+
+From -119.104.254 (14.119.104.254): icmp_seq=3 ttl=128
+from -119.104.254 (14.119.104.254): icmp_seq=4 ttl=128
+from -119.104.254 (14.119.104.254): icmp _seq=5 ttl=128
+
+1.11 Install Dependency
+1) Run the command below to update apt library.
+sudo apt update
+
+:~§$ sudo apt update
+
+17
+
+
+
+=== Page 18 ===
+Hiwoander Shenzhen Hiwonder Technology Co,Ltd
+
+After update, the following messages will occur.
+
+etched 4,435 kB in 19s (239 kB/s)
+Reading package lists... Done
+Building dependency tree
+
+Reading state information... Done
+P packages can be upgraded. Run ‘apt list --upgradable' to see them.
+
+2) Input command to update apt library.
+
+sudo apt update
+
+:~$ sudo apt update
+
+The update is completed as shown in the following figure:
+
+etched 4,435 kB in 19s (239 kB/s)
+Reading package lists... Done
+Building dependency tree
+
+Reading state information... Done
+P packages can be upgraded. Run ‘apt list --upgradable' to see them.
+
+3) Enter the following commands to install the dependency library:
+
+sudo apt install libgflags-dev ros-$ROS_DISTRO-image-geometry
+ros-$ROS_DISTRO-camera-info-manager
+ros-$ROS_DISTRO-image-transport ros-$ROS_DISTRO-image-publisher
+ros-$ROS_DISTRO-backward-ros libgoogle-glog-dev libusb-1.0-0-dev
+libeigen3-dev -y
+
+:~$ sudo apt install libgflags-dev nlohmann- json3-dev Libgoogle-glog-dev \
+
+> ros-$ROS_DISTRO-image-transport ros-$ROS_DISTRO-image-publisher ros-$ROS_DISTRO-camera-info-manager
+
+2. Construct Workspace
+
+1) Execute the command to build the workspace.
+
+mkdir -p ~/ros_ws/src && cd ~/ros_ws/src
+
+:~$ mkdir -p ~/ros_ws/src && cd ~/ros_ws
+
+2) Execute the command to compile the new workspace. Ensure that the
+
+18
+
+
+
+=== Page 19 ===
+Hiwoander Shenzhen Hiwonder Technology Co,Ltd
+
+compilation is performed within the 'ros_ws' workspace.
+
+colcon build
+
+: S$ colcon build
+
+3) Run the command to set a new workspace.
+. /install/setup.bash
+
+- S . ./install/setup.bash
+
+4) Enter the command to append the initialization action of environment
+
+variables to the terminal initialization file.
+
+echo "source $HOME/ros_ws/install/setup.bash" >> ~/.bashrc
+
+$ echo "source $HOME/ros_ws/install/setup.bash" >> ~/.bashrc
+
+3. Install Depth Camera ROS SDK
+
+1) Copy the file “orbbec-ros-sdk.zip” to the virtual machine.
+
+2) Right-click the package and select ‘Open’.
+
+19
+
+
+
+=== Page 20 ===
+a IWE) M Oo ES t Shenzhen Hiwonder Technology Co,Ltd
+
+Open With Other Application
+
+Cut
+
+Copy
+
+OrbbecSDK RO Rename...
+$2.zip
+
+Move to Trash
+
+Properties
+
+Show in Files
+
+3) Click on the folder and then click "Extract" to extract the folder into the
+
+workspace.
+
+Extract
+
+G} Location: Fl /
+
+The green box represents the workspace path. Click "Extract" to extract.
+
+Cancel Extract
+
+Gt Home Name
+D Desktop
+
+[ Documents
+
+& Downloads
+
+20 Music
+
+(&) Pictures
+
+Bi Videos
+
+f% Trash
+a) Floppy Disk
+
++ Other Locations
+
+4) Run the command to access the feature pack:
+
+cd ~/ros_ws/src/OrbbecSDK_ROS2/orbbec_camera/scripts
+
+20
+
+
+
+=== Page 21 ===
+bf IVES [ ider Shenzhen Hiwonder Technology Co,Ltd
+:~$ cd ros_ws/src/OrbbecSDK_ROS2-master/orbbec_camera/scripts/
+5) Run the following command and hit Enter key, then input the password.
+
+sudo bash install.sh
+
+S sudo bash in
+stall.sh
+
+6) Enter the below command to reload the udev rule.
+
+sudo udevadm control --reload-rules && sudo udevadm triggers
+
+$ sudo udevadm
+
+control --reload-rules && sudo udevadm trigger
+
+7) Run the command to navigate to the workspace:
+
+cd ~/ros_ws/
+
+2~$ cd ros _ws/fj
+
+8) Enter the command to recompile the workspace.
+
+colcon build --event-handlers console_direct+ --cmake-args
+
+-DCMAKE_BUILD_TYPE=Release
+
+$ colcon build --event-handlers console direct+
+
+ke-args -DCMAKE_ BUILD _TYPE=Release
+
+9) Enter the command to set the new workspace environment variables.
+
+. /install/setup.bash
+
+- § . ./install/setup.bash
+
+10) So far, we have completed the installation of the Depth Camera ROS2
+SDK.
+
+21
+
+
+
+=== Page 22 ===
+Hiwoander Shenzhen Hiwonder Technology Co,Ltd
+
+4. Usage of Depth Camera
+
+4.1 Enable Camera Service
+
+1) Attach the depth camera to the computer and establish its connection with
+
+the virtual machine.
+
+New USB Device Detected x
+Choose where you would like to connect Orbbec 3D USB 2.0 Camera
+
+@ Connect to the host
+O Connect to a virtual machine
+Virtual Machine Name
+ubuntu_ros2_humble fu
+
+By
+
+Remember my choice and do not ask again
+
+2) Run the command to start the camera.
+ros2 launch orbbec_camera dabai.launch.py
+
+We offer two approaches for image visualization. One option involves utilizing
+rqt_image_view to observe 2D images, while the alternative is to employ rviz
+
+for visualizing 3D images. Users are free to select the method that aligns with
+their particular needs. It is crucial to emphasize that during image viewing, the
+
+camera service should remain active and not be closed.
+
+4.2 View Image Using rqt_image_view Tool
+
+1) Open a new terminal, and execute the command below to start the image
+
+22
+
+
+
+=== Page 23 ===
+| iIiwWeonder Shenzhen Hiwonder Technology Co,Ltd
+
+viewing tool.
+
+rqt
+
+-~S rat
+
+When the below interface appears, it means that the tool is started
+
+successfully.
+
+Default - rqt - oO &
+
+File Plugins Running Perspectives Help
+
+Select "Plugins > Visualization > Image View".
+
+Default - rqt
+
+File [20% Running Perspectives Help
+
+® Container
+
+® Actions >|
+® Configuration U
+
+® Introspection U
+
+® Logging a
+® Miscellaneous Tools >|
+@ Services >|
+® Topics >|
+
+Visualization / [image view i
+
+| Plot
+
+23
+
+
+
+=== Page 24 ===
+Hiweoander Shenzhen Hiwonder Technology Co,Ltd
+
+2) To view the infrared image, please select the corresponding topic.
+
+image View
+
+icamera/rgb/image_raw ~e a= 10.00m |7) &
+/camera/rgb/image_raw_mouse_left Smooth scaling 9 o° @ || Gray
+|
+|
+|
+5 |
+
+Hiwonde
+
+a
+vaca
+
+|
+
+3) When viewing the depth map, the red box position needs to be set as
+
+shown in the following figure:
+
+m@image View
+/camera/depth/image Y >: 10.00m |>| &
+
+/camera/rgb/image_raw_mouse left smooth scaling
+
+4.3 View Image Using rviz
+
+1) Execute the command to initiate the tool.
+
+ros2 run rviz2 rviz2
+
+S$ ros2 run rviz2 rviz2
+
+24
+
+
+
+=== Page 25 ===
+| iIiwWeonder Shenzhen Hiwonder Technology Co,Ltd
+
+When the below interface appears, it means that the tool is started
+
+successfully.
+
+default.rviz - RViz
+
+File Panels Help
+
+(hyinteract © MoveCamera [JSelect  <@-FocusCamera =Measure * 2DPoseEstimate “ 2DNavGoal  @ Publish Point tr => «@
+
+D pisplays [x] »@ Views [x]
+~f borate Ee Type: Orbit (rviz) . Zero
+Background Color Ml 48; 48; 48 y Current View Orbit (rviz)
+Frame Rate 30 Near Clip s+ 0.01
+Default Light v Invert Z Axis
+y @ Global status: E... Target Fra... <Fixed Frame>
+@ FixedFrame _ Fixed Frame [map] do... Distance 10
+
+Focal Shap... 0.05
+» @ Grid v Focal Shap... |v
+Yaw 0.785398
+Pitch 0.785398
+> Focal Point 0;0;0
+
+Add Save Remove Rename
+© Time [x]
+ROS Time: 1659003986.97 ROS Elapsed: 42.92 Wall Time: | 1659003987.00 Wall Elapsed: 42.92 Experimental
+Reset
+
+31 Fps
+
+2) Toaccess the camera feed, start by configuring the "Fixed Frame" to
+"“camera_link." Then, click on "Add," select "By topic -> camera -> color
+
+-> Image_raw -> Image," and finally, click "OK."
+
+
+
+=== Page 26 ===
+| IWE) | Oo = t Shenzhen Hiwonder Technology Co,Ltd
+a
+
+File Panels Help
+(hyinteract = MoveCamera []Select  <@FocusCamera “Measure  2DPoseEstimate
+[x] [
+i Create visualization
+y %& Global Options =
+Background _ _ 48; 48 By display type | By topic viz)
+Frame Rate 30 ~ /camera E
+Default Light v ¥ [color |
+» ¥ Global Status: Ok > /image_raw ' alae
+v FixedFrame OK & Camera
+> © Grid v == DepthCloud
+» ee 5
+> fir
+> /image_raw
+y /clicked_point
+@ PointStamped
+y /initialpose
+& PoseWithCovariance
+~ /move_base_simple =
+| Show unvisualizable topics
+Description:
+Displays an image from a sensor_msgs/Image topic, similar to
+image_view. More Information.
+Display Name
+|Image
+% cancel | [Jo ]|
+Add Save Remove | Rename
+© Time [>
+
+When the interface below appears, it indicates that the tool has been
+
+successfully launched.
+
+‘Gl Image +
+:
+
+3) To view the depth map, set ‘Fixed Frame’ as ‘camera_link’, then click-on
+‘Add’ to select ‘By topic ->camera->depth->Ilmage_raw->Ilmage’, and
+
+click-on ‘OK’.
+
+26
+
+
+
+=== Page 27 ===
+Hiweander Shenzhen Hiwonder Technology Co,Ltd
+
+File Panels Help
+
+¢>yinteract {Move Camera [] Select FocusCamera. "Measure  2DPoseEstimate
+© pisplays D x
++ & Global Options Create visualization =
+yg ero
+
+Feed Frame camera tk Frame camera_link
+
+Background Color 48; 48; 48 By display type viz)
+
+Frame Rate 30 » /camera -
+
+Default Light v » /color |
+» ¥ Global Status: Ok y /depth trame>
+
+> /image_raw
+Gis Camera
+
+d
+8
+> /points ‘4
+
+v fir
+> /image_raw
+y /clicked_point
+® PointStamped
+> /initialpose
+& PoseWithCovariance
+
+v FixedFrame OK
+> & Grid v
+
+Show unvisualizable topics
+Description:
+
+Displays an image from a sensor_msgs/image topic, similar to
+image_view. More information.
+
+Display Name
+Image
+
+Fixed Fra'
+Frame into #hich all data is transformed before
+being dispyed.
+
+% Cancel
+
+Add Save Remove Rename
+
+© Time x
+
+When the interface below appears, it indicates that the tool has been
+
+successfully launched.
+
+La Image x
+
+27
+
+
+
+=== Page 28 ===
+Hiwoander Shenzhen Hiwonder Technology Co,Ltd
+4.4 LDP Protection
+
+LDP protection typically refers to 'Lens Data Protection’ in the context of
+cameras. It is designed to protect the camera lens from accidental damage or
+impact. With the DaBai camera, if an object gets too close, the infrared camera
+will automatically shut down. The shutoff distance depends on the intensity of
+reflected light. We can enable or disable LDP protection according to our
+
+needs.
+1) Run the command to turn on the camera.
+
+ros2 launch orbbec_camera dabai.launch.py
+
+2) Open anew terminal, and execute the command to initiate the image
+
+viewing tool.
+
+rqt
+|
+
+The appearance of the interface in the following image indicates successful
+
+opening.
+
+
+
+=== Page 29 ===
+a IWE) M Oo = t Shenzhen Hiwonder Technology Co,Ltd
+
+Default - rqt - ao @
+
+File Plugins Running Perspectives Help
+
+Choose ‘Plugins>Visualization>ImageView’.
+
+Default - rqt
+
+File [20% Running Perspectives Help
+
+® Container
+
+®@ Actions r|
+® Configuration >|
+® Introspection »|
+® Logging a
+® Miscellaneous Tools »|
+@® Services r|
+® Topics r|
+
+Visualization Ul & Image View |
+
+BB Plot
+
+Set the red box location to the content in the image below:
+
+29
+
+
+
+=== Page 30 ===
+image View
+
+/camera/depth/image bal! of 10.00m °| &
+
+/camera/rgb/image_raw_mouse_left Smooth scaling Oo Gray
+
+When the object reaches a certain distance from the camera, the depth map
+will transition to black.
+
+/camera/depth/image raw x (©) aj||0 * 10.00m |-||&
+
+/camera/depth/image_raw_mouse left Smooth scaling 0° Gray
+
+3) Open anew command-line terminal, and execute the command to close
+
+LDP protection.
+
+ros2 service call /camera/set_Idp_enable std_srvs/srv/SetBool data:\
+
+30
+
+
+
+=== Page 31 ===
+Hiwoander Shenzhen Hiwonder Technology Co,Ltd
+
+false
+
+:~$ ros2 service call /camera/set_ldp enable std_srvs/srv/SetBool
+
+data:\ false
+waiting for service to become available...
+requester: making request: std srvs.srv.SetBool_Request(data=False)
+
+response:
+std srvs.srv.SetBool_Response(success=True, message='')
+
+At this stage, the image remains visible even as an object approaches the
+
+camera.
+4) Execute the command to initiate LDP protection.
+ros2 service call /camera/set_Idp_enable std_srvs/srv/SetBool data:\ true
+
+:~$ ros2 service call /camera/set_ldp enable std_srvs/srv/SetBool
+data:\ true
+waiting for service to become available...
+requester: making request: std_srvs.srv.SetBool_Request(data=True)
+
+response:
+std_srvs.srv.SetBool_Response(success=True, message='')
+
+5. Data Type and Point Cloud
+
+5.1 Introduction to Point Cloud
+
+The things we observe with our eyes are three-dimensional, but in computer
+vision, using regular cameras only provides two-dimensional information about
+an object, which cannot achieve the same observation effect as human eyes.
+In order for computers to represent three-dimensional objects, computer vision
+needs to transition into three-dimensional vision, and point clouds are the way
+
+to express three-dimensional vision.
+5.2 Understanding Point Cloud Data Types
+
+Point cloud data refers to a collection of vectors in a three-dimensional
+
+31
+
+
+
+=== Page 32 ===
+Hiwoander Shenzhen Hiwonder Technology Co,Ltd
+
+coordinate system, typically expressed in the X, Y, and Z axes of the
+three-dimensional coordinate system. It is commonly used to represent the
+surface shape of an object. Point cloud data can also represent attributes such
+
+as RGB colors, grayscale values, depth, etc., of an object's surface.
+
+Robot point cloud data is acquired through LIDAR and depth cameras, both of
+
+which are capable of measurements.
+
+Common formats for storing point cloud data include pts, asc, dat, stl, imw, xyz,
+txt, csv, etc. Point cloud data, much like an attribute table, records the X, Y, Z
+positions of corresponding points along with various attributes associated with
+
+each point.
+
+5.3 Point Cloud
+
+5.3.1 Depth Camera Point Cloud
+
+@ This step is performed on the robot, and when entering commands, it's
+important to strictly differentiate between uppercase and lowercase letters. You can
+
+also use the "Tab" key to autocomplete keywords.
+
+1) Start the robot and connect to the Ubuntu desktop remotely using
+
+NoMachine.
+
+2) Click-on | to start the command-line terminal.
+
+3) Execute the below command and hit Enter key to disable the app
+
+auto-start service.
+sudo systemctl stop start_app_node.service
+
+sudo stop start_app_node.service
+
+4) Open anew command-line terminal, and run the following command to
+
+32
+
+
+
+=== Page 33 ===
+Hiwoander Shenzhen Hiwonder Technology Co,Ltd
+
+open the point cloud view of the depth camera.
+
+ros2 launch peripherals depth_camera.launch.py
+
+5) Open anew command-line terminal and execute the below command to
+initiate rviz.
+rviz2
+
+6) Choose ‘depth_cam_link’.
+
+E21 Displays (o|
+~ % Global Options
+Fixed Frame map + |
+Background Color camera_gyro_accel frame
+Frame Rate camera_gyro...tical_frame
+
+7 =) a ae a Se ee
+epth_cam_c...tical_frame
+© Fixed Frame depth_cam_depth_frame
+> @& Grid depth_cam_d...tical_frame
+depth_cam_ir_ frame
+
+Pca cam i...tical frame
+
+7) As shown in the image, click Add -> By topic -> depth_cam -> depth ->
+points -> PointCloud2, and then click OK."
+
+33
+
+
+
+=== Page 34 ===
+Hiwoander Shenzhen Hiwonder Technology Co,Ltd
+
+Background Color [Ml 48; 48; 48
+
+Frame Rate 30
++ ¥ Global Status: Ok
+
+v Fixed Frame OK
+> @ Grid v
+
+Create visualization
+
+~ jclicked_point
+
+> fimage_raw
++ /goal_pose
+
+~ Jinitialpose
+wf PoseWithCovariance
+
+Show unvisualizable topics
+Description:
+
+The Point Cloud2 display shows data from a (recommended
+sensor_msgs/PointCloud2 message.
+
+Display Name
+
+PointCloud2
+
+tixed Frame
+rame into which
+fisplayed
+
+Once you've completed the previous settings, the point cloud will become
+
+visible.
+
+Vi
+
+a :
+% of
+3
+sc
+yay
+=
+Re
+
+5.3.2 Depth Camera Infrared Image
+
+@ When entering commands, it's important to strictly observe capitalization, and you
+
+can use the "Tab" key to autocomplete keywords.
+
+1) Start the robot, and access the ubuntu desktop using the software
+
+34
+
+
+
+=== Page 35 ===
+Hiwoander Shenzhen Hiwonder Technology Co,Ltd
+
+NoMachine.
+
+2) Click-on | to open the ROS1 command-line terminal.
+3) Enter the command below and hit Enter key to disable the app auto-start
+
+service.
+
+sudo systemctl stop start_app_node.service
+
+Cus stop start_app_node.service
+
+4) Open anew command prompt, enter the command to open the depth
+
+camera point cloud view:
+
+ros2 launch peripherals depth_camera.launch.py
+
+5) Open anew command-line terminal, then enter the command ‘rviz2’ to
+
+activate the tool rviz.
+
+6) Choose “depth_cam_link’.
+
+£1 Displays (o|
+~ &®§ Global Options
+
+Background Color camera_gyro_accel frame
+Frame Rate camera_gyro...tical_frame
+depth_cam_color_frame
+
+. ° ~<a —— depth_cam_c...tical_ frame
+© Fixed Frame depth_cam_depth frame
+> @ Grid depth_cam_d...tical_frame
+
+depth_cam_ir_frame
+
+re cam i...tical frame
+
+7) Click on "Add" as shown below, then select "By topic" -> "depth_cam" ->
+
+"ir" -> "image_raw" -> "image", and finally click "OK".
+
+35
+
+
+
+=== Page 36 ===
+Hiwoander Shenzhen Hiwonder Technology Co,Ltd
+
+MM Tle tones Help
+ED Displays. O v0 Views o
+Fe Background Colo te; a8, 48 = Current View Orbit (rviz)
+Qe Focal Shape. ¥
+? rw 3.1208
+= By display type ech 0.005390
+Re
+Pox Xe Cancel
+Global Status: Ok
+© Time 3)
+20 tps
+
+The picture below will appear.
+
+Ppincernes Move Camern [Select Focus Camera Measure = 20 Pose Estimate 7° 20.GontPose —@ Publish
+IE) displays 2 vm Views e
+i Type: Orbit irvi default) =| Zero
+
+~ Current View Orbit (rviz)
+‘Near Clip Di... 0,01
+
+gtid along the ground plane. centered at of the target frame of
+
+add Duplicate Remove Rename
+
+Save Remove || Rename
+
+Otime 6
+
+ROS Time: 1713361239.61 ROS Elapsed: 543.02 Wall Time: 1713361239.69 | Wall Elapsed: 543.82 Experimental
+
+10 fps
+
+Reset Laft-Click: Rotate. Middle-Click: Mave X/¥ Right-Click/Mouse Wheel: Zoom. Shift: More options
+
+36
+
+

@@ -1,0 +1,320 @@
+
+=== Page 1 ===
+ht IW/EM Oo er Shenzhen Hiwonder Technology Co,Ltd
+
+Kinematics Analysis
+
+
+
+
+=== Page 2 ===
+Hiweander Shenzhen Hiwonder Technology Co,Ltd
+
+Catalog
+1. OVErVIEW: 2... ccc ccc ec eee eee ee ee eee eee teeter teen eee 2
+1.1 Wheel Type 20... ccc cece ccc ce eee e eee eee eee eter eee econ 2
+4 Ay 6) ©) | [67= 110) 9 3
+2. Mecanum Wheel): 2.1... ccc cece cee ee eee eee eee ee eee eter ee eens 4
+2.1 Hardware Structure 21... ccc ccc cece cece eee eee eee nee 4
+2.2 Physical Characteristics ... 2... cece ccc ec ec ee ee eee eee teens 5
+2.3 Motion Principle and Formula ......... 0. cece cece eee weer e teens 6
+2.4 Program Outcome ....... cece cece eee eee cee eee teeter ee eeee 9
+
+1. Overview:
+
+JetAuto features a Mecanum wheel chassis, which uses multiple small, freely
+rotating rollers to support the vehicle's weight. These wheels, located at the
+bottom of the chassis, can rotate independently, enabling the vehicle to turn
+
+and maneuver with ease.
+1.1 Wheel Type
+
+Currently, there are three common types of wheel systems on the market:
+
+Mecanum Wheel Vehicles: These vehicles utilize multiple small, freely
+rotating rollers to support their weight. Positioned at the bottom of the chassis,
+these rollers can rotate independently, enabling easy turning and
+
+maneuverability.
+
+
+
+=== Page 3 ===
+Hiweander Shenzhen Hiwonder Technology Co,Ltd
+
+Ackermann Steering Vehicles: This type of vehicle typically features
+front-wheel drive, with the rear wheels providing support. The front wheels are
+
+capable of steering, allowing for effective turning.
+
+Tracked Vehicles: Instead of wheels, these vehicles use tracks made up of
+interconnected links. This design enhances traction and suspension across
+various terrains, making tracked vehicles particularly effective on uneven
+
+surfaces.
+
+1.2 Applications
+
+Mecanum Wheel Vehicles: Typically used in urban environments and on
+roads, these vehicles are valued for their ease of turning and high
+
+maneuverability.
+
+Ackermann Steering Vehicles: Designed for optimal performance in general
+
+road driving, these vehicles include cars, trucks, and motorcycles.
+
+Tracked Vehicles: Primarily utilized for tasks requiring operation in harsh
+terrain, tracked vehicles are commonly found in military applications,
+
+construction equipment, and agricultural machinery.
+
+
+
+=== Page 4 ===
+ht iIiweaonder Shenzhen Hiwonder Technology Co,Ltd
+
+2. Mecanum Wheel:
+
+2.1 Hardware Structure
+
+The Mecanum wheel comprises rollers and an axle. The axle functions as the
+main support structure for the entire wheel, with rollers attached to it. The axle
+axis is positioned at a 45-degree angle to the roller axis. Typically, Mecanum
+wheels operate in groups of four, with two left wheels and two right wheels.
+
+Wheels A and B are symmetrical.
+
+There are various combinations of four Mecanum wheels, such as AAAA,
+BBBB, AABB, ABAB, BABA. However, not all combinations allow the robot car
+to move in all directions, including forward, backward, and sideways. The
+Mecanum-wheel chassis combination is ABAB, enabling omnidirectional
+
+movement.
+
+
+
+=== Page 5 ===
+4 IVW/E) 1 Oo — t Shenzhen Hiwonder Technology Co,Ltd
+
+2.2 Physical Characteristics
+
+The vehicle achieves omnidirectional motion by summing up the propelling
+forces of the ground-engaging rollers. This summation can occur in any
+direction through adjustments in wheel rotation direction and torque magnitude
+
+for the four wheels.
+
+Because of the rollers' specific orientation at a certain angle to the wheel
+circumference, Mecanum wheels have the ability to slip sideways. The
+generatrix of these small rollers is unique. As the Mecanum wheel rotates
+around its fixed axle, each small roller's envelope forms a cylindrical surface,
+
+allowing the wheel to continuously roll forward.
+
+
+
+=== Page 6 ===
+HIW/E9MOECT Shenzhen Hiwonder Technology Co,Ltd
+2.3 Motion Principle and Formula
+
+When conducting kinematic analysis, we can consider the kinematic model of
+
+Mecanum wheels, which includes the following parameters:
+
+1. V_: Velocity of the Mecanum wheel in the X-axis (typically front and rear
+
+direction).
+
+2. V,: Velocity of the Mecanum wheel in the Y-axis (typically left and right
+
+direction).
+
+3, Vo, Angular velocity of the Mecanum wheel chassis (rotation speed of the
+
+chassis around its own center).
+4. Real-time velocities of the four wheels of the Mecanum wheel.
+
+5. The motion of the right front wheel in the plane can be decomposed into:
+
+6. \VBx: Velocity of the Mecanum wheel in the X-axis (typically front and rear
+direction).
+7. \VBy: Velocity of the Mecanum wheel in the Y-axis (typically left and right
+
+6
+
+
+
+=== Page 7 ===
+Hiweander Shenzhen Hiwonder Technology Co,Ltd
+
+direction).
+8. L: Distance between the centers of the left and right wheels.
+
+9. H: Distance between the centers of the front and rear wheels.
+
+10. @,: Angle formed by the chassis body center and the center of the right
+
+front wheel, typically 45°.
+11. With these parameters, we can perform kinematic analysis of the
+
+Mecanum wheel chassis. The following are key mathematical formulas:
+
+Kinematics Formula:
+
+To simplify the mathematical model for kinematics, we make the following two
+
+idealized assumptions:
+
+(1) Omni-directional wheels do not slip on the ground, and there is sufficient
+
+friction with the ground.
+
+(2) The 4 wheels are distributed at the corners of a rectangle or square, with
+
+the wheels parallel to each other.
+
+Here, we decompose the rigid body motion of the car into three components
+linearly. By calculating the velocities of the four wheels when the output
+Mecanum wheel chassis translates along the X+ and Y+ directions and rotates
+along the Z+ direction, we can combine these three simple motions using
+
+formulas to determine the required speeds of the four wheels.
+
+In the equations, A, B, C, and D represent the rotational speeds of the four
+wheels, i.e., the motor speeds. VX is the translation speed of the car along the
+X-axis, VY is the translation speed along the Y-axis, and w is the rotational
+speed along the Z-axis. L/2 is half of the car's wheelbase, and H/2 is half of the
+
+car's axle distance.
+
+1. The velocity components of each wheel during the robot's translation along
+
+the X-axis can be calculated using the following formulas:
+
+
+
+=== Page 8 ===
+HIW/E2MOCT Shenzhen Hiwonder Technology Co,Ltd
+
+Vi =tVy, , Va =tVy , Vo=tVy , Vy =tV>y
+
+Where,
+
+V,,Vz,Vc,Vp: Real-time velocities of the four Mecanum wheels,
+
+V..: Velocity of the Mecanum wheel in the X-axis direction
+
+2. When the robot translates along the Y-axis, the speed component of each
+
+wheel can be calculated using the following formula:
+V,=V, , Vz Ht, » Vo=Vy , Va Ht,
+Where, V,, is the velocity of the robot in the Y-axis direction.
+
+3. When the robot rotates along the Z-axis, the speed component of each
+
+wheel can be calculated using the following formulas:
+
+V,=V,,* teat) V, =V,* tiytn
+2° 2 2° 2
+v.--v,*|+244H] , v,=v,*{tr++a
+2° 2 2° 2
+
+*D . .
+Where, V, =V, + :The angular velocity of the Mecanum wheel chassis
+
+(i.e., the speed at which the chassis rotates around its own center)
+
+4. Combining the velocities in the X, Y, and Z directions allows for the
+computation of the rotation speeds of the four wheels based on the motion
+
+state of the car.
+
+1 1 1 1
+V,=V,-V,-V,*|-L+—H | , V,=V,+V,+V,*| -L+—H
+
+1 1 1 1
+V.=V,-V,-V,*| -L+—H | , V,=V,+V,+V,*| —L+—H
+
+
+
+=== Page 9 ===
+Hiweander Shenzhen Hiwonder Technology Co,Ltd
+
+2.4 Program Outcome
+
+The program file is saved in:
+
+ros2_ws\src\driver\controller\controller\mecanum.py
+
+__init__ Initialization
+
+- Class MecanumChassis Class | speed covert omy
+\ : Set motor
+set velocity speed
+
+__ init __ L Lbas 246, track _width= wheel_diameter=
+.wheeLbase = wheelbase
+.track_width track_width
+
+F.wheel_diameter wheeL_diameter
+
+Mecanum wheel kinematics class, used to calculate wheel speeds and
+
+implement Mecanum wheel kinematics.
+
+Init:
+
+init. (s e:. whee Lbase-0 "24 ~ track _width- , wheelL_diameter
+.wheeLbase = wheelbase
+F.track_width = track_width
+
+wheeL_diameter wheeL_diameter
+
+Initialize the wheel dimensions for convenient subsequent calculations.
+
+speed_convert:
+
+= rotator
+
+ons per second
+L_diameter
+
+: speed yi math. pi x S whee
+
+Convert m/s to rps based on the wheel's parameters.
+
+set_velocity:
+
+
+
+=== Page 10 ===
+Hiweander Shenzhen Hiwonder Technology Co,Ltd
+
+set_veLocity(s , Linear_x, Linear_y, angular_z
+
+Lf:.s cove v V v1, v2, -v3, -v4]]
+Line inea - . : elbase + s .track_width
+Linear_x + a 7 i . LF.wh ase + Lf.track_width
+motor3 Linear_x + + angula . base > track_width
+motor4 = (Linear_x - Linear angula k £ se + .track_width
+Vs = -Speed_covert(v Py mo i Z t , -motor4
+data =
+ri , ,
+msg = MotorState
+msg.id = 1 1
+msg.rps
+data.append(msg
+
+se =4 MotorsState
+msg.data = data
+t msg
+
+Based on the input speed parameters, decompose them, calculate the speeds
+using speed_convert, and then publish the calculated radian speeds to the
+
+motors.
+
+10
+
+

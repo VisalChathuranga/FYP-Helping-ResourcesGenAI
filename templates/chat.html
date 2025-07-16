@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Chatbot</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Custom CSS -->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+    <div class="container-fluid h-100">
+        <div class="row justify-content-center h-100">
+            <div class="col-md-10 col-xl-8 chat">
+                <div class="card">
+                    <div class="card-header msg_head">
+                        <div class="d-flex bd-highlight align-items-center">
+                            <div class="img_cont">
+                                <img src="{{ url_for('static', filename='robot.jpg') }}" alt="Bot Icon" class="rounded-circle user_img">
+                                <span class="online_icon"></span>
+                            </div>
+                            <div class="user_info flex-grow-1 text-center">
+                                <span class="neon-text">G-25 FYP AI Assistant</span>
+                                <p class="mb-0 text-muted">Explore Your Project with me!</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="messageFormeight" class="card-body msg_card_body">
+                        <!-- Messages will be appended here -->
+                    </div>
+                    <div class="card-footer">
+                        <form id="messageArea" class="input-group">
+                            <input type="text" id="text" name="msg" placeholder="Type your command..." autocomplete="off" class="form-control type_msg" required/>
+                            <button type="submit" id="send" class="input-group-text send_btn"><i class="fas fa-paper-plane"></i></button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap 5 JS and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76R4/OM/w73C1cEZ2BDe5jN22oEV6GHsF1h/kc7j/5jv5l9i3LRnHp2i5Crc" crossorigin="anonymous"></script>
+
+    <script>
+        $(document).ready(function() {
+            $("#messageArea").on("submit", function(event) {
+                event.preventDefault();
+                const date = new Date();
+                const hour = date.getHours();
+                const minute = date.getMinutes();
+                const str_time = `${hour}:${minute < 10 ? '0' + minute : minute}`;
+                var rawText = $("#text").val().trim();
+
+                if (rawText === "") return;
+
+                var userHtml = `
+                    <div class="d-flex justify-content-end mb-3">
+                        <div class="msg_cotainer_send">${rawText}<span class="msg_time_send">${str_time}</span></div>
+                        <div class="img_cont_msg">
+                            <img src="{{ url_for('static', filename='image.jpg') }}" alt="User Icon" class="rounded-circle user_img_msg">
+                        </div>
+                    </div>`;
+                
+                $("#text").val("");
+                $("#messageFormeight").append(userHtml);
+                $("#messageFormeight").scrollTop($("#messageFormeight")[0].scrollHeight);
+
+                $.ajax({
+                    data: { msg: rawText },
+                    type: "POST",
+                    url: "/get",
+                }).done(function(data) {
+                    var botHtml = `
+                        <div class="d-flex justify-content-start mb-3">
+                            <div class="img_cont_msg">
+                                <img src="{{ url_for('static', filename='robot.jpg') }}" alt="Bot Icon" class="rounded-circle user_img_msg">
+                            </div>
+                            <div class="msg_cotainer">${data}<span class="msg_time">${str_time}</span></div>
+                        </div>`;
+                    $("#messageFormeight").append(botHtml);
+                    $("#messageFormeight").scrollTop($("#messageFormeight")[0].scrollHeight);
+                }).fail(function(xhr, status, error) {
+                    console.error("AJAX Error:", status, error);
+                    var errorHtml = `
+                        <div class="d-flex justify-content-start mb-3">
+                            <div class="img_cont_msg">
+                                <img src="{{ url_for('static', filename='robot.jpg') }}" alt="Bot Icon" class="rounded-circle user_img_msg">
+                            </div>
+                            <div class="msg_cotainer" style="color: #e74c3c;">Error: Unable to process your request.</div>
+                        </div>`;
+                    $("#messageFormeight").append(errorHtml);
+                    $("#messageFormeight").scrollTop($("#messageFormeight")[0].scrollHeight);
+                });
+            });
+        });
+    </script>
+</body>
+</html>

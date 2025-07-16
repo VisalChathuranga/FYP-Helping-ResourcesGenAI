@@ -1,0 +1,822 @@
+
+=== Page 1 ===
+Hivweander Shenzhen Hiwonder Technology Co,Ltd
+Lesson 10 ROS2 Action
+
+1. Introduction to Action Communication
+
+The action communication is a communication with continuous feedback.
+In this model, the client sends request data to the server, and the server
+responds with results to the client. However, during the process from receiving
+the request on the server to generating the final response, continuous
+
+feedback messages are sent to the client.
+
+The action communication client/server model is as follow:
+
+Goal
+
+Service NODE
+
+Response
+
+Feedback
+Topic
+
+Action Client
+
+Result
+Service
+
+Result Service Client Request
+
+NODE Response
+
+2. Create Interface
+
+1) Click ® and select “System Tools ->Terminator” in sequence.
+
+
+
+=== Page 2 ===
+Hivweander Shenzhen Hiwonder Technology Co,Ltd
+
+fa» -
+oO”
+@ Programming
+
+@) internet
+‘a interne
+
+iol Sound & Video
+
+i) Graphics
+
+Pf System Tools
+@ Accessories
+res) Help
+
+= Preferences
+
+Run
+
+¥
+ra Shutdown
+
+1) Enter the command “cd hiwonder_ws/src/demo_interfaces/” to
+
+switch to the “demo_interfaces” package.
+
+ubuntu@raspberrypi:~$ cd hiwonder_ws/src/demo_interfaces/
+ubuntu@raspberrypi: ~/hiwonder_ws/src/demo_interfaces$ ll
+
+2) Enter the command “mkdir action’ to create an action folder.
+
+ubuntu@raspberrypi: ~/hiwonder_ws/src/demo_interf mkdir action
+
+3) Enter the command “cd action” to enter the action folder.
+
+ubuntu@raspberrypi:~/hiwonder_ws/src/demo_interfaces$ cd action/
+
+ubuntu@raspberrypi:~/hiwonder_ws/src/demo_interfaces/action$
+
+4) Enter the command “vim FileDownload.action’ to open the file with
+text editor, then enter the code below. If you need to make modifications, you
+
+can press “i” to modify. Once modifications are completed, press “Esc” and
+
+enter “:wq” to save and exit the program.
+
+ubuntu@raspberrypi:~/hiwonder_ws/src/demo_interfaces/action$ vim FileDownlLoad.ac
+
+int32 file_size
+
+
+
+
+=== Page 3 ===
+t >
+Hivvent ioer Shenzhen Hiwonder Technology Co,Ltd
+
+int382 current_size
+
+float32 completion_percentage
+
+ubuntu@raspberrypi: ~/hiwonder_ws/src/demo_interfaces/action 80x24
+ant32 file_size
+
+int32 current_size
+
+float32 completion_percentage
+
+:wafl
+
+5) Enter “ed ..” to navigate back to the parent directory, then enter “vim
+
+CMakeLists.txt” to open the file using the Vim text editor. Copy the
+following program and paste it into the specific location as pictured.If you
+need to make modifications, press "i" to enter insert mode. Once you've
+
+finished editing, press "Esc", then type ":wq" to save and exit.
+
+find_package(rosidl_default_generators REQUIRED)
+rosidl_generate_interfaces( ${PROJECT_NAME}
+"msg/Student.msg"
+"srv/AddInts.srv"
+
+"action/FileDownload.action"
+
+
+
+
+=== Page 4 ===
+Hivweander Shenzhen Hiwonder Technology Co,Ltd
+
+find_package(rosidl_default_generators REQUIRED)
+rosidl_generate_interfaces( PROJECT_NAME
+"msg/String.msg
+
+Addints srv
+
+action/FileDownload.action"
+
+(BUILD_TESTING)
+find package(ament_lint auto REQUIRED
+
+3. Create Action Communication
+
+3.1 Create Server
+
+1) Click ® and select “System Tools ->Terminator’ in sequence.
+
+(s}O BS
+@ Programming
+
+Internet
+
+[iy Sound & Video
+
+i] Graphics
+
+g Accessories
+
+ae
+ty Help
+
+f a
+=| Preferences
+
+~/ Run
+
+| Shutdown
+
+2) Enter the command “cd hiwonder_ws/src/” to switch to the src folder
+
+within hiwonder_ws workspace.
+
+ubuntu@raspberrypi:~$ cd hiwonder_ws/src/
+
+ubuntu@raspberrypi:~/hiwonder_ws/src$ i}
+
+3) Enter the command “ros2 pkg create action_demo --build-type
+
+
+
+=== Page 5 ===
+Hivweander Shenzhen Hiwonder Technology Co,Ltd
+
+ament_python --dependencies rclpy” and press Enter to create a package
+
+named “action_demo’ with rclpy dependency.
+
+ubuntu@raspberrypi:~/hiwonder_ws/src$ ros2 pkg create action_demo --build-type a
+
+ment_python --dependencies rclpyf
+
+4) Enter the command “cd action_demo/action_demo/” to switch to the
+
+“action_demo” package.
+
+ubuntu@raspberrypi:~/hiwonder_ws/src$ cd action_demo/action_demo/
+
+ubuntu@raspberrypi: ~/hiwonder_ws/src/action_demo/action_demo$ ii
+
+5) Enter the command “vim action_server.py” to edit the program, copy the
+program below. If you need to make modifications, press "i" to enter insert
+mode. Once you've finished editing, press "Esc", then type ":wq" to save
+
+and exit.
+
+ubuntu@raspberrypi: ~/hiwonder_ws/src/action_demo/action_demo$ vim action_server.
+
+pyfl
+
+import rclpy # Import rclpy module
+from rclpy.node import Node # Import Node class
+from rclpy.action import ActionServer # Import ActionServer class
+
+from demo_interfaces.action import FileDownload # Import FileDownload
+
+action interface
+
+import random # Import random module
+
+class FileDownloadActionServer(Node): # Define a
+
+FileDownloadActionServer class inhering from the Node.
+def init__(self):
+
+super().__init___(‘file_download_action_server') # Invoke the
+
+constructor of the parent function to initialize node
+
+self. action_server = ActionServer(
+
+
+
+
+=== Page 6 ===
+Hivweander Shenzhen Hiwonder Technology Co,Ltd
+
+self,
+
+FileDownload, # Use FileDownload action interface
+‘file_download', # Define the action name as file_download
+
+self.execute_callback) # Set the callback function to
+
+execute_callback
+
+def execute_callback(self, goal_handle):
+
+# The callback function executed by the server
+
+self.get_logger().info(f'Start file download for
+{goal_handle.request.file_size} bytes...') # Print the log for the start of the
+
+download file
+
+feedback_msg = FileDownload.Feedback() # Create an object of
+
+type Feedback message
+
+current_size =O # Initialize the current file size of the download to 0
+while current_size < goal_handle.request.file_size:
+
+increment_size = random.randint(1, 10) # Simulate randomly
+
+increasing the download size.
+
+current_size += increment_size # Update the current download
+
+file size
+if current_size > goal_handle.request.file_ size:
+
+current_size = goal_handle.request.file_size
+
+completion_percentage (current_size
+
+
+
+
+=== Page 7 ===
+Hivweander Shenzhen Hiwonder Technology Co,Ltd
+
+goal_handle.request.file_size) * 100 # Calculate the download progress
+
+percentage
+
+feedback_msg.completion_percentage =
+cCompletion_percentage # Update the download progress within Feedback
+
+message
+
+self.get_logger().info(fPublishing feedback:
+
+{completion_percentage:.2f}% downloaded’) # Print the feedback message
+
+goal_handle.publish_feedback(feedback_msg) # Publish a
+
+feedback message
+
+rclpy.spin_once(self, timeout_sec=1.0) # Simulate the passage
+
+of the time.
+
+goal_handle.succeed() # Indicates the goal is completed
+
+result = FileDownload.Result() # Create an object of type Result
+
+message.
+
+result.current_size = current_size # Set current file size of Result
+
+message
+
+self.get_logger().info('File download completed! ') # Print a log for
+
+the completed file download
+
+return result # Return results
+
+def main(args=None):
+
+rclpy.init(args=args) # Initialize ROS node
+
+server = FileDownloadActionServer() # Create
+
+
+
+=== Page 8 ===
+t >
+Hivvent ioer Shenzhen Hiwonder Technology Co,Ltd
+
+FileDownloadActionServer object
+rclpy.spin(server) # Enter a main loop
+server.destroy_node() # Destroy the node
+rclpy.shutdown() #ROS Shut down ROS
+
+if name__ =='_main_":
+
+main()
+
+main( )
+
+‘wall
+
+6) Enter the command “chmod +x action_server.py” and press Enter to
+
+grant the executable permission to the saved action_server.py.
+
+ubuntu@raspberrypi: ~/hiwonder_ws/src/action_demo/action_demo$ chmod +x action_se
+rver.py
+
+ubuntu@raspberrypi:~/hiwonder_ws/src/action_demo/action_demo$ |
+
+3.2 Create Client
+
+1) Enter the command “vim action_client.py’ to edit the program. Copy the
+
+following program. If you need to make modifications, press “i” to enter
+insert mode. After modification, press “Esc” and eneter “:wq’ to save and
+
+exit.
+
+ubuntu@raspberrypi: ~/hiwonder_ws/src/action_demo/action_demo$ vim action_client.
+
+py
+
+import rclpy # Import rclpy module
+
+from rclpy.node import Node # Import Node class
+
+from rclpy.action import ActionClient # Import ActionClient class
+
+
+
+
+=== Page 9 ===
+Hivweander Shenzhen Hiwonder Technology Co,Ltd
+
+from demo_interfaces.action import FileDownload # Import FileDownload
+
+action interface
+
+class FileDownloadActionClient(Node): # Define a FileDownloadActionClien
+
+class inhering for the Node class
+def init__(self):
+
+super().__init__(‘file_download_action_client') # Invoke the
+
+constructor of the parent function to initialize node
+
+self._action_client = ActionClient(self, FileDownload, ‘file_download’)
+
+# Create ActionClient object
+
+def send_goal(self, file_size):
+
+goal_msg = FileDownload.Goal() # Create an object of Type Goal
+
+message
+
+goal_msg.file_size = file_size # Set file size
+
+self.get_logger().info(fSending file download goal for {file_size} bytes’
+
+# Print a log indicating the target is sent
+
+self._action_client.wait_for_server() # Wait for the server to be
+
+available.
+
+self.future = self._action_client.send_goal_async(goal_msg,
+
+ffeedback_callback=self.feedback_callback) # Send an asynchronous
+
+request for a goal,
+
+
+
+
+=== Page 10 ===
+Hivweander Shenzhen Hiwonder Technology Co,Ltd
+
+self.future.add_done_callback(self.goal_response_callback) | #Add
+
+a callback function to handle the response after sending a goal request
+def goal_response_callback(self,future):
+goal_handle = future.result() # Get goal handle
+if not goal_handle.accepted:
+
+self.get_logger().info("Goal rejected") # Print a log indicating
+
+the goal is rejected
+return
+
+self.get_logger().info("Goal accepted") # Print a log indicating the
+
+goal is accept
+self. get_result_future = goal_handle.get_result_async() #
+
+Retrieve an asynchronous request for a goal,
+
+self. get_result_future.add_done_callback(self.get_result_callback)
+
+# Add the callback function to retrieve the results
+
+def get_result_callback(self,future):
+
+self.get_logger().info("File download completed successfully.") #
+
+Print a log indicating the file download is successful.
+
+def feedback_callback(self, feedback_msg):
+
+self.get_logger().info(fReceived feedback:
+
+{feedback_msg.feedback.completion_percentage:.2f}% downloaded') # Print
+
+
+
+
+=== Page 11 ===
+Hiweander Shenzhen Hiwonder Technology Co,Ltd
+
+the retrieved feedback information.
+
+def main(args=None):
+rclpy.init(args=args) # Initialize ROS2 node
+
+client = FileDownloadActionClient() # Create FileDownloadActionClient
+
+object
+result = client.send_goal(100) #Send goal
+
+rclpy.spin(client) # Enter main loop
+
+client.destroy_node() # Destroy node
+
+rclpy.shutdown() # Shut down ROS
+if name__ =='_main_":
+
+main()
+
+__name__ ==
+
+main( )
+
+‘wall
+
+2) Enter the command “chmod +x service_client.py” and press Enter to
+
+grant the executable permission to the saved action_client.py file.
+
+ubuntu@raspberrypi:~/hiwonder_ws/src/action_demo/action_demo$ chmod +x action_cl
+ient.py
+
+ubuntu@raspberrypi: ~/hiwonder_ws/src/action_demo/action_demo$ i
+
+
+
+=== Page 12 ===
+Hivweander Shenzhen Hiwonder Technology Co,Ltd
+4. setup.py File Settings
+
+The setup.py file defines the metadata and build configuration for a ROS2
+package, providing information such as package metadata, dependencies,
+build configuration, and installation logic. It helps developers correctly build,
+install, and use ROS2 packages. It is necessary to write the program entry
+
+points for service_client.py and service_server.py into the setup.py file.
+
+1) Enter the command “cd ..” to switch to the parent directory.
+
+ubuntu@raspberrypi:~/hiwonder_ws/src/action_demo/action_demo$ cd ..
+
+ubuntu@raspberrypi:~/hiwonder_ws/src/action_demo$
+
+2) Enter the command “vim setup.py” and press Enter to open the setup.py
+
+file.
+
+ubuntu@raspberrypi:~/hiwonder_ws/src/action_demo$ vim setup.py
+
+3) Press “i” to enter insert mode, and then enter the code below to the
+
+corresponding location.
+
+‘faction_server = action_demo.action_server:main’,
+
+‘faction_client = action_demo.action_client:main'
+
+tests_require=[
+entry_points={
+
+- INSERT --
+
+4) Enter “:wq’ to save and exit the file.
+
+
+
+=== Page 13 ===
+Hiweander Shenzhen Hiwonder Technology Co,Ltd
+
+5. Compilation and Execution
+
+1) After granting the executing permission, enter the command “cd
+
+~/hiwonder_ws/” to switch to the directory of the workspace.
+
+ubuntu@raspberrypi: ~/hiwonder_ws/src/hello_world_demo$ cd ~/hiwonder_ws/
+
+ubuntu@raspberrypi: ~/hiwonder_ws$ il
+
+2) Enter the command “colcon build” and press Enter to compile the
+
+packages within the workspace.
+
+ubuntu@raspberrypi:~/hiwonder_ws$ colcon build
+
+3) Enter the command “source ./install/setup.bash” and press Enter to
+
+make the environment variables take effect.
+
+ubuntu@raspberrypi:~/hiwonder_ws$ source ./install/setup.bash
+
+4) Enter the command “ros2 run action_demo action_server’” and
+
+press Enter to start the action server “action_server’.
+
+ubuntu@raspberrypi:~$ ros2 run action_demo action_server
+
+5) Right click to select “Split Vertically” to create a new terminal window.
+
+
+
+=== Page 14 ===
+er_hiwonder/scripts$ chmod +x pc
+iwonder/scripts$ cd
+
+started roslaunch server http://raspberrypi:41
+1.14.13
+
+ros_comm version 1.14.13
+
+process[master]: started with pid [835]
+ROS_MASTER_URI=http://raspberrypi:11311/
+
+6) Enter the command “ros2 run action_demo action_client” and press
+Enter to tart “action_client” action client. At this point, the server also receive
+
+the requests.
+
+-
+
+raspberrypi:~$ ros2 run action_
+mo action_client
+[INFO] [1706266565.190525166] [file dow
+nload_action_client]: Sending file down
+load goal for 100 bytes
+[INFO] [1706266565.194278313] [file_dow
+nload_action_client]: Goal accepted
+[INFO] [1706266565.214998768] [file_dow
+nload_action_client]: Received feedback
+
+9.00% downloaded
+[INFO] [1706266565.216285601] [file_dow
+nload_action_client]: Received feedback
+15.00% downloaded
+[INFO] [1706266566.218054369] [file_dow
+nload_action_client]: Received feedback
+
+25.00% down Loaded
+
+
+
+
+=== Page 15 ===
+Hivweander Shenzhen Hiwonder Technology Co,Ltd
+
+ubuntu@raspberrypi: ~ 38x24
+ubuntu@raspberrypi:~$ ros2 run action_
+demo action_server
+[INFO] [1706266565.212394047] [file_do
+wnload_action_server]: Start file down
+load for 100 bytes...
+[INFO] [1706266565. 213241269] [file_do
+wnload_action_server]: Publishing feed
+back: 9.00% downloaded
+[INFO] [1706266565.215019324] [file_do
+wnload_action_server]: Publishing feed
+back: 15.00% downLoaded
+[INFO] [1706266566. 216574240] [file_do
+wnload_action_server]: Publishing feed
+back: 25.00% downLoaded
+[INFO] [1706266567.218210101] [file_do
+wnlLoad_action_server]: Publishing feed
+back: 28.00% downloaded
+
+6. Program Analysis
+
+6.1 Server
+
+According to the realization result, the logic progress for the program is shown
+
+as pictured:
+
+
+
+=== Page 16 ===
+Hivweander Shenzhen Hiwonder Technology Co,Ltd
+
+Receive data
+Impertpackage from the client
+
+Print log information
+
+Destroy node Publish feedback
+and close interface informatin
+
+First, define a node named FileDownloadActionServer to construct an
+ActionServer of the FileDownload action type to provide task services. This
+execution callback function within ActionSeriver is responsible for simulating
+the process of executing real download tasks. It randomly increases the
+download progress to simulate file download while continuously publishing
+download feedback to the client through the goak_handle object. After the task
+is completed, the task status is set to success, and the download result is
+
+returned.
+@ Main Function
+
+(args= 1
+rclpy.init(args=args)
+server = FileDownLoadActionServer( )
+
+rcLpy.spin(server)
+server .destroy_node()
+rcLpy. shutdown( )
+
+First, invoke the relpy.init() function to initialize ROS2 Python interface. Then
+instantiate the FileDownloadActionServer(). Finally, execute the server within
+
+the event loop of the ROS2 node.
+
+@ FileDownloadActionServer Class
+
+
+
+=== Page 17 ===
+Hivweander Shenzhen Hiwonder Technology Co,Ltd
+
+(Node):
+
+= ActionServer(
+self,
+FileDownload,
+
+self .execute_callback)
+
+(self, goal_handle):
+
+self .get_logger().info(f
+feedback_msg = FileDo oad. Feedback( )
+
+current
+C oal_handle.request.file_size:
+
+current goal_handle. request. file ze
+comp letion_percentzé siz goal_handle.request.file_size) *
+
+goal_hand
+
+relp
+
+goal_handle.s
+File
+t.current current_size
+t_logger().info(
+result
+
+This callback function is invoked to execute the file download task. Within
+this function, a while loop is used to simulate the real-time file download
+process by randomly increasing the current download amount. During the
+download process, it continuously publishes the current download progress as
+feedback information through the goal_handle object. Once the task download
+is completed, it uses the goal_handle to set the task status to success and
+
+returns the final download result.
+6.2 Subscriber
+
+According to the realization result, the logic progress for the program is shown
+
+as pictured:
+
+Import package Send request data
+Receive respond data
+
+Destroy node and Wait for result
+close interface and feedback
+
+
+
+
+=== Page 18 ===
+A FileDownloadActionClien class is defined, which creates an ActionClient
+object in the constructor and configures it for file download task type. The client
+provides a send_goal method to send the target file size as the action Goal.
+Additionally, it registers three callback functions to handle Goal status
+responses, task process feedback, and the final task. In the main function, an
+instance of the client is created, send_goal is called to send the download task,
+
+and rclpy.spin() to obtain the full process of task execution status changes.
+
+@ Main Function
+
+def main(args=None):
+rclpy.init(args=args) # #)%4#{tROSH wm
+client = FileDownloadActionClient() # fl) #FileDownloadActionClienth ®
+
+result = client.send_goal( ) # REBR
+
+rclpy.spin(client) # #A+t#y
+client.destroy_node() # BSA
+rclpy.shutdown() # + fROS
+
+First, invoke the relpy.init() function to initialize ROS2 Python interface. Then
+instantiate the FileDownloadActionClient(). Finally, execute the client within
+
+the event loop of the ROS2 node.
+
+@ FileDownloadActionClient Class
+
+class FileDownloadActionClient(Node): # © %— 7 #& B Node3€ f) FileDownloadActionClient%
+def init__(self):
+super().__init__( ) + BBRERBARDMLKBA
+self._action_client = ActionClient(self, FileDownload, ) # BH BActionClients
+
+send_goal(self, file_size):
+goal_msg = oal() # S88 Goaliy Mi 2¢ Wao Tt me
+go sg.f filesize # WEAK
+
+er().info(f ) #77 REBRHAB
+
+._action_client.wait_for_server() # S@RS83 8
+.future = self._action_client.send_goal_async(goal_msg, feedback_callback=self.feedback_callback)
+
+.future.add_done_callback(self.goal_response_callback) # MMBRMHRHBWHK
+
+goal_response_callback(self, future):
+goal_handle = future.result() # RRBRAR
+if not goal_handle.accepted:
+self .get_logger().info( ) #+ FIPBRRBAHAK
+return
+self .get_logger().info( ) #TDPRRRRSHAK
+self._get sult_future = goal_handle.get_result_async() # RR BRARREBR
+self._get_result_future.add_done_callback(self.get_result_callback) # MM RREGRHAWAR
+
+get_result_callback(self, future):
+self .get_logger().info( ) + FT PNREPRADARRHAS
+
+feedback _callback(self, feedback_msg):
+self .get_logger().info(f
+ED #2 Ub 3 oo A
+
+AActionClient object is created to communicate with the task service. The
+
+
+
+=== Page 19 ===
+Hivweander Shenzhen Hiwonder Technology Co,Ltd
+
+client provides a send_goal method to send the download target, and registers
+three callback functions to handle the status changes “feedback” at the
+different stages of the task. After sending the Goal, the send_goal method
+adds callback functions through the future object to wait for the ActionServer's
+response. These three callback functions are used to obtain the Goal reception
+result, update the task progress, and obtain the completion result, covering the
+
+entire lifecycle of the task.
+
+

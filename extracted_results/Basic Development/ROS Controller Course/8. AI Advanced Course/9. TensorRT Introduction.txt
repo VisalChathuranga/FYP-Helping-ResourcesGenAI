@@ -1,0 +1,128 @@
+
+=== Page 1 ===
+Hiwoander Shenzhen Hiwonder Technology Co,Ltd
+
+Lesson 9 TensorRT Acceleration
+
+1. TensorRT Acceleration Description
+
+TensorRT is a high-performance deep learning inference, includes a deep
+learning inference optimizer and runtime that delivers low latency and high
+throughput for inference applications. It is deployed to hyperscale data centers,
+embedded platforms, or automotive product platforms to accelerate the
+
+inference.
+
+TensoRT supports almost all deep learning frameworks, such as
+TensorFlow, Caffe, Mxnet and Pytorch. Combing with new NVIDIA GPU,
+TensorRT can realize swift and effective deployment and inference on almost
+
+all frameworks.
+
+To accelerate deployment inference, multiple methods to optimize the
+models are proposed, such as model compression, pruning, quantization and
+knowledge distillation. And we can use the above methods to optimize the
+models during training, however TensorRT optimize the trained models. It
+improves the model efficiency through optimizing the network computation
+
+graph.
+
+After the network is trained, you can directly put the model training file into
+
+tensorRT without relying on deep learning framework.
+
+
+
+=== Page 2 ===
+Hiwoander Shenzhen Hiwonder Technology Co,Ltd
+
+2. Optimization Methods
+
+Layer & Tensor Fusion
+
+\ oe @ |}
+Precision Calibration a IN Kernel Auto-Tuning
+
+" “i / po 2 e Tenses RT Runtione
+
+eee 1
+
+<> pee° Des,
+
+eee” 0 p=
+
+: | 3 >)
+Trained Neural 35 88 (= > Optimized
+
+Network i Inference
+
+Dynamic Tensor Multi-Stream Engine
+Memory Execution
+
+1) Adopting horizontal or vertical layer fusion, TensorRT greatly decrease the
+
+amount of layers so as to reduce kernel launches and memory reading.
+
+In horizontal layer fusion, convolution, bias, and ReLU layers are fused to
+form a single layer which is called CBR structure. After fusion, this layer only
+occupies one CUDA core. Vertical layer fusion is to | combine layers in the
+same structure but with different weights into a wider layer which also use one
+
+CUDA core.
+
+In addition, although multiple branches are fused, TensorRT can directly
+connect to the required place without special concat operation, so this layer
+can also be canceled. After layer fusion, the computation graph has less layers
+and occupies less CUDA cores resulting in smaller, faster, and more effective
+
+model structure.
+
+2) The Tensor in the network of most deep learning frameworks when training
+the neural network is 32-bit floating-point precision (FP32). Once the
+network is trained, backpropagation is no longer required in deployment
+inference, so the data precision can be reduced. Lower data precision will
+
+minimize the storage occupation and latency, and make the model size
+
+2
+
+
+
+=== Page 3 ===
+Hiwoander Shenzhen Hiwonder Technology Co,Ltd
+
+smaller.
+
+The dynamic ranges of different precision are listed below.
+
+Precision Dynamic Range
+
+FP32 -3.4x1038 +3.4*x1038-3.4« 1038 +3.4x1038
+FP16 -65504 +65504-65504 +65504
+
+INT8 -128 +127-128 +127
+
+INT8 has only 256 different values. Using INT8 to represent values with
+FP32 precision will definitely omit information and engender performance
+degradation. However, TensorRT can provide a fully automated calibration that
+can reduce FP32 precision to INT8 precision with the best matching
+
+performance to minimize performance loss.
+
+Kernel Auto-Tuning: Network model recalls CUDA core of GPU to infer and
+compute. According to different algorithms, network models and GPU platform,
+TensorRT can implement kernel-level optimization to enable the model to
+
+compute on the specific platform with best performance.
+
+Dynamic Tensor Memory: When using the tensor, TensorRT will designate its
+memory to avoid repetitive application, reduce storage occupation and
+
+improve the reuse efficiency.
+
+Multi-Stream Execution: TensorRT employs stream technology of CUDA to
+perform parallel operation on multiple branches with the same input, and can
+
+optimize based on different batchsize.
+
+

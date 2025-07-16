@@ -1,0 +1,116 @@
+
+=== Page 1 ===
+Hiweander Shenzhen Hiwonder Technology Co,Ltd
+
+Lesson 1 Testing and Usage of USB
+Camera
+
+The camera needs to be used in various vision-based gameplay, allowing for
+
+quick deployment to meet these requirements.
+1. Connect Device
+
+1) Connect the USB camera to any of ports highlighted in the below red
+
+box on Jetson Orin Nano.
+
+2. Start Testing
+
+Note: The input command should be case sensitive, and the “Tab” key can be used
+
+to complement the key words.
+
+If you’re using the pre-installed system image, you can located the corresponding
+
+program by referring the content in “2. Configuration Guide -> Flashing System
+
+
+
+=== Page 2 ===
+Hiweander Shenzhen Hiwonder Technology Co,Ltd
+
+Using an SSD -> 5. System Image Directory Instructions”.
+
+1) Power on Jetson Orin Nano board, then connect to the remote system
+
+desktop via NoMachine.
+
+2) Drag the program file “usb_camera_test.py” in “Program Files” into
+
+the system desktop.
+
+Orin NanoF#F@iR > FRR > BOE OpenCVit Rie » MARR > Bat
+
+3) Right click on a blank area of the system desktop to select “Open in
+
+Terminal” to open the terminal:
+
+New Folder
+
+Show Desktop in Files
+Open in Terminal
+
+Change Background...
+
+Display Settings
+
+Settings
+
+4) Enter the command and press Enter to run the program.
+
+python3 usb_camera_test.py
+
+python3 usb camera test.py
+
+5) If you need to close the program, press the shortcut key “Ctrl+C” in the
+
+
+
+=== Page 3 ===
+terminal to exit the program.
+
+3. Code Analysis
+
+The image below shows the screenshot of the example test code:
+
+== “_ main_”:
+= cv2.VideoCapture(@)
+
+-isOpened():
+= cv2.namedWindow("D435", cv2.WINDOW_AUTOSIZE)
+
+cv2.getWindowProperty("D435", @) >= @:
+2 -read(
+cv2.imshow("D435",
+
+= cv2.waitKey(30) & OxFF
+
+-release()
+cv2.destroyAllwindows()
+
+print (“FT FFEeB sk AMC)
+
+
+
+
+=== Page 4 ===
+Hivwoander Shenzhen Hiwonder Technology Co,Ltd
+
+Import opencv library:
+
+Select the camera to be used. Since we only have one camera connected, you
+
+only need to set the parameter to 0.
+
+Set up the window for display the live camera feed, with the window name
+
+“D435” and video size as “cv2.WINDOW_AUTOSIZE”
+
+Set up to close the window by pressing the “Esc” key.
+
+If the camera is not detected or if another error occurs, “Failed to open camera”
+
+will be printed.
+
+
+

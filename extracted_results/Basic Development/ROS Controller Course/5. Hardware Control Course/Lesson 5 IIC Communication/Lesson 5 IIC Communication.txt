@@ -1,0 +1,476 @@
+
+=== Page 1 ===
+Hiweander Shenzhen Hiwonder Technology Co,Ltd
+Lesson 5 IlIC Communication
+
+1. Introduction to IIC Communication
+
+IIC is also called as I2C and Inter-Integrated Circuit is short for IICBus.
+
+It is a serial bus composed of data line SDA and clock SCL, which can send
+and receive data in both directions between CPU (microcontroller) and IIC
+
+module, and between IIC module and IIC module.
+Features of IIC: IIC is half-duplex, not full-duplex.
+
+IIC is a true multi-host bus, (compare SPI needs to fix the host before each
+communication, while IIC can change the host during the communication), if
+two or more hosts request the bus at the same time, the bus data can be
+
+prevented from being corrupted by conflict detection and arbitration.
+
+The start and stop signals are sent by the host. Devices connected to the I2C
+bus with a hardware interface to the I2C bus can easily detect the start and
+
+stop signals.
+
+After the start signal a 7-bit slave address + 1 direction bit must be sent, with a
+"0" indicating that the host sends data and a "1" indicating that the host
+
+receives data.
+
+Whenever the host sends a byte of data to the slave, the host always needs to
+wait for an answer signal from the slave to confirm whether the slave has
+
+successfully received the data.
+
+The start signal is required, the end signal and the answer signal, both can be
+
+left out.
+
+Note: In practice, the microcontroller is usually used as the host and other
+devices as slaves. The microcontroller first sends a message to the device
+
+indicating that it wants to read the data, after which the transmission direction
+
+1
+
+
+
+=== Page 2 ===
+Hiweander Shenzhen Hiwonder Technology Co,Ltd
+
+is changed and the device sends data to the microcontroller.
+@ IC physical connection
+
+There are many IIC devices that use IIC communication, such as gyroscope
+accelerometer MPU6050, EEPROM memory chip AT24C02, etc. Through the
+
+IIC bus, data can be transferred between them and the microcontroller.
+
+There are only two IIC communication lines, the data line SDA with high and
+low levels transmits binary data, and the clock line SCL provides clock beats
+
+through square wave signals.
+
+Multiple IIC devices can be connected in parallel on the IIC bus, with each
+device having a specific address and sharing the IIC bus on a time-sharing
+basis. The actual use of the IIC is of course also connected to a power supply
+
+as well as a common ground.
+
+#758 fA
+
+SDA
+
+SCL
+
+BH MPU6OSO | AT24C02
+(=41) (AA4IL) (AA4IL)
+
+@ IIC time sequence
+
+SDAIN
+‘BUF
+
+< . —| Ibn -
+soaout XXXXXXXXXXXXXXKM
+
+@ Start and Stop of IIC
+
+
+
+=== Page 3 ===
+START condition STOP condition
+
+Start: When the clock line SCL is high, the data line SDA transitions from high
+
+to low.
+
+Stop: When the clock line SCL is high, the data line SDA transitions from low
+to high.
+
+Note: When both SDA and SCL are high, it indicates the idle state of the I2C
+
+bus.
+
+@ IC Acknowledge
+
+ry
+DATAOUTPUT = \ | =
+BY TRANSMITTER | —_
+| not acknowledge.
+DATA OUTPUT i
+BY RECEIVER l
+| | acknowledge
+SCL FROM
+MASTER | | 1 2 _ fe\ fax\_
+Le dock i for
+START
+Jitlon acknowledgement
+
+The lower waveform: the SCL is the clock pulse from master
+The upper waveform: SDA, the 8-bit data output by transmitter.
+
+The middle waveform: SDA, when the slave device pulls it low on the ninth
+clock signal, indicates that it has received the data sent by the master. If it is
+pulled high, it indicates a non-acknowledgment.
+
+3
+
+
+
+=== Page 4 ===
+Hiweander Shenzhen Hiwonder Technology Co,Ltd
+
+Note: the upper and the middle part refer to the same SDA wire. IIC
+acknowledge is a mutual relationship. When a microcontroller sends data to an
+IIC device, the IIC device needs to acknowledge to indicate that the data has
+received. Similarly, when the microcontroller receives data from an IIC device,
+
+it also needs to provide an acknowledge to the IIC device.
+
+If there is no need to continue reading, a non-acknowledgment is sent. The
+recipient, thinking that the data was not received, will refrain from sending
+
+further data.
+
+@ [IC complete transmission timing
+
+ee | a i ee } A Co, Se > es cs. ]
+START ADDRESS RW ACK DATA ACK DATA ACK STOP
+condition
+
+condition
+
+After the Start condition (S) is issued, the master device sends a 7-bit
+
+Slave Address, followed by an 8th bit known as the Read/Write (R/W) bit.
+
+The R/W bit indicates whether the master device is receiving data from
+
+the slave or sending data to it.
+
+The master device then releases the SDA line and waits for an
+acknowledgment (ACK) signal from the slave device. Each byte of data
+
+transfer is followed by an acknowledgment bit.
+
+When an acknowledgment is generated, the slave device pulls the SDA
+
+line low and maintains it low while the SCL line is high.
+
+
+
+=== Page 5 ===
+HIW/E9MOCT Shenzhen Hiwonder Technology Co,Ltd
+
+Data transmission ends with a Stop condition (P), which releases the bus.
+However, the master device can also issue a repeated Start condition to
+
+communicate with another slave device without sending a Stop condition.
+
+All SDA signal changes occur while the SCL clock is low, except for the
+
+Start and Stop conditions.
+
+2. Hardware Wiring
+
+According to the Jetson Orin Nano pinout diagram, the following pins will
+
+be used:
+
+2 5 hel
+
+ie)
+
+jaar aa
+==
+[era
+=n
+era
+va
+ia
+=o
+20
+=m
+a
+ee
+34
+ae
+(at
+[40
+
+=
+(i ie ime
+| 83
+[| 39
+
+Here, we use an I2C interface accelerometer sensor as an example.
+Other modules with I2C interfaces can follow the same connection method.
+The module is connected to the Jetson Orin Nano pins using female-to-female
+
+Dupont wires, as shown below:
+
+
+
+=== Page 6 ===
+oy IWEM Oo © Shenzhen Hiwonder Technology Co,Ltd
+
+e PIN 3 (Jetson Orin Nano) <--> SDA (Accelerometer)
+e PIN 5 (Jetson Orin Nano) <--> SCL (Accelerometer)
+
+e — PIN 6 (Jetson Orin Nano) <--> GND (Accelerometer)
+
+es
+) ee
+
+Hiwender
+
+Accelerometer and Gyro
+
+H
+t
+I
+:
+;
+'
+- 4
+: :
+
+4
+
+4
+|
+
+EE
+
+3. Install IIC Library File
+
+1) Start Jetson Orin Nano board. Then open the terminal, enter the
+
+following command command to update the library list.
+
+sudo apt-get update
+
+
+
+=== Page 7 ===
+Hives noer Shenzhen Hiwonder Technology Co,Ltd
+2) Enter the command to install I2C library.
+
+sudo apt-get install -y i2c-tools
+
+$ sudo apt-get install -y i2c-tools
+
+After entering the command, you will be prompted to input a password.
+For this example, use the default password ubuntu. (Users should enter their
+
+own password according to their settings. )
+
+After installation is complete, check whether the installation is successful
+
+by entering the following command:
+
+apt-cache policy i2c-tools
+
+$ apt-cache policy i2c-tools
+
+42c-tools:
+
+Installed: 4.1-2build2
+
+Candidate: 4.1-2build2
+
+Version table:
+
+*** 4,.1-2build2 500
+500 https://mirrors.tuna.tsinghua.edu.cn/ubuntu-ports focal/universe arm64 Packages
+500 http://ports.ubuntu.com/ubuntu-ports focal/universe arm64 Packages
+100 /var/lib/dpkg/status
+
+4.12C-Tools Usage
+
+4.1 i2cdetect
+
+i2cdetect is used to detect the I2C BUS status on the system.
+Enter the following commands in sequence to list all installed buses.
+
+i2cdetect -F 2
+
+
+
+=== Page 8 ===
+: S$ i2cdetect -F 2
+Functionalities implemented by /dev/i2c-2:
+I2C yes
+SMBus Quick Command no
+SMBus Send Byte yes
+SMBus Receive Byte yes
+SMBus Write Byte yes
+SMBus Read Byte yes
+SMBus Write Word yes
+SMBus Read Word yes
+SMBus Process Call yes
+SMBus Block Write yes
+SMBus Block Read yes
+SMBus Block Process Call no
+SMBus PEC yes
+I2C Block Write yes
+I2C Block Read yes
+
+i2cdetect -l
+
+$ i2cdetect -1l
+3190000.i2c adapter
+i2c-2-mux (chan_id 1) adapter
+©240000.i2c adapter
+31e0000.i2c adapter
+31c0000.i2c adapter
+Tegra BPMP I2C adapter adapter
+NVIDIA SOC i2c adapter 0 adapter
+3180000.i2c adapter
+3160000.i2c adapter
+i2c-2-mux (chan_id 0) adapter
+¢250000.i2c adapter
+31b0000.12c adapter
+
+ic)
+
+-3
+-4
+-1
+-8
+-6
+-4
+-11
+-2
+-0
+a)
+-7
+-5
+
+Enter the following command to scan for the devices connected to the bus,
+
+such as bus number 1.
+i2cdetect -y -r -a 1
+$ i2cdetect -y -r -al
+If devices are detected, their addresses will be listed. For example, on bus
+
+number 1, if there is a device at address 0x68 (e.g., an OLED module
+
+connected), it will be shown.
+
+
+
+=== Page 9 ===
+Hiweander Shenzhen Hiwonder Technology Co,Ltd
+
+4.2 i2cdump
+
+i2cdump is used to view the values of device registers. For example, for
+the MPU6050 accelerometer we are using, its registers can be referenced in
+
+the image below:
+
+WHO_AM_|
+Type: Read Only
+
+Register Register :
+a WHO_AM_ 16:1] =a
+
+Pi: SABA RRAN SH}. WHO_AM_I fA MPU-60X0 ff) 7 fi7 12C Hh
+DEAN. 6 ic. Ba — HbA ADO 5| Ae. ADO 5] ARR AEE IEK.
+
+#5 FF KI ERV AAA 0x68.
+fr OF 7 TRE. CHEATS A 0).
+Enter the following command to view the values of all registers for the
+device at address 0x68 on bus number 1:
+
+i2cdump -y 1 0x68
+
+: $ i2cdump -y 1 0x68
+
+
+
+=== Page 10 ===
+Hiwender Shenzhen Hiwonder Technology Co,Ltd
+
+0123456789abcdef
+272022] 222?h. XXX
+XXXXXX . XXXXXXKXXX
+
+XXXXXX. XXX. .
+XXXXXKX27AXAXXXX. . ?
+XXXX. . 2?XAXKX.XXK.X
+XX .XXXAXXXX.G@....
+
+- «XXXW?XXXXXXXX.
+XXXXXXXX . XXXXXXX
+X.XXXXXXXXXX...-
+XXX « XXXXKXXXX . XXX
+XX .XXXXKX. .XXXXX.
+
+« »~XXXXX.XXXK. .X
+XXXXXXXX « XXXXXXX
+Kee e «XXX.XXK. PXX
+X.XXXW?XXXXXXXX.
+
+Here, you can see that the default value of the register, 68, is displayed.
+
+4.3 i2cget
+
+i2cget is used to view the value of a single register on a device and is suitable
+
+for single-byte registers.
+
+For example, to read the value of register 0x6b on the device at address 0x68,
+
+enter the following command:
+
+i2cget -y 1 0x68 0x6b
+
+- $ i2cget -y 1 0x68 Ox6b
+
+4.4 i2ctransfer
+
+i2ctransfer is used for reading and writing device register values and is
+suitable for double-byte registers. For example, to read 16 bytes of data
+starting from register address Ox6b on the device at address 0x68 on bus
+
+number 1, enter the following command:
+
+10
+
+
+
+=== Page 11 ===
+Hiweander Shenzhen Hiwonder Technology Co,Ltd
+
+i2ctransfer -f -y 1 w2@0x68 0x01 Ox6b r16
+
+: $ i2ctransfer -f -y 1 w2@0x68 0x01 Ox6b r16
+0x05 0x10 Ox4f 0x11 Oxf1 Ox7c Oxfd Ox87 OxO04 Ox68 Ox28 Ox4f Ox4f Oxb6 Ox28 0x00
+
+For example, to write 3 bytes of data to the device at address 0x68 on bus
+number 1, starting from register address Ox6b, write the value 0x25 and then
+
+read it back for verification.
+
+i2ctransfer -f -y 1 w3@0x68 0x01 Ox6b 0x25
+
+$ i2ctransfer -f -y 1 w3@0x68 0x01 Ox6b 0x25
+
+1]
+
+

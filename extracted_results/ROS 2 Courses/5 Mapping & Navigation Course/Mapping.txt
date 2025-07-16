@@ -1,0 +1,1886 @@
+
+=== Page 1 ===
+Hiwoander Shenzhen Hiwonder Technology Co,Ltd
+Mapping
+
+
+
+
+=== Page 2 ===
+Hiweander Shenzhen Hiwonder Technology Co,Ltd
+Catalog
+
+1. URDF Model ... 2... ce cc ccc ce eee ee cee eee eee tence eee e eee
+1.1 URDF Model Introduction ..... ee cc ce ce eee ee eee eee
+1.2 Comparison between Xacro and URDF Model ................-e sees
+1.3 Basic Syntax of URDF Model ........... cece cece eee eee eee ewes
+1.3.1 XML Basic Syntax ...... cece cc eee ee eee eee eens
+T.B.2 LINK... cece ee cee eee eee eee eee eee e eee
+Peo 0 6) | 9 | Gn
+1.3.4 Robot Tag ..... ec cc ccc ccc ec eee ee ee eee eee eee eee eees
+1.3.5 gazebo Tag... .. cece cece ec cee eee eee eect eee teenies
+1.3.6 Write Simple URDF Model ............. eee e eee ee ee eee ewes 10
+1.3.7 Set lINKS 2... ccc ce ccc eee eee eee eee eee e eee 10
+1.3.8 Set joint... . ccc ccc cece eee eee eee eee eee e nes 11
+2. Explanation of ROS Robot URDF Model .............. eee eee eee eee ee 15
+2.1 Preparation ....... ccc ce ccc ccc eee eee eee eee eee eee eee eee eee 15
+2.2 Check Code of Robot Model ............ cc cece eee eee eee eee ewes 15
+2.3 Brief Analysis of Robot's Main Body Model ................e eee eeeee 17
+3. Principles of SLAM Mapping ........... cee cece ccc e ee eee eee ee eee eeee 30
+3.1 Introduction to SLAM 2... ... cece cc ccc ccc eee eeeee ee eee eee nes 30
+3.2 SLAM Mapping Principle .... 2... .. ccc cece cece eee ce eee eee eee 30
+56 FR 0 (0) = 31
+3.4 Judge Mapping Result ...... cece ccc ce ccc eee cette eee eens 32
+
+
+
+=== Page 3 ===
+Hiweander Shenzhen Hiwonder Technology Co,Ltd
+
+4. slam_toolbox Mapping Algorithm ........... cc cece eee cece ee eee eee eee 32
+4.1 Mapping Definition .... 0... ccc ccc ccc eee eee eee teens 32
+4.2 Mapping Operation Steps ........ cece ccc cece ee eee eee eee 34
+4.3 Save the Map 1... . ccc ccc ccc cece cee ce eee eee eee eee eee e nes 36
+4.4 Outcome Optimization .. 2... ccc eee ee eee eee eee 37
+4.5 Parameter Description ......... ccc cee cece ee rece ee eee eee eens 37
+4.6 Launch File Analysis 20... ... cece cece cee eee ee eee reece eee eee 38
+5. RTAB-VSLAM 3D Vision Mapping & Navigation ................ cece eens 39
+5.1 RTAB-VSLAM Description .... 0... .. cece ccc eee cece eee eee ees 39
+5.2 RTAB-VSLAM Working Principle ........ 0... cece eee eee eee eee eee 39
+5.3 RTAB-VSLAM 3D Mapping Instructions ........... 0... cece eee wees 40
+5.4 Map Saving ..... ccc ccc ccc ccc ee cece ee eee eee tent eens 43
+5.5 launch File Analysis ... 2... . ce ccc cee cee eee eee eee eee e eee 43
+
+
+
+=== Page 4 ===
+Hiweander Shenzhen Hiwonder Technology Co,Ltd
+
+1. URDF Model
+
+1.1 URDF Model Introduction
+
+The Unified Robot Description Format (URDF) is an XML file format widely
+used in ROS (Robot Operating System) to comprehensively describe all
+
+components of a robot.
+
+Robots are typically composed of multiple links and joints. A link is defined as a
+rigid object with certain physical properties, while a joint connects two links and
+
+constrains their relative motion.
+
+By connecting links with joints and imposing motion restrictions, a kinematic
+model is formed. The URDF file specifies the relationships between joints and
+
+links, their inertial properties, geometric characteristics, and collision models.
+
+1.2 Comparison between Xacro and URDF Model
+
+The URDF model serves as a description file for simple robot models, offering
+a Clear and easily understandable structure. However, when it comes to
+describing complex robot structures, using URDF alone can result in lengthy
+
+and unclear descriptions.
+
+To address this limitation, the xacro model extends the capabilities of URDF
+while maintaining its core features. The xacro format provides a more
+advanced approach to describe robot structures. It greatly improves code
+
+reusability and helps avoid excessive description length.
+
+For instance, when describing the two legs of a humanoid robot, the URDF
+model would require separate descriptions for each leg. On the other hand, the
+xacro model allows for describing a single leg and reusing that description for
+
+the other leg, resulting in a more concise and efficient representation.
+
+
+
+=== Page 5 ===
+Hiweander Shenzhen Hiwonder Technology Co,Ltd
+1.3 Basic Syntax of URDF Model
+
+1.3.1 XML Basic Syntax
+
+The URDF model is written using XML standard.
+
+Elements:
+
+An element can be defined as desired using the following formula:
+<element>
+
+</element>
+
+Properties:
+
+Properties are included within elements to define characteristics and
+parameters. Please refer to the following formula to define an element with
+
+properties:
+
+<element
+property_1="property value1"
+property_2="property value2">
+</element>
+
+Comments:
+
+Comments have no impact on the definition of other properties and elements.
+
+Please use the following formula to define a comment:
+
+<!-- comment content -->
+
+1.3.2 Link
+
+The Link element describes the visual and physical properties of the robot's
+
+
+
+=== Page 6 ===
+Hiweander Shenzhen Hiwonder Technology Co,Ltd
+
+rigid component. The following tags are commonly used to define the motion of
+
+a link:
+
+<visual>: Describe the appearance of the link, such as size, color and shape.
+
+<inertial>: Describe the inertia parameters of the link, which will used in
+
+dynamics calculation.
+<collision>: Describe the collision inertia property of the link
+
+Each tag contains the corresponding child tag. The functions of the tags are
+
+listed below.
+
+Describe the pose of the link. It contains
+
+two parameters, including xyz and rpy.
+origin Xyz describes the pose of the link in the
+simulated map. Rpy describes the pose
+
+of the link in the simulated map.
+
+mess Describe the mess of the link
+
+Describe the inertia of the link. As the
+inertia matrix is symmetrical, these six
+inertia parameters need to be input, ixx, ixy, ixz,
+iyy, yz and izz, as properties. These
+
+parameters can be calculated.
+
+
+
+
+=== Page 7 ===
+Hiweander Shenzhen Hiwonder Technology Co,Ltd
+
+Describe the shape of the link. It uses
+mesh parameter to load texture file, and
+geometry em[ploys filename parameters to load
+the path for texture file. It has three child
+
+tags, namely box, cylinder and sphere.
+
+Describe the material of the link. The
+parameter name is the required filed.
+material
+The tag color can be used to change the
+
+color and transparency of the link.
+
+1.3.3 Joint
+
+The "Joint" tag describes the kinematic and dynamic properties of the robot's
+joints, including the joint's range of motion, target positions, and speed
+
+limitations. In terms of motion style, joints can be categorized into six types.
+
+continuous joint: rotate around single axis continuously continuous
+revolute joint: similar to continuous, but its rotation angle is
+
+gn revolute
+limited
+
+prismatic joint: move along a axis within limited range prismatic
+
+r
+
+Planar joints: translate or rotate in plane orthogonal directions planar
+
+floating joint: translate and rotate floating
+
+fixed joint: not allowed to do any movements fixed
+
+The following tags will be used to write joint motion.
+
+
+
+=== Page 8 ===
+Hiweander Shenzhen Hiwonder Technology Co,Ltd
+
+joint name="name of joint
+parent link="linki
+child link="link2
+calibration>...... calibration
+Namics damping ......
+limit effort ......
+joint
+
+<parent_link>: Parent link
+
+<child_link>: Child link
+
+<calibration>: Calibrate the joint angle
+
+<dynamics>: Describes some physical properties of motion
+<limit>: Describes some limitations of the motion
+
+The function of each tag is listed below. Each tag involves one or several child
+
+tags.
+
+Describe the pose of the parent link. It
+involves two parameters, including xyz
+origin
+and rpy. Both xyz and rpy describe the
+
+pose of the link in simulated map.
+
+Control the child link to rotate around
+axis
+any axis of the parent link.
+
+The motion of the child link is
+constrained using the lower and upper
+limit properties, which define the limits of
+
+rotation for the child link. The effort
+
+properties restrict the allowable force
+
+
+
+
+=== Page 9 ===
+Hiweander Shenzhen Hiwonder Technology Co,Ltd
+
+range applied during rotation (values:
+
+positive and negative; units: N). The
+velocity properties confine the rotational
+speed, measured in meters per second
+
+(m/s).
+
+mimic Describe the relationship between joints.
+
+Describes the parameters of the safety
+safety_controller controller used for protecting the joint
+
+motion of the robot.
+
+1.3.4 Robot Tag
+
+The complete top tags of a robot, including the <link> and <joint> tags, must
+
+be enclosed within the <robot> tag. The format is as follows:
+
+robot name="name of robot
+PINE> iscsi link
+bi, oe link
+WOAHEXS SS oint
+JOANNE oss cc's oint
+
+robot
+
+1.3.5 gazebo Tag
+
+This tag is used in conjunction with the Gazebo simulator. Within this tag, you
+can define simulation parameters and import Gazebo plugins, as well as
+specify Gazebo's physical properties, and more.
+
+gazebo reference="link1
+
+material>Gazebo/Black</material
+
+
+
+=== Page 10 ===
+Hiweander Shenzhen Hiwonder Technology Co,Ltd
+
+1.3.6 Write Simple URDF Model
+Name the model of the robot
+
+To start writing the URDF model, we need to set the name of the robot
+following this format: “<robot name=“robot model name”>”. Lastly, input
+
+“</robot>” at the end to represent that the model is written successfully.
+
+1.3.7 Set links
+
+1) To write the first link and use indentation to indicate that it is part of the
+currently set model. Set the name of the link using the following format:
+<link name="link name">. Finally, conclude with "</link>" to indicate the
+
+successful completion of the link definition.
+
+on
+
+link name="base_link
+16 link
+
+2) Write the link description and use indentation to indicate that it is part of the
+
+currently set link, and conclude with "</visual>".
+
+3) The "<geometry>" tag is employed to define the shape of a link. Once the
+description is complete, include "</geometry>". Within the "<geometry>"
+tag, indentation is used to specify the detailed description of the link's
+shape. The following example demonstrates a link with a cylindrical shape:
+
+"<cylinder length="0.01" radius="0.2"/>". In this instance,
+
+10
+
+
+
+=== Page 11 ===
+Hiweander Shenzhen Hiwonder Technology Co,Ltd
+
+4)
+
+11
+
+9)
+
+12
+rs
+14
+
+"length="0.01"" signifies a length of 0.01 meters for the link, while
+"radius="0.2"" denotes a radius of 0.2 meters, resulting in a cylindrical
+
+shape.
+
+cylinder length="0.01" radius="@.2
+
+The "<origin>" tag is utilized to specify the position of a link, with
+indentation used to indicate the detailed description of the link's position.
+The following example demonstrates the position of a link: "<origin
+rpy="0 0 0" xyz="0 0 0" />". In this example, "rpy" represents the roll,
+pitch, and yaw angles of the link, while "xyz" represents the coordinates of
+the link's position. This particular example indicates that the link is
+
+positioned at the origin of the coordinate system.
+origin rpy="8 @ 8" xyz="6 6 @
+
+The "<material>" tag is used to define the visual appearance of a link, with
+indentation used to specify the detailed description of the link's color. To
+start describing the color, include "<material>", and end with "</material>"
+when the description is complete. The following example demonstrates
+setting a link color to yellow: "<color rgba="1 1 0 1" />". In this example,
+"rgba="1 1 0 1"" represents the color threshold for achieving a yellow
+
+color.
+
+material name="yello
+color rgba="1101
+material
+
+1.3.8 Set joint
+
+1)
+
+To write the first joint, use indentation to indicate that the joint belongs to
+the current model being set. Then, specify the name and type of the joint
+as follows: "<joint name="joint name" type="joint type">". Finally,
+
+11
+
+
+
+=== Page 12 ===
+Hiweander Shenzhen Hiwonder Technology Co,Ltd
+
+include "</joint>" to indicate the completion of the joint definition.
+
+Note: to learn about the type of the joint, please refer to “4.2 joint”.
+
+2)
+
+3)
+
+4)
+
+9)
+
+20 joint name="pan_joint” type="revolute
+27 joint
+
+Write the description section for the connection between the link and the
+joint. Use indentation to indicate that it is part of the currently defined joint.
+The parent parameter and child parameter should be set using the
+following format: "<parent link="parent link"/>", and "<child link="child
+link" />". With the parent link serving as the pivot, the joint rotates the child
+
+link.
+
+21 parent link="base_link
+22 child link="pan_link
+
+“<origin>” describes the position of the joint using indention. This example
+describes the position of the joint: “<origin xyz=“0 0 0.1” />”. xyz is the
+
+coordinate of the joint.
+
+“<€axis>” describes the position of the joint adopting indention.
+“<axis xyz=“0 0 1” />” describes one posture of a joint. xyz specifies the
+
+pose of the joint.
+24 axis xyz
+
+“<limit>” imposes restrictions on the joint using indention. The below
+picture The "<limit>" tag is used to restrict the motion of a joint, with
+indentation indicating the specific description of the joint angle limitations.
+The following example describes a joint with a maximum force limit of 300
+Newtons, an upper limit of 3.14 radians, and a lower limit of -3.14 radians.
+The settings are defined as follows: "effort=“joint force (N)”,
+velocity=“joint motion speed”, lower=“lower limit in radians”,
+
+12
+
+
+
+=== Page 13 ===
+ht IW/EM Oo er Shenzhen Hiwonder Technology Co,Ltd
+
+upper=“upper limit in radians’.
+
+25 limit effort="300" velocity="@.1" lower="-3.14" upper="3.14
+
+6) “<dynamics>” describes the dynamics of the joint using indention.
+“é€dynamics damping=“50” friction=“1” />” describes dynamics
+
+parameters of a joint.
+
+26 dynamics damping="50" friction="1
+
+The complete codes are as below.
+
+13
+
+
+
+=== Page 14 ===
+bol IW mM Oo © Shenzhen Hiwonder Technology Co,Ltd
+
+| <?xml version="1.0"?>
+<robot name="pan_tilt™>
+
+<!--Z£Tbase_Link -->
+<!-- <visual> tier SAB RRSROME, BE/Leov geometry> (Rift iylinder) $-->
+<link name="base_link">
+<visual>
+<geometry>
+<cylinder length="0.91" radius="9.2" />
+</geometry>
+
+Wan DUM PWN PB
+
+rE
+a)
+
+<origin rpy="@ @ @” xyz="8 @ 8" />
+
+pay
+N
+
+<material name="yellow">
+<color rgba="1 1 @ 1" />
+</material>
+
+RR
+Pm WwW
+
+</visual>
+</link>
+
+PRP PR
+aN nn
+
+<!-- Gk TXDBpan_joint, KRAXDSB: seta (APRA) -->
+<!-- Be aEAS AT a Abase_Link#jpan_Link -->
+
+<joint name="pan_joint™ type="revolute">
+
+NN
+Pow
+
+<parent link="base_link” />
+<child link="pan_link” />
+<origin xyz="@ @ @.1” />
+<axis xyz="@ @ 1" />
+<limit effort="300" velocity="0.1" lower="-3.14" upper="3.14" />
+<dynamics damping="50" friction="1" />
+</joint>
+
+NRNNNNNNN WN
+WON nau & WN
+
+<link name="pan_link">
+<visual>
+
+Wow
+FP ®
+
+<geometry>
+<cylinder length="0.4" radius="@.64" />
+</geometry>
+
+Ww WwW
+PWN
+
+<origin rpy="@ @ ®" xyz="0 @ 8.09" />
+<material name="red">
+
+<color rgba="@ @ 1 1" />
+</material>
+
+Www
+NOW
+
+</visual>
+</link>
+
+Pf Bw Ww
+Pow Ow
+
+<joint name="tilt_joint" type="continuous”>
+
+>
+N
+
+<parent link="pan_link” />
+<child link="tilt_link" />
+<origin xyz="0 @ @.2" />
+<axis xyz="@ 1 @" />
+<limit effort="300" velocity="@.1" lower="-4.64" upper="-1.5"/>
+<dynamics damping="50" friction="1"/>
+</joint>
+
+wi
+SSSESERES
+
+<link name="tilt_link">
+<visual>
+
+wow
+NB
+
+<geometry>
+<cylinder length="0.4" radius="0.04" />
+</geometry>
+
+Www
+a
+
+<origin rpy="0 1.5 @” xyz="@ 8 e" />
+
+w
+a
+
+<material name="green">
+<color rgba="1 @ @ 1" />
+</material>
+
+wow
+aon
+
+</visual>
+</link>
+
+Dnanw
+NRF Dw
+
+| </robot>
+
+14
+
+
+
+=== Page 15 ===
+HIW/E9MOECT Shenzhen Hiwonder Technology Co,Ltd
+
+2. Explanation of ROS Robot URDF Model
+
+2.1 Preparation
+
+To grasp the URDF model, check out "1.3 Basic Syntax of URDF Model" for
+the key syntax. This part quickly breaks down the robot model code and its
+
+components.
+2.2 Check Code of Robot Model
+
+1) Start the robot, and access the robot system desktop using NoMachine.
+
+wv
+
+2) Click-on 3! to open the command-line terminal.
+
+3) Run the following command to enable the app auto-start service, and hit
+
+Enter key.
+
+sudo systemctl stop start_app_node.service
+
+stop start_app_node.service
+
+4) Execute the command and hit Enter key to navigate to the folder
+
+containing startup programs.
+
+colcon_cd jetauto_description
+
+5) Enter the command to navigate to the robot simulation model folder.
+
+cd urdf
+
+6) Execute the command to access the robot simulation model folder.
+
+vim jetauto.xacro
+
+15
+
+
+
+=== Page 16 ===
+hen |} mc noios . Oo td
+
+7) Locate the code below:
+
+INE_TYPE)”
+
+TYPE)”
+
+ription)/u imu.
+
+scription)/urdf/lidar.urdf.xacro”
+
+JetAutoPro'
+
+find
+
+auto_arm.urdf.»
+
+/urdf/pro/usb_camera.urdf.xacro”
+
+/urdf
+
+tion) /urdf/pro/depth_camera.ur
+
+ial.urdf.xacro”
+
+camera nnect .urdf.x
+
+Several URDF models are combined to create a full robot:
+
+File Name Device
+materials Color
+inertial_matrix Inertia Matrix
+
+lidar_a1 A1 Radar
+
+16
+
+
+
+=== Page 17 ===
+Hiweander Shenzhen Hiwonder Technology Co,Ltd
+
+lidar_g4 G4 Radar
+jetauto_arm Exclusive to JetAutoPro Robot
+jetauto_car JetAuto Robot
+Imu Inertial Measurement Unit
+depth_camera Depth Camera
+usb_camera USB Camera
+common Common Components or Attributes
+
+Connectors, detailing the physical
+
+connect
+connections between robot components
+gripper Claw Assembly
+arm.transmission Robotic Arm Transmission Structure
+gripper.transmission Claw Transmission Structure
+
+2.3 Brief Analysis of Robot's Main Body Model
+
+Open a new command prompt and enter the following command to open the
+
+robot model file, which contains descriptions of each part of the robot:
+
+vim jetauto_car.urdf.xacro
+
+jetauto_car.urdf.xacro
+
+
+
+
+=== Page 18 ===
+This is the start of the URDF file. It specifies the XML version and encoding
+while defining a robot model named ‘jetauto.' The “xmlIns:xacro’ namespace is
+also included to facilitate the generation of URDF using Xacro macros. This
+line of code defines a Xacro attribute called 'M_PI' and assigns it the value of
+
+the mathematical constant 1.
+
+<xacro:property name="M PI" value="3.1415926535897931"/>
+
+In this section, a link named "base_footprint" is defined as the robot's chassis.
+
+<link name="base_footprint"/>
+
+Various characteristics of the robot such as mass, width, height, and depth are
+
+specified.
+xacro:property name="base link_mass" value="1.6"
+xacro:property name="base_ link_w" value="@.30"
+xacro:property name="base_ link_h" value="@.15"
+
+xacro:property name="base_ link_d" value="0.10"
+
+Next, a joint called "base_joint" is defined with a type of "fixed", indicating it's a
+stationary joint. It connects the parent link "base_footprint" with the child link
+
+"base_link".
+
+The joint's position (origin) is determined using an xyz attribute.
+
+link name="base footprint”
+
+joint name="base joint" type="fixed"
+parent link="base_ footprint"
+child link="base_ link”
+
+origin xyz="@.0 0.0 0.005" rpy="0 @ @"
+
+joint
+
+The following code is an XML snippet that defines a link in a robot model. Let's
+
+break down and analyze its structure and purpose.
+
+18
+
+
+
+=== Page 19 ===
+HIW/E2MOCT Shenzhen Hiwonder Technology Co,Ltd
+
+The code begins with the <link> tag, which defines a link within the robot
+model. This link is named 'base_green_link.' Inside the <link> tag, there are
+
+three sections: <inertial>, <visual>, and <collision>.
+
+The <inertial> section defines the link's inertial properties, such as mass and
+inertia. It contains an <origin> tag that specifies the position and orientation of
+the inertial frame relative to the link frame. The <mass> tag specifies the link's
+mass, while the <inertia> tag defines the inertia matrix around the link's
+
+principal axes.
+
+The <visual> section defines the visual representation of the link. It also
+contains an <origin> tag that specifies the position and orientation of the visual
+frame relative to the link frame. The <geometry> tag defines the shape of the
+visual representation, which, in this case, is amesh. The <mesh> tag specifies
+the filename of the mesh file that represents the visual appearance of the link.
+Lastly, the <material> tag defines the color or texture of the visual
+
+representation, here represented by a material called ‘green.’
+
+The <collision> section defines the collision properties of the link. It is similar to
+the <visual> section but is used for collision detection rather than visualization.
+It includes an <origin> tag and a <geometry> tag that define the position,
+
+orientation, and shape of the collision representation.
+
+Overall, this code snippet defines a link in the robot model, including its inertial
+properties, visual representation, and collision attributes. In simulation or
+
+visualization environments, the mesh files specified in the <visual> and
+
+<collision> sections are used for visual representation and collision detection
+
+with the link.
+
+19
+
+
+
+=== Page 20 ===
+visual
+origin
+xyz="@ @ @"
+rpy="0 @ @"
+geometry
+
+mesh
+
+filename="package://jetauto_description/meshes/base_ link.s
+
+geometry
+material name="green"
+visual
+collision
+origin
+xyz="${base link_w/2.@ - 0.14810} @ ${0.126437/2 + @.02362364}"
+rpy="0 @ @"
+geometry
+box size="${base link_w} ${base link_h} ${base link _d}"
+geometry
+collision
+
+link
+
+The following code describes a joint named 'back_shell_joint' of type ‘fixed,’
+which means it is a fixed joint. The joint's parent link is named 'base_link,' and
+its child link is named 'back_shell_link.' The origin of the joint is located at
+(-0.076481, 0, 0.082796), with Euler angles (rpy) of (-3.1416, 0, 1.5708). The
+joint does not have a defined axis.
+
+joint
+
+name="back_shell joint"
+
+type="fixed"
+
+origin
+
+20
+
+
+
+=== Page 21 ===
+Hiweander Shenzhen Hiwonder Technology Co,Ltd
+
+XyZ=
+rpy=
+parent
+link=
+child
+link=
+axis
+XyZ=
+
+joint
+
+Next, let's take a look at the description of the link:
+
+link
+name=
+
+xacro:cylinder_inertial m=
+h=
+
+visual
+origin
+XyZ=
+rpy=
+geometry
+mesh
+
+filename=
+
+geometry
+
+material name=
+visual
+collision
+
+origin
+
+XYZ=
+
+rpy=
+
+geometry
+
+
+
+
+=== Page 22 ===
+cylinder length="${wheel_link_length}"
+radius="${wheel_link_radius}"
+
+geometry
+collision
+
+link
+
+The above code describes a link named "wheel_right_front_link", which
+contains information about its inertia (inertial), visual representation (visual),
+
+and collision shape (collision).
+
+The inertial part describes the link's mass and inertia matrix. The mass is
+0.124188560741815, and specific values are provided for the inertia matrix
+
+components.
+
+The visual part details the link's appearance, defined by a three-dimensional
+model (mesh) with the filename
+"filename="package://jetauto_description/meshes/wheel_left_front_link.stl".
+
+The link uses a material named "black".
+
+The collision part specifies the link's collision shape, also defined by a
+three-dimensional model (mesh) with the same filename as the visual part.
+joint
+name="wheel_ right_back_joint"
+type="fixed"
+origin
+xyz="-@.097397 -@.086125 @.0@4508"
+rpy="1.5708 1.5708 @"
+parent
+link="base_link"
+child
+
+link="wheel_right_back_link"
+
+joint
+
+The following code snippet is an XML fragment used to define a joint and a link
+22
+
+
+
+=== Page 23 ===
+Hiweander Shenzhen Hiwonder Technology Co,Ltd
+
+in a robot model.
+
+Joint definition:
+
+Name: "wheel_left_back_joint"
+Type: "fixed" (indicating a fixed joint)
+
+Origin: Specifies the position and orientation of the joint relative to its parent
+
+link ("base_link").
+Parent link: Specifies the parent link of the joint.
+Child link: Specifies the child link of the joint.
+
+Axis: Specifies the rotation axis of the joint. In this case, the axis is set to (0, 0,
+
+0), indicating it is a fixed joint and does not rotate.
+Link definition:
+Name: "wheel_left_back_link"
+
+Inertial: Specifies the inertial properties of the link, including mass, center of
+
+mass, and inertia matrix.
+
+Visual: Specifies the visual representation of the link, including its position,
+
+orientation, geometry (mesh), and material.
+
+Collision: Specifies the collision properties of the link, including its position,
+
+orientation, and geometry (mesh).
+
+23
+
+
+
+=== Page 24 ===
+geometry
+mesh
+
+filename="package://jetauto_description/meshes/wheel_ left_
+back_link.st1"
+
+geometry
+material name="black"
+visual
+collision
+origin
+xyz="0 @ -${wheel_link_length/2.0}"
+rpy="0 @ @"
+
+geometry
+
+cylinder length="${wheel_link_length}"
+
+radius="${wheel_link_radius}"
+
+geometry
+collision
+
+link
+
+Link Definition Name: 'wheel_right_front_link’
+
+Inertial: Defines the link's inertial properties, including mass, center of mass,
+
+and inertia.
+
+Visual: Defines the link's visual representation, including its position,
+
+orientation, geometry (mesh), and material.
+
+Collision: Defines the link's collision properties, including its position,
+
+orientation, and geometry (mesh).
+Specifically:
+
+Inertial Properties: Specifies the link's mass and inertia matrix. In this example,
+the link's mass is 0.124186629923608, and the inertia matrix components (ixx,
+
+ixy, ixZ, yy, lyZ, izz) are given specific values.
+
+24
+
+
+
+=== Page 25 ===
+Visual Properties: Defines the link's visual representation using a mesh. The
+mesh filename is
+‘package://jetauto_description/meshes/wheel_right_front_link.stl'. Additionally,
+
+the visual representation uses a material named ‘black’.
+
+Collision Properties: Specifies the link's collision properties. Here, the collision
+properties are the same as the visual properties, using the same mesh.
+link
+
+name="wheel_ right_front_link"
+
+xacro:cylinder_inertial m="${wheel_link_mass}"
+r="${wheel link _radius}" h="${wheel_link_length}"
+
+visual
+origin
+xyz="@ @ @"
+rpy="0 @ @"
+geometry
+mesh
+
+filename="package://jetauto_description/meshes/wheel right
+front_link.stl"
+
+geometry
+material name="black"
+visual
+collision
+origin
+xyz="0 @ ${wheel_link_length/2.0}"
+rpy="0 @ @"
+geometry
+
+cylinder length="${wheel_link_length}"
+radius="${wheel_link_radius}"
+
+geometry
+
+collision
+
+25
+
+
+
+=== Page 26 ===
+link
+
+@ The code below describes a fixed joint that connects two links named
+‘pase_link' and 'wheel_right_front_link.’ The joint's initial position and
+
+rotation are specified by the <origin> tag.
+
+@ name="wheel_right_front_joint": This attribute specifies the name of the
+
+joint, which is 'wheel_right_front_joint.'
+
+@ type="fixed": This attribute specifies the type of the joint, which is ‘fixed.’
+
+This means the joint is fixed and cannot move.
+
+@ <origin> tag: This tag defines the initial position and rotation of the joint.
+Specifically, it sets the joint's xyz coordinates to '0.097397 -0.086125
+0.04508' and rpy rotation angles to '1.5708 1.5708 0.'
+
+@ <parent> tag: This tag specifies the parent link of the joint, which is
+
+‘pase_link.' This means the joint is connected to the link named 'base_link.'
+
+@ <child> tag: This tag specifies the child link of the joint, which is
+‘wheel_right_front_link.' This means the joint is connected to the link
+named 'wheel_right_front_link.
+
+joint
+name="wheel right_front_joint"
+type="fixed"
+origin
+xyzZ="@.097397 -@.086125 @.04508"
+rpy="1.5708 1.5708 @"
+parent
+link="base_link"
+child
+
+link="wheel_right_front_link”
+
+joint
+
+The following describes a link named 'wheel_right_back_link,' including its
+26
+
+
+
+=== Page 27 ===
+Hiweander Shenzhen Hiwonder Technology Co,Ltd
+
+inertial, visual, and collision properties. The link's geometry uses a mesh file,
+
+and its visual properties also specify a black material.
+
+name="wheel_right_back_link": This attribute specifies the name of the
+
+link, which is 'wheel_right_back_link.'
+
+<inertial> tag: This tag defines the inertial properties of the link, including
+
+its mass and inertia matrix.
+
+<origin> tag: This tag defines the position and rotation of the link's inertial
+origin. Specifically, it sets the link's xyz coordinates to '0 0 0' and rpy
+
+rotation angles to '0 0 0.’
+
+<inertia> tag: This tag defines the inertia matrix of the link, including the
+
+values for ixx, ixy, Ixz, lyy, lyZ, and izz.
+
+<visual> tag: This tag defines the visual properties of the link, including its
+
+appearance and material.
+
+<origin> tag: This tag defines the position and rotation of the link's visual
+origin. Specifically, it sets the link's xyz coordinates to '0 0 0' and rpy
+
+rotation angles to '0 0 0.’
+
+<geometry> tag: This tag defines the geometry of the link, including a
+
+mesh file.
+
+<mesh> tag: This tag specifies the mesh file used for the link's geometry,
+specifically
+
+‘package://jetauto_description/meshes/wheel_right_back_link.stl.'
+<material> tag: This tag defines the material of the link, specifically ‘black.’
+
+<collision> tag: This tag defines the collision properties of the link,
+including its geometry.
+
+<origin> tag: This tag defines the position and rotation of the link's collision
+origin. Specifically, it sets the link's xyz coordinates to '0 0
+
+27
+
+
+
+=== Page 28 ===
+${wheel_link_length/2.0}' and rpy rotation angles to '0 0 0."
+
+@ <geometry> tag: This tag defines the geometry of the link, including a
+
+mesh file.
+
+@ <mesh> tag: This tag specifies the mesh file used for the link's geometry,
+specifically
+‘filename="package://jetauto_description/meshes/wheel_right_back_link.s
+
+tl.’
+
+link
+name="wheel right _back_ link"
+
+xacro:cylinder_inertial m="${wheel_link_mass}"
+r="${wheel link _radius}" h="${wheel_link_length}"
+
+visual
+origin
+xyz="@ @ @"
+rpy="0 @ @"
+geometry
+mesh
+
+filename="package://jetauto_description/meshes/wheel right
+
+back_link.stl"
+geometry
+material name="black"
+visual
+collision
+
+origin
+
+xyz="0 @ ${wheel_link_length/2.0}"
+
+rpy="0 @ @"
+geometry
+
+cylinder length="${wheel_link_length}"
+radius="${wheel_link_radius}"
+
+geometry
+
+28
+
+
+
+=== Page 29 ===
+Hiweander Shenzhen Hiwonder Technology Co,Ltd
+
+The following code describes a joint named 'wheel_right_back_joint’:
+
+<joint>: This is the start tag for a joint element. The name attribute is set to
+
+‘wheel_right_back_joint.'
+
+type="fixed": This joint is of type ‘fixed,’ meaning it is a fixed joint and does not
+
+allow movement.
+<origin>: This tag defines the joint's origin position and orientation.
+
+xyz="-0.097397 -0.086125 0.04508": The joint's origin position in 3D space is
+(-0.097397, -0.086125, 0.04508).
+
+rpy="1.5708 1.5708 0": The joint's origin orientation is specified using Euler
+angles, with roll, pitch, and yaw set to 1.5708, 1.5708, and 0, respectively.
+
+<parent>: This tag defines the joint's parent link.
+link="base_link": The parent link of this joint is 'base_link.'
+<child>: This tag defines the joint's child link.
+
+link="wheel_right_back_link": The child link of this joint is
+‘wheel_right_back_link.'
+
+</joint>: This is the end tag for the joint element.
+
+29
+
+
+
+=== Page 30 ===
+HIW/E2MOCT Shenzhen Hiwonder Technology Co,Ltd
+
+3. Principles of SLAM Mapping
+
+3.1 Introduction to SLAM
+
+SLAM stands for Simultaneous Localization and Mapping.
+
+Localization involves determining the pose of a robot in a coordinate system,,
+The origin of orientation of the coordinate system can be obtained from the first
+
+keyframe, existing global maps, landmarks or GPS data.
+
+Mapping involves creating a map of the surrounding environment perceived by
+the robot. The basic geometric elements of the map are points. The main
+purpose of the map is for localization and navigation. Navigation can be
+divided into guidance and control. Guidance includes global planning and local
+planning, while control involves controlling the robot's motion after the planning
+
+is done.
+
+3.2 SLAM Mapping Principle
+
+SLAM mapping mainly consists of the following three processes:
+
+1. Preprocessing: Optimizing the raw data from the radar point cloud,
+filtering out problematic data or performing filtering. Using laser as a signal
+source, pulses of laser emitted by the laser are directed at surrounding
+
+obstacles, causing scattering.
+
+30
+
+
+
+=== Page 31 ===
+Hiweander Shenzhen Hiwonder Technology Co,Ltd
+
+reflect to receiver
+
+emit lazer
+obstacle
+
+Calculate point clout data
+
+self-localization
+
+Some of the light waves will reflect back to the receiver of the lidar, and then,
+
+according to the principle of laser ranging, the distance from the lidar to the
+
+target point can be obtained.
+
+Regarding point clouds: In simple terms, the surrounding environment
+information obtained by lidar is called a point cloud. It reflects a portion of what
+the 'eyes' of the robot can see in the environment where it is located. The
+object information collected presents a series of scattered, accurate angle, and
+
+distance information.
+
+2. Matching: Matching the point cloud data of the current local environment
+with the established map to find the corresponding position.
+3) Map Fusion: Integrating new round data from the lidar into the original
+
+map, ultimately completing the map update.
+
+3.3 Notes
+
+1. Begin the mapping process by positioning the robot in front of a straight
+wall or within an enclosed box. This enhances the Lidar's capacity to capture a
+higher density of scanning points.
+
+2. Initiate a 360-degree scan of the environment using the Lidar to ensure a
+
+31
+
+
+
+=== Page 32 ===
+Hiweander Shenzhen Hiwonder Technology Co,Ltd
+
+comprehensive survey of the surroundings. This step is crucial to guarantee
+the accuracy and completeness of the resulting map.
+
+3. For larger areas, it's recommended to complete a full mapping loop before
+focusing on scanning smaller environmental details. This approach enhances
+
+the overall efficiency and precision of the mapping process.
+
+3.4 Judge Mapping Result
+
+Finally, assess the robot's navigation process against the following criteria
+
+once the mapping is complete:
+
+1) Ensure that the edges of obstacles within the map are distinctly defined.
+
+2) Check for any disparities between the map and the actual environment,
+such as the presence of closed loops or inconsistencies.
+
+3) Verify the absence of gray areas within the robot's motion area, indicating
+areas that haven't been adequately scanned.
+
+4) Confirm that the map doesn't incorporate obstacles that won't exist during
+subsequent localization.
+
+5) Validate the map's coverage of the entire extent of the robot's motion area.
+
+4. slam_toolbox Mapping Algorithm
+
+4.1 Mapping Definition
+
+Slam Toolbox software package combines information from laser rangefinders
+in the form of LaserScan messages and performs TF transformation from
+odom-> base link to create a two-dimensional map of space. This software
+package allows for fully serialized reloadable data and pose graphs of SLAM
+maps, used for continuous mapping, localization, merging, or other operations.
+
+It allows Slam Toolbox to operate in synchronous (i.e., processing all valid
+
+32
+
+
+
+=== Page 33 ===
+Hiweander Shenzhen Hiwonder Technology Co,Ltd
+
+sensor measurements regardless of delay) and asynchronous (i.e., processing
+
+valid sensor measurements whenever possible) modes.
+
+ROS replaces functionalities like gmapping, cartographer, karto, hector,
+providing comprehensive SLAM functionality built upon the powerful scan
+matcher at the core of Karto, widely used and accelerated for this package. It
+also introduces a new optimization plugin based on Google Ceres. Additionally,
+it introduces a new localization method called ‘elastic pose-graph localization,’
+which takes measured sliding windows and adds them to the graph for
+optimization and refinement. This allows for tracking changes in local features
+of the environment instead of considering them as biases, and removes these
+
+redundant nodes when leaving an area without affecting the long-term map.
+Slam Toolbox is a suite of tools for 2D Slam, including:
+
+@ Mapping, saving map pgm files
+
+@ Map refinement, remapping, or continuing mapping on saved maps
+
+@ Long-term mapping: loading saved maps to continue mapping while
+
+removing irrelevant information from new laser point clouds
+
+@ Optimizing positioning mode on existing maps. Localization mode can also
+
+be run without mapping using the ‘laser odometry' mode
+@ Synchronous, asynchronous mapping
+@ Dynamic map merging
+
+@ Plugin-based optimization solver, with a new optimization plugin based on
+
+Google Ceres
+@ Interactive RVIZ plugin
+
+@ RVIZ graphical manipulation tools for manipulating nodes and connections
+
+during mapping
+
+@ Map serialization and lossless data storage.
+33
+
+
+
+=== Page 34 ===
+Hiweander Shenzhen Hiwonder Technology Co,Ltd
+
+Laser data ‘Start
+
+Position and posture
+at the last moment+
+Odometer data=
+Get the initial pose
+
+&
+
+z ie any " canto Rough match
+covariance map Exact match
+
+Add edge
+Add vertices
+
+From the above diagram, it can be seen that the process is relatively
+straightforward. The traditional soft real-time operation mechanism of slam
+involves processing each frame of data upon entry and then returning.
+
+Relevant source code and WIKI links for KartoSLAM:
+
+@ KartoSLAM ROS Wiki: http://wiki.ros.org/slam_karto
+@ slam_karto software package:
+https://github.com/ros-perception/slam_karto
+
+@ open_karto open-source algorithm:
+
+https://github.com/ros-perception/open_karto
+
+4.2 Mapping Operation Steps
+
+1
+
+1) Click-on 5 to open the ROS2 command-line terminal.
+
+2) Execute the command to disable the app auto-start service.
+sudo systemctl stop start_app_node.service
+
+34
+
+
+
+=== Page 35 ===
+Hivws { ider Shenzhen Hiwonder Technology Co,Ltd
+3) Execute the following command to initiate mapping.
+
+ros2 launch slam slam.launch.py
+
+4) Create a new command-line terminal, and enter the command to launch
+
+the rviz tool and display the mapping results.
+
+ros2 launch slam rviz_slam.launch.py
+
+Launch slam rviz_slam.launch.py
+
+5) Open anew command line terminal, enter the command to start the
+
+keyboard control node, and press Enter:
+
+ros2 launch peripherals teleop_key_control.launch.py
+
+When you receive the following prompt, it means that the keyboard control
+
+service is enabled successfully.
+
+35
+
+
+
+=== Page 36 ===
+HIW/E9MOECT Shenzhen Hiwonder Technology Co,Ltd
+
+teleop_key_ control
+
+Control Your Robot!
+
+Moving around:
+W
+
+a $ d
+
+CTRL-C to quit
+
+6) Control the robot to move within the current space to build a more
+complete map. The table below lists the keyboard keys and their
+
+corresponding functions for controlling the robot's movement:
+
+Short press; The robot will keep moving
+WwW
+forward
+Short press; The robot will keep moving
+S)
+backward
+A Long press; Turn left
+D Long press; Turn right
+
+When controlling the robot for mapping, you can reduce its speed. A slower
+speed results in smaller relative errors in odometry, which leads to better
+mapping outcomes. As the robot moves, the RVIZ display will continuously
+
+update the map until the entire environment is mapped.
+
+4.3 Save the Map
+
+Open a new command-line terminal, and run the following command to save
+
+36
+
+
+
+=== Page 37 ===
+Hiweander Shenzhen Hiwonder Technology Co,Ltd
+
+the map, then hit Enter key.
+
+cd ~/ros2_ws/src/slam/maps && ros2 run nav2_map_server
+map_saver_cli -f "map_01" --ros-args -p
+
+map_subscribe_transient_local:=true
+
+~/ros2_ws/src/slam/maps && 2 run nav2_map_server map_saver_cli -f "map_01" --ros-args -p map_subscribe_transient_local:=true
+
+4.4 Outcome Optimization
+
+If you want to achieve more precise mapping results, you can optimize the
+odometry. The robot relies on odometry for mapping, which in turn depends on
+
+the IMU.
+
+The robot already has calibrated IMU data loaded, allowing it to perform
+mapping and navigation functions effectively. However, we can further
+calibrate the IMU to obtain higher precision. For methods and steps on
+calibrating the IMU, please refer to the section '2 Motion Control Course -> 2.
+Motion Control -> 1. IMU, Linear Velocity, and Angular Velocity
+
+Calibration.
+
+4.5 Parameter Description
+
+The parameter file can be found at the path
+
+'ros2_ws/src/slam/config/slam.yaml.'
+
+For more detailed information about the parameters, please refer to the official
+
+documentation: https://wiki.ros.org/slam_toolbox.
+
+37
+
+
+
+=== Page 38 ===
+Hiweander Shenzhen Hiwonder Technology Co,Ltd
+
+4.6 Launch File Analysis
+
+base launch Camera, Lidar and chassis
+
+slam.launch.py Started launch , Slam_launch Mapping algorithm
+
+\ bringup launch Initial pose
+
+The launch file is located at:
+/home/ubuntu/ros2_ws/src/slam/launch/slam.launch.py
+@ Import Library
+
+The launch library can be explored in detail in the official ROS documentation:
+
+https://docs.ros.org/en/humble/How-To-Guides/Launching-composable-nodes
+
+@ Set the Storage Path
+
+Use the ‘get_package_share_directory’ function to obtain the path of the slam
+
+package.
+
+@ Initiate Other Launch File
+
+38
+
+
+
+=== Page 39 ===
+Hiweander Shenzhen Hiwonder Technology Co,Ltd
+
+ript yn
+
+base_launch: Launch for hardware initialization
+
+slam_launch: Launch for basic mapping
+
+bringup_launch: Launch for initial pose setup
+
+5. RTAB-VSLAM 3D Vision Mapping & Navigation
+
+5.1 RTAB-VSLAM Description
+
+RTAB-VSLAM is a appearance-based real-time 3D mapping system, it's an
+open-source library that achieves loop closure detection through memory
+management methods. It limits the size of the map to ensure that loop closure
+detection is always processed within a fixed time limit, thus meeting the
+
+requirements for long-term and large-scale environment online mapping.
+5.2 RTAB-VSLAM Working Principle
+
+RTAB-VSLAM 3D mapping employs feature mapping, offering the advantage
+
+of rich feature points in general scenes, good scene adaptability, and the ability
+39
+
+
+
+=== Page 40 ===
+Hiweander Shenzhen Hiwonder Technology Co,Ltd
+
+to use feature points for localization. However, it has drawbacks, such as a
+time-consuming feature point calculation method, limited information usage
+leading to loss of image details, diminished effectiveness in weak-texture
+
+areas, and susceptibility to feature point matching errors, impacting results
+
+significantly.
+
+After extracting features from images, the algorithm proceeds to match
+features at different timestamps, leading to loop detection. Upon completion of
+matching, data is categorized into long-term memory and short-term memory.
+Long-term memory data is utilized for matching future data, while short-term
+
+memory data is employed for matching current time-continuous data.
+
+During the operation of the RTAB-VSLAM algorithm, it initially uses short-term
+memory data to update positioning points and build maps. As data from a
+specific future timestamp matches long-term memory data, the corresponding
+long-term memory data is integrated into short-term memory data for updating
+
+positioning and map construction.
+
+a Po
+
+/ ‘Long-term \ / short-term \
+
+a memory data match memory data | match nae
+/ Lidar and \ = See
+| depth
+\ camera / an
+ce ed / short-term \
+match }|—— map
+
+memory data
+
+RTAB-VSLAM software package link: https://github.com/introlab/rtabmap
+
+5.3 RTAB-VSLAM 3D Mapping Instructions
+
+1) Click on | on the system desktop to open the ROS2 command-line
+terminal. Then run the command to disable the app auto-start service:
+
+sudo systemctl stop start_app_node.service
+40
+
+
+
+=== Page 41 ===
+Hiwoander Shenzhen Hiwonder Technology Co,Ltd
+
+stop start_app_node.service
+
+2) Execute the command to start mapping:
+
+ros2 launch slam rtabmap_slam.launch.py
+
+3) Create a new command-line terminal, and enter the command to open the
+
+RViz tool and display the mapping effect:
+
+ros2 launch slam rviz_rtabmap.launch.py
+
+Launch slam rviz_rtabmap.launch.py
+
+/empfemp43ifinin® - RViz
+
+FocusCamera S=Measure 2D PoseEstimate  2DGoalPose @ PublishPoint =
+
+Rate
++ ¥ Global Status: ok
+
+acl d
+Frame
+
+“> LaserScan
+> ih, RobotModel
+
+A » FE map
++ ® Mapcloud
+» © mapGraph
+
+Create Map Tool
+t-) Interactive Mode Accept New Scans
+Clear Changes Save Changes
+& Save Map
+Serialize Map
+i) Deserialize Map
+= ‘© Start At Dock ‘Start At Pose Est. Start At Curr. Odom Localize
+3 | x y 8
+Clear Measurement Queve
+Merge Map Tool
+Add Submap
+
+Generate Map
+
+Reset Left-Click: Rotate, Middle-Click: Move X/Y. Right-Click/Mouse Wheel: Zoom. Shift: More options. 31 fps
+
+4) Create a new command-line terminal, and enter the command to start the
+
+keyboard control node, and press Enter.
+
+ros2 launch peripherals teleop_key_control.launch.py
+
+If you encounter the prompt as shown in the figure below, it means that the
+
+keyboard control service has been successfully activated.
+
+41
+
+
+
+=== Page 42 ===
+HIW/E9MOECT Shenzhen Hiwonder Technology Co,Ltd
+
+teleop_key_ control
+
+Control Your Robot!
+
+Moving around:
+W
+
+a $ d
+
+CTRL-C to quit
+
+5) Control the robot to move in the current space to build a more complete
+map. The table below shows the keyboard keys available for controlling
+
+robot movement and their corresponding functions:
+
+Short press to switch to the forward
+WwW
+state and continuously move forward
+Short press to switch to the backward
+S)
+state and continuously move backward
+Long press to interrupt the forward or
+A
+backward state and turn left
+Long press to interrupt the forward or
+D
+backward state and turn right
+
+When controlling the robot's movement for mapping using the keyboard, it's
+advisable to appropriately reduce the robot's movement speed. The smaller
+the robot's running speed, the smaller the relative error of the odometry,
+resulting in a better mapping effect. As the robot moves, the map displayed in
+RVIZ will continuously expand until the entire environmental scene's map
+
+construction is completed.
+
+42
+
+
+
+=== Page 43 ===
+HIW/E9MOECT Shenzhen Hiwonder Technology Co,Ltd
+5.4 Map Saving
+
+After mapping is completed, you can use the shortcut "Ctrl+C" in each
+
+command-line terminal window to close the currently running program.
+
+Note: For 3D mapping, there's no need to manually save the map. When you use
+
+"Ctrl+C" to close the mapping command, the map will be automatically saved.
+
+5.5 launch File Analysis
+
+base launch Camera, Lidar, Chassis
+
+' slam_launch Mapping algorithm
+rtabmap_slam.launch.py Enabled launch —
+= | rtabmap_ launch 3D mapping algorithm
+
+bringup launch _ Initial pose
+
+The launch file is located at:
+/home/ubuntu/ros2_ws/src/slam/launch/rtabmap_slam.launch.py
+@ Import Library:
+
+You can refer to the ROS official documentation for detailed analysis of the
+
+launch library:
+
+“https://docs.ros.org/en/humble/How-To-Guides/Launching-composable-node
+
+s.html”
+
+@ Set the Storage Path
+
+Use “get_package_share_directory’ to obtain the path of the slam package.
+
+43
+
+
+
+=== Page 44 ===
+@ Initiate Other Launch File
+
+4 HEN SRR EC TAB oe
+
+aunch]
+Jy
+
++t HENS CT SB aber
+
+base_launch: Launch for hardware initialization
+slam_launch: Basic mapping launch
+rtabmap_launch: RTAB mapping launch
+
+bringup_launch: Initial pose launch
+
+44
+
+

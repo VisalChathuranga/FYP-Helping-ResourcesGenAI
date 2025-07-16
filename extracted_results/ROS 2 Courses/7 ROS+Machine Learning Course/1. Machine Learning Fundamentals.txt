@@ -1,0 +1,278 @@
+
+=== Page 1 ===
+ht IW/EM Oo er Shenzhen Hiwonder Technology Co,Ltd
+
+Machine Learning Fundamentals
+
+
+
+
+=== Page 2 ===
+Hiweander Shenzhen Hiwonder Technology Co,Ltd
+
+Catalog
+
+Machine Learning Fundamentals ............ cc cece cece eee cece eee teenies
+1. Machine Learning Introduction ........... cece ce ec e eee eee eee ees
+1.1 What “Machine Learning” is ........... cece cece eee eee e teenies
+
+1.3 Types of Machine Learning ........... cee ccc eee eee eee eee tenes
+1.3.1 Supervised Learning .......... cece ccc cece cee eee tenes
+
+1.3.2 Unsupervised Learning .......... cece eee eee eee eee eee eee
+
+2. Machine Learning Library Introduction .......... cc cee eee eee eee eee eee
+2.1 Common Type of Machine Learning Framework ............-..eeeeee
+2.1.1 PYTOPCh 22... ccc ccc cece ee eee eee eee eee ee eee etree eeeees
+2.1.2 TENSOFflOW 2... ec ccc cc cee eee eee eee eee eee eee e ees
+2.1.3 PaddlePaddle .. 1... cc ec ccc ccc cece cece eee eee eee eee eee
+
+214A MXNet 2... cc cece ccc cee ce eee eee tere eee eee teen eee eee
+
+
+
+=== Page 3 ===
+Hiweander Shenzhen Hiwonder Technology Co,Ltd
+
+1. Machine Learning Introduction
+
+1.1 What “Machine Learning” is
+
+Machine Learning forms the cornerstone of artificial intelligence, serving as the
+fundamental approach to endow machines with intelligence. It spans multiple
+interdisciplinary fields such as probability theory, statistics, approximation
+
+theory, convex analysis, and algorithm complexity theory.
+
+WES FJ FRE
+(Observation) fi (Learning) (Skills)
+
+Hla se > FR AE
+(Machine Learning) , (Skills)
+
+In essence, machine learning explores how computers can acquire new
+knowledge or skills by mimicking human learning behaviors and continuously
+enhancing their performance by reorganizing existing knowledge structures.
+Practically, it entails utilizing data to train models and leveraging these models
+
+for predictions.
+
+For instance, consider AlphaGo, the pioneering artificial intelligence system
+that triumphed over human professional Go players and even world
+champions. AlphaGo operates on the principles of deep learning, wherein it
+discerns the intrinsic laws and representation layers within sample data to
+
+extract meaningful insights.
+
+
+
+=== Page 4 ===
+Hiweander Shenzhen Hiwonder Technology Co,Ltd
+
+1.3 Types of Machine Learning
+
+Machine learning can be broadly categorized into two types: supervised
+learning and unsupervised learning. The key distinction between these two
+types lies in whether the machine learning algorithm has prior knowledge of
+
+the classification and structure of the dataset.
+1.3.1 Supervised Learning
+
+Supervised learning involves providing a labeled dataset to the algorithm,
+where the correct answers are known. The machine learning algorithm uses
+this dataset to learn how to compute the correct answers. It is the most
+
+commonly used type of machine learning.
+
+For instance, in image recognition, a large dataset of dog pictures can be
+provided, with each picture labeled as "dog". This labeled dataset serves as
+the "correct answer". By learning from this dataset, the machine can develop
+
+the ability to recognize dogs in new images.
+
+
+
+=== Page 5 ===
+Model Selection: In supervised learning, selecting the right model to represent
+
+the data relationship is crucial. Common supervised learning models
+encompass linear regression, logistic regression, decision trees, support
+vector machines (SVM), and deep neural networks. The choice of model
+
+hinges on the data's characteristics and the problem's nature.
+
+Feature Engineering: Feature engineering involves preprocessing and
+transforming raw data to extract valuable features. This encompasses tasks
+like data cleaning, handling missing values, normalization or standardization,
+feature selection, and feature transformation. Effective feature engineering can
+
+significantly enhance model performance and generalization capabilities.
+
+Training and Optimization: Leveraging labeled training data, we can train the
+model to capture the data relationship. Training typically involves defining a
+loss function, selecting an appropriate optimization algorithm, and iteratively
+adjusting model parameters to minimize the loss function. Common
+
+optimization algorithms include gradient descent and stochastic gradient
+
+5
+
+
+
+=== Page 6 ===
+Hiwoander Shenzhen Hiwonder Technology Co,Ltd
+
+descent.
+
+Model Evaluation: Upon completing training, evaluating the model's
+performance on new data is essential. Standard evaluation metrics include
+accuracy, precision, recall, F1 score, and ROC curve. Assessing a model's
+
+performance enables us to gauge its suitability for practical applications.
+
+In summary, supervised learning entails utilizing labeled training data to train a
+model for predicting or classifying new unlabeled data. Key steps encompass
+selecting an appropriate model, conducting feature engineering, training and
+optimizing the model, and evaluating its performance. Together, these
+
+components constitute the foundational elements of supervised learning.
+1.3.2 Unsupervised Learning
+
+Unsupervised learning involves providing an unlabeled dataset to the
+algorithm, where the correct answers are unknown. In this type of machine
+learning, the machine must mine potential structural relationships within the
+
+dataset.
+
+For instance, in image classification, a large dataset of cat and dog pictures
+can be provided without any labels. Through unsupervised learning, the
+
+machine can learn to divide the pictures into two categories: cat pictures and
+
+dog pictures.
+
+
+
+
+=== Page 7 ===
+Hiweander Shenzhen Hiwonder Technology Co,Ltd
+
+2. Machine Learning Library Introduction
+
+2.1 Common Type of Machine Learning Framework
+
+There are a large variety of machine learning frameworks. Among them,
+
+PyTorch, Tensorflow, MXNet and paddlepaddle are common.
+
+2.1.1 PyTorch
+
+PyTorch is a powerful open-source machine learning framework, originally
+based on the BSD License Torch framework. It supports advanced
+multidimensional array operations and is widely used in the field of machine
+learning. PyTorch, built on top of Torch, offers even greater flexibility and
+functionality. One of its most distinguishing features is its support for dynamic
+
+computational graphs and its Python interface.
+
+In contrast to TensorFlow's static computation graph, PyTorch's computation
+graph is dynamic. This allows for real-time modifications to the graph as
+computational needs change. Additionally, PyTorch enables developers to
+accelerate tensor calculations using GPUs, create dynamic computational
+graphs, and automatically calculate gradients. This makes PyTorch an ideal
+choice for machine learning tasks that require flexibility, soeed, and powerful
+
+O PyTorcn
+
+2.1.2 Tensorflow
+
+TensorFlow is a powerful open-source machine learning framework that allows
+
+users to quickly construct neural networks and train, evaluate, and save them.
+
+7
+
+
+
+=== Page 8 ===
+Hiweander Shenzhen Hiwonder Technology Co,Ltd
+
+It provides an easy and efficient way to implement machine learning and deep
+learning concepts. TensorFlow combines computational algebra with
+optimization techniques to make the calculation of many mathematical
+
+expressions easier.
+
+One of TensorFlow's key strengths is its ability to run on machines of varying
+sizes and types, including supercomputers, embedded systems, and
+everything in between. TensorFlow can also utilize both CPU and GPU
+computing resources, making it an extremely versatile platform. When it
+comes to industrial deployment, TensorFlow is often the most suitable machine
+learning framework due to its robustness and reliability. In other words,
+TensorFlow is an excellent choice for deploying machine learning applications
+
+in a production environment.
+
+TensorFlow
+
+
+
+
+=== Page 9 ===
+Hiweander Shenzhen Hiwonder Technology Co,Ltd
+
+2.1.3 PaddlePaddle
+
+PaddlePaddle is a cutting-edge deep learning framework developed by Baidu,
+which integrates years of research and practical experience in deep learning.
+PaddlePaddle offers a comprehensive set of features, including training and
+inference frameworks, model libraries, end-to-end development kits, and a
+variety of useful tool components. It is the first open-source, industry-level
+deep learning platform to be developed in China, offering rich and powerful
+
+features to developers worldwide.
+
+Deep learning has proven to be a powerful tool in many machine learning
+applications in recent years. From image recognition and speech recognition
+to natural language processing, robotics, online advertising, automatic medical
+diagnosis, and finance, deep learning has revolutionized the way we approach
+these fields. With PaddlePaddle, developers can harness the power of deep
+
+learning to create innovative and cutting-edge applications that meet the
+
+needs of users and businesses alike.
+
+4>/-
+
+PaddlePaddle © #
+
+2.1.4 MXNet
+
+MXNet is a top-tier deep learning framework that supports multiple
+
+programming languages, including Python, C++, Scala, R, and more. It
+
+
+
+=== Page 10 ===
+Hiweander Shenzhen Hiwonder Technology Co,Ltd
+
+features a dataflow graph similar to other leading frameworks like TensorFlow
+and Theano, as well as advanced features such as robust multi-GPU support
+and high-level model building blocks comparable to Lasagne and Blocks.
+MXNet can run on virtually any hardware, including mobile phones, making it a
+
+versatile choice for developers.
+
+MXNet is specifically designed for efficiency and flexibility, with accelerated
+libraries that enable developers to leverage the full power of GPUs and cloud
+computing. It also supports distributed computing across dynamic cloud
+architectures via distributed parameter servers, achieving near-linear scaling
+with multiple GPUs/CPUs. Whether you're working on a small-scale project or
+a large-scale deep learning application, MXNet provides the tools and support
+
+you need to succeed.
+
+10
+
+

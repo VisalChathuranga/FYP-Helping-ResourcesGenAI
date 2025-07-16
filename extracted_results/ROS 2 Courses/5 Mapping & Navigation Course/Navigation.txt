@@ -1,0 +1,1528 @@
+
+=== Page 1 ===
+a IWE) M Oo = t Shenzhen Hiwonder Technology Co,Ltd
+
+Navigation Tutorial
+
+
+
+
+=== Page 2 ===
+Hiwoander Shenzhen Hiwonder Technology Co,Ltd
+Catalog
+
+1. ROS Robot Autonomous Navigation ............ cece eee cece eee eee eee
+sas is DY -<101 | ©) (0) 9 PP
+1.2 Package Explanation .......... cece ccc ee eee ee eee eee eee nee
+1.2.1 Principle Structure Framework Explanation ..............0. eee ewes
+1.2.2 Feature Pack Installation ......... ccc ccc ccc ee ee cee ee ee eee
+
+2 AMCL Adaptive Monte Carlo Positioning ............. cee eee eee eee eee
+2.1 AMCL Positioning ....... cece cc ccc eee cece reece eee eees
+2.2 Particle Filter... ... ccc ccc ccc ce eee eee eee eee reece eee eens 10
+2.3 Adaptive Monte Carlo Positioning ............ cece eee ee eee eee 12
+2 © 05) a] = | © 13
+2.5 Global Path Planning .......... cc cece eee cece cece eee eee eee eens 17
+
+3 Local Path Planning .......... cece cece cece e ee eee ee eee eee eee eens 23
+3.1 DWAAIgorithm 2.2.6... cc cc ccc ce ect eee eee eee eee e eee eens 24
+3.2 TEBAIgOrithm 2.6... cc ec eect ee ee eee eee teen e eens 27
+
+4 Point-to-Point and Multi-Point Navigation and Obstacle Avoidance ........... 32
+4.1 Point-to-Point Navigation .......... cece cece cee eee eee eee eens 33
+4.2 Multi-Point Navigation ........ cece ccc eee eee eee eee ee eens 35
+4.3 Launch Description ........ ccc cece ccc ccc eee cece eee eee teen eee 38
+4.4 Feature Pack Description ......... cece ec cee ee eee ee eee eee 39
+
+5. RTAB-VSLAM 3D Navigation ........ 0. cc ec ccc cee cece eee e tenes 40
+
+
+
+=== Page 3 ===
+| IW) | Oo =) t Shenzhen Hiwonder Technology Co,Ltd
+
+5.1 Algorithm Introduction & Principle .......... cece cee eee eens 40
+
+5.2 Robot Operations 0.0... . ccc ccc cece cc eee eee eee ee eee eaes 40
+
+
+
+=== Page 4 ===
+| IW) | Oo =) t Shenzhen Hiwonder Technology Co,Ltd
+
+1. ROS Robot Autonomous Navigation
+
+1.1 Description
+
+Autonomous navigation involves guiding a device along a predefined route
+
+from one point to another. It finds application in various domains:
+
+Land Applications: Including autonomous vehicle navigation, vehicle tracking
+and monitoring, intelligent vehicle information systems, Internet of Vehicles
+
+applications, railway operation monitoring, etc.
+
+Navigation Applications: Encompassing ocean transportation, inland waterway
+
+shipping, ship berthing and docking, etc.
+
+Aviation Applications: Such as route navigation, airport surface monitoring,
+
+precision approach, etc.
+
+ROS (Robot Operating System) follows the principle of leveraging existing
+solutions and provides a comprehensive set of navigation-related function
+packages. These packages offer universal implementations for robot
+navigation, sparing developers from dealing with complex low-level tasks like
+navigation algorithms and hardware interactions. Managed and maintained by
+
+professional R&D personnel, these implementations allow developers to focus
+
+
+
+=== Page 5 ===
+Hiwoander Shenzhen Hiwonder Technology Co,Ltd
+
+on higher-level functions. To utilize the navigation function, developers simply
+need to configure relevant parameters for their robots in the provided
+configuration files. Custom requirements can also be accommodated through
+secondary development of existing packages, enhancing research and
+
+development efficiency and expediting product deployment.
+
+In summary, ROS's navigation function package set offers several advantages
+for developers. Developed and maintained by a professional team, these
+packages provide stable and comprehensive functionality, allowing developers
+to concentrate on upper-layer functions, thus streamlining development
+
+processes.
+
+1.2 Package Explanation
+
+This section will provide a detailed analysis and explanation of the navigation
+
+function package, including the usage of parameters.
+1.2.1 Principle Structure Framework Explanation
+
+The Nav2 project inherits and promotes the spirit of the ROS Navigation Stack.
+The project strives to safely navigate mobile robots from point A to point B.
+Nav2 can also be applied to other applications, including robot navigation
+tasks such as dynamic point tracking, which involves dynamic path planning,
+
+velocity calculation, obstacle avoidance, and recovery behaviors.
+
+Nav2 utilizes behavior trees to invoke modular servers to accomplish an action.
+These actions can involve path computation, control forces, recovery, or any
+other navigation-related operation. These are achieved through independent
+nodes communicating with ROS Action servers and the behavior tree (BT).
+You can refer to the diagram below for a preliminary understanding of Nav2's
+
+architecture:
+
+
+
+=== Page 6 ===
+| IWE) M Oo = t Shenzhen Hiwonder Technology Co,Ltd
+
+TF Transforms
+
+——
+
+tf2_msgs/msg/TFMessage
+
+map
+
+|-
+
+Recovery Plugins
+
+Control Plugins
+
+a
+CMd_VeEl  * seomety msasimsorTwist
+
+Robot Base
+Controller
+
+(—
+Behavior Tree Plugins
+BT Navigator Server GE
+oo [FP Te
+Recovery Controller Planner
+Server Server Server
+
+Planning Plugins
+
+Behavior Tree
+
+XML
+
+Sensor Data
+
+Topic ——»
+
+gs/msg/PointCloud2
+
+Action «<——»
+
+CP = ComputePathToPose
+FP = FollowPath
+
+The architecture diagram above can be further explained as one major
+
+component and three minor components, totaling four services.
+
+Major:
+
+BT Navigator Server: This service organizes and invokes the following three
+
+minor services.
+
+Minor:
+
+Planner Server: Responsible for path planning, the planner server computes
+
+paths based on selected naming conventions and algorithms. These paths are
+
+essentially routes calculated on the map.
+
+
+
+=== Page 7 ===
+Hiwoander Shenzhen Hiwonder Technology Co,Ltd
+
+Controller Server: Also known as the local planner in ROS 1, this server
+provides the method for the robot to follow the globally computed path or
+complete local tasks. In simple terms, it controls the robot's movement based
+
+on the planned route.
+
+Recovery Server: The backbone of the fault-tolerant system, the recovery
+server handles unknown or faulty conditions autonomously. Its goal is to
+manage unexpected situations the robot may encounter and recover
+autonomously. For example, if the robot falls into a hole while moving, the
+
+recovery server finds a way to get it out.
+
+By continuously switching between planning paths, controlling the robot along
+the path, and autonomously recovering from issues, the robot achieves
+
+autonomous navigation.
+
+During robot navigation, relying solely on the original map generated by SLAM
+is insufficient. The robot may encounter new obstacles during movement, or it
+may find that obstacles in certain areas of the original map have disappeared.
+Therefore, the maintained map during robot navigation is dynamic. Depending
+on the update frequency and purpose, it can be categorized into the following
+
+two types:
+Global Costmap:
+
+The global costmap is mainly used for global path planners. As seen in the
+
+structure diagram above, it is located within the Planner Server.
+It typically includes the following layers:
+
+Static Map Layer: This layer consists of the static map usually created by
+
+SLAM.
+
+Obstacle Map Layer: This layer is used to dynamically record obstacle
+
+information perceived by sensors.
+
+
+
+=== Page 8 ===
+HIVW/E9MCOECT Shenzhen Hiwonder Technology Co,Ltd
+
+Inflation Layer: This layer inflates (expands outward) the maps from the
+
+previous two layers to prevent the robot's shell from colliding with obstacles.
+Local Costmap:
+
+The local costmap is primarily used for the local path planner, as seen in the
+Controller Server in the architecture diagram above. It typically consists of the
+
+following layers:
+
+Obstacle Map Layer: This layer records dynamically sensed obstacle
+
+information from sensors.
+
+Inflation Layer: This layer inflates (expands outward) on top of the obstacle
+
+map layer to prevent the robot's shell from colliding with obstacles.
+
+1.2.2 Feature Pack Installation
+
+The navigation system takes navigation goals, localization information, and
+map information as inputs to produce the actual control commands for the
+robot. First, the robot's current location must be known, then the target
+
+destination needs to be specified.
+
+There are two methods to install the navigation package. The first method is to
+
+install it directly into the system using apt-get with the following commands:
+
+“sudo apt install ros-*-navigation2”
+
+install ros -humble-navigation2ff
+
+“sudo apt install ros-*-nav2-bringup”
+
+install ros-humble-nav2-bringu
+
+Note: * represents your specific ROS 2 version. To check your ROS 2 version,
+
+enter the following command in the terminal: ‘echo $ROS_DISTRO’.
+
+8
+
+
+
+=== Page 9 ===
+Hiwoander Shenzhen Hiwonder Technology Co,Ltd
+
+SROS_DI STRO
+humble
+
+You have two options: you can either download the package's source code,
+
+compile it manually, and install it, or you can opt for a binary installation for
+convenience and speed if you're only using the navigation package for
+learning purposes. If you need to modify the code in the package to improve
+the algorithm, you'll have to install it from source. For detailed installation
+
+methods, please refer to the video tutorial.
+
+For more information about the navigation functionality, visit the wiki link:
+
+https://wiki.ros.org/Robots/Nav2
+
+Note: The navigation package is already pre-installed on this robot, so users do not
+
+need to install it again.
+
+2 AMCL Adaptive Monte Carlo Positioning
+
+2.1 AMCL Positioning
+
+Positioning involves determining the robot's position in the global map. While
+SLAM also includes positioning algorithm implementation, SLAM's positioning
+is utilized for building the global map and occurs before navigation begins.
+Current positioning, on the other hand, is employed during navigation, where
+the robot needs to move according to the designated route. Through
+positioning, it can be assessed whether the robot's actual trajectory aligns with
+
+expectations.
+
+The AMCL (Adaptive Monte Carlo Localization) system, provided in the ROS
+
+navigation function package ros-navigation, facilitates robot positioning during
+
+
+
+=== Page 10 ===
+Hiwoander Shenzhen Hiwonder Technology Co,Ltd
+
+navigation. AMCL utilizes the adaptive Monte Carlo positioning method and
+
+employs particle filters to compute the robot's position based on existing maps.
+
+Positioning addresses the association between the robot and obstacles, as
+path planning fundamentally involves decision-making based on surrounding
+obstacles. While theoretically, completing the navigation task only requires
+knowledge of the robot's global positioning and real-time obstacle avoidance
+using laser radar and other sensors, the real-time performance and accuracy
+of global positioning are typically limited. Local positioning from odometry,
+IMUs, etc., ensures the real-time performance and accuracy of the robot's
+motion trajectory. The amcl node in the navigation function package provides
+global positioning by publishing map_odom. However, users can substitute
+amcl global positioning with other methods that provide map_odom, such as
+
+SLAM, UWB, QR code positioning, etc.
+
+Global positioning and local positioning establish a dynamic set of tf
+coordinates map_odom base_footprint, with static tf coordinates between
+various sensors in the robot provided through the robot URDF type. This TF
+relationship resolves the association problem between the robot and obstacles.
+For instance, if the lidar detects an obstacle 3m ahead, the tf coordinates
+between the lidar and the robot chassis, base_link to laser_link, are utilized.
+Through standard transformation, the relationship between the obstacle and
+
+the robot chassis can be determined.
+
+2.2 Particle Filter
+
+The Monte Carlo positioning process simulates particle updates for a
+one-dimensional robot. Initially, a group of particles is randomly generated,
+with each particle representing a potential position, direction, or state variable
+
+that requires estimation. Each particle is assigned a weight indicating its
+
+10
+
+
+
+=== Page 11 ===
+| iIiwWeonder Shenzhen Hiwonder Technology Co,Ltd
+
+similarity to the actual system state. Next, the state of each particle at the next
+time step is predicted, and particles are moved based on the anticipated
+behavior of the real system. The weights of the particles are then updated
+based on measurements. Particles that closely match the measured value
+receive higher weights and are resampled, while highly unlikely particles are
+discarded and replaced with more probable ones. Finally, the weighted
+average and covariance of the particle set are calculated to derive the state
+
+estimate.
+
+n = 8500, 7 = 3.1840
+
+Monte Carlo methods generally follow a specific pattern:
+
+1. Define possible input fields.
+
+2. Randomly generate inputs from a probability distribution over the domain.
+3. Perform deterministic calculations on inputs.
+
+4. Summarize results.
+
+Two important considerations are:
+
+1. Ifthe points are not uniformly distributed, the approximation effect will be
+
+poor.
+
+2. This process requires many points. The approximation is usually poor if
+only a few points are randomly placed throughout the square. On average,
+
+the accuracy of the approximation improves as more points are placed.
+
+11
+
+
+
+=== Page 12 ===
+Hiwoander Shenzhen Hiwonder Technology Co,Ltd
+
+The Monte Carlo particle filter algorithm finds applications in various fields,
+including physical science, engineering, climatology, and computational
+
+biology.
+
+2.3 Adaptive Monte Carlo Positioning
+
+AMCL can be viewed as an enhanced iteration of the Monte Carlo positioning
+algorithm, designed to boost real-time performance by employing a reduced
+number of samples compared to the traditional method, thereby minimizing
+execution time. It implements an adaptive or KLD sampling Monte Carlo
+localization method, utilizing particle filtering to track a robot's pose against an
+
+existing map.
+
+The Adaptive Monte Carlo positioning nodes primarily utilize laser scanning
+and lidar maps to exchange messages and perform pose estimation
+calculations. The implementation process entails initializing the adaptive
+Monte Carlo positioning algorithm's particle filter for each parameter provided
+by the ROS system during initialization. In instances where the initial pose is
+not specified, the algorithm assumes that the robot commences its journey
+from the origin of the coordinate system, resulting in a more intricate
+
+calculation process.
+
+Hence, it is advisable to set the initial pose using the "2D Pose Estimate"
+button in rviz. For further information on Adaptive Monte Carlo positioning, you
+can also refer to the wiki address link:
+
+https://github.com/ros-planning/navigation
+
+12
+
+
+
+=== Page 13 ===
+bf iIiwWeonder Shenzhen Hiwonder Technology Co,Ltd
+2.4 Cost Map
+
+Regardless of whether it's a 2D or 3D SLAM map generated by LIDAR or a
+depth camera, it cannot be directly employed for actual navigation. Instead, it
+needs to be converted into a costmap. In ROS, the costmap typically adopts a
+grid format, where each grid cell in the raster map occupies 1 byte (8 bits). This
+
+allows for data storage ranging from 0 to 255, representing different cell costs.
+
+The costmap only requires consideration of three scenarios: occupied (barrier),
+
+free area (barrier-free), and unknown space.
+
+Before delving into costmap_ 2d, it's important to introduce the Bresenham
+algorithm. This algorithm is utilized to draw a straight line between two points
+by calculating the closest point of a line segment on an n-dimensional raster. It
+
+relies solely on relatively fast integer operations such as addition, subtraction,
+
+and bit shifting, making it a fundamental algorithm in computer graphics.
+
+x
+(startX, startY)
+
+CASE
+aaaS
+
+(endX, endY)
+
+To construct a set of virtual grid lines, we begin by passing them through the
+pixel centers of each row and column. The intersection points of these straight
+
+lines with each vertical grid line are calculated sequentially, starting from the
+
+13
+
+
+
+=== Page 14 ===
+HIVW/E9MCOECT Shenzhen Hiwonder Technology Co,Ltd
+
+line's origin and moving towards its endpoint. Subsequently, the pixel closest
+to each intersection point within the pixel column is determined based on the
+
+sign of the error term.
+
+The core concept of the algorithm relies on the assumption that k=dy/dx,
+where k represents the slope. Since the straight line originates from the center
+of a pixel, the initial error term d is set to d(0=0. With each increment in the
+subscript X, d increases by the slope value k, i.e., d=d+k. When d21, 1 is
+subtracted from it to ensure that d remains between 0 and 1. If d20.5, the pixel
+closest to the upper-right of the current pixel is considered (i.e., (x+1,y+1));
+otherwise, it's closer to the pixel on the right (i.e.,(x+1,y)). For ease of
+calculation, let e=d-0.5; initially, e is set to -0.5, and it increments by k. When
+e20, the upper-right pixel of the current pixel (xi, yi) is selected, and when e<0,
+the pixel closer to the right (x+1,y) is chosen instead. Integers are preferred to
+avoid division. Since the algorithm only uses the sign of the error term, it can
+
+be replaced as follows: e1 = 2*e*dx.
+
+14
+
+
+
+=== Page 15 ===
+| iIiwWeonder Shenzhen Hiwonder Technology Co,Ltd
+
+LayeredCostmap
+
+Plugin Combination
+
+InflationLayer ObstacleLayer VoxelLayer
+Inherit
+
+Inherit
+
+CostmapLayer
+
+Inherit
+
+Costmap2D
+
+The Costmap2D class is responsible for managing the cost value of each
+
+raster. Meanwhile, the Layer class serves as a virtual base class,
+standardizing the interfaces of costmap layers for each plugin. Key interface
+
+functions include:
+
+The initialize function, which invokes the onlnitialize function to initialize each
+
+costmap layer individually.
+
+The matchSize function, found in the StaticLayer and ObstacleLayer classes,
+ensures consistency across costmap layers by calling the matchSize function
+of the CostmapLayer class. This initialization process sets the size, resolution,
+origin, and default cost value of each layer. In the inflationLayer class, a cost
+table is computed based on the expansion radius, enabling subsequent cost
+
+value queries based on distance. Additionally, the seen_ array is defined to
+
+15
+
+
+
+=== Page 16 ===
+Hiwoander Shenzhen Hiwonder Technology Co,Ltd
+
+mark traversed rasters. For the VoxelLayer class, initialization involves setting
+
+the size of the voxel grid.
+
+The updateBounds function adjusts the size range of the current costmap layer
+requiring updates. For the StaticLayer class, the update range is determined
+by the size of the static map (typically used in global costmaps). Conversely,
+the ObstacleLayer class determines obstacle boundaries by traversing sensor
+
+data in clearing_observations.
+
+The initialize and matchSize functions are executed only once each, while
+updateBounds and updateCosts are performed periodically, their frequency
+
+determined by map_update_ frequency.
+
+The CostmapLayer class inherits from both the Layer class and the
+Costmap2D class, providing various methods for updating cost values. The
+StaticLayer and ObstacleLayer classes, needing to retain cost values of
+instantiated layers, also inherit from CostmapLayer. The StaticLayer updates
+its costmap using static raster map data, whereas the ObstacleLayer employs
+sensor data for updates. In contrast, the VoxelLayer class considers z-axis
+data more extensively, particularly in obstacle clearance. This distinction
+primarily affects obstacle removal, with two-dimensional clearance in one case
+
+and three-dimensional clearance in the other.
+
+16
+
+
+
+=== Page 17 ===
+| IWEDM Oo er Shenzhen Hiwonder Technology Co,Ltd
+
+Main layer: Utilized for path planning.
+Inflation layer: Creates an expansion effect around obstacles.
+Object layer: Describes pedestrians or specific obstacles.
+
+Rules layer: Contains descriptions related to traffic regulations.
+
+Corridor layer: Specifies driving directions within corridors, such as
+
+driving on the right.
+
+Ultrasonic layer: Describes obstacles detected by ultrasonic sensors.
+Obstacle layer: Identifies obstacles detected by sensors like lidar.
+Hazard layer: Highlights specific hazardous areas.
+
+Map layer: Externally loaded static raster map.
+
+Costmap measurement barriers offer remarkable flexibility. You can tailor a
+
+specific layer to your requirements, thereby managing pertinent barrier
+information effectively. For instance, if your robot is equipped solely with
+LIDAR, you'll need to establish an Obstacles layer to handle obstacle data
+scanned by the LIDAR. In case ultrasonic sensors are integrated into the robot,
+creating a new Sonar layer becomes necessary to manage obstacle
+information from the sonic sensor. Each layer can define its own rules for
+obstacle updates, encompassing tasks such as obstacle addition, deletion,
+and confidence level updates. This approach significantly enhances the
+
+scalability of the navigation system.
+
+2.5 Global Path Planning
+
+Preface: Based on the mobile robot's perception of the environment, the
+characteristics of the environment, and the algorithms employed, path
+
+planning can be categorized into environment-based, map knowledge-based,
+
+17
+
+
+
+=== Page 18 ===
+| IW) | Oo © Shenzhen Hiwonder Technology Co,Ltd
+
+and completeness-based path planning algorithms.
+
+Commonly used path planning algorithms in robot autonomous navigation
+encompass Diikstra, A*, D*, PRM, RRT, genetic algorithms, ant colony
+
+algorithms, fuzzy algorithms, and others.
+
+Dijkstra and A* are graph-based path search algorithms commonly utilized in
+robotic applications. The navigation function package integrates navfn, global
+planner, and carrot planner as global route planning plug-ins. Users have the
+option to select one of these plug-ins to load into move_base for utilization.
+Alternatively, they can opt for a third-party global path planning plug-in, such
+as SBPL_Lattice_Planner or srl_global_ planner, or develop a custom global
+
+path planning plug-in adhering to the interface specification of nav_core.
+
+Path Planing
+Algorithm
+
+Path planning algori i i- Path planning algori
+thm based on thm based on
+environment map knowledge completeness
+
+Static path Dynamic path Global path Accurate path Heuristic path
+planing planing planing planning planning planning
+algorithm algorithm algorithm algorithm algorithm algorithm
+
+Mobile robot navigation facilitates reaching a target point through path
+
+planning. The navigation planning layer comprises several components:
+
+18
+
+
+
+=== Page 19 ===
+Hiwoander Shenzhen Hiwonder Technology Co,Ltd
+
+1) Global path planning layer: This layer generates a global weight map
+based on the provided goal and accepts weight map information. It then
+plans a global path from the starting point to the target location, serving as
+
+a reference for local path planning.
+
+2) Local path planning layer: This component, constituting the local
+planning aspect of the navigation system, operates on the local weight
+map information derived from the weight map. It conducts local path
+
+planning considering nearby obstacle information.
+
+3) Behavior execution layer: This layer integrates instructions and path
+planning data from the higher layers to determine the current behavior of
+
+the mobile robot.
+
+Path planning algorithms for mobile robots are a crucial area of research,
+
+significantly impacting the efficiency of robotic operations.
+
+2.5.1 Dijkstra Algorithm
+
+Dijkstra's algorithm is a classic shortest path algorithm known for its efficiency
+in finding the shortest path from a single source to all other vertices in a graph.
+It operates by expanding outward in layers from the starting point, employing a
+breadth-first search approach while considering edge weights. This makes it
+
+one of the most widely used algorithms in global path planning.
+Here is a diagram illustrating the process of Dijkstra's algorithm:
+
+1. Initially, we set the distance from the starting point (start) to itself as 0, and
+
+all other points' distances are initialized to infinity.
+
+19
+
+
+
+=== Page 20 ===
+Hiwoander Shenzhen Hiwonder Technology Co,Ltd
+
+2. During the first iteration, we identify the point (let's call it Point 1) with the
+smallest distance value, mark it as processed, and update the distances of all
+adjacent points (previously unprocessed) connected to Point 1. For instance, if
+Point 1 is connected to Points 2, 3, and 4, we update their distances as follows:
+
+dis[2]=2, dis[3]=4, and dis[4]=7.
+
+3. In the subsequent iterations, we repeat the process: find the point with the
+
+smallest distance value (e.g., Point 2 in the second iteration), mark it as
+
+20
+
+
+
+=== Page 21 ===
+Hiwoander Shenzhen Hiwonder Technology Co,Ltd
+
+processed, and update the distances of its adjacent points (if necessary). For
+example, if Point 2 is connected to Points 3 and 5, we update their distances
+
+as dis[3]=3 and dis[5]=4.
+
+4. This procedure continues until all points have been processed. At each
+iteration, we select the unprocessed point with the smallest distance and
+
+update distances of its adjacent points accordingly.
+
+5. Once all points have been processed, the algorithm terminates, and the
+
+21
+
+
+
+=== Page 22 ===
+Hiwoander Shenzhen Hiwonder Technology Co,Ltd
+
+shortest path distances from the starting point to all other points are
+determined.
+To access the introduction and usage details of the Dijkstra algorithm, please
+
+log in to the wiki using the following link:
+
+http://wiki.ros.org/navfn
+
+2.5.2 A Star Algorithm
+
+A-star is an enhancement of Dijkstra's algorithm tailored for single destination
+optimization. While Dijkstra's algorithm determines paths to all locations,
+A-star focuses on finding the path to a specific location or the nearest location
+
+among several options. It prioritizes paths that seem to be closer to the goal.
+
+The formula for the A-star algorithm is: F=G+H, where G represents the
+movement cost from the starting point to the designated square, and H
+denotes the estimated cost from the designated square to the endpoint. There
+
+are two methods for calculating the H value:
+
+1. Calculate the distance of horizontal and vertical movement; diagonal
+
+calculation is not applicable (Manhattan distance).
+
+——SSSSS Sa
+
+22
+
+
+
+=== Page 23 ===
+Hiwoander Shenzhen Hiwonder Technology Co,Ltd
+
+2. Calculate the distance of horizontal and vertical movement; diagonal
+
+calculation is applicable (diagonal distance).
+
+For an introduction to and usage of the A* algorithm, please consult the video
+
+tutorial or visit the following links:
+
+ROS Wiki: http://wiki.ros.org/global planner
+
+Red Blob Games website:
+
+https://www.redblobgames.com/pathfinding/a-star/introduction.html#graphs
+
+3 Local Path Planning
+
+Global path planning begins with inputting the starting point and the target
+point, utilizing obstacle information from the global map to devise a path
+between them. This path consists of discrete points and solely considers static
+obstacles. Consequently, while the global path serves as a macro reference for
+
+navigation, it cannot be directly utilized for navigation control.
+
+23
+
+
+
+=== Page 24 ===
+HIVW/E9MCOECT Shenzhen Hiwonder Technology Co,Ltd
+
+3.1 DWA Algorithm
+
+3.1.1 Description
+
+The Dynamic Window Approach (DWA), a classic algorithm for path planning
+and motion control of mobile robots, ensures safe navigation on a known map.
+By exploring the speed and angular velocity state space, DWA identifies the
+
+optimal combination for safe navigation. Below, you'll find a basic description
+
+along with some key formulas of the DWA algorithm.
+
+The core concept of the DWA algorithm involves the robot assessing its current
+state and sensor data to generate a series of potential motion trajectories
+(referred to as dynamic windows) in the speed and angular velocity state
+space. These trajectories are then evaluated based on criteria such as
+obstacle avoidance, maximizing forward speed, and minimizing angular
+velocity to select the optimal trajectory. Through iterative iterations of this
+process, the robot dynamically plans its trajectory in real-time to adapt to
+
+changing environments and obstacles.
+
+24
+
+
+
+=== Page 25 ===
+Hiwoander Shenzhen Hiwonder Technology Co,Ltd
+
+3.1.2 Formula
+1. Robot status: current position (x, y) and orientation (8)
+2. Motion control parameters: linear velocity (V) and angular velocity (vw).
+
+3. Range of velocity and angular velocity sampling: minimum (Vmin, wmin)
+
+and maximum (Vmax, wmax).
+4. Time step: At
+The formula is as below:
+
+A. Velocity Sampling: In the DWA algorithm, the initial step involves
+sampling the state space of velocity and angular velocity to create a set of
+
+potential velocity-angular velocity pairs, known as dynamic windows.
+Vsamples = [Vmin, Vmax]
+Wsamples = [-Wmax, Wmax]
+
+(Vsamples) denotes the speed sampling range, while (Wsampies) indicates the
+
+angular speed sampling range.
+
+B. Motion Simulation: The DWA algorithm conducts a motion simulation for
+each speed-angular velocity pair, determining the trajectory of the robot
+
+based on these combinations in its current state.
+x(t+1) = x(t) + v * cos(@(t)) *At
+y(t+1) = y(t) + v * sin(@(t)) *At
+
+O(t+1) = A(t) + w * At
+
+Here, x(t) and y(t) denote the robot's position, 9 (t) represents its orientation, v
+stands for linear velocity, w for angular velocity, and At represents the time
+step.
+
+C. Trajectory Evaluation: The DWA algorithm assesses each generated
+
+25
+
+
+
+=== Page 26 ===
+| iIiwWeonder Shenzhen Hiwonder Technology Co,Ltd
+
+trajectory using evaluation functions, including obstacle avoidance,
+
+maximum speed, and minimum angular velocity.
+
+Obstacle Avoidance Evaluation: Detects if the trajectory intersects with
+
+obstacles.
+
+Maximum Speed Evaluation: Verifies if the maximum linear speed on the
+
+trajectory falls within the permissible range.
+
+Minimum Angular Velocity Evaluation: Ensures that the minimum angular
+
+velocity on the trajectory remains within the allowed range.
+
+These evaluation functions can be defined and adjusted as per task
+
+requirements.
+
+D. Select optimal trajectory: The DWA algorithm chooses the trajectory with
+
+the highest evaluation score as the next move for the robot.
+
+26
+
+
+
+=== Page 27 ===
+Hiwoander Shenzhen Hiwonder Technology Co,Ltd
+
+3.1.3 Expansion
+Extensions and resources for learning about the DWA algorithm:
+
+The DWA algorithm serves as a fundamental method in mobile robotics, with
+numerous extended and enhanced versions designed to boost performance
+
+and efficiency in path planning. Some notable variations include:
+
+1. DWAAlgorithm Extension: https://arxiv.org/abs/1703.08862
+2. Enhanced DWA (e-DWA) Algorithm: https://arxiv.org/abs/1612.07470)
+3. DP-DWA Algorithm (DP-based Dynamic Window Approach):
+
+https://arxiv.org/abs/1909.05305
+4. ROS Wiki: http://wiki.ros.org/dwa_local_planner
+
+These resources provide in-depth insights and further exploration into the
+
+DWA algorithm and its various extensions.
+
+3.2 TEB Algorithm
+
+3.2.1 Description
+
+The TEB (Timed Elastic Band) algorithm is utilized for both path planning and
+motion planning, particularly in domains like robotics and autonomous vehicles.
+At its core, the TEB algorithm treats path planning as an optimization
+challenge, aiming to generate the best trajectory within a specified timeframe
+while accommodating dynamic constraints and obstacle avoidance needs for
+
+the robot or vehicle. Key characteristics of the TEB algorithm encompass:
+
+1. Time Layered Representation: The TEB algorithm employs time layering,
+dividing the trajectory into discrete time steps, each corresponding to a
+position of the robot or vehicle. This aids in setting timing constraints and
+
+preventing collisions.
+
+27
+
+
+
+=== Page 28 ===
+a IWE) M Oo ES t Shenzhen Hiwonder Technology Co,Ltd
+
+2. Trajectory Parameterization: TEB parameterizes the trajectory into
+displacements and velocities, facilitating optimization. Each time step is
+
+associated with displacement and velocity parameters.
+
+3. Constrained Optimization: TEB considers dynamic constraints, obstacle
+avoidance, and trajectory smoothness, integrating them into the objective
+
+function of the optimization problem.
+
+4. Optimization Solution: TEB utilizes techniques like linear quadratic
+programming (QP) or nonlinear programming (NLP) to determine optimal
+
+trajectory parameters that fulfill the constraints.
+
+Obstacles
+
+3.2.2 Formula
+
+The figure below illustrates the optimization objective function in the TEB
+
+algorithm:
+
+J (x) = izi | toamooth : xp »H- X; + Wobstacle * dij=1 F (xi, 0)
+
+In the following expression:
+
+J(x) denotes the objective function, where x represents the trajectory
+
+parameter.
+
+Wsmooth ANd Wobstacle represent weights assigned to smoothness and obstacle
+
+28
+
+
+
+=== Page 29 ===
+a IWE) M Oo = t Shenzhen Hiwonder Technology Co,Ltd
+
+avoidance, respectively.
+H signifies the smoothness penalty matrix.
+
+f(xi, oj) represents the obstacle cost function between trajectory point xi and
+
+obstacle oj.
+1. Status Definition:
+
+Firstly, we define the state of the robot (or vehicle) in the path planning
+
+problem as follows:
+
+Position: P = [X, Y], indicating the coordinates of the robot on the
+
+two-dimensional plane.
+Velocity: V = [Vx, Vy], representing the robot's velocity along the X and Y axes.
+Time: t, denoting the current time.
+
+Control Input: u = [ux, uy], representing the control input of the robot, which
+
+can be speed or acceleration.
+Robot Trajectory: x(t) = [p(t), v(t)], indicating the state of the robot at time t.
+2. Target Function:
+
+The essence of the TEB algorithm lies in solving an optimization problem. The
+
+objective is to minimize a composite function comprising various components:
+
+J (x) = Jamooth(X) ae Jobstacle (Xx) t Jaynamic (x)
+
+Jsmooth(x): Smoothness objective function, ensuring trajectory smoothness.
+
+Jobstacle(x): Obstacle avoidance objective function, preventing collisions with
+
+obstacles.
+
+Jaynamic(X): Dynamic objective function, ensuring compliance with the robot's
+
+dynamic constraints.
+
+29
+
+
+
+=== Page 30 ===
+| IWE) M Oo = t Shenzhen Hiwonder Technology Co,Ltd
+
+3. Smoothness objective function Jsmooth(x):
+
+Smoothness objective functions typically involve the curvature of trajectories to
+
+ensure the generated trajectories are smooth. It can be represented as:
+
+J smooth (X) = [xo dt
+
+Where k(t) is the curvature.
+
+4. Obstacle avoidance objective function Jobstacle(x):
+
+The obstacle avoidance objective function calculates the distance between
+trajectory points and obstacles. It penalizes trajectory points that are in close
+proximity to obstacles. The specific obstacle cost function, denoted as f(x,o),
+
+can be adjusted according to specific requirements or needs.
+
+Jcbatacle(X) _ ie f(x, o)
+
+oc obstacles
+
+5. Dynamic objective function Jdynamic(x):
+
+The dynamics objective function ensures that the generated trajectory adheres
+to the robot's dynamic constraints, which are determined by its kinematics and
+dynamics model. This typically includes limitations on velocity and
+
+acceleration.
+
+6. Optimization:
+
+In the end, the Trajectory Optimization with Ellipsoidal Bounds (TEB) algorithm
+addresses the stated objective function by framing it as a constrained
+
+optimization problem. This problem incorporates optimization variables for
+
+30
+
+
+
+=== Page 31 ===
+Hiwoander Shenzhen Hiwonder Technology Co,Ltd
+
+trajectory parameters, time allocation, and control inputs. Typically, this
+optimization problem falls under the category of nonlinear programming (NLP)
+
+problems.
+
+3.2.3 Expansion
+
+Additional resources and learning materials for the TEB algorithm:
+
+The TEB algorithm is a significant technology within the realm of path planning,
+boasting numerous extended and enhanced versions. Below are some
+learning links and extension topics aimed at facilitating a more comprehensive
+
+understanding of the TEB algorithm and its associated concepts:
+
+1. Original TEB Paper: "Trajectory modification considering dynamic
+
+constraints of autonomous robots" by M. Rosmann et al.
+
+2. TEB implementation in ROS: The TEB algorithm is commonly
+implemented as a ROS package (Robot Operating System Package),
+
+making it readily available for robot path planning tasks.
+
+ROS TEB Local Planner Package:
+
+https://github.com/rst-tu-dortmund/teb_local_ planner
+
+Wiki website:
+
+http://wiki.ros.org/teb_local_ planner
+
+31
+
+
+
+=== Page 32 ===
+Hiwoander Shenzhen Hiwonder Technology Co,Ltd
+
+These links provide valuable resources for users seeking to explore the TEB
+
+algorithm and its associated topics in greater detail.
+
+4 Point-to-Point and Multi-Point Navigation and Obstacle
+
+Avoidance
+
+1) Click-on to open the command-line terminal. Then execute the
+command to disable the app auto-start service:
+
+sudo systemctl stop start_app_node.service
+
+stop start_app_node.service
+
+2) Enter the following command to start the navigation service and press
+
+Enter:
+
+ros2 launch navigation navigation.launch.py map:=map_01
+
+The "map_01" at the end of the command is the map name. Users can modify
+this parameter according to their needs. The map is stored at
+
+"/home/ubuntu/ros2_ws/src/slam/maps".
+
+:~$ ros2 Launch navigation rviz_navigation. launch. py
+
+32
+
+
+
+=== Page 33 ===
+Hiwoander Shenzhen Hiwonder Technology Co,Ltd
+
+[home /ubuntu/ros2_ws/src/navigation/rviz/navigation.rviz* - RVIz
+
+re Ais A a i, i
+| tah,
+
+£
+f
+
+T
+
+a ed
+
+4.1 Point-to-Point Navigation
+
+In the software menu bar, "2D Pose Estimate" is used to set the initial position
+of the JetAuto robot; "2D Nav Goal" is used to set a single target point for the
+
+robot; "Publish Point" is used to set multiple target points for the robot.
+
+1) Click ~ ?2PeseEstimste tg set the initial position of the robot. On the map
+
+interface, choose a position, click, and drag the mouse to select the robot's
+
+pose.
+
+33
+
+
+
+=== Page 34 ===
+Hiwoander Shenzhen Hiwonder Technology Co,Ltd
+
+2) After setting the initial position of the robot, the effect is as shown in the
+
+figure below:
+
+/ 2D Goal Pose . :
+3) Click sisi and select a location on the map interface as the
+
+target point. Click the mouse once at that point. After selection, the robot
+
+will automatically generate a route and move to the target point.
+
+Pause
+
+4) After confirming the target point, the map will display two paths: the green
+line represents the direct path between the robot and the target point, and
+
+the dark blue line represents the planned path of the robot.
+
+34
+
+
+
+=== Page 35 ===
+Hiwoander Shenzhen Hiwonder Technology Co,Ltd
+
+/home/ubuntu/ros2_ws/src/navigation/rviz/navigation.cviz* - RVIz
+
+Measure 2D Pose Estimate # 20 Goal Pose @ Publish Point = Nav2 Goal + -
+by = « “.
+.
+< P . . P
+ay
+st hy
+
+Reset a a
+Waypoint / Nav Through Poses Mode
+
+5) When encountering obstacles, the robot will bypass them and continuously
+
+adjust its posture and travel route.
+
+Add
+> Navigation 2 O
+Navigation: active
+Localization: active .
+r
+
+Feedback: active 4 SS
+
+bog Ws
+
+stance remainin 9
+Time t 35
+
+°
+
+4.2 Multi-Point Navigation
+
+1) Click the "waypoint" button to start multi-point navigation:
+
+
+
+=== Page 36 ===
+| iIiwWeonder Shenzhen Hiwonder Technology Co,Ltd
+
+<> Navigation 2 Ct)
+
+Navigation: active
+
+Localization: active
+
+Feedback: unknown
+Poses remaining: 0
+ETA: Os
+Distance remaining: 0.00 m
+Time taken: Os
+Recoveries: 0
+Pause
+Reset
+
+Waypoint / Nav Through Poses Mode
+
+2) Set each navigation point using las as shown in the figure
+
+below:
+
+3) Finally, click "Start Nav Through Poses" or "Start Waypoint Following" to
+start navigation. "Start Nav Through Poses" will control the robot's pose at
+
+each navigation point; "Start Waypoint Following" will not focus on the robot's
+
+36
+
+
+
+=== Page 37 ===
+| IWE) | Oo = t Shenzhen Hiwonder Technology Co,Ltd
+
+pose at each navigation point.
+<> Navigation 2 [o|
+Navigation: active
+
+Localization: active
+
+Feedback: unknown
+Poses remaining: 0
+
+ETA: Os
+Distance remaining: 0.00 m
+Time taken; Os
+Recoveries: 0
+
+Start Nav Through Poses
+Cancel! Accumulation
+
+Start Waypoint Following
+
+4) The effect during multi-point navigation is shown in the figure below, with
+
+the robot reaching the target points in sequence:
+
+Jemp/tmprhazfy_b* - RViz
+File Panels Help
+Cyinteract Move Camera [“ISelect <fpFocusCamera =aMeasure 7 2DPoseEstimate  2DGoalPose @ PublishPoint =“ Nav2Goal + =
+Displays OD)
++ @ Global Options
++ ¥ Global Status: Ok
+
+5) The effect after completing multi-point navigation is shown in the figure
+
+below:
+
+37
+
+
+
+=== Page 38 ===
+Hiweander Shenzhen Hiwonder Technology Co,Ltd
+
+[empftmprhazfv_b* - RViz
+File Panels Help
+
+Oyinteract Move Camera [Select FocusCamera S>Measure  2DPoseEstimate  2DGoalPose  @ PublishPoint  Nav2Goal +
+DB Displays
+
+» ® Global Options
+
+» ¥ Global Status: Ok
+Grid
+
+Add
+
+® Navigation 2
+
+Pause
+
+Reset
+
+Reset 31 fp:
+
+4.3 Launch Description
+
+base launch Camera, Lidar and chassis
+
+navigation.launch.py Invoked launch < navigation launch Navigation
+
+\ bringup launch Initial pose
+
+The path to the launch file is located at:
+
+/home/ubuntu/ros2_ws/src/navigation/launch/navigation.launch.py
+
+fe
+
+@ Set Paths
+
+38
+
+
+
+=== Page 39 ===
+LJ *
+MHiv/ent ioer Shenzhen Hiwonder Technology Co,Ltd
+
+Locate the paths for the ‘peripherals’, “controller, and “servo_controller’
+
+packages.
+@ Launch Other Files
+‘base_launch’ for various hardware
+
+“‘navigation_launch’ to start the navigation algorithm
+
+‘bringup_launch’ to initialize actions
+
+4.4 Feature Pack Description
+
+The path to the navigation package is: ros2_ws/src/navigation/
+
+config: Contains configuration parameters related to navigation, as shown
+
+below:
+
+launch: Contains launch files related to navigation, including localization, map
+
+loading, navigation modes, and simulation model launch files, as shown below:
+
+39
+
+
+
+=== Page 40 ===
+Hiweander Shenzhen Hiwonder Technology Co,Ltd
+
+rviz: Contains parameter loading for the RViz visualization tool, including RViz
+configuration files for robots using different navigation algorithms and
+
+navigation configuration files, as shown below:
+
+| ivigatts
+
+Package.xml: Configuration information file for the current package.
+
+5. RTAB-VSLAM 3D Navigation
+
+5.1 Algorithm Introduction & Principle
+
+For an introduction to the RTAB-VSLAM algorithm and its principles, refer to "1.
+Mapping Tutorial, Section 5 RTAB-VSLAM 3D Vision Mapping & Navigation"
+
+for study and reference.
+
+5.2 Robot Operations
+1) Start the robot, and access the robot system desktop using NoMachine.
+
+2) Click-on to open the command line terminal, and execute the
+
+command to disable the app auto-start service:
+
+sudo systemctl stop start_app_node.service
+
+stop start_app_node.service
+
+3) Create a new command-line terminal, and enter the following command to
+start the RViz tool for navigation display:
+
+ros2 launch navigation rviz_rtabmap_navigation.launch.py
+
+:-§$ ros2 Launch navigation rviz_rtabmap_navigation. launch. py
+
+In the software menu bar, "2D Nav Goal" is used to set a single target point for
+
+40
+
+
+
+=== Page 41 ===
+| IW) | Oo =) t Shenzhen Hiwonder Technology Co,Ltd
+
+the robot, and "Publish Point" is used to set multiple target points for the robot.
+
+m™Measure  2DPoseEstimate | “ 2D Goal Pose @ Publish Point oP =
+
+4) Click 2D Gra Rone , and on the map interface, select a location as the
+
+target point by clicking the mouse once at that point. After the selection is
+
+made, the robot will automatically generate a route and move to the target
+
+Jhome/ubuntu/ros2_ws/src/navigation/rviz/rtabmap.rviz* =RViz
+
+c tp FocusCamera «= -<=Measure = 2D Pose Estimate © 2DGoul Pose §=—@ PublishPoint = -
+
+5) After confirming the target point, the map will display two paths: a line
+composed of blue squares representing the straight-line path between the
+robot and the target point, while the dark blue line represents the planned path
+
+of the robot.
+
+41
+
+
+
+=== Page 42 ===
+Hiwoander Shenzhen Hiwonder Technology Co,Ltd
+
+home /ubuntu/ros2_ws/src/navigation/rviz/rtabmap.rviz* - RVIz
+
+7 2Goal Pose —_@ Publish Point
+
+6) After encountering obstacles, the car will navigate around them and
+
+continuously adjust its posture and trajectory.
+
+5.3 Launch Description
+
+base launch Camera, Lidar and chassis
+
+———— Invoked launch a navigation launch — Navigation
+
+bringup launch Initial pose
+
+The launch file is saved in:
+
+/home/ubuntu/ros2_ws/src/navigation/launch/navigation.launch.py
+
+y
+
+@ Set Paths
+
+Locate the paths for the ‘peripherals’, “controller, and “servo_controller’
+
+42
+
+
+
+=== Page 43 ===
+packages.
+
+@ Launch Other Files
+rtabmap_launch starts the 3D navigation algorithm.
+navigation_launch starts the 2D navigation algorithm.
+
+bringup_launch initializes the actions.
+
+return [sim_are
+
+43
+
+

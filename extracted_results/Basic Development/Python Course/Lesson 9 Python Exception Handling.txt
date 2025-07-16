@@ -1,0 +1,106 @@
+
+=== Page 1 ===
+Hiwoander Shenzhen Hiwonder Technology Co,Ltd
+Lesson 9 Python Exception Handling
+
+1. Exception and Error
+
+Program error refers to syntax error (wrong command) and logic error
+(wrong result of program execution), while program exception is an accidence
+taking place during program execution and affecting the normal execution of
+the program. For example, the file to be opened doesn't exist, dividend is 0,
+
+wrong data type of the operation, storage error, internet request error.
+
+In normal case, exception occurs when the program cannot be processed
+normally in Python. Exception is the Python object representing a error. When
+there is exception in Python script, we need to catch and handle it, otherwise
+
+the program will stop execution.
+
+2. Common Types of Exception
+1) NameError: Try to access a variable without statement
+
+2) ZeroDivisionError: The dividend is 0
+
+~~
+
+3
+
+~S
+
+SyntaxError: Wrong syntax
+
++
+
+IndexError: Index exceed the range of sequence
+
+2
+
+KeyError: Request a dictionary keyword that does not exist
+
+2
+
+lOError: Input and output error
+
+>
+
+AttributeError: Attempt to access unknown object property
+
+8) ValueError: The parameter type passed to the function is correct
+
+
+
+=== Page 2 ===
+Hiwoander Shenzhen Hiwonder Technology Co,Ltd
+
+3. Exception Handling
+
+Exceptions may be thrown while the code is being interpreted and
+executed, and exceptions can be handled in a try....except... way. If an
+
+exception occurs in the code in try, it will jump to except to catch and handle
+the exception.
+
+Eltry:
+
+Brink ("trey 33°}
+Bm 20: f int¢'2")
+S print ('result:', r)
+
+Flexcept ValueError as €:
+a print ('ValucError:
+Flexcept ZeroDivisionError as é€:
+
+, &)
+
+2m print (' ZeroDivisior e)
+-lelse:
+
+re print('no error
+Elfinally:
+
+= print ('finalil
+print ('END')
+
+UFyis.s
+result: 5.0
+no error!
+finally...
+END
+
+1) The try code block is the code where an exception may occur
+2) Behind except are the exception type may occur and the handling
+
+content.
+
+3) except has several branches. If the exception occurs in and matches
+the first except, it will exit. If the exception class has a child class and a parent
+class, and the parent class exception is in front, the subsequent child class
+exceptions will not be matched.
+
+4) else statement will be executed when there is no exception.
+
+5) finally statement will be executed no matter there is exception or not.
+
+

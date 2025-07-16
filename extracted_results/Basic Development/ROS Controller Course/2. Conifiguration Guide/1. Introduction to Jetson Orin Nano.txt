@@ -1,0 +1,122 @@
+
+=== Page 1 ===
+oy IVE) | Oo eS t Shenzhen Hiwonder Technology Co,Ltd
+
+1. Introduction to Jetson Orin Nano
+
+Jetson Orin Nano is anew member of the Jetson series. The core board is as
+
+picture.
+
+TT TT
+
+1. Overview
+
+Jetson Orin Nano development kit features the Jetson Orin Nano module,
+
+available in 8GB and 4GB memory versions.
+1) The CPU of Orin SoC is based on the Cortex-A78AE architecture.
+
+2) Both Jetson Orin Nano 8GB/4GB is equipped with 6 cores, with a
+
+maximum frequency of 1.5GHz.
+
+3) The GPU is based on the Ampere architecture, specifically the GA10B,
+featuring 1,024 CUDA cores and 32 Tensor Cores, with a maximum frequency
+
+of 625MHz.
+
+4) Jetson Orin Nano only has a hardware decoder but no hardware
+
+compiler, with encoding capabilities limited to 1080p30, supported by 1-2 CPU
+
+1
+
+
+
+=== Page 2 ===
+oy IVE) mM Oo =) t Shenzhen Hiwonder Technology Co,Ltd
+
+cores. In terms of computing resources, the Jetson Orin Nano 4GB is similar to
+the Jetson Orin Nano 8GB, being half of the AGX orin 64GB version but with a
+lower frequency and thus lower power consumption. Despite its very low
+power consumption, the Jetson Orin Nano still delivers strong performance,
+with single-precision floating-point performance of 1.28 TFLOPs. The Jetson
+Orin Nano 4GB and Jetson Orin Nano 8GB models is very similar, but in
+
+addition to differences in frequency and power.
+
+2. Performance Comparison Between Jetson Nano and
+
+Jetson Orin Nano
+
+Jetson Nano
+
+Models (FPS)
+
+1) (v2.5 come ' sig
+
+* Action Recognition 2D 32 368
+“ Action Recognition 3D 1 26
+3 LPR 47 979
+a Dashcam Net 11 398
+¥ Bodypose Net 3 136
+(3 Resnet50 36 1144
+
+From the above image, the Jetson Orin Nano represents an
+order-of-magnitude improvement in performance. According to official data,
+the Jetson Orin Nano reaches 40 TOPS of Al performance, which is 80 times
+
+greater than Jetson Nano.
+
+
+
+=== Page 3 ===
+be iIiWE) mM Oo © Shenzhen Hiwonder Technology Co,Ltd
+
+3. Comparison Between Jetson Orin Nano 4GB and 8GB
+
+Jetson Orin Nano 4GB letson Orin Nano 8GB
+
+512-core NVIDIAAmpere architecture GPU with 16 1024-core NVIDIAAmpere architecture GPU with 32
+
+Tensor Cores ensor Cores
+
+6-core Arm® Cortex®-A78AE v8.2 64-bit CPU
+4.5MB L2 + 4MB L3
+
+1.5 GHz
+4GB 64-bit LPDDR5 8GB 128-bit LPDDR5
+34 GB/s 68 GB/s
+
+(Supports external NVMe)
+
+1080p30 supported by 1-2 CPU cores
+1x 4K60 (H.265)
+
+2x 4K30 (H.265)
+
+5x 1080p60 (H.265)
+
+41x 1080p30 (H.265)
+
+lUp to 4 cameras (8 via virtual channels***)
+iS lanes MIPI CSI-2
+
+ID-PHY 2.1 (up to 20Gbps)
+
+1x4+3x1
+
+(PCle Gen3, Root Port, & Endpoint)
+
+lUSB* 3x USB 3.2 Gen2 (10 Gbps)
+3x USB 2.0
+
+Display 1x 4K30 multi-mode DP 1.2 (+MST)/eDP 1.4/HDMI 1.4**
+
+69.6mm x 45mm
+Mechanical
+260-pin SO-DIMM connector
+
+
+

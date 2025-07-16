@@ -1,0 +1,1430 @@
+
+=== Page 1 ===
+Hivwoander Shenzhen Hiwonder Technology Co,Ltd
+
+Intelligent Transport in Embodied Al
+Applications
+
+The large model used in this lesson operates online, requiring a stable
+
+network connection for the main controller in use.
+
+1 Brief Overview of Operation
+
+Once the program starts running, the Six-Microphone Circular Array will
+announce “I’m Ready,” hereafter called the voice device. To activate the voice
+device, speak the designated wake words: “Hello Hiwonder.” Upon
+successful activation, the voice device will respond with “I’m Here.” After
+activation, voice commands can be used to control the robot. For example,
+issuing the instruction "Put the red square in the blue box." Upon receiving a
+command, the terminal displays the recognized speech content. The voice
+device then verbally responds with a generated answer and the robot
+
+simultaneously executes the corresponding action.
+
+2 Getting Started
+
+2.1 Version Confirmation
+
+Before starting this feature, verify that the correct microphone
+
+configuration is set in the system.
+
+1) Log in to the machine remotely via NoMachine. Then click the desktop
+
+icon to access the configuration interface.
+
+2) First, verify the system language setting.
+
+
+
+=== Page 2 ===
+4 iwennder Shenzhen Hiwonder Technology Co,Ltd
+
+3) For the Six-Microphone Circular Array, select xf as the microphone
+
+type as shown in the figure.
+
+AP Name HW-24347055
+
+Version V1.1.1 2025-05-20
+
+wee EE
+ROS2 Humble
+
+4) After making the appropriate selection, click Save.
+
+5) A “Save Success” message will confirm that the configuration has
+
+been stored in the system environment.
+
+
+
+=== Page 3 ===
+Hivwoander Shenzhen Hiwonder Technology Co,Ltd
+
+Save Success
+
+6) Then, click Quit to close the interface.
+
+2.2 Configuring the Large Model API-KEY
+
+Open a new command-line terminal and enter the following command to
+
+access the configuration file.
+
+vim /home/ubuntu/ros2_ws/src/large_models/large_models/large_models/config.py
+
+Refer to the tutorial under “Al Large Language Model Course / 1 Large
+Language Model Basic Courses/1.1 Large Language Model Courses/1.1.2
+Large Language Model Deployment” to obtain the API keys for vision language
+model. For the vision language model, acquire the API key from the
+OpenRouter official website and assign it to the vllm_api_key variable. For
+the large language model, obtain the API key from the OpenAl official website
+and assign it to the 1lm_api_key variable. Ensure that the keys are inserted
+in the designated positions, as indicated by the red boxes in the reference
+
+image.
+
+
+
+=== Page 4 ===
+Hivwoander Shenzhen Hiwonder Technology Co,Ltd
+
+25, vllm_apt_key =
+26 vllm_base url =
+27 villm_model =
+
+9° 1Lm apt key =
+
+© Llm_base_url =
+1 Llm_model =
+
+2 openai_vllm_model =
+
+3 openai_tts_model =
+
+4 openai_asr_model =
+openai_voice_model =
+
+3 Grasp and Placement Calibration
+
+Before starting the intelligent handling process, you need to adjust the
+grasping behavior to ensure accurate performance. If the robotic arm fails to
+pick up the colored blocks during the demo or operation, you can follow the
+steps below to perform grasp calibration. This allows you to adjust the pickup
+
+area using program commands.
+
+1) Open anew command-line terminal and run the following command to
+
+stop the auto-start service of the app:
+
+sudo systemctl stop start_app_ node.service
+
+d stop start _app node.service
+
+2) To begin grasp calibration, enter the following command:
+
+ros2 launch large models examples automatic pick.launch.py
+
+debug :=pick
+
+Launch large _models_ examples automatic_pick.Launch.py debug:=pick
+
+3) Wait until the program finishes loading and you hear the voice prompt
+
+‘I'm Ready.”
+
+4) The robotic arm will perform a calibration grasping action and place the
+object at the gripper’s pickup location. Once the robotic arm returns to its
+original posture, use the mouse to left-click and drag a bounding box around
+the target object on the screen. Once the object is correctly identified, the
+
+system will automatically calibrate the pickup position for that specific target.
+
+4
+
+
+
+=== Page 5 ===
+Hivwonder Shenzhen Hiwonder Technology Co,Ltd
+
+5) The calibration process for placing objects is the same as for grasping.
+
+To begin placement calibration, run the following command:
+
+ros2 launch large models examples automatic pick.launch.py
+
+debug :=place
+
+Launch Large models examples automatic pick.lLaunch.py debug:=place
+
+4 Navigation Map Construction
+
+Before enabling this feature, a map must be created in advance. Please
+refer to “ROS2 Courses / 5 Mapping & Navigation Course / Mapping” for
+
+detailed instructions on how to build the map.
+
+5 Enabling and Disabling the Feature
+
+@ 1. Command input is case-sensitive and space-sensitive.
+
+2. The robot must be connected to the Internet, either in STA (LAN)
+
+mode or AP (direct connection) mode via Ethernet.
+
+1) Open the command line terminal from the left side of the system
+
+5
+
+
+
+=== Page 6 ===
+Hivwoander Shenzhen Hiwonder Technology Co,Ltd
+
+vtertaco, In the terminal window, enter the following command
+and press Enter to stop the auto-start service
+
+sudo systemctl stop start_app_ node.service
+
+stop start app node.service
+
+2) If the map is not yet created, refer to section "4. Navigation Map
+
+Construction".
+
+ros2 launch large models examples vllm_navigation_transport.launch.py
+
+map:=map_01
+
+launch Large models examples vllm_ navigation transport. lLaunch.py map:=map 01
+
+3) After opening the map in RViz, click the “2D Pose Estimate” icon to set
+
+the robot's initial position.
+
+/home /ubuntu/ros2_ws/install fnavigation/share/navigation/rviz/navigation_controller.rviz* - RVIz
+
+Ayinteract Move Camera Tselect Focus Camera Measure |, 20 Pose Estimate 2DGoslPose — PublishPoint = Mav2Goal
+- 1
+
+Reset 2 fon
+
+4) When the terminal displays output shown in the figure and the Circular
+Microphone Array announces "I’m Ready", the device has completed
+initialization and yolov8 model will be initialized at the same time. Then, you
+
+can say the wake words: "Hello Hiwonder".
+
+
+
+=== Page 7 ===
+Hivwoander Shenzhen Hiwonder Technology Co,Ltd
+
+[ component_container_isolated-21] [INFO] [1742389931.895892168] [bt_navigator]: Creating bond (bt_navigator) to lifecycle manager.
+[ agent_process-6] [INFO] [1742389933.301530290] [agent_process]:
+[tts_node-7] [INFO] [1742389933.680274215] [tts_node]
+
+6] [INFO] [1742389935.057819613] [agent_process]:
+
+5-6] [INFO] [1742389935.273320881] [agent_process]
+
+5) When the terminal displays the corresponding output shown in the
+figure and the device responds with "I’m Here", it indicates successful
+
+activation.
+
+Speak a command such as “Put the red square in the blue box.” The
+voice device will capture the speech, and the large language model will
+
+process the command.
+
+6) When the terminal displays the next output as the reference image, it
+
+shows the recognized speech transcribed by the device.
+
+[vocal_detect]:
+[vocal_detect]:
+[vocal_ detect]:
+
+[vocal_detect]: asr time: 0.85
+[agent_process]:
+[vocal_ detect]: Put the red square in the blue box.
+
+7) Upon successful recognition by the speech recognition service of
+cloud-based large speech model, the parsed command will be displayed under
+
+the publish _asr_ result output in the terminal.
+
+[agent_process-7] [INFO] [1745663431.800897656] [agent_process]: {"action": ["move('red square')", "pick('red sq
+uare')", "move('blue box')", "place('blue box')"], "response": "On it! A colorful toss!"}
+[vllm_navigation_transport-9] [INFO] [1745663431.822604228] [vllm_navigation]: vllm action: ["move('red square')", "“pick('red squar
+
+e')", “move('blue box')", "place('blue box')"]
+
+8) Upon receiving user input shown in the figure, the terminal will display
+output indicating that the cloud-based large language model has been
+successfully invoked. The model will interpret the command, generate a
+language response, and execute a corresponding action based on the
+
+meaning of the command.
+
+@ The response is automatically generated by the model. While the
+semantic content is accurate, the wording and structure may vary due to
+
+randomness in language generation.
+
+
+
+
+=== Page 8 ===
+Hivwonder Shenzhen Hiwonder Technology Co,Ltd
+
+9) To grasp the block, the robot will first navigate to the “red square”
+
+location preset in the program.
+
+home /ubuntu/ros2_ws/install /fnavigation/share/navigation/rviz/navigatlon_transport.rviz* - RVIz
+file Panels Help
+Cejinteract "Move Camera [select Focus Camera ==Meawure * 2DPoseEstimate  20GoaPosxe  @ PublishPoint =  Nav2Goal 4 -
+
+e
+2
+
+<
+ares
+ga eee
+Zf wo
+a5 Se
+g
+
+BIDET? ¢
+re
+35°
+>
+<
+
+FEESERE
+
+j
+
+10)Then, it will go to the “blue box” location preset to place the block into
+
+the container.
+
+home /ubuntu/ros2_ws/install/navigation/share/navigation/rviz/navigation_transport.rviz* - RViz
+
+Bile panels Help
+
+Coyinteract Movecamera [T]select > FocusCamera = ==Measure 7 2DPoseEstimate 4 20GoalPoxe —@ PublishPoint «= Nav2Goal -
+
+a *
+
+Feedback: reached
+ETA: os
+Distance remaining 0.00 m
+Time taken: os
+Recoveries: °
+Pause
+Reset
+
+Waypoint / Nav Through Poses Mode
+
+1S image Ol
+
+=
+= ~~
+
+Reset 17 fps
+
+11)When the terminal shows the output shown in the figure indicating the
+end of one interaction cycle, the system is ready for the next round. To initiate
+another interaction, repeat step 4 by speaking the wake words to activate the
+
+voice device again, then issue a new command.
+
+
+
+=== Page 9 ===
+Hiwoender Shenzhen Hiwonder Technology Co,Ltd
+
+S_no 42524 + 249029 S_No > speech synthesizer tS opened.
+[tts_no ae 7) rENPO} (1742524778. 945 1592 28] [tts Spode: Speech synthesizer is completed.
+
+[tts_node-7] [INFO] yas 52 4778.951139572] [tts_node]: Speech synthesizer is closed.
+[vocal_detec t-5] [INFO] [1742524778.958064206] [vocal_detect]:
+
+12)To exit the feature, press Ctrl+C in the terminal. If the feature does not
+
+exit immediately, press Ctrl+C multiple times.
+
+6 Project Outcome
+
+Once the feature is started, you can give natural language commands,
+such as “Put the red square in the blue box.” The robot will first go to the
+reception area to grasp the block, then proceed to the kitchen to place the
+
+block into the box.
+
+7 Modifying Navigation Locations
+
+To change the robot’s navigation targets, modify the relevant parameters
+
+in the following file:
+
+~/ros2_ws/src/large_models_examples/large_models_examples/navigatio
+
+n_transport/vilm_navigation_transport.py
+
+1) Begin by launching the program and displaying the map in rviz
+
+following step 4 above.
+
+Then, click on “2D Goal Pose’ in the rviz interface to set the desired
+
+navigation target on the map.
+
+
+
+=== Page 10 ===
+4 iwennder Shenzhen Hiwonder Technology Co,Ltd
+
+home /ubuntu/ros2_ws/install/navigation/share/navigation/rviz/navigation_controller.rviz* - RVIz
+Eile Panels Help
+Conteract —Mowecamers —CIselect > FocusCamera aMamnure 7 20Posetstinate [7 20GoalPone | @ Pub
+
+B Displays ie)
++ @ Global Options c 1
+
+2) Return to the terminal to view the published goal parameters. Once
+
+you obtain the target coordinates, you can fill in the x and y values and related
+
+parameters accordingly.
+
+[navigation_controller-3] [INFO] [1742392582.005 83] [navigation_controller]:
+
+Locate the corresponding section of the code shown below, and fill in your
+
+target location parameters after the appropriate location name.
+
+9 els
+
+positton_dict = {
+
+In the program, different positions are expressed as coordinates relative
+
+to the map origin, which corresponds to the robot’s starting point during the
+
+map-building process. The five parameters represent:
+x coordinate (unit: meters)
+y coordinate (unit: meters)
+
+roll angle (rotation around the x-axis, in degrees)
+
+10
+
+
+
+=== Page 11 ===
+Hivwoander Shenzhen Hiwonder Technology Co,Ltd
+
+pitch angle (rotation around the y-axis, in degrees)
+yaw angle (rotation around the z-axis, in degrees)
+
+Take “green square” as an example. Enter the coordinates shown in the
+
+figure below:
+
+[0.996, -0.872, 0.0, 0.0, 0.0] indicates the robot's target position for
+
+reaching the “green square”.
+
+To modify the robot's orientation, convert the printed quaternion
+Quaternion(x=0.0, y=0.0, z=-0.5677173914973032, w=0.8232235197025761)
+
+into Euler angles (roll, pitch, yaw). The conversion results are approximately
+
+roll ~ 0°, pitch ~ 0°, and yaw * -69.3°.
+
+The final modified target position for “green square” is [0.996, -0.872, 0.0,
+0.0, -69.3]
+
+8 Program Brief Analysis
+
+8.1 Launch File Analysis
+
+File Path:
+
+/home/ubuntu/ros2_ws/src/large_models_examples/large_models_e
+
+xamples/navigation_transport/vilm_navigation_transport.launch.py
+
+@ Import Libraries
+
+
+
+=== Page 12 ===
+4 IV/EM | er Shenzhen Hiwonder Technology Co,Ltd
+
+1import os
+
+2 from ament_index_python.packages import get_package_share_directory
+
+3
+
+4 from launch_ros.actions import Node
+
+5 from launch_ros.actions import PushRosNamespace
+
+6 from launch import LaunchDescription, LaunchService
+
+7 from launch.substitutions import LaunchConfiguration
+
+8 from Launch. launch_description_sources import PythonLaunchDescriptionSource
+
+9 from Launch.actions import DeclareLaunchArgument, IncludeLaunchDescription, GroupAction, OpaqueFunction, TimerAction, ExecuteProcess
+
+@ os: used for handling file paths and operating system-related
+
+functions.
+
+@ ament index python.packages.get package share direc
+
+tory: retrieves the share directory path of ROS 2 package.
+
+(6) launch_ros.actions.Node: used to define ROS 2 nodes.
+
+@ launch.substitutions.LaunchConfiguration: retrieves
+
+parameter values defined in the Launch file.
+
+© LaunchDescription, LaunchService: used to define and start
+
+the Launch file.
+
+© launch description sources
+
+PythonLaunchDescriptionSource: enables the inclusion of other
+
+Launch files.
+
+@ launch.actions.IncludeLaunchDescription,
+
+DeclareLaunchArgument, OpaqueFunction: used to define actions and
+
+arguments within the Launch file.
+
+@ Definition of the launch_setup Function
+
+12
+
+
+
+=== Page 13 ===
+Hivwonder Shenzhen Hiwonder Technology Co,Ltd
+
+11def Launch_setup(context):
+12 jetauto_description_package_path = get_package_share_directory( )
+13 slam_package_path = get_package_share_dtrectory(
+
+14 navigation_package_path = get_package_share_directory( )
+15 large_models_package_path = get_package_share_directory( )
+
+16
+
+17 mode = LaunchConfiguration( , default=1)
+
+18 mode_arg = DeclareLaunchArgument( , default_value=mode)
+
+19 map_name = LaunchConfiguratton( , default= ).perform(context)
+
+20 robot_name = LaunchConfiguration( , default=os.environ[
+
+21 master_name = LaunchConfiguration( » default=os.environ[ aD)
+22
+
+23 map_name_arg = DeclareLaunchArgument( , default_value=map_name)
+
+24 master_name_arg = DeclareLaunchArgument( , default_valuesmaster_name)
+25 robot_name_arg = DeclareLaunchArgument( , default_value=robot_name)
+26
+
+27 navigatton_controller_lLaunch = IncludeLaunchDescription(
+
+28 PythonLaunchbescripttonSource(os.path. jotn(navigatton_package_path, »»,
+29 launch_arguments={
+
+30 : map_name,
+
+31 : :
+
+32 : robot_name,
+
+33 : master_name,
+
+34 }.items(),
+
+35 )
+
+36
+
+37 large_models_launch = IncludeLaunchDescription(
+
+38 PythonLaunchDescriptionSource(
+
+39 os. path. jotn(large_models_package_path, »
+
+40 launch_arguments={ : mode}.items(),
+
+41 )
+
+42
+
+43 vllm_navigation_transport_node = Node(
+
+44 package=
+
+45 executable=
+
+46 output=
+
+47 )
+
+48
+
+49 return [
+
+50 mode_arg,
+
+51 map_name_arg,
+
+52 master_name_arg,
+
+53 robot_name_arg,
+
+54 navigation_controller_launch,
+
+55 large_models_launch,
+
+56 vllm_navigation_transport_node
+
+57
+
+@_ This function includes the file
+navigation transport.launch.py from the
+large models examples package, which launches the navigation-to-goal
+
+functionality.
+
+@ large models launch: includes the Launch file
+
+start.launch.py fromthe large models package using
+
+IncludeLaunchDescription and passes the mode argument to it.
+
+@ vilim navigation transport node: defines a ROS 2 node from
+
+the large models package, executes the executable files from
+
+vllm_navigation_ transport, and prints the node's output to the screen.
+
+@ The function returns a list of all defined launch actions.
+@ Definition of the generate launch description Function
+
+59 def generate_launch_description():
+
+60 return LaunchDescription([
+61 OpaqueFunction(function = lLaunch_setup)
+62 })
+
+@®_ This function is responsible for generating the complete launch
+description.
+
+13
+
+
+
+=== Page 14 ===
+Hivwoander Shenzhen Hiwonder Technology Co,Ltd
+@ The launch setup function is incorporated using
+OpaqueFunction.
+@ Main Program Entry
+
+641f _name_ == 4 H
+65 # Create a LaunchDescription object.
+
+66 ld = generate_lLaunch_description()
+67
+
+68 ls = LaunchService()
+
+69 ls.include_lLaunch_description(ld)
+70 ls.run()
+
+@ 1d= generate launch description() generates the launch
+
+description object.
+
+@ 1s = LaunchService() creates the launch service object.
+
+@ 1s.include launch description(ld) addsthe launch
+
+description to the service.
+
+@ 1s.run() starts the service and execute all launch actions.
+
+8.2 Python File Analysis
+
+File Path:
+
+/home/ubuntu/ros2_ws/src/large_models_examples/large_models_e
+
+xamples/navigation_transport/vilm_navigation_transport.py
+
+@ Import the necessary libraries
+
+14
+
+
+
+=== Page 15 ===
+Hivwoander Shenzhen Hiwonder Technology Co,Ltd
+
+5 import re
+
+6 import cv2
+
+7 import time
+
+8 import json
+
+9 import rclpy
+
+10 import queue
+
+11 import threading
+
+12 import numpy as np
+
+13 from speech import speech
+
+14 from rclpy.node import Node
+
+15 from cv_bridge import CvBridge
+
+16 from sensor_msgs.msg import Image
+
+17 from std_msgs.msg import String, Bool
+
+18 from std_srvs.srv import Trigger, SetBool, Empty
+
+19
+
+20 from Large_models.config import *
+
+21 from large_models_msgs.srv import SetModel, SetContent, SetString, SetInt32
+22
+
+23 from interfaces.srv import SetPose2D, SetPoint, SetBox
+24 from rclpy.executors import MultiThreadedExecutor
+
+25 from rclpy.callback_groups import ReentrantCallbackGroup
+
+@®  cv2: utilized for image processing and display using OpenCV.
+@ son: used for handling data in JSON format.
+
+@ time: manages execution delays and time-related operations.
+@ queue: handles image queues between threads.
+
+© rclpy: provides tools for creating and communicating between ROS
+
+2 nodes.
+
+© threading: enables multithreading for concurrent task processing.
+@ numpy (np): supports matrix and vector operations.
+
+std_srvs.srv: contains standard ROS service types, used to
+
+define standard service.
+
+@ std_msgs.msg: contains standard ROS message types.
+
+rclpy: provides tools for creating and communicating between ROS
+
+2 nodes.
+
+11. rclpy.node.Node: base class for ROS 2 nodes.
+
+15
+
+
+
+=== Page 16 ===
+4 IV/EM Oo er Shenzhen Hiwonder Technology Co,Ltd
+
+12 rclpy.callback groups.ReentrantCallbackGroup:
+
+supports concurrent callback handling.
+
+13. rclpy.executors.MultiThreadedExecutor: multithreaded
+
+executor in ROS 2 for handling concurrent tasks.
+
+14 rclpy.node: node class in ROS 2.
+15 speech: module related to large model voice interaction.
+
+16 large models _msgs.srv: custom service types for large models.
+
+17 large models.config;: configuration file for large models.
+
+@ PROMPT String
+
+It defines three prompt strings (PROMPT) used to guide how user commands
+and image data are processed. It specifies the recognition task logic and
+
+expected output format.
+
+@ VLLMObjectTransport Class
+
+16
+
+
+
+=== Page 17 ===
+Hiwonder Shenzhen Hiwonder Technology Co,Ltd
+
+88 class
+def
+
+90 Felpy.intt()
+91 super().__imtt__(name)
+
+92
+
+93 elf.actton = []
+
+94 self.response_text =
+
+9s elf.Um_result =
+
+96 self.actton_fintsh =
+
+97 self.transport_actton_finish =
+
+98 elf.play_audto_fintsh =
+
+bid # self. LLm_result {\'actlon\':[\'move(\"ATG\")\', \'viston(\"ATMARAR\")\', \'move(\"MUA\")\', \'play_audto()\'], \'response\':\' Sb !\'}
+100 self.running =
+
+101 elf.reach_goal =
+
+102 self.interrupt =
+
+103 Lf. bridge = cvartdge()
+
+104 self.image_queue = queue.Queue(maxsize=2)
+
+105 tiner_cb_group = ReentrantcaltbackGroup()
+
+106 :€ltent = speech.OpenAIAPI(apt_key, base_url)
+
+107 elf.tts_text_pub = self.create_publisher(string,
+
+108 se f create: subscrtptisa(inege, “ -tmage_cal back,
+
+109 self.create_subscriptton(Sstring, , self. Llm_result_callback, 1)
+
+110 elf.create_subscriptton(Bool, , self.wakeup_callback, 1)
+
+qua self.create_subsertptton(Bool, , self.play_ audto_fintsh_callback, 1, callback_group=ttner_cb_group)
+112 elf.create_subscriptton(Bool, elf.reach_goal_callback, 1)
+
+113 elf.create pwobscripttentfools ; action. aes callback, 1)
+
+114 elf.awake_cltent = 5
+
+115 elf.awake_client.wait_for_service()
+
+116 elf.set_mode_cltent = self.create_cltent(setInt32, )
+
+117 self set_node_cllent.walt_for_service(
+
+f.create_client(Setmodel, )
+
+118 “model_client :
+119 et_model_client.watt_for_service()
+
+120 et_prompt_client = self.create_client(SetString, )
+
+121 et_prompt_client. wait_ for ~service()
+
+122 elf.set_vllm_content_client = f.create_cltent(SetContent, )
+123 self.set_vLlm_content rCVtant watt ton, aarotea()
+
+124 elf.set_pose_client = self.create_client(SetPose20, )
+
+125 et pose _clLient watt_for_service()
+
+126 Uent(setPoint, 'automatic_pick/set_target_color')
+127 s ar e()
+
+128 e _cltent(SetBox, )
+
+129 r_service()
+
+130 se et_pick_ -€reate_client(Trigger, )
+
+131 self.set_ptck_cltent.watt_for_service()
+
+132 self.set_place_cltent = self.create_cltent(Trtgger, )
+
+133 se inet Place: cllantiwalt torcservicat
+
+134 elf.timer = self.create_timer(0.0, self.tnit_process, callback_group=timer_cb_group)
+
+@® rclpy.init (): initializes the ROS 2 system.
+
+@ super().init (name): calls the initializer of the parent class (Node)
+
+to create a ROS 2 node.
+
+@ self.lim result: stores results returned from LLM.
+
+@ self.running: used to control the runtime state of the program.
+
+© self.transport finished: indicates whether the transport task
+
+has been completed.
+
+© self.tts text pub: publishes TTS (Text-to-Speech) text toa ROS
+
+topic.
+
+@ self.create subscription: subscribes to LLM results and the
+
+transport completion status.
+
+self.lock: threading lock used for synchronization in
+
+multi-threaded operations.
+
+Q) self.client: speech API client used to communicate with the
+
+17
+
+
+
+=== Page 18 ===
+Hivwonder Shenzhen Hiwonder Technology Co,Ltd
+
+voice service.
+
+self.tts text pub: publishes TTS messages to a ROS topic.
+
+11. self.asr_pub: publishes speech recognition results to a ROS
+
+topic.
+
+12 self.create subscription: subscribes to LLM result and
+
+transport status topics.
+
+13. self.create client: creates multiple service clients for calling
+
+various functionalities.
+
+14 self.timer: createsa timer used to trigger the initialization
+
+process.
+
+@ get_node state Method
+
+136 def get_node_state(self, request, response):
+137 return response
+
+return response: returns a response object.
+@ init_process Method
+
+def init_process(self):
+self.timer.cancel()
+
+msg = SetModel.Request()
+
+msg.model = Llm_model
+
+msg.model_type = ‘Lim’
+
+msg.api_key = apt_key
+
+msg.base_url = base_url
+self.send_request(self.set_model_client, msg)
+
+msg = SetString.Request()
+msg.data = LLM_PROMPT
+self.send_request(self.set_prompt_client, msg)
+
+init_finish = self.create_client(Empty, ‘navigation_controller/init_finish' )
+init_finish.wait_for_service()
+
+speech.play_audio(start_audio_path)
+
+threading. Thread(target=self.process, daemon=True).start()
+self.create_service(Empty, ‘~/init_finish', self.get_node_state)
+
+self .get_logger().info('\033[1;32m%s\033[Om' % ‘start')
+
+self .get_logger().info('\033[1;32m%s\033[Om' % LLM_PROMPT)
+
+@ self.timer.cancel(): cancels the timer.
+
+18
+
+
+
+=== Page 19 ===
+4 iwennder Shenzhen Hiwonder Technology Co,Ltd
+
+@ SetModel.Request: creates a request message to set the LLM
+
+model.
+
+@) SetModel.Request (): creates a request for SetModel service.
+
+@ msg.model type = '1lm': specifies the model type as 'l1m'.
+
+© self.send request (self.set model client, msg): sends
+
+the model configuration request through the set_model_ client.
+
+© SetString.Request: creates a request message to set the prompt
+
+string.
+
+@® self. send request (self.set prompt client,msg): sends
+
+the model configuration request through the set_ prompt client.
+
+Empty .Request: request message used to clear the current
+
+conversation history.
+
+@ self.send request (self.clear chat client, msg): sends
+
+the request through the clear_chat_client to reset chat context.
+
+self.create client (Empty,
+
+‘object _transport/init finish"): creates a service client for calling
+
+the object _transport/init finish endpoint.
+
+11 init finish.wait for service (): waits for the
+
+init finish service to become available.
+
+12 self.send_ request (self.enter client,
+
+Trigger.Request ()): sends a Trigger request through the
+
+enter client to initiate the process.
+
+19
+
+
+
+=== Page 20 ===
+4 IV/EM | er Shenzhen Hiwonder Technology Co,Ltd
+
+13. speech.play audio: plays an audio cue.
+
+14. threading.Thread: launches the main logic in a new thread.
+
+15 self.create service: creates a service to signal the completion
+
+of initialization.
+16 self.get logger () .info: prints log messages.
+
+@ send_request Method
+
+160 def send_request(self, client, msg):
+
+161 future = client.call_async(msg)
+
+162 while rclpy.ok():
+
+163 if future.done() and future.result():
+164 return future.result()
+
+@ client.call_ async (msg): makes an asynchronous service call.
+
+@ future.done() and future.result (): check if the service call
+is complete and retrieve the result.
+
+@ vllm_result_callback Method
+
+169 def Llm_result_callback(self, msg):
+170 self.llm_result = msg.data
+
+a74
+
+This callback receives results from the agent _process/result topic
+
+and stores them in self.vllm_ result.
+
+@ get object position Method
+
+20
+
+
+
+=== Page 21 ===
+Hivwonder Shenzhen Hiwonder Technology Co,Ltd
+
+def get_object_position(self, query, image):
+msg = SetContent.Request()
+if language == ‘Chinese’:
+msg.api_key = stepfun_api_key
+msg.base_url = stepfun_base_url
+msg.model = stepfun_vllm_model
+else:
+msg.api_key = vllm_api_key
+msg.base_url = vllm_base_url
+msg.model = vllm_model
+msg.prompt = VLLM_PROMPT
+msg.query = query
+msg.image = self.bridge.cv2_to_imgmsg(image, “bgr8")
+self .get_logger().info('viston: %s' % query)
+self .get_logger().info('send image’)
+res = self.send_request(self.set_vllm_content_client, msg)
+vllm_result = res.message
+Af ‘object’ in vllm_result:
+Af vllm_result.startswith("°°°") and vllm_result.endswith(" °°"):
+vllm_result = vllm_result.strip(" > °").replace("json\n", "").strip()
+self .get_logger().info('vllm_result: %s' % vllm_result)
+vllm_result = json. loads(vllm_result)
+box = vllm_result['xyxy']
+h, w = image.shape[:2]
+box = self.client.data_process(box, w, h)
+self .get_logger().info('box: %s' % str(box))
+# box_center = [(box[0] + box[2]) / 2 / 640, (box[1] + box[3]) / 2 / 480]
+# self.get_logger().info('box_center: %s' % str(box_center))
+return box
+else:
+msg = String()
+msg.data = vllm_result
+self.tts_text_pub.publish(vllm_result)
+return []
+
+@ query: a query request.
+@ image: the input image data.
+@ offset: offset of the placement position.
+
+@ SetContent.Request: request message used to set the LLM
+
+content.
+
+© self.get logger () .info: prints log messages.
+
+© self.send_ request: sends the service request.
+
+@  xres.message: extracts the message content from the service
+
+response.
+
+if 'object' in vllm_result: checks whether the result
+
+contains object-related information.
+
+21
+
+
+
+=== Page 22 ===
+Hivwoander Shenzhen Hiwonder Technology Co,Ltd
+
+@ if vllm result.startswith(">*>*") and
+vllm_result.endswith ("~*~"): checks the message format.
+vlim result.strip("*°*").replace("json\n",
+
+"") .strip() **: cleans up the message content, removes the code block
+markers (°°), Strips the "json\n" prefix, trims leading and trailing
+
+whitespace, and extracts a pure JSON string.
+
+11 json.loads (message): parses the cleaned JSON string into a
+
+Python dictionary.
+
+12 vllm_result.message: extracts the message the response.
+
+13 box = self.client.data process (box, w, h): processes the
+
+bounding box for the placement position.
+
+14 self.tts text pub.publish (msg): publishes the final
+
+message.
+
+@ pick Method
+
+@ Trigger Pick Preparation
+
+self.send_ request (self.set pick client,
+Trigger.Request () ): sends a trigger request to the pick service, which
+may cause the robotic arm to enter pick-ready status.
+
+@ Acquire Image
+
+image = self.image_ queue.get (block=True): retrieves the latest
+
+image from the image queue.
+
+block=True: means the method will wait until an image is available
+
+before proceeding.
+
+22
+
+
+
+=== Page 23 ===
+Hivwoander Shenzhen Hiwonder Technology Co,Ltd
+
+@ Detect Target Object
+
+box = self.get_ object position(query, image): calls the
+get object position method to detect the object based on the query and
+
+input image, returning bounding box coordinates.
+@ Handle Detection Result
+
+if box: checks whether the object was successfully detected. If
+
+successful, the bounding box data is recorded for further processing.
+
+© Create Bounding Box Request
+
+msg = SetBox.Request (): creates a request to set the bounding box
+
+coordinates.
+
+Set the bounding box coordinates:
+msg.x min = box[0]
+msg.y min = box[1]
+
+msg.x max = box[2]
+
+msg.y max = box[3]
+
+© Send Bounding Box to Pick Node
+
+self.log_ info("Step 5: Sending bounding box to
+
+automatic pick node"): logs the operation of sending the bounding box.
+
+self.send_ request (self.set box client, msg): sends the
+
+bounding box request to the pick node so it Knows where the object is located
+
+for grasping.
+@ place Method
+The logic and structure are analogous to the pick method.
+
+@ transport _finished_callback Method
+
+23
+
+
+
+=== Page 24 ===
+M4 iweander Shenzhen Hiwonder Technology Co,Ltd
+
+321 def transport_finished_callback(self, msg):
+322 self.transport_finished = msg.data
+
+This method handles updates on the transport status.
+
+@ process Method
+
+def process(self):
+while self.running:
+Af self.Ulm_result:
+self.interrupt = False
+msg = String()
+if ‘action’ in self.Ulm_result: # 20 RAXRIMAITAIR LBZ PE RANE
+result = eval(self.llm_result[self.llm_result.find('{'):self.llm_result.find('}')+1])
+Uf ‘response’ in result:
+msg.data = result['response']
+self.tts_text_pub.publish(msg)
+Uf ‘action’ itn result:
+action = result['action']
+self .get_logger().info(f'vilm action: {action}')
+for a in action:
+Af ‘move’ tn a:
+self.reach_goal = False
+eval(f'self.{a}")
+while not self.reach_goal:
+# tf self.interrupt:
+# self.get_logger().info( interrupt’)
+# break
+# self.get_logger().info('watting for reach goal')
+time.sleep(0.01)
+elif ‘pick’ in aor ‘place’ in a:
+time.sleep(3)
+eval(f'self.{a}')
+self.transport_action_finish = False
+while not self.transport_action_finish:
+# if self.interrupt:
+# self.get_logger().info('interrupt')
+# break
+time.sleep(0.01)
+# if self.interrupt:
+# self.get_logger().info('interrupt')
+# break
+else: # RAXMHAITA, REIS
+msg.data = self.llm_result
+self.tts_text_pub.publish(msg)
+self.action_finish = True
+self.Ulm_result = °'
+else:
+time.sleep(0.01)
+if self.play_audio_finish and self.action_finish:
+self.play_audio_finish = False
+self.action_finish = False
+# msg = SetInt32.Request()
+# msg.data = 2
+# self.send_request(self.set_mode_client, msg)
+msg = SetBool.Request()
+msg.data = True
+self.send_request(self.awake_client, msg)
+rclpy.shutdown()
+
+@ while self.running: this loop keeps running as long as
+
+self.running is set to True.
+
+@ if self.vllm_ result: checks whether self.vllm result is
+
+empty, which is the result from vilm model.
+
+@ self.interrupt = False: resets the interrupt flag.
+
+@ if 'action' in self.llm result: checks if the result contains
+an action command.
+
+24
+
+
+
+=== Page 25 ===
+4 iwennder Shenzhen Hiwonder Technology Co,Ltd
+
+© result = eval(self.llm result[...]): parses the JSON
+
+result.
+
+@© if 'response' in result: checks if the result includes a
+
+response message.
+
+@ msg.data = result['response']: set response text.
+
+self.tts text pub.publish (msg): publishes the response
+
+text.
+
+Q if ‘action' in result: checks whether the result contains an
+
+action list.
+
+action = result['action' ]: retrieves the action list.
+11 if 'move' in a: checks whether it is a move action.
+12  self.reach goal = False: resets the "goal reached" flag.
+
+13 eval (f'self.{a}'): executes the move command.
+
+14 while not self.reach_ goal: waits until the target is reached.
+
+15 elif 'pick' in aor 'place' in a: checks whether it is a pick
+
+or place action.
+
+16 eval(f'self.{a}"'): executes the pick or place command.
+
+17 self.transport action finish = False: resets the transport
+
+action completion flag.
+
+18 while not self.transport action finish: waits until the
+
+25
+
+
+
+=== Page 26 ===
+4 iwennder Shenzhen Hiwonder Technology Co,Ltd
+
+action is completed.
+
+19 Interrupt Handling ‘if self.interrupt’: checks whether the
+
+process has been interrupted.
+
+20 No action response handling else: # No corresponding action found,
+
+only respond: handling process when no action is found.
+
+21 ‘Finish Handlling ‘self.action_ finish = True’: marks the action
+
+as completed.
+
+22 Waiting Handling ‘else: time.sleep(0.01)’: short sleep.
+
+23 Mode Switching ‘if self.play audio finish and
+
+self.action finish’: checks if both audio playback and action
+
+execution are complete.
+
+24 Shutdown Handling ‘rclpy. shutdown ()’: shut down the ROS 2
+
+system.
+
+25 for a in action: iterates over the action list and execute each
+action.
+
+@ main Method
+
+317 def main():
+
+318 node = VLLMNavigation(
+
+319 executor = MultiThreadedExecutor()
+320 executor .add_node(node)
+
+321 executor.spin()
+
+322 node.destroy_node()
+
+@ Create an instance of the VLLMObjectTransport node.
+@  Amultithreaded executor is used to handle the node’s tasks.
+
+@ Callexecutor.spin() to start processing ROS events.
+
+26
+
+
+
+=== Page 27 ===
+M4 iweander Shenzhen Hiwonder Technology Co,Ltd
+
+@ Upon shutdown, the node is properly destroyed using
+
+node.destroy node().
+
+27
+
+

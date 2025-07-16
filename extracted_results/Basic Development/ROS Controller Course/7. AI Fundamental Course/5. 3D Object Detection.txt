@@ -1,0 +1,222 @@
+
+=== Page 1 ===
+Hiweander Shenzhen Hiwonder Technology Co,Ltd
+Lesson 5 3D Object Detection
+
+This section uses MediaPipe’s 3D object detection model to display 3D
+
+bounding boxes of objects in the image.
+
+Object detection is a widely studied problem in computer vision. By
+extending predictions to 3D, you can capture the size, position, and orientation
+of objects in the world, enabling various applications in robotics, autonomous
+
+vehicles, image retrieval, and augmented reality.
+
+1. Program Logic
+
+First, import MediaPipe’s 3D Objection and obtain the live camera feed by
+
+subscribing to topic messages.
+
+Next, process the image, such as flipping it, and perform 3D object
+
+detection on it.
+
+Finally, draw 3D bounding boxes on the image. Here will use a cup as an
+
+example.
+
+2. Operation Steps
+
+@ The input command should be case sensitive, and “Tab” key can be
+
+used to complement the key words.
+
+If you use the system image we provide, you can find the corresponding
+program in the folder “3 Basic Operation Course -> 2. Introduction to
+
+System Desktop .”
+
+
+
+
+=== Page 2 ===
+Hiweander Shenzhen Hiwonder Technology Co,Ltd
+
+1) Power on Jetson Orin Nano board, and connect it to the remote
+
+system desktop using NoMachine.
+
+2) Connect it to the network. For specific operations, please refer to the
+tutorials located in “3. Basic Operation Course -> 3. Network Configuration
+(Wired and Wireless)” to access the network. Some models may need to be
+
+re-downloaded.
+
+3) When entering the system desktop, drag the program file
+
+“objectron.py” under the same directory to the remote desktop.
+
+AIT > Be v &
+
+Bi
+
+_» Camera.py
+
+|} face_detect.py
+_» face_mesh.py
+) hand.py
+
+') mp_face_detect.py
+iP mp_gesture.py
+
+© objectron.py
+") pose.py
+» self_segmentation.py
+
+4) Then right click on the blank area of the system desktop, and select
+
+“Open in Terminal” to open the command-line terminal:
+
+New Folder
+
+Show Desktop in Files
+
+Openin Terminal
+
+Change Background...
+
+Display Settings
+
+Settings
+
+
+
+
+=== Page 3 ===
+Hiweander Shenzhen Hiwonder Technology Co,Ltd
+
+5) Enter the following command and press Enter to run 3D object
+
+detection.
+
+python3 objectron.py
+
+: S python3 objectron.py
+
+6) To close the program, please use the shortcut key “Ctrl+C” to exit the
+
+program.
+
+3. Program Outcome
+
+7) After starting the program, 3D bounding boxes will appear around
+objects in the image. Currently, we support the detection of four types of
+objects: cups (with handles), shoes, chairs, and cameras. The example here
+
+uses a Cup, as shown in the image below:
+
+MediaPipe Objectron
+
+Geavoaegeaeaue
+
+(x=87, y=267) ~ R:212 G22) B:208
+
+
+
+=== Page 4 ===
+Hiweander Shenzhen Hiwonder Technology Co,Ltd
+
+4. Program Analysis
+
+@ Build a 3D Detection Model
+
+Import the Objectron (3D Object Detection) model from the MediaPipe toolkit.
+
+The first parameter, static_image_mode=False, specifies whether the image is
+in static mode. If set to false, the input image is treated as a video stream. If set
+to true, object detection runs on each input image, which is suitable for
+
+processing a batch of static, potentially unrelated images. The default is false.
+
+The second parameter, max_num_objects=1, specifies the maximum number
+
+of objects to detect, with the default value being 5.
+
+The third parameter, min_detection_confidence=0.4, is the minimum detection
+confidence. This value ([0.0, 1.0]) determines the confidence threshold for
+
+successful detections from the object detection model. The default is 0.5.
+
+The fourth parameter, min_tracking_confidence=0.4, is the minimum
+confidence for object tracking. Setting this to a higher value can improve the
+
+robustness of the solution but may increase latency.
+
+The fifth parameter, model_name='Cup', specifies the name of the 3D
+bounding box model. This name determines which 3D bounding box marker
+model to display. Currently supported models are {‘Shoe’, 'Chair’, ‘Cup’,
+
+‘Camera’}, with the default being 'Shoe’.
+
+
+
+=== Page 5 ===
+Hiweamn oer Shenzhen Hiwonder Technology Co,Ltd
+
+@ Retrieve Live Camera Feed
+
+Invoke the VideoCapture() function from cv2 library to retrieve the
+
+camera feed.
+
+The parameter within the function parenthesis refers to the camera
+
+interface. You can also use “O” to access the default camera.
+
+If the current device has only one camera connected, either “O” or “-1” can
+be used as the camera ID. If multiple cameras are connected, “O” presents the
+
+first camera, “1” represents the second camera, and so on for additional
+
+cameras.
+
+Convert the color space by calling the cvtColor() function from the cv2
+library.
+@ Detection
+
+Based on the previously built Objectron (3D Object Detection) model,
+detect the 3D shape of objects.
+
+@ Draw 3D Bounding Boxes
+
+After detecting the 3D shape of objects, iterate through the identified
+objects and use mp_drawing.draw_landmarks() and mp_drawing.draw_axis()
+
+to draw 3D bounding boxes around them.
+
+.detected_objects:
+
+.landmarks_2d, :
+- -rotation,
+-translation
+
+@ Display the Transmitted Image
+
+
+
+=== Page 6 ===
+Hivwoander Shenzhen Hiwonder Technology Co,Ltd
+
+Use the imshow() function from the cv2 library to display the camera feed
+
+in a specified window.
+
+The first parameter inside the function’s parentheses, 'MediaPipe Selfie
+
+Segmentation’, is the window name, and the second parameter, output_image,
+
+is the image to be displayed.
+
+

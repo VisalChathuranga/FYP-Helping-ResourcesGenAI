@@ -1,0 +1,67 @@
+
+=== Page 1 ===
+HIW/E9MOCT Shenzhen Hiwonder Technology Co,Ltd
+
+Lesson 1 Jetson.GPIO Library
+Introduction and Import
+
+1. GPIO Introduction
+
+GPIO, a general-purpose input/output, is known as I/O port. It can allocate
+input and output by software, and set level to read and set the status of
+
+peripheral equipment.
+
+2. GPIO Library Instruction
+
+Jetson Orin Nano features a 40-pin GPIO interface. The GPIO voltage on the
+Jetson Orin Nano is 3.3V, so voltages higher than 3.3V should not be
+connected to the Nano GPIO pins without using using a level shifter. Generally,
+the system already includes the Jetson.GPIO library, so there is no need for
+the installation and configuration described below. You can find the source
+code and related API documentation for the Jetson.GPIO library here:
+
+https://github.com/NVIDIA/jetson-gpio.
+
+The GPIO interface functions as shown below:
+
+
+
+=== Page 2 ===
+Hivwoander Shenzhen Hiwonder Technology Co,Ltd
+
+3.3V 5.0V
+12C1_SDA 5.0V
+1201_SCL GND
+GPIO09 UART1_TXD
+GND UART1_RXD
+UART1_RTS* 1280_SCLK
+SPH_SCK GND
+GPIO12 SPI1_CS1*
+3.3V SPI1_CS0*
+SPI0_MOSI GND
+SP10_MISO SPI1_MISO
+SPI0_SCK SPI0_CSO*
+GND SPI0_CS1*
+12C0_SDA 12C0_SCL
+GPIO01 GND
+GPIO11 GPI007
+GPIO13
+1280_FS
+SPI1_MOS!
+GND
+
+PVAUUTEEAUUUEOAAUNEEAOUEHTUOUEENHATL
+
+BNRBR
+
+2
+
+UART1_CTS*
+12S0_DIN
+1280_DOUT
+
+8S 8&8
+
+
+

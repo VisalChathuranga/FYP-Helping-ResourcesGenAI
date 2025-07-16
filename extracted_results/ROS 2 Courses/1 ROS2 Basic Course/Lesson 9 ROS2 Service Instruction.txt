@@ -1,0 +1,749 @@
+
+=== Page 1 ===
+Hivweander Shenzhen Hiwonder Technology Co,Ltd
+Lesson 9 ROS2 Service Instruction
+
+1. Introduction to Service Communication
+
+Service communication is a communication model based on request and
+respond. During the mutual communication, the client sends request data to
+
+the server, and the server responds with results to the client.
+
+Service
+Server
+
+Service NODE
+
+Request
+
+Response
+
+From the perspective of service implementation, the request- respond form
+is called the client/server model, abbreviated as CS mode. In this model, when
+the client requires certain data, aiming at a specified service, a request
+message targeting a specific service will be sent. Upon receiving the request,
+
+the server processes it and provides a respond.
+
+This communication mechanism is common in our daily life. For example,
+when we browse various web pages, your computer browser acts as the client,
+it sends requests to the website using domain names or other operations. The
+server returns the necessary page data to be displayed upon receiving these
+
+requests.
+
+
+
+=== Page 2 ===
+Hivweander Shenzhen Hiwonder Technology Co,Ltd
+
+2. Create Interface
+
+1) Click ® and select “System Tools ->Terminator” in sequence.
+
+@ Programming
+
+@) internet
+‘a interne
+
+ib Sound & Video
+
+i) Graphics
+Pf System Tools
+@ Accessories
+res) Help
+
+= Preferences
+
+7! Run
+
+¥
+ra Shutdown
+
+2) Enter the command “cd hiwonder_ws/src/” to switch to the
+
+demo_interfaces package.
+
+3) Enter the command “demo_interfaces’” to create the srv folder.
+
+4) Enter the command “cd srv’ to enter the srv folder.
+
+5) Enter the command “vim Addints.srv’ to edit the program. Enter the
+
+code below. If you need to make modifications, press “i” to enter insert mode.
+
+Once you've finished editing, press "Esc", then type ":wq" to save and exit.
+
+ubuntu@raspberrypi: ~/hiwonder_ws/src/demo_interfaces/msg$ vim String.msgff
+
+
+
+=== Page 3 ===
+Hivweander Shenzhen Hiwonder Technolday Co,Ltd
+
+int82 num1
+
+int82 num2
+
+int82 sum
+
+:wafl
+
+6) Enter “ed ..” to navigate back to the parent directory, then enter “vim
+
+CMakeLists.txt” to open the file using the Vim text editor. Copy the
+following program and paste it into the specific location as pictured.If you
+need to make modifications, press "i" to enter insert mode. Once you've
+
+finished editing, press "Esc", then type ":wq" to save and exit.
+
+find_package(rosidl_default_generators REQUIRED)
+rosidl_generate_interfaces( ${PROJECT_NAME}
+"msg/String.msg"
+
+"srv/AddlInts.srv"
+
+
+
+
+=== Page 4 ===
+Hivweander Shenzhen Hiwonder Technology Co,Ltd
+
+ors REQUIRED)
+
+REQUIRED )
+
+3. Create Service
+
+3.1 Create Server
+
+1) Click ® and select “System Tools ->Terminator” in sequence.
+
+> &
+@ Programming
+Internet
+[iy Sound & Video
+
+m
+¥ Graphics
+
+g Accessories
+se,
+ty Help
+£ a
+
+=| Preferences
+
+~/ Run
+
+ra Shutdown
+
+2) Enter the command “cd hiwonder_ws/src/” to switch to the src folder
+within hiwonder_ws workspace.
+
+ubuntu@raspberrypi:~$ cd hiwonder_ws/src/
+
+ubuntu@raspberrypi:~/hiwonder_ws/src$ i}
+
+3) Enter the command “ros2 pkg create service_demo --build-type
+
+ament_python --dependencies rclpy” and press Enter to create a package
+
+
+
+=== Page 5 ===
+HSIVVEXMOCT Shenzhen Hiwonder Technology Co,Ltd
+named “service_demo’ with rclpy dependency.
+
+ubuntu@raspberrypi:~/hiwonder_ws/src$ ros2 pkg create service_demo --build-type am
+
+ent_python --dependencies rclpyff
+
+4) Enter the command “cd service_demo/service_demo/” to switch to
+the “service_demo’” package.
+
+ubuntu@raspberrypi:~/hiwonder_ws/src$ cd service_demo/service_demo/
+
+ubuntu@raspberrypi: ~/hiwonder_ws/src/service_demo/service_demo$ |
+
+5) Enter the command “vim service_server.py” to edit the program,
+
+copy the program below. If modification is required, you can press “i” to modify
+
+the program. After modification, press “Esc” and eneter “:wq” to save and exit.
+
+ubuntu@raspberrypi: ~/hiwonder_ws/src/service_demo/service_demo$ vim service_server
+
+.pyfl
+
+import rclpy
+from rclpy.node import Node
+
+from demo_interfaces.srv import AddInts
+
+# Define a MinimalService class inhering from the Node.
+
+class MinimalService(Node):
+
+# The initialization method of the Class
+def init__(self):
+
+# Call the initialize method of the Node class to set the node name as
+
+“minimal_service”
+
+super().__init__(‘minimal_service’')
+
+# Create a service that provides a service of type Addints. Set the
+
+
+
+=== Page 6 ===
+Hivweander Shenzhen Hiwonder Technology Co,Ltd
+
+Service name as ‘add_two_ints’, and the callback function as
+
+‘add_two_ints_ callback’.
+
+self.srv = self.create_service(AddInts, ‘add_two_ints',
+
+self.add_two_ints_ callback)
+
+# Define service callback function
+def add_two_ints_callback(self, request, response):
+# Log the received requests num1 and num2z2 in the logs.
+
+self.get_logger().info('Incoming request\nnum1: %d num2: %d' %
+
+(request.num1, request.num2))
+
+# Calculate and set the respond field ‘sum’.
+
+response.sum = request.num1 + request.num2
+
+# Return respond
+
+return response
+
+# Main function
+def main():
+# Initialize ROS2 node
+
+rclpy.init()
+
+# Create MinimalService object
+
+
+
+
+=== Page 7 ===
+Hiweander Shenzhen Hiwonder Technology Co,Ltd
+
+minimal_service = MinimalService()
+
+# Enter the event loop of ROS2 node
+
+rclpy.spin(minimal_ service)
+
+# Shut down ROS2 node
+
+rclpy.shutdown()
+
+# If this script is the main program, main function is executed.
+
+main( )
+
+‘wall
+
+6) Enter the command “chmod +x service_server.py” and press Enter
+
+to grant the executable permission to the saved service_server.py.
+
+ubuntu@raspberrypi: ~/hiwonder_ws/src/service_demo/service_demo$ chmod +x service_s
+erver.py
+
+ubuntu@raspberrypi: ~/hiwonder_ws/src/service_demo/service_demo$ iN}
+
+3.2 Create Client
+
+1) Enter the command “vim service_client.py’” to edit the program. Copy the
+following program. If you need to make modifications, you can press “i” to
+modify the program. After modification, press “Esc” and eneter “:wq’ to
+
+save and exit.
+
+
+
+=== Page 8 ===
+Hivweander Shenzhen Hiwonder Technology Co,Ltd
+
+ubuntu@raspberrypi:~/hiwonder_ws/src/service_demo/service_demo$ vim service_client
+
+py
+
+import sys
+
+import rclpy
+
+from rclpy.node import Node
+
+from rclpy.logging import get_logger
+
+from demo_interfaces.srv import AddInts
+
+# Define a MinimalClient class inhering from the Node.
+
+class MinimalClient(Node):
+
+# The initialization method of the Class
+def init__(self):
+
+# Call the initialization method of the Node class. Set the node name
+
+as “minimal_client”
+
+super().__init__(‘minimal_client’)
+
+# Create a server and connect to the Addints service named as
+
+“add_two_ints”.
+
+self.cli = self.create_client(AddInts, 'add_two_ints')
+
+# Wait for the service connection, with a maximum wait time of 1
+
+Second.
+
+
+
+
+=== Page 9 ===
+Hivweander Shenzhen Hiwonder Technology Co,Ltd
+
+while not self.cli.wait_for_service(timeout_sec=1.0):
+
+self.get_logger().info('service is connecting...')
+
+# Send service request method
+def send_request(self):
+# Create an Addints request object.
+
+request = AddInts.Request()
+
+# Get two integers from the command-line arguments and set them
+
+into the request object.
+request.num1 = int(sys.argv[1])
+
+request.num2 = int(sys.argv[2])
+
+# Asynchronously call the service and retrieve a Future object.
+
+self.future = self.cli.call_async(request)
+
+# Main function
+
+def main():
+# Check if the command-line augments contain two integers.
+if len(sys.argv) != 3:
+
+get_logger("rclpy").error("Please provide two integers")
+
+return
+
+
+
+
+=== Page 10 ===
+Hivweander Shenzhen Hiwonder Technology Co,Ltd
+
+# Initialize ROS2 node
+
+rclpy.init()
+
+# Create MinimalClient object
+
+minimal_client = MinimalClient()
+
+# Send service request
+
+minimal_client.send_request()
+
+# Block and wait for the service call to complete.
+
+rclpy.spin_until_future_complete(minimal_client, minimal_client.future)
+
+try:
+# Retrieve the respond from the service call.
+
+response = minimal_client.future.result()
+
+# Print the respond results
+
+minimal_client.get_logger().info("Request result: sum = %d" %
+
+response.sum)
+except Exception:
+# Print error message if the request fails
+
+minimal_client.get_logger().error("Request Fail")
+
+
+
+
+=== Page 11 ===
+Hiweander Shenzhen Hiwonder Technology Co,Ltd
+
+# Destroy node object
+
+minimal_client.destroy_node()
+
+# Shut down ROS2 node
+
+rclpy.shutdown()
+
+# If this script is the main program, the main function is executed.
+
+if name__ =='_main_":
+
+main()
+
+main( )
+
+‘wall
+
+2) Enter the command “chmod +x service_client.py” and press Enter to
+
+grant the executable permission to the saved service_client.py file.
+
+ubuntu@raspberrypi: ~/hiwonder_ws/src/service_demo/service_demo$ chmod +x service_c
+lient.py
+
+ubuntu@raspberrypi: ~/hiwonder_ws/src/service_demo/service_demo$ |
+
+4. setup.py File Settings
+
+The setup.py file defines the metadata and build configuration for a ROS2
+package, providing information such as package metadata, dependencies,
+build configuration, and installation logic. It helps developers correctly build,
+install, and use ROS2 packages. It is necessary to write the program entry
+
+points for service_client.py and service_server.py into the setup.py file.
+
+
+
+=== Page 12 ===
+HIVVE9MCOCT Shenzhen Hiwonder Technology Co,Ltd
+
+1) Enter the command “cd ..” to switch to the parent directory.
+
+ubuntu@raspberrypi:~/hiwonder_ws/src/service_demo/service_demo$ cd
+
+ubuntu@raspberrypi:~/hiwonder_ws/src/service_demo$ |
+
+2) Enter the command “vim setup.py” and press Enter to open the setup.py
+
+file.
+
+ubuntu@raspberrypi:~/hiwonder_ws/src/service_demo$ vim setup. py
+
+3) Press “i” to enter the editing mode, and then enter the following code to the
+
+corresponding position.
+
+'service_server = service_demo.service_server:main’,
+
+'service_client = service_demo.service_client:main'
+
+4) Enter “:wq’ to save and exit the file.
+
+
+
+
+=== Page 13 ===
+HIVVE9MCOCT Shenzhen Hiwonder Technology Co,Ltd
+
+5. Compilation and Execution
+
+1) After granting the executing permission, enter the command “cd
+
+~/hiwonder_ws/” to switch to the directory of the workspace.
+
+ubuntu@raspberrypi: ~/hiwonder_ws/src/hello_world_demo$ cd ~/hiwonder_ws/
+
+ubuntu@raspberrypi: ~/hiwonder_ws$ il
+
+2) Enter the command “colcon build” and press Enter to compile the
+
+packages within the workspace.
+
+ubuntu@raspberrypi:~/hiwonder_ws$ colcon build
+
+3) Enter the command “source ./install/setup.bash” and press Enter to
+
+make the environment variables take effect.
+
+ubuntu@raspberrypi:~/hiwonder_ws$ source /opt/ros/humble/setup.bash
+
+ubuntu@raspberrypi:~/hiwonder_ws$
+
+4) Enter the command “ros2 run service_demo service_server” and
+
+press Enter to start service_server server.
+
+@raspberrypi:~/hiwonder_ws$ source ./install/setup.bash
+
+5) Right click to select “Split Vertically” to create a new terminal window.
+
+icdbd79/ros Launch-raspberrypi-821. log
+
+<1
+
+started roslaunch server http://raspberrypi: 41
+ros_comm version 1.14.13
+
+stro: melodic
+
+rosversion: 1.14.13
+
+NODES
+
+auto-starting new master
+process[master]: started with pid [835]
+ROS_MASTER_URI=http://raspberrypi:11311/
+
+6) Enter the command “ros2 run service_demo service_client 1 2” and
+
+press Enter to start the service_client client to send the calculation request for
+
+
+
+=== Page 14 ===
+Hiweander Shenzhen Hiwonder Technology Co,Ltd
+
+numbers 1 and 2. Once the server receives the calculation request for
+
+numbers 1 and 2, it will send back the result to the client.
+
+ubuntu@raspberrypi: ~ 40x31
+ubuntu@raspberryp1:~ ros2 run Service d
+emo service client 1 2
+[INFO] [1706239415.291166584] [minimal_c
+lient]: BM@R#48 : sum = 3
+ubuntu@raspberrypi:~$ Jj
+
+ubuntu@raspberrypi:~$ ros2 run service_
+demo service_server
+
+[INFO] [1706239376.867932340] [minimal_
+service]: Incoming request
+
+numi: 1 num2: 2
+
+6. Program Analysis
+
+6.1 Server
+
+According to the realization result, the logic progress for the program is shown
+
+as pictured:
+
+Destroy node and
+Set Callback function
+
+Calculate and respond
+
+
+
+
+=== Page 15 ===
+Create a server named "minimal_service" which will receive requests,
+perform calculations on them, and respond with the result. During program
+execution, ROS 2 node is initialized first. Then, a MinimalPublisher object is
+created, and the program enters the ROS 2 node's event loop. When the
+program is interrupted, the node object is destroyed, and the ROS 2 node is
+
+shut down.
+@ Main Function
+
+# =H
+def main():
+
+# PMwROS 25 i
+rclpy.init()
+
+# fi #@MinimalServicett KR
+minimal_service = MinimalService()
+
+# AROS 27 RH SFB
+
+rclpy.spin(minimal_service)
+
+# XMROS 27 A
+
+rclpy.shutdown( )
+
+First, invoke the relpy.init() function to initialize ROS2 Python interface. Then
+instantiate the MinimalService(). Finally, execute the minimal_service within
+
+the event loop of the ROS2 node.
+
+@ MinimalService Class
+
+# XL — 4 RB Nodef MinimalService#
+class MinimalService(Node):
+
+# BMMMKAR
+def init__(self):
+# WRNodeE MM MiKAK , 2G ABM A 'minimal_service'
+)
+
+super().__init__(
+
+# BR —SBS , BKHAddIntseRHBS , BREBMA 'add_two_ints', Bi BMA add _two_ints_callback
+
+self.srv = self.create_service(AddiInts, , self.add_two_ints_callback)
+
++ EMBSO WHR
+def add_two_ints_callback(self, request, response):
+# EAR PICR KD BR MH numiAl num2
+
+self.get_Logger().info( 1 l % (request.numi, request.num2))
+
+# tH MF id BW BY sumS FR
+
+response.sum = request.numi + request .num2
+
+# 38 Be
+
+return response
+
+
+
+
+=== Page 16 ===
+Hivweander Shenzhen Hiwonder Technology Co,Ltd
+
+First, anode named minimal_service is created. Then, a service is created
+to provide a service of type Addints, with the service name 'add_two_ ints’.
+Inside the add_two_ints_callback() callback function, the two data from the
+request are received, processed for calculation, and the result of the
+
+calculation is responded back.
+
+6.2 Client
+
+According to the realization result, the logic progress for the program is shown
+
+Import package Set request data
+Destroy node ‘ ;
+and close interface reat client
+
+as pictured:
+
+Print rquest data Send request data
+
+A client named "minimal_client" is created, which connects to the AddInts
+service named 'add_two_ints’. It sends the two requested data. During
+program execution, it initializes the ROS2 node, creates a MinimalClient
+object, sends the service request, prints the response result, and upon
+
+interruption, it destroys the node object and closes the ROS 2 node.
+
+
+
+=== Page 17 ===
+@ Main Function
+
+def main():
+#RERSCHSRERRAATER
+if len(sys.argv) !=
+get_lLogger( ).error(
+return
+
+# PMA ROS 20
+rclpy.init()
+
+# ft] #Minimalclienth
+minimal_client = MinimalClient()
+
+# RERSBR
+
+minimal_client.send_request()
+
+# BB & 73 BS 18 FS oc oh
+
+rclpy.spin_until_future_complete(minimal_client, minimal_client.future)
+
+try:
+# RR BS AH ey
+
+response = minimal_client.future.result()
+
++ FTE wR
+
+minimal_client.get_logger().info( % response.sum)
+except Exception:
+
++ FT DRRARHBRES
+
+minimal_client.get_logger().error(
+
+# HR a tt R
+
+minimal_client.destroy_node( )
+
+# SHMROS 2
+rclpy.shutdown( )
+
+First, invoke the rclpy.init() function to initialize ROS2 Python interface. Then
+instantiate the MinimalClient() file and send the service request. Finally,
+
+process the respond data.
+
+@ MinimalClient Class
+
+
+
+=== Page 18 ===
+# TS — + KR B Nodef Minimalclient
+class MinimalCLlient(Node):
+
+# RMP McA
+
+def init__(self):
+# WA NodeR MD MKAR , QRRBDABMA 'minimal_client'
+super().__init__ ( )
+
+#fiB—S+REBP MR, ZHBBA 'add_two_ints'MAddIntsRS
+
+self.cli = self.create_client(AddInts,
+
+# SRA, RESID
+
+while not self.cli.wait_for_service(timeout_sec=
+
+self.get_lLogger().info(
+
+# RERSARRHAB
+def send_request(self):
+# fl B— PS Addints#® RW KR
+
+request = AddInts.Request()
+
+#MABeCTSRPRRATER , FREADEKNKRF
+request.numi = int(sys.argv[1])
+request.num2 = int(sys.argv[2])
+
+#* RF>URRBRS , FHRM— T+ Futureh KR
+
+self.future = self.cli.call_async(request)
+
+First, anode named “minimal_client” is created. Then, a service client is
+created to connect to the AddInts service named “add_two_ints’”. In the
+send_request() function, the two command-line augments are used as the
+
+data for the request object, and the request is sent.
+
+

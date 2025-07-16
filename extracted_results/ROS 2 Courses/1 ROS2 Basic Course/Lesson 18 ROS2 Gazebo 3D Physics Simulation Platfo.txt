@@ -1,0 +1,119 @@
+
+=== Page 1 ===
+Hivweander Shenzhen Hiwonder Technology Co,Ltd
+
+Lesson 18 ROS2 Gazebo 3D Physics
+
+Simulation Platform
+
+1. Gazebo Introduction
+
+Gazebo is the most commonly used 3D physics simulation platform in ROS
+system. It supports dynamics engine, enabling high-quality graphic rendering.
+Not only can simulate robots and surrounding environments, but it can also
+
+incorporate physical properties such as friction and elasticity coefficients.
+
+For instance, if we plan to develop a Mars robot car, the Martian surface
+environment can be simulated in Gazebo. Similarly, if we face constrains in
+conducting frequent experiences due to drone endurance and flight restrictions,
+we can utilize Gazebo for simulation. This allows us to develop algorithms in
+simulation first and then deploy them onto physical hardware once they are
+
+sufficiently refined.
+
+Therefore, the similar simulation platforms like Gazebo can assist us in
+validating robot algorithms, optimizing robot designs, and testing robot
+scenarios and applications, which explores more possibilities for robot
+
+development.
+
+2. Run Gazebo
+
+1) Click e to select “System Tools Terminator” in sequence.
+
+
+
+=== Page 2 ===
+bet IVW/E) mM Oo © Shenzhen Hiwonder Technology Co,Ltd
+eo
+- Programming
+
+@) intemet
+wy
+
+io Sound & Video
+
+i) Graphics
+of System Tools
+
+‘ | » Accessories
+
+res) Help
+| Preferences
+
+*/ Run...
+
+ra Shutdown
+
+2) Input the command “ros2 launch ros_gz_sim_demos
+robot_description_publisher.launch.py” and press Enter to run the
+
+“robot_description_publisher.launch.py’ file.
+
+ubuntu@raspberrypi:~$ ros2 launch ros_gz_sim_demos robot_description_publisher. Launch. py
+
+After successful execution, the simulation interface of Ignition and the PC
+
+software of Rivz will open, allowing us to visualize the data of the small ball.
+
+Gazebo
+
+>) World Entity 1
+
+Render Engine Gui Plugin
+
+Physics Collision Detector ode
+
+Scene
+
+Physics Engine Plugin
+
+World Sdf
++ Magnetic Field
+
+Atmosphere
++ System Plugin Info
+
+Render Engine Server Plugin
+
+Physics Solver DantzigBoxedLcpSolver
++ Gravity
+
+Name empty
++ Physics
+
+Render Enaine Server Headless
+
+Entity Tree +
+
+\ SS > 8, ground_plane
+\
+
+x
+@ sun
+: iS > wh, my_custom_model
+
+
+
+
+=== Page 3 ===
+HIWEMCGET Shenzhen Hiwonder Technology Co,Ltd
+
+File Panels Help
+“Bmove camera Clseiect Procus Camera Measure 7 20 Pose Estimate 4 2DGoalPose Publish Point =
+
+| Duplicate || Remove || Rename
+
+
+

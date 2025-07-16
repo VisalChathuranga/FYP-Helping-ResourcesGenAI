@@ -1,0 +1,209 @@
+
+=== Page 1 ===
+Hivweander Shenzhen Hiwonder Technology Co,Ltd
+Lesson 3 Face Detection
+
+1. Program Logic
+
+Firstly, load the pre-trained Haar feature classifier model. Then create a
+window and capture the video stream. Process each frame by converting it toa
+grayscale image and applying the Haar feature classifier for face detection.
+The detected face locations will be marked with rectangular boxes on the
+original image. The processed image will be displayed in real-time it the
+
+window.
+
+2. Operation Steps
+
+If you use the system image we provide, you can find the corresponding
+program in the folder “3 Jetson Orin Nano Basic Operation -> 2.
+Introduction to System Desktop .”
+
+This method requires that the purchased kit includes the expansion board.
+
+Prior to operations, you need to transfer the routine “face.p
+andhaarcascade_frontalface_default.xml” stored in “6. OpenCV Computer
+Vision Course\ Program Files” to the Jetson Orin Nano.
+
+For the file transfer method, you can refer to the content in “3. Basic
+Operation Course”.
+
+Noted: The input command should be case sensitive, and the “Tab” key is able
+
+to implement the key works.
+
+>
+
+A
+
+Terminal
+
+1) Open Nocmahine. Double click on , or use the shortcut key to
+
+open the terminal. After entering the command, it will start face detection.
+
+
+
+=== Page 2 ===
+Hivweander Shenzhen Hiwonder Technology Co,Ltd
+
+python3 face.py
+
+python3 face.py
+
+2) At this point, the terminal will display the live camera feed, and the camera
+will automatically outline the detected face, as shown in the image below.
+
+To close this program, press the "ESC" key.
+
+Goeaoveabooaseea
+
+(x=337, y=114) ~ R:0 G:1 B:0
+
+3. Program Analysis
+
+The program is stored in:
+
+/home/ubuntu/Opencv/face/face. py
+
+
+
+=== Page 3 ===
+Hivwoander Shenzhen Hiwonder Technology Co,Ltd
+
+import cv2 as cv
+import numpy as np
+
+def face_detect(image);:
+gray = cv.cvtColor(image, cv.COLOR BGR2GRAY)
+face detector = cv.CascadeClassifier("./haarcascade frontalface default.xml")
+faces = face detector.detectMultiScale(gray,1.082,28)
+for x, y, Ww, h in faces:
+cv.rectangle(image, (x, y), (x +w, y +h), (0, 0, 255), 2)
+cv.imshow("face detect", image)
+
+video face _detect():
+capture = cv.VideoCapture()
+while True:
+ret, frame = capture, read()
+frame = cv.flip(frame, 1)
+face detect( frame)
+c = cv.waitKey(18)
+if c==27:
+break
+
+3.1 Import Library File
+
+Import the cv2 library from openCV, and import and instantiate the numpy
+
+library as np.
+
+import cv2 as cv
+
+import numpy as np
+
+3.2 Main Function Analysis
+
+3.2.1 Real-time Face Detection
+
+if name == ' main_':
+
+video face detect()
+
+1) Invoke the video_face_detect() function to run the face detection and
+
+display it.
+
+
+
+=== Page 4 ===
+Hivweander Shenzhen Hiwonder Technology Co,Ltd
+
+def video face _detect():
+capture = cv.VideoCapture(0®)
+while True:
+ret, frame = capture.read()
+
+frame = cv.flip(frame, 1)
+face detect( frame)
+c = cv.waitKey(10)
+if c==27:
+break
+
+2) Inthe video_face_detect() function, use the VideoCapture() function
+
+from the cv2 library to define the camera object.
+capture = cv.VideoCapture(Q0)
+The parameter 0 in VideoCapture() represents the first camera. If there are
+multiple cameras, you can use parameters 1, 2, 3, etc.
+
+3) Inthe while loop, use the read() function of the camera object to capture a
+frame of the video, and then use the flip() function from the cv2 library to
+
+horizontally flip the transmitted camera.
+
+while True:
+
+ret, frame = capture.read()
+frame = cv.flip(frame, 1)
+
+4) Call the face_detect() function to perform detection on the image.
+
+face detect(frame)
+
+def face_detect( image):
+
+gray = cv.cvtColor(image, cv.COLOR BGR2GRAY)
+face detector = cv.CascadeClassifier("./haarcascade frontalface default.xmL")
+faces = face detector.detectMultiScale(gray,1.92,20)
+
+5) In the image detection function, to speed up detection, first use the
+cvtColor() function from the cv2 library to convert the source image to
+grayscale. In this function, the first parameter image is the source image,
+and cv.COLOR_BGR2GRAY is the color conversion code. Next, use the
+CascadeClassifier() function to load the face detection data. Call the
+
+detectMultiScale() function to detect faces. In this function:
+
+4
+
+
+
+=== Page 5 ===
+Hivweander Shenzhen Hiwonder Technology Co,Ltd
+
+The first parameter gray is the image to be detected.
+
+The second parameter 1.02 is the scaling factor for the detection window,
+
+which enlarges by 2% in each successive scan.
+
+The third parameter 20 is the minimum number of adjacent rectangles required
+
+to form a detection.
+
+for x, y, w, h in faces:
+cv.rectangle(image, (x, y), (x +w, y +h), (8, 6, 255), 2)
+cv.imshow("“face detect", image)
+
+2) Finally, use the rectangle() function to draw boxes around the detected
+faces, and use the imshow() function to display the annotated image in the
+
+feedback window.
+
+3) Then, wait for 10 units of time. If the "ESC" key is detected during this period,
+
+exit and close the window.
+
+c = cv.waitKey(19)
+if c==27:
+
+break
+3.2.2 Exiting Face Detection
+
+Call the destroyAllWindows() function to close all the image windows.
+
+cv.waitKey(0)
+cv.destroyAllWindows( )
+
+

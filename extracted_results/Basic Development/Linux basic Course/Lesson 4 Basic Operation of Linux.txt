@@ -1,0 +1,500 @@
+
+=== Page 1 ===
+| IVW/E) im | = t Shenzhen Hiwonder Technology Co,Ltd
+
+Lesson 4 Basic Operation of Linux
+
+1.GUI Layout
+
+Take GUI of Ubuntu for example. If you want to check GUI of other Linux
+
+versions, please search online.
+
+The yellow frame at left is the menu bar, at right is the desktop, and under
+
+it is the tool bar. And the status bar is on the top.
+
+Status Bar
+
+T™ Menu Bar
+
+Desktop
+
+Tool Bar
+
+Some basic tools including, browser, mailbox and Office software, can be
+
+found in the menu bar, which can meet your basic usage needs.
+
+1) Click “ ”, and we can select the various kinds of tools. You can
+
+input the tool name in the input field to find the corresponding tool.
+
+
+
+=== Page 2 ===
+Shenzhen Hiwonder Technology Co,Ltd
+
+Activities Wed 01:24
+
+27] =
+
+AisleRiot S... Calculator Calendar Firefox We...
+
+7
+
+(
+
+Input Method Language S... LibreOffice... LibreOffice... LibreOffice... LibreOffice...
+
+2, m ¢
+
+Mahjongg Power Stati... Remmina Rhythmbox
+
+SO mp ® @
+
+Simple Scan Software & Software U Startup Ap.
+
+Frequent
+
+2) Click the far right corner of the status bar.
+
+Wed 01:25
+
+Activities
+
+Q Typeto search
+
+3) The window below will appear.
+
+ea Wired Connetteg@ork Conne¢ti
+
+Hiwonder = »
+Account Status
+
+4) Click “ ”
+
+
+
+
+=== Page 3 ===
+| IVW/EDM oer Shenzhen Hiwonder Technology Co,Ltd
+
+ea Wired Connected
+
+& Hiwonder
+
+5) You can set Ubuntu system in this interface.
+
+Q Settings Background
+F Wi-Fi
+3 Bluetooth
+
+@ Background
+
+© Dock
+A Notifications
+Search
+
+Region & Language
+
+Online Accounts
+
+Privacy
+
+Background Lock Screen
+
+a
+Q
+Lo |
+@ universal Access
+ps
+wy
+<
+
+Sharing
+49 Sound
+Ce Power
+@? Network
+2 Devices >
+
+@ Details >
+
+)
+6) Click ° | and then you can shutdown or restart the system.
+
+
+
+=== Page 4 ===
+Hiwoander Shenzhen Hiwonder Technology Co,Ltd
+
+az
+
+fa Wired Connected
+
+Hiwonder
+
+*
+
+i Power Off
+The system will power off automatically in 60 seconds.
+
+Cancel Restart Power Off
+
+7) Press “win” key, and move the cursor to the far right.
+
+
+
+=== Page 5 ===
+Shenzhen Hiwonder Technology Co,Ltd
+
+Activities Wed 01:52
+
+Q Type to search.
+
+6
+@
+=
+e)
+B
+cy
+
+8) Click the second desktop framed in yellow.
+
+Activities Wed 01:57 a”) Or
+
+~
+_
+
+Q Typeto search...
+
+SEvRDoR aE
+
+9) Then you can switch it to a new desktop.
+
+
+
+=== Page 6 ===
+Shenzhen Hiwonder Technology Co,Ltd
+
+Activities Wed 01:57 “a WM Or
+
+L |
+=
+B
+~
+
+10) Click the folder icon at left to open file manager, as the picture below
+
+shown.
+
+Activities @ Files Wed 01:57 AW” Or
+
+Recent <
+Home J |
+
+a A a =
+Desktop Documents Downloads Music Pictures
+
+Public Templates
+Desktop
+
+Documents i G |
+
+Downloads Videos Examples
+Music
+
+Pictures
+
+Videos
+
+oaeioacohypoa
+
+Trash
+
+6
+
+Other Locations
+
+11) Right click the blank area in red frame.
+
+
+
+=== Page 7 ===
+| IWE) | Oo = t Shenzhen Hiwonder Technology Co,Ltd
+
+ie
+
+be OG €¢
+
+Recent
+
+Desktop Documents Downloads Music Pictures Public Templates
+
+Desktop
+
+Downloads Videos Examples
+
+Music
+Pictures
+Videos
+
+Trash
+
+Other Locations
+
+12) Click “New Folder’.
+
+Documents Downloads Music Pictures Public Templates
+
+Desktop
+Documents
+Downloads
+Music
+Pictures
+
+Videos
+
+Trash
+
+Other Locations
+
+13) Input the folder name, for example “test”. After that, click “add”.
+
+
+
+=== Page 8 ===
+| IWE) | Oo = t Shenzhen Hiwonder Technology Co,Ltd
+
+New Folder
+
+Folder name
+
+in |
+
+14) The new folder is as the picture shown.
+
+Q = =
+Recent — — — —
+Documents Downloads Music Pictures Public Templates
+fm Desktop =
+QO ‘Documents a
+Examples
+
+Downloads
+Music
+Pictures
+
+Videos
+
+be OG €
+
+Trash
+
++
+
+Other Locations
+
+15) Right click “test” and click “copy”.
+
+
+
+=== Page 9 ===
+| IWE) | Oo = t Shenzhen Hiwonder Technology Co,Ltd
+
+Bhbkhmak &B
+
+Desktop Documents Downloads Music Pictures Public Templates
+
+Desktop
+
+Documents
+Downloads
+Music
+Pictures
+Videos
+
+Trash
+
+Other Locations
+
+Compress...
+
+Local Net
+Open in Terminal
+Send to...
+
+“test” selected (containing 0 items)
+
+16) Then, click “desktop”.
+
+e Desktop Q P=
+
+Recent
+
+Home
+
+Documents
+Downloads
+Music
+Pictures
+
+Videos
+
+Trash
+
+Other Locations Folder is Empty
+
+17) Right click the blank area, and then click “paste” in the pop-up menu.
+
+
+
+=== Page 10 ===
+a IWE) M Oo ES t Shenzhen Hiwonder Technology Co,Ltd
+
+ft? Home Desktop ES =
+
+Recent
+
+Home
+
+Documents
+
+Downloads
+
+Music
+Pictures
+
+Videos
+
+Trash
+
+Other Locations Folder is Empty
+
+18) If “test” folder appears on your desktop, it means that the folder is
+
+successfully copied.
+
+Activities & Files v Wed 02:11
+
+ft? Home Desktop
+
+Recent
+
+19) Right click “test” folder, and select “Move to Trash’ to delete the file.
+
+And other operation on the folder is the same as that on windows.
+
+
+
+=== Page 11 ===
+a IWE) M Oo = t Shenzhen Hiwonder Technology Co,Ltd
+
+Activities
+
+2.Terminal Interface
+
+Terminal is the console of Linux, and completing the daily task is relied on
+
+the communication between various kinds and the kernel.
+
+The terminal receives input by the user on keyboard and sends the input
+to the host system, and then the host system processes the user input and
+
+returns the result to the terminal.
+
+1) And we can press “CtrIl+Alt+T”, or click “Saal” at the bottom left corner
+
+and click “Terminal” to open the terminal.
+
+
+
+=== Page 12 ===
+Shenzhen Hiwonder Technology Co,Ltd
+
+Activities Wed 02:13
+
+Q Typeto search...
+
+i Hele «&
+
+Startup Dis... System Mo... Terminal Text Editor Thunderbir...
+
+>. —
+SA @ : Seaza
+est a ame
+
+Transmission Ubuntu Sof... Utilities Videos
+
+SEDoDSeSE
+
+Frequent
+
+hiwonder@ubuntu: ~
+
+File Edit View Search Terminal Help
+
+Command Input Area
+
+2) Click “Edit” and select “Preference”. Then we can change the style,
+
+font, etc., at the right side.
+
+
+
+=== Page 13 ===
+Shenzhen Hiwonder Ts hnology Co,Ltd
+
+hiwonder@ubuntu: ~
+
+File| Edit | view Search Terminal Help
+
+Select All
+
+Preferences
+
+Preferences — Profile “Unnamed”
+
+Global Text Colors Scrolling Command Compatibility
+Text Appearance
+General —— ——
+Initial terminalsize: | 80 — + | columns | 24 — + | rows Reset
+Shortcuts
+Custom Font:
+sian i Cell spacing: 1.00 + | x width 1.00 + | xheight Reset
+Allow blinking text: | Always a
+Cursor
+Cursor shape: Block ’
+Cursor blinking: Default a
+Sound
+
+Terminal bell
+
+Profile ID: bidcc9dd-5262-4d8d-a863-c897e6d979b9
+
+Help Close
+
+3) After entering the terminal interface, you will find the command prompt,
+
+such as [hiwonder@ubuntu~]#
+
+13
+
+
+
+=== Page 14 ===
+| iIiwWeonder Shenzhen Hiwonder Technology Co,Ltd
+
+And hiwonder is the current user name.
+1 @: separator
+2. Ubuntu: Current host name
+
+3. ~: The name of directory the user is currently in. “~” represents home
+
+directory.
+
+4. #: user identity prompt. # represents super client, that is administrator.
+
+$ represents normal user.
+
+

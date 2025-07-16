@@ -1,0 +1,187 @@
+
+=== Page 1 ===
+HIW/E9MOCT Shenzhen Hiwonder Technology Co,Ltd
+
+Lesson 6 Facial Detection
+1. Program Logic
+
+First, import MediaPipe's face detection model and obtain the live camera
+
+feed by subscribing to topic messages.
+
+Next, use OpenCV to process the image, such as flipping and converting
+
+the color space.
+
+Then, compare the face detection model's minimum confidence to
+determine if the face detection was successful. Once a face is detected,
+perform face landmark detection, where each face is represented by a
+detection message containing a bounding box and six key points (right eye, left
+
+eye, nose tip, mouth center, right ear region, and left ear region).
+
+Finally, draw a bounding box around the face and mark the six key points
+
+on the face.
+
+2. Operation Steps
+
+@ The input command should be case sensitive, and “Tab” key can be
+
+used to complement the key words.
+
+If you use the system image we provide, you can find the corresponding
+program in the folder “3 Basic Operation Course -> 2. Introduction to
+
+System Desktop .”
+
+1) Power on Jetson Orin Nano board, and connect it to the remote
+
+system desktop using NoMachine.
+
+
+
+=== Page 2 ===
+Hiweander Shenzhen Hiwonder Technology Co,Ltd
+
+2) Connect it to the network. For specific operations, please refer to the
+tutorials located in “3. Basic Operation Course -> 3. Network Configuration
+(Wired and Wireless)” to access the network. Some models may need to be
+
+re-downloaded.
+
+3) When entering the system desktop, drag the program file
+
+“face_detect.py” under the same directory to the remote desktop.
+
+» Camera.py
+
+face_detect.py
+
+~ face_mesh.py
+) hand.py
+
+') mp_face_detect.py
+
+|} mp_gesture.py
+
+} objectron.py
+
+“# pose.py
+
+» self_segmentation.py
+
+4) Then right click on the blank area of the system desktop, and select
+
+“Open in Terminal” to open the command-line terminal:
+
+New Folder
+
+Show Desktop in Files
+Openin Terminal
+
+Change Background...
+
+Display Settings
+
+Settings
+
+5) Enter the following command and press Enter to run the program.
+
+python3 face_detect.py
+
+
+
+=== Page 3 ===
+e
+HIW/E9MOCT Shenzhen Hiwonder Technology Co,Ltd
+: S python3 face _detect.py
+
+6) To close the program, please use the shortcut key “Ctrl+C” to exit the
+
+program.
+
+3. Program Outcome
+
+After starting the program, if the face is detected, it will draw a bounding
+
+box around the face in the returned feed.
+
+MediaPipe Face Detection
+
+GSGoaovaeooaue®
+
+(x=614, y=291) ~ R:75 G74 B97
+
+4. Program Analysis
+
+@ Build a Face Detection Model
+
+
+
+=== Page 4 ===
+Hiweamn oer Shenzhen Hiwonder Technology Co,Ltd
+
+Import the face detection model from the MediaPipe toolkit.
+
+mp.solutions.face_ detection
+
+p.solutions.drawing utils
+
+The first parameter, “min_detection_confidence’, is the minimal confidence,
+
+with a default value of 0.5. The range is [0.0, 1.0].
+
+@ Retrieve Live Camera Feed
+
+Invoke the VideoCapture() function from cv2 library to retrieve the
+
+camera feed.
+
+The parameter within the function parenthesis refers to the camera
+
+interface. You can also use “O” to access the default camera.
+
+If the current device has only one camera connected, either “O” or “-1” can
+be used as the camera ID. If multiple cameras are connected, “O” presents the
+
+first camera, “1” represents the second camera, and so on for additional
+
+cameras.
+
+Convert the color space by calling the cvtColor() function from the cv2
+
+library.
+
+Before performing detection on the image, you need to convert the image
+to the RGB color space.
+
+@ Face Detection
+
+Based on the previously built face detection model, detect faces in the
+
+image.
+
+
+
+=== Page 5 ===
+Hivwoander Shenzhen Hiwonder Technology Co,Ltd
+
+@ Draw the Face
+
+Use the mp_drawing.draw_detection() function to draw a bounding box
+
+around the detected face in the image.
+
+@ Display the Transmitted Image
+
+Use the imshow() function from the cv2 library to display the camera feed
+
+in a specified window.
+
+The first parameter inside the function’s parentheses, 'MediaPipe Face
+Detection’, is the window name, and the second parameter, image, is the
+
+image to be displayed.
+
+

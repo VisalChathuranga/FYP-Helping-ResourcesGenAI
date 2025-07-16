@@ -1,0 +1,812 @@
+
+=== Page 1 ===
+Hiweander Shenzhen Hiwonder Technology Co,Ltd
+Lesson 19 ROS2 Rviz Tool Usage
+
+1. Rviz2 Introduction
+
+During the process of robot development, if we only analyze various
+functionalities from a data perspective, it’s challenging to quickly grasp the the
+data’s effect. For example, with robot models, we need to know what our
+designed model looks like, as well as the positions of numerous coordinate
+
+systems within the model during the motion process.
+
+For instance, in tasks like motion planning for robotic arms or autonomous
+navigation for mobile robots, it's essential to visualize the surrounding
+environment, the planned trajectory, and sensor data such as cameras, 3D
+cameras, LiDAR, etc. Data is used for computation, but visualization effects
+
+are intended for human understanding.
+
+Therefore, data visualization can significantly enhance development efficiency.
+Rviz2 is precisely such a data visualization software for the robot development
+process. It handles everything from robot models to sensor information and
+
+environmental data, streamlining the development process.
+
+2. Start Rviz2
+
+1) Click on 6| to select “System Tools -> Terminator”.
+
+
+
+=== Page 2 ===
+Hivwoander Shenzhen Hiwonder Technology Co,Ltd
+JO s a
+
+@ Programming >
+
+) Internet >
+
+i Sound & Video
+
+v Graphics
+Sy
+
+g Accessories
+
+re) Help
+—-_
+=| Preferences
+
+Run
+
++
+[R) Shutdown
+
+ubuntu@raspberrypi: ~ 80x24
+
+ubuntu@raspberrypi:~$ rviz2
+
+The interface of Rviz can be primarily divided into five areas: toolbar area, the
+
+display list, 3D view area, viewpoint setting area, and time display area.
+
+File Panels Help
+(ryinteract | P'Move Camera ‘[JSelect Focus Camera ™Measure 2D Pose Estimate  2DGoalPose — @ Publish Point
+wm Views
+
+Global Options Type: Orbit (rviz_default_ + Zero
+Fixed Frame map = cs
+Background Color 48; 48; 48 ~ Current View = Orbit (rviz)
+Frame Rate 30 Near Clip Di... 0.01
+Invert Z Axis
+> @ Global Status: warr Target Frame <Fixed Frame>
+Fixed Frame No tf data. Actual error: .. Distance 10
+/ Focal Shape... 0.05
+
+Focal Shape... v
+
+Yaw 0.785398
+
+Pitch 0.785398
+
+> Focal Point 0;0;0
+
+ad
+
+List Display Perspective
+Area Configuration
+
+Area
+
+Remove Rename
+
+© Time
+
+ROS Time: |1706597029.20 ROS Elapsed: 219.72 Wall Time: 1706597029.23 Wall Elapsed: 219.72 Experimental
+
+Time Display Area
+
+Reset 31 fps
+
+
+
+=== Page 3 ===
+HIW/E9MOCT Shenzhen Hiwonder Technology Co,Ltd
+2.1 Tool Bar Area
+
+Select robot or specify a location to adjust the
+
+angle.
+
+$= Move Camera
+
+After selecting the tool, press and hold left mouse
+button within the 3D view, then drag the mouse to
+
+adjust the camera angle.
+
+After selecting the tool, press and hold left mouse
+
+button within the 3D view to box-select the model.
+
+ss» Focus Camera
+
+After selecting the tool, simply click the left mouse
+button anywhere within the 3D view to set that point
+
+as the center of the map.
+
+[I Measure
+
+After selecting the tool, click the left mouse button
+once at the starting point and once at the ending
+point within the 3D view to measure the distance
+
+between the two points.
+
+/ 2D Pose Estimate
+
+To set the position of the robot within the 3D view,
+
+this function is only available during navigation.
+
+When the robot undergoes displacement, indicating
+the actual position does not match its position in the
+3D view, it's necessary to reset the robot's position
+within the 3D view to ensure navigation
+
+effectiveness.
+
+
+
+
+=== Page 4 ===
+Hiweander Shenzhen Hiwonder Technology Co,Ltd
+
+After selecting the tool, click the left mouse button
+
+at any location within the 3D view to set that point
+
+as the robot's position.
+
+To set a single target point for the robot, this
+
+function is only available during navigation.
+
+After selecting the tool, click the left mouse button
+
+at any location within the map display area to set
+
+that point as the target.
+
+Once set, the robot will automatically generate a
+travel route and move along the route to the target
+
+point.
+
+To set multiple target points for the robot, this
+
+function is only available during navigation.
+
+The usage of this tool is similar to "2D Nav Goal,"
+
+but this tool can set multiple target points. Each
+
+Publish Point click sets one target point, and you can set up to
+
+three target points.
+
+Once set, the robot will automatically generate a
+travel route based on the set order and move along
+
+the route to each target point sequentially.
+
+2.2 Display List
+
+@ Global Options
+
+
+
+=== Page 5 ===
+Hiweander Shenzhen Hiwonder Technology Co,Ltd
+
+» ®% Global Options
+Fixed Frame map
+Background Color i 48; 48; 48
+Frame Rate 30
+Default Light v
+
+Used as the reference coordinate system for all
+Fixed Frame
+other coordinates frame.
+
+Blackground Color | The background color of the 3D view.
+
+Frame Rate The refresh frame rate of the 3D view.
+
+Default Light The light source for the current 3D view.
+
+
+
+
+=== Page 6 ===
+e *
+HIW/E9MOCT Shenzhen Hiwonder Technology Co,Ltd
+
+@ Grid
+v @ Grid v
+
+>» ¥ Status: Ok
+Reference Frame <Fixed Frame>
+Plane Cell Count 10
+Normal Cell Count )
+Cell Size 1
+Line Style Lines
+Color 160; 160; 164
+Alpha 0.5
+Plane XY
+
+> Offset 0; 0; 0
+
+Reference Frame
+
+Used as reference coordinate system for the grid
+
+coordinates
+
+Plane Cell Count
+
+The number of cells to be drawn in the grid panel.
+
+Normal Cell Count
+
+The number of cells drawn along the grid's normal
+
+vector.
+
+The size of each cell, indicating the dimensions of
+
+Cell Size
+each grid unit, measured in meters.
+Line Style The dimension of the grid lines.
+Color The background color of the grid.
+Alpha The thickness of the grid lines.
+Plane The plane used for drawing the grid.
+Offset Offset grid from the origin of the coordinate system,
+
+with three parameters representing the offset along
+
+
+
+
+=== Page 7 ===
+Hivwoander Shenzhen Hiwonder Technology Co,Ltd
+
+the X, Y, and Z axes, measured in meters.
+
+3. Load URDF Model on Rviz
+
+3.1 Write A launch File
+
+1) Click on é| to select “System Tools -> Terminator’.
+
+oO s
+@ Programming
+
+AD intemet
+(Gs) Interne
+
+io Sound & Video
+
+i) Graphics
+
+Coy System Tools if ferminator
+
+@ Accessories
+nen) Help
+=| Preferences
+
+7! Run
+
+¥
+ra Shutdown
+
+2) Input the command “cd hiwonder_ws/src/urdf_demo/” to switch to the
+
+“urdf_demo’” workspace.
+
+ws/src/urdf_demo/
+
+/hiwonder_ws/src/urdf_demo$
+
+3) Input the command “mkdir rviz launch” and press Enter to create rivz and
+
+launch files.
+
+ubuntu@raspberrypi:~/hiwonder_ws/src/urdf_demo$ mkdir rviz Launch
+
+4) Input the command “ced launchi” to switch to the launch folder.
+
+
+
+=== Page 8 ===
+Hiweander Shenzhen Hiwonder Technology Co,Ltd
+
+ubuntu@raspberrypi:~/hiwonder_ws/src/urdf_demo$ cd Launch/
+
+ubuntu@raspberrypi:~/hiwonder_ws/src/urdf_demo/ Launch$ 7
+
+5) Enter the command “vim rviz_view.launch.py” to open the file using the
+VIM editor, copy and paste the program below. If you need to make
+
+modifications, you can press “i” to modify. After you've finishing the
+
+modifications, press “Esc” and enter “:wq” to save and exit.
+
+ubuntu@raspberrypi:~/hiwonder_ws/src/urdf_demo/launch$ vim rviz_view. launc
+h. py
+
+from launch import LaunchDescription # Import the LaunchDescription class
+
+for describing launch file.
+from launch_ros.actions import Node # &A Node, HWFJa2) ROS Wa
+Import Node class for starting ROS nodes.
+
+from ament_index_python.packages import get_package_share_directory #
+Import get_package_share_directory function for obtaining the shared
+
+directory of a package.
+
+def generate_launch_description():
+# Obtain the path of the URDF file
+
+urdf_file_path = get_package_share_directory(‘urdf_demo') +
+
+‘/urdf/simple_demo.urdf
+
+# Create a parameter node to load the URDF file to the parameter server.
+
+load_urdf_param_node = Node(
+
+package='robot_state_publisher, # Package name
+
+
+
+
+=== Page 9 ===
+Hiweander Shenzhen Hiwonder Technology Co,Ltd
+
+executable='robot_state_publisher’, # executable file name
+name='robot_state_publisher’, #node name
+
+parameters=[{'robot_description': open(urdf_file_path).read()}] #
+
+Load the URDF file into the parameter server.
+
+)
+
+# Activate RViz node and load URDF model
+rviz_node = Node(
+package="rviz2', # Package name
+executable='rviz2', # Executable file name
+name='rviz2', #Node name
+
+output='screen', # Output the screen information
+
+return LaunchDescription([
+load_urdf_param_node,
+
+rviz_node
+
+
+
+
+=== Page 10 ===
+| ubuntu@raspberrypi: ~/hiwonder_ws/src/urdf_demo/launch 74x22
+
+from launch import LaunchDescription # § A LaunchDescription® , AF#wR1
+aunchX
+
+from launch_ros.actions import Node # SA Node , AF AiROST m
+
+from ament_index_python.packages import get_package_share_directory # &>
+A get_package_share_directory##& , AFRMRBWMKRSRER
+
+def generate_launch_description():
+# RRL uRDFM FH Bi
+
+urdf_file_path = get_package_share_directory(
+
+# MRSRDA , SuRDFRFMRASHKRER
+Load_urdf_param_node = Node(
+package= , # 8B
+executable= t , # TATRA
+name= , # PRAM
+parameters=[{ : open(urdf_file_path).read()}] #
+4 URDF XZ fF D0 $i Bl SRW MRS HP
+)
+
+# FAMRVizp am , FM uRDFR HB
+ae) |
+
+3.2 setup.py File Setting
+
+The setup.py file defines the metadata and build configuration for a ROS2
+package, providing information such as package metadata, dependencies,
+build configuration, and installation logic. It helps developers correctly build,
+install, and use ROS2 packages. It is necessary to write the program entry
+
+points for rviz_view.launch.py into the setup.py file.
+
+1) Enter the command “cd ..” to switch to the parent directory.
+
+ubuntu@raspberrypi:~/hiwonder_ws/src/urdf_demo/launch$ cd
+
+ubuntu@raspberrypi:~/hiwonder_ws/src/urdf_demo$ f
+
+2) Enter the command “vim setup.py” and press Enter to open the setup.py
+
+file.
+
+ubuntu@raspberrypi:~/hiwonder_ws/src/urdf_demo$ vim setup.py
+
+3) Press “i” to enter the editing mode, and then enter the following code to the
+
+corresponding position.
+
+
+
+=== Page 11 ===
+Hiweonder Shenzhen Hiwonder Technology Co,Ltd
+
+from setuptools import find_packages, setup
+
+import os
+from glob import glob
+
+(os.path.join(‘share’, package_name, ‘launch'), glob(os.path.join(‘launch’,
+
+* launch.py’))),
+
+(os.path.join(‘share’, package_name, '‘urdf'), glob(os.path.join(‘urdf,
+ne"):
+
+(os.path.join(‘share’, package_name, 'urdf/sensors'’),
+
+glob(os.path.join(‘urdf/sensors', '*.*'))),
+
+(os.path.join(‘share’, package_name, ‘meshes'’),
+
+glob(os.path.join(‘meshes', .*'))),
+
+(os.path.join(‘share', package_name, 'rviz'), glob(os.path.join(‘rviz’,
+
+ubuntu@raspberrypi: ~/hiwonder_ws/src/urdf_demo 117x26
+setuptools find_packages, setup
+
+package_name =
+
+setup(
+name=package_name,
+version= ,
+packages=find_packages (exc Lude=[
+
+data_files=[
+
+[ + package_name]),
++ package name, [
+s.path.join( , package_name, ), glob(os.path. join(
+S.path. join( , package_name, ), glob(os.path. join( ,
+s.path.join( , package_name, ), glob(os.path. join(
+«path. join( , package_name, ), glob(os.path. join(
+- path. join( , package_name, ), glob(os.path. join(
+l,
+install_requires=[ 1
+zip_safe=
+maintainer=
+maintainer_email=
+description=
+- INSERT --
+
+4) Enter “:wq’ to save and exit the file.
+
+1;
+install_requires=[
+Zip_safe= ,
+maintainer=
+
+maintainer_email=
+
+description=
+
+:wall
+
+
+
+
+=== Page 12 ===
+e *
+HIW/E9MOCT Shenzhen Hiwonder Technology Co,Ltd
+
+4. Compilation and Execution
+
+1) After granting the executable permission, enter the command “cd
+
+~/hiwonder_ws/” to switch to the directory of the workspace.
+
+ubuntu@raspberrypi: ~/hiwonder_ws/src/hello_world_demo$ cd ~/hiwonder_ws/
+
+ubuntu@raspberrypi: ~/hiwonder_ws$ |
+
+2) Enter the command “colcon build” and press Enter to compile the
+
+packages within the workspace.
+
+ubuntu@raspberrypi:~/hiwonder_ws$ colcon build
+
+3) Enter the command “source ./install/setup.bash” and press Enter
+
+make the environment variables make effect.
+
+ubuntu@raspberrypi:~/hiwonder_ws$ source ./install/setup.bash
+
+4) Enter the command “ros2 launch urdf_demo rviz_view.launch.py”
+
+and press Enter to start rviz_view.launch.py file.
+
+ubuntu@raspberrypi:~$ ros2 Launch urdf_demo rviz_view. Launch. py i
+
+5) Select “base_link” in Rviz tool.
+
+
+
+=== Page 13 ===
+Hiweamn oer Shenzhen Hiwonder Technology Co,Ltd
+
+File Panels Help
+
+(interact Move Camera _[JSelect fFocus Camera 2Measure 4 2D Pose Estimate 4 2DGoalPose  @ Publish Point =
+BD pisplays ve Views
+~ & Global Options Type: Orbit (rviz_default_| ~ Zero
+Background Color 48; 48; 48 ~ Current View Orbit (rviz)
+Frame Rate 30 wom Cov OF 0.01
+- inve! xis
+¥ Global Status: Ok Target Frame <Fixed Frame>
+v Fixed Frame OK Distance 10
+> @ Grid v Focal Shape... 0.05
+Focal Shape... v
+Yaw 0.785398
+Pitch 0.785398
+» Focal Point 0;0;0
+‘ ,
+Fixed Frame
+Frame into which all data is transformed before being
+displayed.
+Add Save Remove Rename
+© Time
+ROS Time: |1706600011.48 ROS Elapsed: 30.24 Wall Time: 1706600011.51 Wall Elapsed: 30.24 Experimental
+Reset 31 fps
+
+6) Click “Add” button to select “RobotModel” model, and then click “OK”
+
+to add model.
+
+File Panels Help tviz2 vax
+
+(interact Move Camera‘ [_]elect }-Foq) Create visualization int =
+Displays {9} By display type | By topic va Mews
+~ @ Global Options @ Marker - Type: | Orbit (rviz_default | ~ Zero
+Fixed Frame base_link ° MarkerArray - : ;
+Background Color [Ml 48; 48; 48 /\ Odometry ~ Current View — Orbit (rviz)
+Frame Rate 30 7 Path Near Clip Di... 0.01
+~ ¥ Global Status: Ok ¥ invert Z Axis
+3  PointCloud Target Frame <Fixed Frame>
+v Fixed Frame OK Distance 10
+> & Grid v © Pointstamped a Sane 0.95
+‘ocal Shape.
+Wi Polygon Yaw 0.785398
+7 Pose Pitch 0.785398
+“% PoseArray » Focal Point 0;0;0
+& PoseWithCovariance
+W Range
+RelativeHumidity
+a 2)
+El Temperature
+©) TwistStamped
+J Wrench »
+Description:
+Displays a visual representation of a robot in the correct pose (as defined
+by the current TF transforms). More Information.
+Display Name
+RobotModel
+= @ Ce) kena
+Frame into which all data is transformed before being L Pox] x
+displayed.
+[Add L Save Remove Rename
+© Time
+ROS Time: 1706600104.36 ROS Elapsed: 123.12 Wall Time: 1706600104.39 Wall Elapsed: 123.12 Experimental
+
+Reset 31 fps
+
+
+
+
+=== Page 14 ===
+Hivwoander Shenzhen Hiwonder Technology Co,Ltd
+
+7) Select "/robot_description" in the "Description Source" column,
+
+then click on an empty space to load the model.
+
+File Panels Help
+
+(interact Move Camera —_[_]Setect Focus Camera Measure 2D Pose Estimate  2DGoalPose  @ Publish Point =
+© Displays jo »@ Views {o}
+~ ® Global Options Type: Orbit (rviz_default_; + Zero |
+Fixed Frame base_link = o
+Background Color 48; 48; 48 ~ Current View Orbit (rviz)
+Frame Rate 30 Near Clip Di... 0.01
+° Invert Z Axis
+Gobel Status: Of Target Frame <Fixed Frame>
+v Fixed Frame OK Distance 10
++ @ Grid v Focal Shape... 0.05
+> th, RobotModel v Focal Shape... Vv
+» ¥ Status: Ok Yaw 0.785398
+Visual Enabled v Pitch re
+
+» Focal Point 0;0;0
+Collision Enabled
+
+Mass Properties
+
+Update Interval 0
+Alpha 1
+Description Source Topic
++ Description Topic
+TF Prefix
+» Links
+
+Description Topic
+Topic where filepath to urdf is published.
+
+Add Save Remove Rename
+© Time fo]
+|
+ROS Time: 1706600308,80 ROS Elapsed: 327.57 Wall Time: 1706600308.84 Wall Elapsed: 327.57 Experimental
+Reset 31 fps
+
+8) Select "File" in the top-left corner, then choose "Save Config As" to
+
+save the model configuration parameters.
+
+
+
+=== Page 15 ===
+oy IVE) | Oo eS t Shenzhen Hiwonder Technology Co,Ltd
+
+Open Conty RET. et Focus Camera Measure / 2D Pose Estimate / 2D Goal Pose @ Publish Point P =
+Save Config Ctrl+S a oe =
+u Ctrl+Shift+S O) Se oO
+Recent Configs » Type: | Orbit (rviz_default_) ~ Zero
+Save jmage ~ Current View Orbit (rviz)
+Near Clip Di... 0.01
+7 een ‘Status: OK aus Invert Z Axis
+Target Frame <Fixed Frame>
+v Fixed Frame OK Distance 10
++ @ Grid v Focal Shape... 0.05
+* th, RobotModel v Focal Shape... Vv
++ wo Status: Ok Yaw 0.785398
+Visual Enabled vy Pitch 0.785398
+
+>» Focal Point 0;0;0
+Collision Enabled
+
+» Mass Properties
+Update Interval i)
+Alpha 1
+Description Source Topic
+> Description Topic /robot_description
+TF Prefix
+» Links
+
+Description Topic
+Topic where filepath to urdf is published.
+
+Add Save Remove Rename
+ewe 9]
+
+ROS Time; 1706600577.60 ROS Elapsed; 596.36 Wall Time: 1706600577.63 Wall Elapsed: 596.36 Experimental
+
+Reset 31 fps
+
+Choose a file to save to a x
+
+Look in: | i fhome/ubuntu/hiwonder_ws/src/urdf demoj/rviz*| ws/src/urdf_demo/rviz 69° 9 % (3) (=)
+
+& computer __ Name * Size Date Modified
+
+FF ubuntu
+
+Files of type: | RViz config files (*.rviz) * Cancel
+
+9) Click on é| to select “System Tools -> Terminator’.
+
+
+
+=== Page 16 ===
+Hiweander Shenzhen Hiwonder Technology Co,Ltd
+
+@ Programming
+
+@) internet
+Lay nteme’
+
+ib Sound & Video
+
+i) Graphics
+
+g Accessories
+
+G&
+ey Help
+=| Preferences
+
+Run
+
+ia
+ra Shutdown
+
+10) Enter the command "cd hiwonder_ws/src/urdf_demo/launchi" to
+
+switch to the launch folder.
+
+ibuntu@ra spbderrypr: ~/niwonder_ws/sric, urdt_demo/launc
+
+eraspbderryt i:~$ d hiwonder_ws/src/t dem Launct
+
+@raspberrypi:~/hiwon ws/src/urdf_demo/launch$ §j
+
+11) Enter the command "vim rviz_view.launch.py" to edit the program,
+then copy the following code. If you need to make modifications, press "i" to
+enter insert mode. After making changes, press "Esc", then type ":wq" to save
+
+and exit.
+
+ubuntu@raspberrypi:~/hiwonder_ws/src/urdf_demo/launch$ vim rviz_view. Launc
+
+h.pyf
+
+arguments=['-d', get_package_share_directory('urdf_demo’) + '‘/rviz/rviz.rviz']
+
+# Load the RViz configuration file to display the URDF model.
+
+
+
+
+=== Page 17 ===
+Hiweonder Shenzhen Hiwonder Technology Co,Ltd
+
+ubuntu( berrypi: ~/hiwonder_ws/src/urdf_demo/launch 93x24
+
+load_urdf_param_node = Node(
+package=
+executable=
+name=
+parameters=[{ : (urdf_file_path).read()}]
+
+output= ‘
+Birguments=[ , get_package_share_directory(
+
+sh iption( [
+L urdf_param_node,
+rviz_node
+- INSERT --
+
+12) Then enter ":wq" to save and exit the file.
+
+1;
+install_requires=[
+Zip_safe= ,
+maintainer=
+
+maintainer_email=
+description=
+
+13)Execute step 3.3 to compile and run, and the modifications will be
+
+completed.
+
+

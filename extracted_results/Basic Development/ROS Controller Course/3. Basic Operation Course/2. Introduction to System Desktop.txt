@@ -1,0 +1,108 @@
+
+=== Page 1 ===
+Hiweander Shenzhen Hiwonder Technology Co,Ltd
+2. Introduction to System Desktop
+
+The Jetson Orin Nano system desktop is shown in the figure below:
+
+1.1 Taskbar
+
+The left-side of the system desktop is the taskbar. The table below
+
+outlines the related functions:
+
+FA Search your Used to search for the applications and files
+computer within the system
+
+q Files File manager
+
+| <> | Trash Used to store deleted files
+
+Browser Browse the web.
+
+
+
+
+=== Page 2 ===
+Hiweander Shenzhen Hiwonder Technology Co,Ltd
+
+1.2 Menu Bar
+
+The top of the system desktop is the menu bar. The table below outlines
+
+the related functions:
+
+/@1sw (ft Device-relating settings
+
+WiFi status indicator
+
+<)
+
+&
+
+Speaker volume
+
+Es
+
+Microphone volume
+
+Feb 27 19:23 System date and time
+
+Ea System control menu drop-down
+
+© Settings System function settings
+
+
+
+
+=== Page 3 ===
+Hiweander Shenzhen Hiwonder Technology Co,Ltd
+
+1.3 Desktop Application
+
+The system desktop includes some applications. The table below outlines
+
+the related functions:
+
+NVIDIA Jetson A shortcut to access NVIDIA Jetson developer
+
+Developer Zone zone.
+
+NVIDIA Jetson A shortcut to access NVIDIA Jetson support
+
+Q
+
+Support Forums forums.
+
+A shortcut to access the installation
+
+instructions webpage.
+
+Q
+
+NVIDIA Jetson Zoo | This web page provides instructions for
+
+installing various open-source packages and
+
+frameworks on NVIDIA Jetson.
+
+A shortcut to access a specific folder.
+L4T-README
+This folder contains the document files.
+
+NVIDIA Jetson A shortcut to access NVIDIA Jetson
+
+Q@| E
+
+Community Projects | community projects.
+
+Control the system by entering commands in
+Terminal
+
+| &
+|
+
+the terminal.
+
+
+

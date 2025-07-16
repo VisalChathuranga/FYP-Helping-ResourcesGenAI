@@ -1,0 +1,445 @@
+
+=== Page 1 ===
+bet iIiweander Shenzhen Hiwonder Technology Co,Ltd
+Lesson 20 ROS2 RQT Tool Usage
+
+Instruction
+
+1. RQT Instruction
+
+The functionality of Rviz in ROS is already quite powerful. However, in some
+
+scenarios, we may prefer simpler, modular visualization tools. For example,
+
+displaying images from just one camera. If using Rviz for this purpose, it might
+
+feel a bit cumbersome. In such cases, we can turn to another modular
+
+visualization tool provided by ROS, called RQT.
+
+Just like Rviz, the name RQT indicates that it is also based on the QT
+
+visualization tool.
+
+1) Click on St the top left corner, and then select “System Tools>
+
+Terminator” in sequence.
+
+it) Programming
+
+GA) Internet
+
+(gp) Interne
+
+io Sound & Video
+i) Graphics
+
+{0 system Tools
+
+| » Accessories
+
+res) Help
+| Preferences
+
+} Run...
+
+a
+ra Shutdown
+
+a Rerminator
+
+2) Enter the command “rqt” to open RQT tool.
+
+
+
+=== Page 2 ===
+Hivweander Shenzhen Hiwonder Technology Co,Ltd
+
+ubuntu@raspberrypi: ~ 80x24
+
+Default - rqt
+
+File Plugins Running Perspectives Help
+
+rqt is a GUI framework that is able to load
+various plug-in tools as dockable windows.
+There are currently no plug-ins selected. To
+add plug-ins, select items from the Plugins
+menu.
+
+You may also save a particular arrangement of
+plug-ins as a perspective using the
+Perspectives menu.
+
+This interface loads may small modules, each capable of implementing a
+specific small functionality. The commonly uses modules contain topics,
+services, actions, parameters, logs, etc. You can use them according to your
+
+requirements, facilitating the ROS2 program debug.
+
+2. Logging Display
+
+1) Click on & at the top left corner, and then select “System Tools>
+
+Terminator” in sequence.
+
+
+
+=== Page 3 ===
+bet iIiweander Shenzhen Hiwonder Technology Co,Ltd
+
+) Internet
+io Sound & Video
+
+i) Graphics
+
+erminator
+—— — a) ee
+
+| » Accessories
+
+res) Help
+
+—_
+=| Preferences
+
+J
+/ Run
+
+¥
+ra Shutdown
+
+2) Enter the command “ros2 run turtlesim turtlesim_node’” to launch
+
+the TurtleSim node.
+
+1 turtlesim turtlesim_noi
+
+TurtleSim vax
+
+3) Right click on a blank space to select “Split Vertically” to create a new
+
+terminal window.
+
+
+
+=== Page 4 ===
+ibuntu@raspberrypi:~/catkin_ws/src/beginner_hiwonder/scripts$ chmod +x pose_subscriber.py
+
+wonder/scr s$ cd
+
+log/7446a85e- icdbd79/ros Launch-raspberrypi-821. log
+disk usage. This ma
+) interrupt
+Done checking log file disk usage. Usage is <1
+
+started roslaunch server http://raspberrypi:41
+
+stro: melodic
+
+NODES
+
+auto-starting new master
+process[master]: started with pid [835]
+ROS_MASTER_URI=http://raspberrypi:11311/
+
+4) Enter the command “ros2 run turtlesim turtle_teleop_key” and
+
+press Enter to launch the TurtleSim control node.
+
+ibuntu@raspberryp1:~S ros2 run turtlesi
+1 turtle _teleop_ke\
+Reading from keyboard
+
+Use arrow keys to move the turtle.
+
+Use G|B|V|C|DJE|R|T keys to rotate toa
+bsoLlute orientations. 'F' to cancelar
+otation.
+
+'Q' to quit.
+
+5) Refer to step 3) to create a new window, and then enter command “rqt”
+
+to open RQT tool.
+
+= |
+
+ubuntu@raspberrypi: ~$ rqtf
+
+6) Select “Plugins—Logging—Console’” in sequence to open logging
+
+display.
+
+
+
+=== Page 5 ===
+| IWS ma Oo ES t Shenzhen Hiwonder Technology Co,Ltd
+
+Default - rqt
+Help
+
+laleiey Running Perspectives
+Container
+
+Actions >
+Configuration >
+
+(9 Introspection
+
+ork that is able to load
+as dockable windows.
+no plug-ins selected. To
+items from the Plugins
+
+Miscellaneous Tools
+
+Services Uy
+
+Topics >a particular arrangement of
+
+Visualization »ective using the
+Perspectives menu.
+
+Plugins related to logging.
+
+7) Use the" t | <->" keys to control the movement of the turtle. If the
+
+turtle touches the wall, log messages will be displayed.
+
+Default - rqt va x
+File Plugins Running Perspectives Help
+(Console DeB@ -ox
+B| (&| | on | Displaying 158 messages [%| Fit Columns
+
+# _Severity __ Node _Stamp
+
+il | Message | 1
+#158 — A\ Ohno! I hit the wall! (Clamping from [x=11.120883, ... Warn turtlesim 03:14:50.520... ./src/...
+
+Location
+
+#157 ~— A\ Ohno! J hit the wall! (Clamping from [x=11.120889, ... Warn turtlesim 03:14:50.505... ./src/...
+
+#156 ~— @\ Ohno! I hit the wall! (Clamping from [x=11.120889, ... Warn turtlesim 03:14:50.488... ./src/...
+
+Exclude Messages...
+
+|v) ...with severities: Debug Info Warn Error Fatal
+
+Highlight Messages...
+
+|¥) ...containing: |
+
+
+
+
+=== Page 6 ===
+| iIWEM oer Shenzhen Hiwonder Technology Co,Ltd
+3. Topic Pugin
+
+1) Select “Plugins—Topic—Message Publisher’ in sequence to open
+
+the topic plugin.
+Eile Running Perspectives Help
+©\Con: [& Container DeB@ - ox
+| © ||| Be Actions > | %» || Fit Columns |
+#, & Configuration ” Issage Severity Node Stamp Location *
+#158 [@ Introspection ” hg from [x=11.120883, ... Warn turtlesim 03:14:50.520... ./src/...
+Logging » :
+#157 _ : dg from [x=11.1208839, ... Warn turtlesim 03:14:50,505... ./src/...
+& Miscellaneous Tools »
+#156 B services » 1g from [x=11.1208839, ... Warn turtlesim 03:14:50.488... ./src/...
+Exclu —
+Visualization »
+: |
+|V| ...with severities: Debug Info Warn Error Fatal = |
+|
+*|
+
+2) Click onl then select the topic of “/turtel/cmd_vel/”, then click
+on.
+
+[> Message Publisher @ DE@ -ox
+Topic Type ys/msg/Twist ~ | Freq. |1 * Hz = | % |
+top type rate expression 6) SA
+-» | fturtlel/cmd_ vel Twist 1.00
+~ linear geometry_msgs/Vector3
+x double 0.0
+y double 0.0
+z double 0.0
+~ angular geometry_msgs/Vector3
+x double 0.0
+y double 0.0
+
+z double 0.0
+
+
+
+
+=== Page 7 ===
+bo IWS mM Oo eS t Shenzhen Hiwonder Technology Co,Ltd
+
+3) Modify the the linear velocity value X and the angular velocity Z, then
+
+select and check.
+
+[> Message Publisher DS@® -ox
+| & | Topic urtle1/cmd_vel ~ | Type geometry_msgs/msg/Twist » | Freq. |1 vy | Hz| || = %® |
+topic type rate expression
+» |v |/turtlel/cmd_vel Twist 1.00
+¥ linear geometry_msgs/Vector3
+x double LJ
+y double ;
+z double 0.0
+~ angular geometry_msgs/Vector3
+x double 0.0
+y double 0.0
+z double
+
+The turtle will move according to the specific linear and angular velocity data.
+
+TurtleSim
+
+
+
+
+=== Page 8 ===
+| IWS mM Oo eS t Shenzhen Hiwonder Technology Co,Ltd
+
+4. Service Plugin
+
+1) Select “Plugins—Services—Services Caller” in sequence to open
+
+the service plugin.
+
+Default - rat
+
+Running Perspectives Help
+{& Container
+ew "york that is able to load
+snesaiies sas dockable windows.
+. no plug-ins selected. To add
+Logging ns from the Plugins menu.
+{& Miscellaneous Tools »
+
+particular arrangement of
+
+& Topics »ective using the
+& Visualization » U.
+
+Plugins related to ROS services.
+
+2) Select the “/spawn’” service, then set the position for the new turtle to
+
+be spawned, name it as “turtle2”, and finally click on “Call”.
+
+Default - rat
+
+File Plugins Running Perspectives Help
+
+[> Service Caller DIeS@ -ox
+1S service omen] D
+Request (6)
+
+‘Topic _ Type Expression
+
+~ /spawn _ turtlesim/srv/Spawn
+y float e @
+
+theta float
+name string
+
+Response
+Field Type Value
+
+
+
+=== Page 9 ===
+bo IWS mM Oo eS t Shenzhen Hiwonder Technology Co,Ltd
+
+At this point, a turtle named “turtle2” will be spawned.
+
+TurtleSim
+
+5. Drawing Plugin
+
+1) Select “Plugins—Visualization—Plot” in sequence to open drawing
+
+plugin.
+
+
+
+=== Page 10 ===
+| IWS mM | i=l. Shenzhen Hiwonder Technology Co,Ltd
+
+Default - rat
+
+Plug Running Perspectives
+\f> Serv [i Container
+
+DISeB@ -ox
+(g| Actions > ~|| Call
+Requi Configuration >
+Topi {& Introspection >
+. ; {@ Logging 4
+Miscellaneous Tools U
+eI {& Services
+
+Response
+Field Type Value
+vi] turtlesim/srv/Spawn.Response
+name string ‘turtle2'
+
+Plugins related to visualization.
+
+2) Enter “/turtle/pose/” to select the turtle’s position data, then click* |.
+
+File Plugins Running Perspectives Help
+(BmatPlot DIeB@ -ox
+
+Topicfturtietipose/__]_) (+) =" ¥  autoscroll | 10 | % |
+2)
+€@€¢37¢4Q2=-8B
+
+/turtle1/pose//angular_velocity
+/turtle1/pose//linear_velocity
+/turtle1/pose//theta
+/turtle1/pose//x
+
+—— /turtlel/pose//y
+
+MatPlot | Service Caller _
+
+3) The plugin will visualize the angular velocity, linear velocity, orientation,
+
+X coordinate, and Y coordinate of the turtle in real-time.
+
+
+
+=== Page 11 ===
+| IWS mM Oo eS t Shenzhen Hiwonder Technology Co,Ltd
+
+Default - rat
+| File Plugins Running Perspectives Help
+[matPlot DSeS@ -ox
+
+Topic /turtle1/pose/ | + | =| ¥ autoscroll | 00 | %|
+
+@#€°9 4¢Q2=Yv868
+
+| ——— /turtle1/pose//angular_velocity
+—— /turtle1/pose//linear_velocity
+—— /turtlel/pose//theta
+
+— /turtle1/pose//x
+
+—— /turtle1/pose//y
+
+| MatPlot | Service Caller _
+
+To further learn about other plugins in the RQT tool, please visit the official
+
+website (https://www.ros.org/) and explore the tutorials available there.
+
+

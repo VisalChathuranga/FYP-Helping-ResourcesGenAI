@@ -1,0 +1,218 @@
+
+=== Page 1 ===
+Hiweander Shenzhen Hiwonder Technology Co,Ltd
+Lesson 2 Color Recognition
+
+1. Program Logic
+
+The color recognition function allows the camera to identify objects based
+on red, green, and blue colors. When the target color is detected, the object is
+outlined with a circle of the corresponding color in the transmitted image.
+
+The color is processed through the Lab color space. First, the RGB color
+space is converted to Lab, followed by binarization. After applying operations
+like dilation and erosion, the contour containing only the target color is
+obtained. This contour is then enclosed with a circle, enabling the recognition
+of the object's color.
+
+2. Operation Steps
+
+If you use the system image we provide, you can find the corresponding
+program in the folder “3 Jetson Orin Nano Basic Operation -> 2.
+Introduction to System Desktop .”
+
+This method requires that the purchased kit includes the expansion board.
+
+Prior to operations, you need to transfer the routine “color_discern.py”
+stored in “6. OpenCV Computer Vision Course\ Program Files” to the Jetson
+
+Orin Nano.
+
+For the file transfer method, you can refer to the content in “3. Basic
+
+Operation Course”.
+
+Noted: The input command should be case sensitive, and the “Tab” key is able to
+
+implement the key works.
+
+>
+
+7
+
+Terminal
+
+Open Nocmahine. Double click on , or use the shortcut key to
+
+open the terminal. After entering the command, it will start color recognition.
+python3 color_discern.py
+
+python3 color_discern.py
+
+
+
+
+=== Page 2 ===
+Hivwoander Shenzhen Hiwonder Technology Co,Ltd
+
+At this point, the live camera feed will display in the terminal. When
+recognizing the objects of red, green or blue, the target object will be outlined
+
+with a circle of the corresponding color. To close this program, press “Esc”.
+
+GOGUVeGOEGH088
+VA |
+
+3. Program Analysis
+
+The program is stored in:
+
+/home/ubuntu/Opencv/color_discern.py
+
+
+
+=== Page 3 ===
+Hiweander Shenzhen Hiwonder Technology Co,Ltd
+
+lab data max {yee : (255... 255,.:255),. “btack*: ¢ 80,255, 255},. "toes _.(°-255,.:2
+lab data min {'red': (6, 168, 135), ‘black’: ( 6, 0, 6), ‘blue’: ( 6, 120, 6), '
+
+count = 8
+stop = False
+
+color list = []
+
+get roi = False
+isRunning = False
+
+move square = False
+
+detect color = ‘None
+
+start pick up = False
+
+3.1 Import Library File
+
+Import the cv2, sys, time math libraries from openCV, and also import and
+instantiate the numpy library as np.
+
+sys
+cv2
+time
+math
+numpy as np
+
+3.2 Set Color Threshold
+
+Set the threshold for color recognition. In the routine, the target threshold
+for the target recognition color by the camera has been set (the default color
+model in OpenCV is BGR, i.e, 'red': (0, 0, 255),'blue’: (255, 0, 0),'green’: (0,
+255, 0) ), and then a range is set for the threshold, as shown in the figure
+below:
+
+range rgb « {
+
+red’: (0, G
+blue Farry
+
+black’:
+
+white’:
+
+lab data max
+lab data min
+
+3.3 Acquiring the Recognition Frame
+
+1) The second parameter calls the VideoCapture() function to define the
+camera object, where the parameter 0 represents the first camera. If there
+are multiple cameras, the parameter can be changed to 1, 2, 3, etc.
+
+cap = cv2.VideoCapture(0)
+
+2) Inthe while loop, use the read() function of the camera object to capture a
+frame of the video and display it.
+
+
+
+=== Page 4 ===
+Hivwoander Shenzhen Hiwonder Technology Co,Ltd
+
+while True:
+start pick up = False
+ret,img = cap.read()
+if ret:
+
+frame img.copy({)
+
+Frame = run( frame)
+
+frame resize = cv2.resize(Frame, (320, 248))
+cv2.imshow('frame', frame resize)
+
+3) Then wait for 1 unit of time. If the "ESC" key is detected during this period,
+exit and close the window.
+cv2.imshow('frame', frame resize)
+
+key = cv2.waitKey(1)
+if key == 27:
+
+4) Call the destroyAllWindows() function to close all image windows.
+5 cv2.destroyAlLlLWindows( )
+
+3.4 Color Recognition
+
+After capturing the recognition frame through the camera, use the
+getAreaMaxContour() function to process the frame and obtain the object's
+contour. The specific processing method is shown in the image below:
+
+def getAreaMaxContour(contours):
+contour area temp = 6
+contour area max = 6
+area max contour = None
+
+for c in contours:
+contour area temp = math. fabs(cv2.contourArea(c))
+if contour area temp > contour area max:
+contour area max = contour area temp
+if contour area temp > 306:
+area max_contour = ¢
+
+return area max contour, contour area max
+
+Then, use the putText() function from the cv2 library to print the
+recognition information, as shown in the image below (partial function
+
+screenshot):
+
+cv2.putText(img, “Color: “ + detect color, (10, img.shape[®] - 18), cv2.FONT HERSHEY SI
+
+The parameter analysis for the code cv2.putText(img, "Color: " + detect_color,
+(10, img.shape[0] - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.65, draw_color, 2)
+
+is as follows:
+
+
+
+=== Page 5 ===
+Hiweander Shenzhen Hiwonder Technology Co,Ltd
+
+First parameter (image): Represents the target image.
+
+Second parameter (Color: " + detect_color): Specifies the text string to be
+
+drawn.
+
+Third parameter (10, img.shape[0] - 10): The coordinates for the bottom-left
+
+corner of the text string in the image.
+
+Fourth parameter (cv2.FONT_HERSHEY_SIMPLEX): Specifies the font type
+
+for printing.
+Fifth parameter (0.65): Represents the font size.
+Sixth parameter (draw_color): Represents the font color.
+
+Seventh parameter (2): Specifies the thickness of the font.
+
+

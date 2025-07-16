@@ -1,0 +1,200 @@
+
+=== Page 1 ===
+Hiwoander Shenzhen Hiwonder Technology Co,Ltd
+
+Lesson 2 Environment Configuration in
+Windows
+
+A virtual machine is the software that allows us to run other operating
+systems on a operating system. Take VMware Workstation for example, and
+
+you can follow these steps to install.
+
+1) Extract the zip file saved under this path, “configuration
+
+file->VMware’”
+
+R=} TETEM Vmware 16.0 Pr. —
+
+D:\Vmware 16.0 Pro. zip
+
+JETERREE
+Vw ar e-workstation—full-16. 0. 0-1689429! 71%
+cee
+
+omatial 00:00:02
+FATA 00:00:01
+
+#E 71%
+a
+
+iets) BSP)
+BVA #ext OM)... Feu)
+
+2) Find the extracted file of VMware, and then double click the executable
+
+file suffixed with .exe
+
+=| VMware16 Acivation Key.txt 1 KB 1 KB
+[a] VMware-workstation-full-16.0.0-16894299.exe 619.3 MB 566.0 MB
+
+3) Next, follow the pictures below to install VMware.
+
+
+
+=== Page 2 ===
+—| IWEM a | er Shenzhen Hiwonder Technology Co,Ltd
+
+# VMware Workstation Pro Setup
+
+VMWARE
+
+WORKSTATION Welcome to the VMware Workstation Pro
+
+” 16
+
+Setup Wizard
+
+The Setup Wizard will install VMware Workstation Pro on your
+computer. Click Next to continue or Cancel to exit the Setup
+Wizard.
+
+Copyright 1998-2020 VMware, Inc. All rights reserved. This
+
+product is protected by U.S. and international copyright and
+intellectual property laws. VMware products are covered by
+
+one or more patents listed at:
+
+http: iw. vmware. com/go/patents
+
+# VMware Workstation Pro Setup _ x
+End-User License Agreement
+Please read the following license agreement carefully.
+
+VMWARE END USER LICENSE AGREEMENT
+
+PLEASE NOTE THAT THE TERMS OF THIS END USER LICENSE
+AGREEMENT SHALL GOVERN YOUR USE OF THE SOFTWARE,
+REGARDLESS OF ANY TERMS THAT MAY APPEAR DURING THE
+INSTALLATION OF THE SOFTWARE.
+
+IMPORTANT-READ CAREFULLY: BY DOWNLOADING, INSTALLING,
+OR USING THE SOFTWARE, YOU (THE INDIVIDUAL OR LEGAL
+ENTITY) AGREE TO BE BOUND BY THE TERMS OF THIS END USER
+
+LICENSE AGREEMENT ("EULA"). IF YOU DO NOT AGREE TO THE
+TERMS OF THIS FIIl A YOU MUST NOT NOWNIOAN INSTALL ORY
+
+
+
+
+=== Page 3 ===
+| IWEM Oo er Shenzhen Hiwonder Technology Co,Ltd
+
+# VMware Workstation Pro Setup
+
+Custom Setup
+Select the installation destination and any additional features.
+
+Install to:
+:\Program Files (x86)\VMware\VMware Workstation\
+
+Select where to install
+
+Enhanced Keyboard Driver (a reboot will be required to use this feature)
+This feature requires 10MB on your host drive.
+
+}] Add VMware Workstation console tools into system PATH
+
+2
+
+# VMware Workstation Pro Setup x
+
+User Experience Settings
+dit default settings that can improve your user experience.
+
+is not recommended to
+tick these two options
+
+eck for product updates on startup
+en VMware Workstation Pro starts, check for new versions of the application
+and installed software components.
+
+VMware’s Customer Experience Improvement Program
+(“CEIP”) provides VMware with information that enables
+VMware to improve its products and services, to fix
+
+problems, and to advise you on how best to deploy and use
+our products. As part of the CEIP, VMware collects technical .
+
+2
+
+Learn More
+
+
+
+
+=== Page 4 ===
+| IWEM Oo er Shenzhen Hiwonder Technology Co,Ltd
+
+# VMware Workstation Pro Setup
+
+Shortcuts
+Select the shortcuts you wish to place on your system.
+
+Create shortcuts for VMware Workstation Pro in the following places:
+
+# VMware Workstation Pro Setup
+
+Ready to install VMware Workstation Pro
+
+Click Install to begin the installation. Click Back to review or change any of your
+installation settings. Click Cancel to exit the wizard.
+
+
+
+
+=== Page 5 ===
+| IWS) mM a | =) wt Shenzhen Hiwonder Technology Co,Ltd
+
+# VMware Workstation Pro Setup x
+
+\
+
+YMWARE
+
+WORKSTATION
+
+PRO” 1 6
+
+Completed the VMware Workstation Pro Setup
+Wizard
+
+Click the Finish button to exit the Setup Wizard.
+
+Press the License button below if you want to enter a license
+key now.
+
+4) VMware Workstation offers 30-day free trial. After 30-day trial, you can
+purchase a license key to activate this software. If you need free resource,
+
+please contact us via email.
+
+Welcome to VMware Workstation 16 A
+
+() VMware Workstation 16
+
+@ Ihave a license key for VMware Workstation 16:
+
+|
+
+Do you need a license key?
+Buy now ee
+
+OI want to try VMware Workstation 16 for 30 days <q
+
+Gaile) [coed
+
+
+

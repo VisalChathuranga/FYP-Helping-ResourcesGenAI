@@ -1,0 +1,387 @@
+
+=== Page 1 ===
+Hiweonder Shenzhen Hiwonder Technology Co,Ltd
+
+Lesson 4 ROS2 Development
+
+Environment Configuration
+
+Note: The provided Raspberry Pi image comes pre-installed and
+pre-configured with the development environment. This lesson is only provided
+
+for learning and reference purpose only.
+
+During the subsequent learning and development processes, users can
+improve their efficiency by optimizing development environment and installing
+
+plugins.
+1. Adjust Resolution
+
+1) Press “Ctril+Alt+T” to open a command-line terminal and input the
+
+command “sudo raspi-config’”, then press Enter.
+
+File Edit Tabs Help
+
+2) Select “2. Display Options” using “ t |” keys and press “Enter” to confirm.
+
+“Esc” key can be used to go back to the previous level.
+
+
+
+=== Page 2 ===
+File Edit Tabs Help
+
+system Options ( figure
+Display Options Configure
+Interface Options Configure
+Performance Options Configure
+Localisation Options Configure
+
+Advanced Options Configure
+
+ooonh WO Ye
+
+<Select>
+
+display settings
+
+connections to peripherals
+performance settings
+
+language and regional settings
+advanced settings
+
+Update Update this tool to the latest version
+About raspi-config Information about this configuration tool
+
+<Finish>
+
+4 Performance Options Configure performance settings
+
+5 Localisation Options Configure language and regional settings
+6 Advanced Options Configure advanced settings
+
+8 Update Update this tool to the latest version
+
+9 About raspi-config Information about this configuration tool
+
+<Finish>
+
+3) Select “D3 VNC Resolution’, and then press “Enter” to confirm.
+
+
+
+=== Page 3 ===
+Raspberry Pi Software Configuration Tool (raspi-config)
+
+D2 Screen Blanking Enable/disable screen blanking
+
+) | f i r ‘ (
+
+D4 Composite Enable/disable composite output
+
+<Select> <Back>
+
+4) Select “1920*1080” and “<Select>” in sequence, then press “Enter” to
+
+confirm.
+
+Raspberry Pi Software Configuration Tool (raspi-config)
+
+640x480
+720x480
+800x600
+1024x768
+1280x720
+
+1280x1024
+1600x1200
+1920x411
+
+<Back>
+
+
+
+
+=== Page 4 ===
+Hiweander Shenzhen Hiwonder Technology Co,Ltd
+
+5) When the modification is completed, Raspberry will restart.
+
+2. Tool Usage
+
+During the subsequent ROS development, it is necessary to open multiple
+
+terminals. In this point, terminator tool will be utilized.
+
+1) Click S| in the upper-left corner, and select System Tools and
+Terminator in sequence.
+
+i> 7
+taag
+ay ~
+
+@ Programming
+
+@) internet
+Lay interne
+
+ib Sound & Video
+
+i) Graphics
+
+{5 system Tools
+@ Accessories
+res) Help
+
+= Preferences
+
+Run
+
+¥
+ra Shutdown
+
+2) Enter “docker exec -it -u ubuntu -w /home/ubuntu 1318 /bin/bash”
+
+to enter the container.
+
+ubuntu@raspberrypi: ~ 80x24
+docker exec -it -u ubuntu -w /home/ubuntu 1318 /bin/bash
+ubuntu@raspberrypi:~$ Jj
+
+
+
+
+=== Page 5 ===
+HSivveonder Shenzhen Hiwonder Technology Co,Ltd
+
+Every time before entering the container, it is inconvenient to enter command
+in the terminator terminal. You can set the command to enter the container in
+
+the terminator tool.
+
+3) Right-click on the terminator window, and then select “Preference”.
+
+Paste
+
+Set Window Title
+
+= Split Horizontally
+
+HE Split Vertically
+Open Tab
+
+Close
+
+¥ Show scrollbar
+
+Run command as a login shell
+h Run a custom command instead of my shell
+Custom command
+
+When command exits: Exit the terminal v
+
+
+
+=== Page 6 ===
+be iIiWE) mM Oo © Shenzhen Hiwonder Technology Co,Ltd
+
+5) Check the “Run a custom command instead of my deal” option, and
+then enter the accessible command of container “docker exec -it -u ubuntu
+-w /home/ubuntu 1318 /bin/bash’. (Note: 1318 is the container ID containing
+
+ROS2 environment.)
+
+or
+
+Global Profiles Layouts Keybindings Plug-ins About
+
+Profile General Command Colours Background Scrolling Compatibility Titlebar
+
+default
+Run command as a login shell
+
+[vJpun a custom command instead of my shell
+
+Custom command: | docker exec -it-u ubuntu -w /home/ubuntu 1318 /bin/basb|
+
+When command exits: Exit the terminal v
+
+6) Click “Close”. This way, every time you open the terminal, you can
+
+directly enter the container with ROS2 environment.
+
+Global Profiles Layouts Keybindings Plug-ins About
+
+Profile General Command Colours Background Scrolling Compatibility Titlebar
+
+Run command as a login shell
+¥ Run a custom command instead of my shell
+Custom command: | docker exec -it -u ubuntu -w /home/ubuntu 1318 /bin/bash|
+
+When command exits: Exit the terminal v
+
+Add | Remove | Copy
+
+
+
+
+=== Page 7 ===
+Hivwoander Shenzhen Hiwonder Technology Co,Ltd
+
+3. Tree Tool Installation
+
+The Tree is a command-line tool, used to list the hierarchical structure of
+directories and files in a tree-like format. It helps users visualize the directory
+structure of the file system in a clear manner, including files and
+
+sub-directories.
+
+1) Click 3s in the upper-left corner, select System Tools and
+
+Terminator in sequence.
+
+@ Programming
+
+AY intemet
+(Gs) Interne
+
+io Sound & Video
+
+a]
+T Graphics
+
+{5 system Tools
+@ Accessories
+a
+
+SD Help
+
+=| Preferences
+
+7! Run
+
+¥
+ra Shutdown
+
+2) Enter “sudo apt-get install tree” to install Tree tool.
+
+A ubuntu@raspberrypi: ~ 72x20
+
+ubuntu@raspberrypi:~$ sudo apt-get install t! eel
+
+3) After installation, enter “tree -L 1” to display the first-level directories
+
+structure of the current folder.
+
+
+
+=== Page 8 ===
+e *
+HIW/E9MOCT Shenzhen Hiwonder Technology Co,Ltd
+
+ubuntu@raspberrypi:~$ tree -L 1
+
+core
+
+frames 2024-01-29 06.
+frames _2024-01-29 06.
+frames _ 2024-01-29 06.53.€
+frames 2024-01-29 06.
+frames_2024-01-29 08.
+frames _ 2024-01-29 08.
+
+4 directories, 7 files
+
+4. pip Package Installation
+
+Python-pip is a package for Python3’s package management tool “pip”. pip is
+the official package management tool for Python, used to install, upgrade and
+
+manage Python package .
+
+Enter the command “sudo apt-get install python3-pip” to install pip.
+
+ubuntu@raspberrypi:~$ sudo apt-get install python3-pipff
+
+5. transforms3d Library Installation
+
+Transforms3d is a Python library used for 3D transformations and rotation
+matrices. It provides a set of functions and classes for performing various
+transformation operations in three-dimensional space, such as rotation,
+translation and scaling. The traforms3d library has a simple and user-friendly
+interface that can be used for handling 3D graphics, robot kinematics,
+computer vision, and other fields. It supports various common presentation of
+
+rotations, such as Euler angles, quaternions, and rotation matrices, and
+
+
+
+=== Page 9 ===
+HIW/E9MOCT Shenzhen Hiwonder Technology Co,Ltd
+
+provides conversion functions for converting between these representations.
+
+Enter the command “sudo pip3 install transforms3d” to install Python library.
+
+ubuntu@raspberrypi:~$ sudo pip3 install transforms3d
+
+Note: Prior to the installation of transforms3d library, you need to first install pip
+
+package.
+
+6. turtle-tf2-py& tf2-tools Libraries Installation
+
+turtle-tf2-py and tf2-tools are two packages in ROS, used to perform
+coordinate transformation-related functionalities in Python using TF2
+
+(Transform Library).
+
+turtle-tf2-py provides a lightweight TF2 client library for Python, enabling
+easy coordinate transformation operations in ROS. By using
+ros-humble-turtle-tf2-py, you can listen for coordinate transformations, query
+
+coordinate transformation, perform coordinate transformations, and more.
+
+tf2-tools provides some TF-related practical tools. It includes commonly
+used functionalities such as interpolation of coordinate transformations,
+publishing and listening to coordinate transformations, and visualization of
+
+coordinate frames.
+
+Enter “sudo apt install ros-humble-turtle-tf2-py ros-humble-tf2-tools
+to install turtle-tf2-py and tf2-tools libraries (humble is a version number for
+
+ROS2.)
+
+ubuntu@raspberrypi:~$ sudo apt install ros-humble-turtle-tf2-py ros-humb
+
+le-tf2-toolsff
+
+
+
+
+=== Page 10 ===
+Hiweander Shenzhen Hiwonder Technology Co,Ltd
+
+7. Gazebo Installation
+
+Gazebo is a powerful open-source 3D robot simulation software that helps us
+quickly create and test various real-world scenarios on a computer. It comes
+with a built-in precise physics engine to simulate the interactions of dynamic
+objects in the scene, such as gravitational forces and friction. It also provides
+excellent 3D visualization effects, allowing us to clearly see the simulation
+process through a visual client. Most importantly, Gazebo integrates
+seamlessly with ROS, allowing us to develop and test ROS nodes directly
+
+within it. This enables us to easily transfer simulation code to physical robots.
+
+Enter “sudo apt-get install ros-humble-ros-gz’ to install Gazebo
+
+(humble is a ROS number for ROS2.)
+
+ubuntu@raspberrypi:~$ sudo apt-get install ros-humble-ros-gzff
+
+
+

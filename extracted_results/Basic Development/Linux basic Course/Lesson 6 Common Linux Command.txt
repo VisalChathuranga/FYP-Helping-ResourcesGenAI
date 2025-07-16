@@ -1,0 +1,364 @@
+
+=== Page 1 ===
+Hiweander Shenzhen Hiwonder Technology Co,Ltd
+
+Lesson 6 Common Linux Command
+
+In previous tutorials, we have introduced some basic commands. For
+
+Linux novice, remembering mountains of Linux commands is a huge
+
+challenge . This chapter will explain some commonly used commands, which
+
+helps you to master it easily.
+
+Table 1 Linux common-used command
+
+Command Full name Function
+. List the files in the current
+Is List .
+directory
+cd Change Directory Change path
+pwd Print Working Directory Display the current directory
+ping Packet Internet Groper Test the internet connection
+shutdown Shut down Shut down
+reboot Reboot Reboot
+cp Copy Copy
+rm Remove delete
+mkdir Make directory Create a folder
+man . .
+Manual Display the command info
+command
+echo Echo Echo the input info to the
+terminal interface
+Execute commands as
+sudo Superuser do a
+system administrator
+clear Clear Delete the text on terminal
+find Find Search
+mv Move Rename or cut
+Read the date/time of the
+date Date
+
+system
+
+Note: In Linux, it is strictly case-sensitive, so please strictly distinguish from
+
+lower case and upper case.
+
+1. Linux Command Form
+
+
+
+
+=== Page 2 ===
+Hiwoander Shenzhen Hiwonder Technology Co,Ltd
+
+Linux command is in the form of “command+toptiontoperation object”.
+And for the command part, we need to input the command name, and the
+option defines the execution characteristics of the command, which involves
+
+two options, including long and short.
+
+For example, long option uses the form of “-- + integrate word”, like
+--help. And short option adopts the form of “- + individual character’, such as
+“a”. Note: we can combine several short options, for example -h -I -a == -hla,
+however we can't integrate the long options, like --help cannot be followed by
+
+other word.
+
+:~$ ls -l -a -h /boot/ff
+
+Pay attention, command and option, option and option, option and
+operation object, as well as operation object and operation object must be
+separated by Space. /boot in the picture above refers to the operation object
+
+and there can be multiple operation objects.
+
+2. Practical Operation
+
+1) Start the virtual machine, and press “Ctrl+Alt+T”, or right click and
+
+select “Open Terminal” to enter the terminal interface.
+
+
+
+=== Page 3 ===
+| IVW/E) im | = t Shenzhen Hiwonder Technology Co,Ltd
+
+Activities Tue 19:33
+
+A
+
+2) Input the first command “pwd” which is used to print the current working
+
+directory, and then you will get the full path, like /home/hiwonder.
+
+:~S pwd
+
+home /hiwonder
+
+3) Next, input the command “Is” which is used to list files in the current
+working directory, and we can input “Is -I” and “Is -a” to obtain the file
+
+permission, modify the date, etc.
+
+:~$ ls
+
+2
+
+examples.desktop
+
+4) Press “PrtSC’” or “PRTSCR’”, you can capture the current screen. The
+—
+
+photos are stored under this path, /home/Pictures and you can click “ =
+
+(file manager) to find this path.
+
+
+
+=== Page 4 ===
+| Wander Shenzhen Hiwonder Technology Co,Ltd
+
+fi? Home ‘Pictures
+
+Recent
+
+Home
+
+Desktop
+
+Documents
+Downloads
+
+Music
+
+Videos
+
+5) Then back to LX interface, and input “cd” command to switch to other
+folder. In step 3, all files in the current working directory are listed, therefore we
+
+need to input “cd” command to switch to “/Pictures” folder.
+
+Tips: in Linux system, commands, file name or file path can be
+implemented by “Tab” key. For example, when you want to switch to “/Pictures”
+directory, we can input “cd Pict” and press “Tab” key, and then the command
+will be automatically completed as "cd Pictures/". If there are no overlapping
+characters whenever you press "Tab" key, the complete file name will appear
+on the terminal. If there are overlapping name characters, all file named with
+
+these characters will show up.
+
+:~$ cd Pictures/
+
+6) Now, we enter the directory where the screenshot is stored, and we can
+
+input “Is” command to check the files under this directory.
+
+7) In later project management, we can find the required project or file in
+
+this way.
+
+
+
+=== Page 5 ===
+Hiwoander Shenzhen Hiwonder Technology Co,Ltd
+
+3. Effective Way to Input Command
+
+3.1 Help Command
+
+1) We can input ‘command’ --help to check the usage of some
+
+command. Take “Is” command for example.
+
+2) Input “Is --help” in the terminal, and the content in yellow frame is
+
+the usage of “Is” command.
+
+:~$ ls --help
+Usage: ls [OPTION]... [FILE]...
+List information about the FILEs (the current directory by default).
+Sort entries alphabetically if none of -cftuvSUX nor --sort is specified.
+
+Mandatory arguments to Long options are mandatory for short options too.
+"8,2 °- OL Go not ignore entrres Starting with .
+-A, --almost-all do not list implied . and ..
+--author with -L, print the author of each file
+--escape print C-style escapes for nongraphic characters
+--block-size=SIZE scale sizes by SIZE before printing them; e.g.,
+'--block-size=M' prints sizes in units of
+1,048,576 bytes; see SIZE format below
+--ignore-backups do not list implied entries ending with ~
+with -lt: sort by, and show, ctime (time of last
+
+3) For example, input “Is -a” in the terminal to check all files in the
+
+folder.
+
+: .sudo_as_admin_successful
+.bash_history 7
+.bash_logout examples.desktop
+
+.bashrc -_Pam_environment .xinputrc
+
+.ICEauthority
+
+-profile
+
+4) Input “Is -al” to view the property of all the files.
+
+
+
+=== Page 6 ===
+Hiwoander Shenzhen Hiwonder Technology Co,Ltd
+
+:~$ ls -al
+
+hiwonder hiwonder
+
+root root Fs
+
+hiwonder hiwonder : .bash_history
+hiwonder hiwonder : .bash_Logout
+
+hiwonder hiwonder : .bashre
+hiwonder hiwonder
+hiwonder hiwonder
+hiwonder hiwonder
+hiwonder hiwonder
+hiwonder hiwonder
+hiwonder hiwonder
+
+3.2 “man” Command
+
+Input “man” command, we can view the reference manuals of a command.
+
+“man” is short for manuel.
+
+:~S man
+hat manual page do you want?
+
+1) You can use the following shortcut keys to turn pages.
+
+Function Shortcut
+Next page SPACE
+Last page B
+Next line ENTER
+Last line K
+Back to terminal | :Q
+
+2) In addition to the above commands and buttons, there are some
+
+special control buttons in the Linux system.
+
+Ket Function
+tT Command history
+Tab Complete command
+
+Ctrl+C | Stop the running
+programming
+Ctrl+D | Exit terminal
+interface
+
+Ctri+A | Switch the pointer to
+the beginning of the
+line
+
+
+
+
+=== Page 7 ===
+Shenznen Hiw mael echnoiogy (Co,Ltd
+
+Ctril+X | Switch the pointer to
+the end of the line
+
+3) If you want to check the meaning of “cp” command, we can input “man
+cp” command and press Enter. The content printed in “NAME” area is its
+
+meaning.
+
+hiwonder@ul
+
+hiwonder@ubuntu: ~
+
+File Edit View Search Terminal Help
+cP(1) User Commands
+
+NAME
+cp - copy files and directories
+
+SYNOPSIS
+cp [OPTION]... [-1T] SOURCE DEST
+cp [OPTION]... SOURCE... DIRECTORY
+cp [OPTION]... -t DIRECTORY SOURCE...
+
+DESCRIPTION
+Copy SOURCE to DEST, or multiple SOURCE(s) to DIRECTORY.
+
+Mandatory arguments to long options are mandatory for short options
+too.
+
+-a, --archive
+
+4) Move down, detailed instruction of “cp” command is listed in
+
+“DESCRPTION’” area.
+
+SYNOPSIS
+cp [OPTION]... [-T] SOURCE DEST
+cp [OPTION]... SOURCE... DIRECTORY
+cp [OPTION]... -t DIRECTORY SOURCE...
+
+DESCRIPTION
+
+Copy SOURCE to DEST, or multiple SOURCE(s) to DIRECTORY.
+
+Mandatory arguments to long options are mandatory for short options
+too.
+
+-a, --archive
+same as -dR --preserve=all
+
+3.3 Tab Key Complementation
+
+1) For example, we can input “re” and press “Tab” key. The terminal
+
+
+
+=== Page 8 ===
+Hiwoander Shenzhen Hiwonder Technology Co,Ltd
+
+will list all the commands starting with “re”.
+
+readarray rediff request-key
+
+readelf regdbdump reset
+
+readLink reject resize2fs .
+eadonly remmina resizecons Available
+
+readprofile remove-defauLlt-ispell resizepart Commands
+realpath remove-default-wordlist return
+
+reboot remove-shell rev
+
+recode-sr-Latin rename.ul
+
+ecountdiff cendercheck
+
+2) Input “cd D” and press “Tab” key. Then files starting with “D” under
+this path will appear.
+:~$ cd D
+
+Jesktop/ Documents/ Downloads/
+
+3) When inputting the file name, press “Tab” key, the file name will be
+
+automatically complemented.
+
+lhiwonder@ubuntu:~$ cd Desktop/—
+
+

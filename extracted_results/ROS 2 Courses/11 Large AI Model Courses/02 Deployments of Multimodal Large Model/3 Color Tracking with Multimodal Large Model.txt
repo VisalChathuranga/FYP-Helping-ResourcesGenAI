@@ -1,0 +1,761 @@
+
+=== Page 1 ===
+4 iwennder Shenzhen Hiwonder Technology Co,Ltd
+
+Color Tracking with Multimodal Large
+Model
+
+1 Brief Overview of Operation
+
+Once the program starts running, the Six-Microphone Circular Array will
+announce “I’m Ready,” hereafter called the voice device. To activate the voice
+device, speak the designated wake words: “Hello Hiwonder.” Upon
+successful activation, the voice device will respond with “I’m Here.” Once
+activated, voice commands such as “Follow the red object” can be issued.
+The terminal will display the recognized command, and the voice device will
+respond with a generated reply after processing. The robot will then
+autonomously identify the red object captured by its camera and begin tracking
+
+it.
+2 Getting Started
+
+2.1 Version Confirmation
+
+Before starting this feature, verify that the correct microphone
+
+configuration is set in the system.
+
+1) Log in to the machine remotely via NoMachine. Then click the desktop
+
+icon to access the configuration interface.
+
+2) First, verify the system language setting.
+
+3) For the Six-Microphone Circular Array, select xf as the microphone
+
+
+
+
+=== Page 2 ===
+4 iwennder Shenzhen Hiwonder Technology Co,Ltd
+
+type as shown in the figure.
+
+AP Name HW-24347055
+
+Version V1.1.1 2025-05-20
+
+whens EE
+ROS2 Humble
+
+4) After making the appropriate selection, click Save.
+
+5) A “Save Success” message will confirm that the configuration has
+
+been stored in the system environment.
+
+Save Success
+
+6) Then, click Quit to close the interface.
+
+2
+
+
+
+=== Page 3 ===
+Hivwoander Shenzhen Hiwonder Technology Co,Ltd
+
+2.2 Configuring the Large Model API-KEY
+
+Open a new command-line terminal and enter the following command to
+
+access the configuration file.
+
+vim /home/ubuntu/ros2_ws/src/large_models/large_models/large_models/config.py
+
+Refer to the tutorial under “Al Large Language Model Course / 1 Large
+Language Model Basic Courses/1.1 Large Language Model Courses/1.1.2
+Large Language Model Deployment” to obtain the API keys. For the vision
+language model, acquire the API key from the OpenRouter official website and
+assign it to the vllm_api_key variable. For the large language model, obtain
+the API key from the OpenAI official website and assign it to the
+llm_api_key variable. Ensure that the keys are inserted in the designated
+
+positions, as indicated by the red boxes in the reference image.
+
+25, vllm_apt_key =
+
+26 vllm_base url =
+27 villm_model =
+
+9) LLm api key =
+
+© Llm_base_url =
+
+1 Llm_model =
+
+2 openai_vllm_model =
+3 openai_tts_model =
+
+4 openai_asr_model =
+35 openai_voice_model =
+
+3 Enabling and Disabling the Feature
+
+@ 1. Command input is case-sensitive and space-sensitive.
+
+2. The robot must be connected to the Internet, either in STA (LAN)
+
+mode or AP (direct connection) mode via Ethernet.
+
+3
+
+
+
+=== Page 4 ===
+HIVVEXMCOECT Shenzhen Hiwonder Technology Co,Ltd
+
+1) Open the command line terminal from the left side of the system
+
+terface All In the terminal window, enter the following command
+and press Enter to stop the auto-start service
+
+sudo systemctl stop start_app_ node.service
+
+start _app node.service
+
+2) Enter the following command and press Enter to launch the color
+
+tracking feature.
+
+ros2 launch large models examples llm_ color _track.launch.py
+
+Launch Large models examples Llm_color_track.launch.py
+
+3) When the terminal displays output shown in the figure and the Circular
+Microphone Array announces "I’m ready", the device has completed
+
+initialization. Then, you can say the wake words: "Hello Hiwonder".
+
+[agent_pro 10] [INFO] [17414
+[vocal_det ] [INFO] [174142
+[agent_pro 10] [INFO] [174
+
+[agent_pro 10] [INFO] [17414
+
+[object_sorting-8] [INFO] [174
+
+[tts_node-11] [INFO] [1741420086
+
+[llm_object_sorting 12] [INFO] [ [llm_color_sorting]:
+
+4) After the program has loaded successfully, the camera feed will
+
+appear on screen.
+
+Image - *
+
+
+
+
+=== Page 5 ===
+Hivwoander Shenzhen Hiwonder Technology Co,Ltd
+
+5) When the terminal displays the corresponding output shown in the
+figure and the device responds with "I’m here", it indicates successful
+
+activation. The system will begin recording the user's voice command.
+
+[vocal_detect-7] [INFO] [1741419606.799872983] [vocal_detect]:
+
+[vocal_detect-7] [INFO] [1741419606.805699617] [vocal_detect]:
+
+6) Speak the command “Follow the red object” to the voice device.
+
+Upon successful recognition by the speech recognition service of cloud-based
+large speech model, the parsed command will be displayed under the
+
+publish _asr_ result output in the terminal.
+
+[vocal_detect-11] [INFO] [1745813721. 5678] [vocal_detect]:
+[vocal_detect-11] [INFO] [1745813722.519969456] [vocal_detect]: asr time: 1.23
+
+[vocal_detect-11] [INFO] [1745813723.980343366] [vocal_detect]: Follow the red objects.
+
+7) Upon receiving user input shown in the figure, the terminal will display
+output indicating that the cloud-based large language model has been
+successfully invoked. The model will interpret the command, generate a
+language response, and execute a corresponding action based on the
+
+meaning of the command.
+
+@ The response is automatically generated by the model. While the
+semantic content is accurate, the wording and structure may vary due to
+
+randomness in language generation.
+
+[agent_process]:
+
+[agent_process]: {"action": ["color_track('red')"], "response":
+
+8) Then, the robot will detect the red object in its camera feed and begin
+
+tracking it in real time.
+
+
+
+=== Page 6 ===
+4 iIivwmeoand er Shenzhen Hiwonder Technology Co,Ltd
+
+9) When the terminal shows the output shown in the figure indicating the
+end of one interaction cycle, the system is ready for the next round. To initiate
+another interaction, repeat step 4 by speaking the wake words again.
+
+[vocal_detect-11] [INFO] [1742350520
+[vocal_detect-11] [INFO] [
+
+[vocal_detect-11] [INFO] [17423
+
+10)To exit the feature, press Ctrl+C in the terminal. If the feature does not
+shut down immediately, press Ctrl+C multiple times. If it still fails to exit, open
+a new terminal window and run the following command to terminate all active
+
+ROS processes and related programs.
+
+/.stop_ros.sh
+
+> ~/.stop_rosesh
+4 Project Outcome
+
+Once the feature is activated, feel free to give commands in your own
+words. For instance, “Follow the red object.” The robot will use the camera
+feed to identify and track the red object. Similarly, commands like “Follow the
+blue object” or “Follow the green object” can be used to instruct the robot to
+
+track objects of the specified colors.
+
+
+
+=== Page 7 ===
+HSI VW/EX2MOECT Shenzhen Hiwonder Technology Co,Ltd
+
+5 Program Brief Analysis
+
+5.1 Launch File Analysis
+
+File Path:
+
+/home/ubuntu/ros2_ws/src/large_models_examples/large_models_e
+
+xamples/IIm_color_track.launch.py
+
+@ Import Libraries
+
+/bin/zsh 132x35
+
+os
+ament_index_python. packages get_package_share_directory
+
+launch_ros.actions Node
+
+Launch. substitutions LaunchConfiguration
+
+Launch LaunchDescription, LaunchService
+
+Launch. Launch_description_sources PythonLaunchDescriptionSource
+
+Launch. actions IncludeLaunchDescription, DeclareLaunchArgument, OpaqueFunctio
+
+@ os: used for handling file paths and operating system-related
+
+functions.
+
+@ ament index python.packages.get package share direc
+
+tory: retrieves the share directory path of ROS 2 package.
+
+(6) launch_ros.actions.Node: used to define ROS 2 nodes.
+
+@ launch.substitutions.LaunchConfiguration: retrieves
+
+parameter values defined in the Launch file.
+
+© LaunchDescription, LaunchService: used to define and start
+
+the Launch file.
+
+© launch description sources
+
+PythonLaunchDescriptionSource: enables the inclusion of other
+
+
+
+=== Page 8 ===
+Launch files.
+
+@ launch.actions.IncludeLaunchDescription,
+
+DeclareLaunchArgument, OpaqueFunction: used to define actions and
+
+arguments within the Launch file.
+
+@ Definition of the launch_setup Function
+
+(context):
+mode = LaunchConfiguration( , default=1)
+mode_arg = DeclareLaunchArgument( , default_value=mode)
+
+app_package path = get_package_share_directory( )
+large_models_package path = get_package share_directory(
+
+object_tracking_node_launch = IncludeLaunchDescription(
+PythonLaunchDescriptionSource(
+os.path. join(app_package path,
+Launch_arguments={
+
+}.items(), ,
+
+)
+
+Large_models_lLaunch = IncludeLaunchDescription(
+PythonLaunchDescriptionSource(
+os.path. join(large_models_package path,
+Launch_arguments={ : mode}.items(),
+
+)
+
+Llm_color_track_node = Node(
+package=
+executable=
+output=
+
+)
+
+return [mode_arg,
+object_tracking_node_launch,
+Large_models_launch,
+Llm_color_track_node,
+
+|
+
+@ This function is used to configure and initialize Launch actions.
+
+@ mode = LaunchConfiguration('mode', default=1) defines a
+
+Launch argument named mode with a default value of 1.
+
+@ mode _ arg = DeclareLaunchArgument ('mode',
+
+default value=mode) declares the mode argument and includes it in the
+
+Launch description.
+
+
+
+=== Page 9 ===
+4 iwennder Shenzhen Hiwonder Technology Co,Ltd
+
+@ objet sorting launch: includes the Launch file
+
+object sorting node.launch.py from the large models package
+
+using IncludeLaunchDescription and passes the mode argument to it.
+
+large models launch: includes the file start.1launch.py from
+
+the Large models package using IncludeLaunchDescription and
+
+passes the mode argument to it.
+
+@© lim color _track_node: defines a ROS 2 node from the
+
+large models package, executes the executable files from the
+
+llm_color_track, and prints the node's output to the screen.
+
+© The function returns a list of all defined launch actions.
+
+@ Definition of the generate launch description Function
+
+():
+
+rn LaunchDescription([
+
+OpaqueFunction(function = Launch setup)
+
+@_ This function is responsible for generating the complete Launch
+
+description.
+
+@ The launch setup function is incorporated using
+OpaqueFunction.
+
+@ Main Program Entry
+
+if name
+ld =
+
+ls = LaunchService()
+Lls.include_lLaunch_description(1ld)
+Lls.run()
+
+
+
+
+=== Page 10 ===
+4 iwennder Shenzhen Hiwonder Technology Co,Ltd
+
+@ 1d= generate launch description() generates the Launch
+
+description object.
+
+@ 1s = LaunchService() creates the launch service object.
+
+@ 1s.include launch description(ld) adds the Launch
+
+description to the service.
+
+@ 1s.run()_ starts the service and execute all Launch actions.
+
+5.2 Python File Analysis
+
+File Path:
+
+/home/ubuntu/ros2_ws/src/large_models_examples/large_models_e
+
+xamples/IIm_color_track.py
+
+@ Import Libraries
+
+re
+time
+rclpy
+threading
+rclpy.node Node
+std_msgs.msg String, Bool
+std_srvs.srv Trigger, SetBool, Empty
+
+speech speech
+
+interfaces.srv ’ SetString as SetColor
+Large_models.config *
+
+large_models_msgs.srv “t SetModel, SetString, SetInt32
+
+rclpy.executors MultiThreadedExecutor
+rclpy.callback groups i rt ReentrantCallbackGroup
+
+@ Prompt Template Definition
+
+10
+
+
+
+=== Page 11 ===
+Hivwoander Shenzhen Hiwonder Technology Co,Ltd
+
+PROMPT = *
+
+@ Variable Initialization
+
+self.action = []
+
+self.stop =
+self.llm_result =
+
+@ self.action: stores the list of actions parsed from LLM responses.
+
+@ self.lim result: stores the result received from the LLM.
+
+@ self.running: a flag indicating whether the main loop is actively
+
+running.
+
+@ Publisher Creation
+
+self.tts_text_pub = self.create_publisher(String,
+
+Creates a publisher that sends String messages to the topic
+/tts_node/tts_text. This topic is used to send text-to-speech (TTS) content for
+
+voice feedback.
+
+@ Subscriber Creation
+
+@ Necessary Services Creation
+
+11
+
+
+
+=== Page 12 ===
+set_model_client
+.set_model_client.
+.set_prompt_client
+.set_prompt_client
+-enter_client
+
+-enter_client.wait
+-Start_client
+-Start_client.wait
+
+-set_target_client
+
+-set_target_client
+
+@ LLM Model Conf
+
+msg = SetModel
+msg.model
+msg.model_type
+msg.api_key
+msg.base_url =
+
+self.create_client(SetModel,
+wait_for_service()
+
+= self.create_client(SetString,
+-wait_for_service()
+
+self.create_client(Trigger,
+
+_for_service()
+
+self.create_client(SetBool,
+
+_for_service()
+self.create_client(SetCcolor,
+-wait_for_service()
+
+iguration
+
+.Request()
+
+LLm_model
+
+api_key
+
+base_url
+
+self.send_request(self.set_model_client, msg)
+
+@ Sending Prompt
+
+self.send req
+
+Service
+
+uest(self.set_prompt_client, ms
+
+@ Play Startup Audio
+
+speech.play audio(start_audio path)
+
+@ process Method
+
+def (self):
+while self.running:
+if self.1llm_result:
+String()
+t ins
+
+elf..Lm_result:
+(self.llm_result[self.1llm_result. find(
+
+' in result:
+
+r
+pattern
+
+for 1 in
+matc
+
+esult[
+
+]
+
+text:
+
+h re.search(pattern,
+
+1)
+
+if match:
+
+ATF 4 )
+msg.data
+else:
+msg.data s
+self.tts_text_pu
+self.action_fint
+self.llm_result
+else:
+time.sleep(
+
+01)
+
+color match.group(1)
+
+self .get_logger().info(
+
+(color))
+
+color_msg SetColor .Request()
+
+color_msg.data color
+self.send_request(self.set_target_client, color_msg)
+
+start_msg SetBool.Request()
+start_msg.data
+self.send_request(self.start_client, start_msg)
+in result:
+result['re ]
+
+elf.llm_result
+b.publish(msg)
+sh
+
+12
+
+'):self.llm_result.find('
+
+
+
+=== Page 13 ===
+(self):
+while self.running:
+if self.1llm_result:
+msg = String()
+if ‘action' in self.1llm_result:
+result = (self.lLm_result[self.1llm_result.find('{'):self.llm_result.find(
+if ‘action' in result:
+text = result[ t ]
+
+pattern =
+
+for 1 in text:
+match = re.search(pattern, 1)
+
+if match:
+
+color = match.group(1)
+
+self .get_logger().info( (color))
+
+color_msg = SetColor.Request()
+
+color_msg.data = color
+self.send_request(self.set_target_client, color_msg)
+
+start_msg = SetBool.Request()
+start_msg.data =
+self.send_request(self.start_client, start_msg)
+Ctr ynse' in result:
+msg.data = result['resp« ]
+
+else:
+msg.data = self.1llm_result
+self.tts_text_pub.publish(msg)
+self.action_finish =
+self.llm_result =
+else:
+time.sleep(
+
+def (self):
+while self.running:
+if self.1llm_result:
+= String()
+act in self.llm_result:
+result = (self.lLm_result[self.1llm_result.find('{'):self.llm_result.find(
+if ‘action' in result:
+text = result[ t ]
+
+pattern =
+
+for 1 in text:
+match = re.search(pattern, 1)
+
+if match:
+
+color = match.group(1)
+
+self .get_logger().info( (color))
+
+color_msg = SetColor.Request()
+
+color_msg.data = color
+self.send_request(self.set_target_client, color_msg)
+
+start_msg = SetBool.Request()
+start_msg.data =
+self.send_request(self.start_client, start_msg)
+Ctr nse’ in result:
+msg.data = result['resp« ]
+else:
+msg.data = self.1llm_result
+self.tts_text_pub.publish(msg)
+self.action_finish =
+self.llm_result =
+else:
+time.sleep(
+
+(© The method acts as the main loop responsible for handling
+commands from the LLM, interpreting them, and executing corresponding
+
+actions.
+
+@  Ifanewcommand is received:
+@ AString message is created to deliver voice feedback.
+
+@ \|f the command includes an 'action' field:
+
+13
+
+
+
+=== Page 14 ===
+4 iwennder Shenzhen Hiwonder Technology Co,Ltd
+
+The JSON data within the command is parsed using eval.
+
+The send_request method is called to send a request to the
+object sorting/set target service, specifying the object sorting
+
+target.
+
+The send request method is also called to send a request to the
+object sorting/enable sorting service, enabling the object
+
+sorting function.
+@ Ifthe command includes a 'response' field, voice feedback is sent.
+
+@ lf the command does not include an 'action', only voice feedback is
+
+provided.
+
+@ The self.11m_ result field is then cleared to prepare for the next
+
+command.
+@ If no new command is received, the system waits for 10 milliseconds.
+@ When self.running is set to False, the loop exits and the ROS 2 node
+is shut down.
+
+@ main Function
+
+node = LLMColorTrack(
+executor = MultiThreadedExecutor()
+
+executor .add_node(node)
+executor .spin()
+node.destroy_node()
+
+@_ The function initializes a ROS 2 node.
+@) It starts a multi-threaded executor to handle callbacks.
+
+@ Itcleans up and destroys the node upon program exit to release
+
+resources.
+
+14
+
+

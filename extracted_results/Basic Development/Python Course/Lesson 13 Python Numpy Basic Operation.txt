@@ -1,0 +1,282 @@
+
+=== Page 1 ===
+Hiwoander Shenzhen Hiwonder Technology Co,Ltd
+
+Lesson 13 Python Numpy Basic
+Operation
+
+1. Brief Introduction
+
+NumPy (Numerical Python) is an extension library of Python, which
+supports a large number of dimensional array and matrix operations, and
+also provides a large number of mathematical function libraries for array
+
+operations.
+
+1) In some ways, Numpy arrays are greatly similar to built-in lists in
+
+Python. It is an essential tool for Python data science.
+
+2) Anumpy one-dimensional array can be considered as a vector, and a
+two-dimensional array is a data frame (precisely corresponding to the matrix in
+
+R).
+
+3) The biggest difference between numpy arrays and lists in python is
+that the type of the data contained in the former should be the same, but there
+
+is no restriction on the latter.
+2. Numpy Importing
+
+Numpy is a third-party library that needs to be installed first. Open the
+
+command line terminal and enter the command to install "pip install numpy".
+
+ubuntu@ubuntu: ~
+
+File Edit View Search Terminal Help
+S$ pip install numpyf
+
+Then we need to import it in python with "import numpy". We can use
+
+"import numpy as np" to take "np" as an alias.
+
+
+
+=== Page 2 ===
+Hiwoander Shenzhen Hiwonder Technology Co,Ltd
+
+3. Create Array
+
+1) np.array(): Create directly
+
+3.1 Take Fixed Value
+
+1) np.zeros(n, dtype=int): Create a one-dimensional array of integers of
+
+length n and all zeros
+
+2) np.ones((a,b), dtype=float): Create a two-dimensional floating-point
+
+array with “a” row and “b” column, and all 1.
+
+3) np.full((a,b),x, dtype=int/float): Create a two-dimensional array with “a”
+
+row and “b” column, and all x.
+
+((3,3},1-11)
+
+'¢ 2p be E Pes by bio BS
+ES 5 Beis a be Dass i BB
+BEE b Bs oh See ee SE
+
+3.2 Regular Distribution
+
+1) np.arange(): arithmetic progression
+
+np. arange (1,
+array ((1,
+
+
+
+
+=== Page 3 ===
+Hiweander Shenzhen Hiwonder Technology Co,Ltd
+
+2) np.random.randint(): Random integer
+
+np. random randint (0, , }
+
+np. random randint (0,
+
+. 6],
+
+3) np.random.random(10) : A one-dimensional array with a length of 10
+
+and distributed uniformly from 0 to 1.
+
+4) np.random.normal(0, 1, c(2,3)): A two-dimensional array normally
+distributed with two rows and three columns, a mean of 0 and a standard
+
+deviation of 1.
+
+4. Take Subset
+
+4.1 Index Starts from 0
+
+1) Similar to the way list takes subset in Python, the index of numpy array
+
+also starts from 0.
+2) The index of negative can be seen as the n" last value.
+4.2 Take Subset of Single Value
+View with the element subscript.
+xl = np. arange (
+
+xl
+
+Ls)
+
+array(([0, 1, 2
+
+
+
+
+=== Page 4 ===
+Hiweander Shenzhen Hiwonder Technology Co,Ltd
+4.3 Slice Takes Subset
+
+1) For the one-dimensional array x1 of the length of 10, x1[0:5]
+represents the subset from index0 to index4, and the step size is 1 by default.
+
+2) When a of [a:b:c] is 0, a can be omitted. When both a and b are
+
+omitted, it represents the complete set.
+
+3) When the step size is negative, it represents take subset in reversed
+order.
+
+x1[1:7]
+
+array ((1,
+
+xi[:5]
+
+array([0, 1, 2
+
+4.4 Multiple Index of the List Take Subset
+
+Take the subset in sequence according to the index.
+
+xl
+array(([2, 3,
+x1 (LO, 2, 6]]
+array([2, 6, 2
+
+array({[11, 11,
+
+fo, 3,
+
+array ([[11,
+[ 9,
+[ 5,
+
+
+
+
+=== Page 5 ===
+Hiweander Shenzhen Hiwonder Technology Co,Ltd
+
+4.4 Logical Boolean Takes Subset
+
+4.5 Create Unrelated Subset Replicas
+copy() can create unrelated subset replicas
+
+x2 sub = x2L:2,
+
+x2_sub[0, 0]
+x2_sub
+array({{10000) 1000,
+
+18, 14,
+
+array ([[ | 18,} 1000,
+f 4 10, 11,
+
+5.Array Dimension Transforming
+1) Transpose matrix with T(): Transform row and column
+1000,
+
+14,
+10,
+
+
+
+
+=== Page 6 ===
+2) Transform dimension with reshaple(): transform the dimension
+
+according to your desire.
+
+18, 1000, 35
+4. 10, ill
+
+x2. reshape ((2,
+
+8, 1000,
+
+x2. reshape ((1,
+
+18, 1000,
+
+6. Arrays Merging and Splitting
+6.1 Array Merging
+
+1) concatenate() : Connect two one-dimensional array or merge two
+
+two-dimensional arrays according to row and column.
+
+x1_1 = np. random randint (
+x1_2 = np. random randint (
+
+L np. ¢
+Sut[209]: arra
+
+np. ¢
+
+hit [210]
+
+2) vstack(): Merge two arrays vertically, as long as these two arrays have
+
+the same number of columns.
+
+3) hstack(): Merge two arrays horizontally, as long as these two arrays
+
+6
+
+
+
+=== Page 7 ===
+Hiweander Shenzhen Hiwonder Technology Co,Ltd
+
+have the same number of rows.
+
+np. hstack([x2_1, x2_2])
+
+array([[ 8,
+
+6.2 Split Array
+
+1) split(): Split one-dimensional array. Where to split will be designated by
+the index of the parameter. When the function returns multiple objects, we
+need to set the corresponding numbers of object names in front of the equal
+sign. When the function result returns multiple objects, set the corresponding
+
+number of object names before the equal sign
+
+xl = np. random randint |
+
+x1_3 = np. split(xl,
+
+2) vsplit(): Split a two-dimensional array horizontally. And hsplit() splits a
+
+two-dimensional array vertically.
+
+
+
+=== Page 8 ===
+Hiweander Shenzhen Hiwonder Technology Co,Ltd
+
+2 = np. random randint (
+
+x2 down = np. vsplit (x2, [1])
+
+x2 right = np. hsplit(x2, [1])
+
+[6]1)
+
+]
+
+x2 right
+
+
+

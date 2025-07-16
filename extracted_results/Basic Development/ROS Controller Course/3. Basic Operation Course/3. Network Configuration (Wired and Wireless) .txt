@@ -1,0 +1,232 @@
+
+=== Page 1 ===
+HIW/E9MOCT Shenzhen Hiwonder Technology Co,Ltd
+
+3. Network Configuration (Wired and
+Wireless)
+
+1. Overview
+
+The Jetson Orin Nano needs to be connected to a network for further
+operations. This section will outline three network connection methods for
+
+Jetson Orin Nano:
+
+Wired network connection: Use an ethernet cable to connect to the RJ45
+
+port on the Jetson Orin Nano to achieve network connectivity.
+
+Wireless network connection: After installing a network card onto the
+
+Jetson Orin Nano, it can access network by connecting a WIFI.
+
+1.1 RJ45
+
+The RJ45 interface refers to a standardized connector, with 8 positions,
+commonly used for connecting hardware internationally. There are two main
+types of RJ45 interfaces: the DTE type used for Ethernet network cards,
+routers, and the DCE type used for switches, among others. The RJ45
+interface supports three speeds: 10M, 100M, and 1000M, and features
+
+automatic negotiation of speed and duplex mode."
+
+1.2 Wireless Network Card
+
+
+
+=== Page 2 ===
+The wireless network card functions similarly to a standard computer
+network card. It is used to connect to a local area network (LAN). It is a device
+for transmitting and receiving signals and can only connect to the internet
+when it finds an available internet gateway. Wireless network cards are limited
+
+to the range of an existing wireless local area network (WLAN).
+
+2. Wired Connection (Recommended)
+
+2.1 Operation Steps
+
+Noted: when developing the Jetson Orin Nano, it is recommended to use a
+wired connection to ensure a stable network environment. After flashing the
+
+system, you can simply connect the Ethernet cable to access the network.
+
+1) Connect the Ethernet cable to the RJ45 interface highlighted in the red
+
+box in the figure below:
+
+2) The connection result is as follow. When the indicator in the yellow
+cable connection port flashes quickly, indicating a successful network
+
+connection.
+
+
+
+=== Page 3 ===
+3. Wireless Connection
+
+3.1 Network Card Installation
+
+Note: The network card has pre-installed before the shipment. This method
+
+requires connecting a monitor.
+
+1) Prepare yourself the Jetson Orin Nano board, screwdriver, network
+
+card, and antenna. Loose the screws to install as pictured:
+
+
+
+=== Page 4 ===
+RUIDUN® 14.2 2280 NVME 256GB
+mw
+
+1) OVE TONNE
+
+f P/N:K785-256GB
+copy | UUNUIL INN NN EE
+ee. S/N:24030001033
+
+2) Designate the red box as slot 1 and the blue box as slot 2 for
+
+connecting the antenna.
+
+-
+
+cececeticrec
+
+Made in China
+
+ua ©
+a
+wa lw
+ao oO
+a ao
+ao o
+WV wv
+77
+me &
+= @
+= &
+vv
+Ww WY
+<<
+==
+- ¥-
+
+@
+
+~
+~~)
+~
+~
+e)
+=
+x
+=
+wv
+°
+=
+
+Mocccecequeceecvegessecs
+
+3) The antenna has a front and back side, as shown in the image below.
+The blue box indicates the back side, and the red box indicates the front side.
+
+You need to connect the back side to the corresponding position.
+
+
+
+=== Page 5 ===
+When installing the antenna, it needs to be aligned with the slot properly to be
+
+installed correctly.
+
+Made in China
+
+nu ©
+“_— ™~
+ao
+ues
+~ UU
+n ef =
+Sass
+~2s
+7
+=
+=<¢qd
+322
+i
+S35
+
+Geeta aeateeaty
+
+¥,
+
+3.2 Connection Operations
+
+1) Power on the Jetson Orin Nano and connect it to a monitor. (As shown
+in the image below, connect the main board using an HDMI cable and a USB
+
+cable, with the other ends connected to the monitor.)
+
+
+
+=== Page 6 ===
+2) Click on the symbol group at the top -> Click the drop-down menu ->
+Select "Network,' -> Choose the network -> Click "Connect' and then enter the
+
+password. In this case, 'hiwonder_5G' network has already been connected. .
+
+ee; as ’
+
+§
+“ Ethernet (rndisO) Unmanaged > 2 palildaninncglaady
+VY Wi-Fi Not Connected ~
+BRT_Public_2.4G av
+Turn Off AGFW_TD_2.4G av
+Wi-Fi Settings HW-DDD123FE ay
+On > ChinaNet-XFHj av
+www ay
+'@) Settings DIRECT-E3-HP M329dw LJ ay
+@ Lock
+(Power Off / Log Out >
+
+
+
+
+=== Page 7 ===
+3.3 Check Connection Status
+
+Enter the command “ifconfig” to check the network connection status. If
+the IP address for wlanO is 192.168.11.211, then the network connection is
+
+successful.
+
+Note: The IP address for wlan0 will change according to the connected router.
+The router needs to have the DHCP server function enabled, but typically the DHCP
+
+service does not need to be manually activated.
+
+: S ifconfig
+
+usbO: flags=4099<UP ,BROADCAST,MULTICAST> mtu 1500
+ether 66:0a:69:8b:19:bb txqueuelen 1000 (Ethernet)
+RX packets 0 bytes 0 (0.0 B)
+RX errors © dropped © overruns © frame 0
+TX packets 0 bytes 0 (0.0 B)
+TX errors © dropped © overruns 0 carrier 0 collisions 0
+
+wlan®: flaqs=4163<UP ,BROADCAST,RUNNING,MULTICAST> mtu 1500
+inet 192.168.11.211 netmask 255.255.255.0 broadcast 192.168.11.255
+inet6 fe80::af7f:9e99:4da9:db6c prefixlen 64 scopeid 0x20<Link>
+ether cc:47:40:3f:27:f9 txqueuelen 1000 (Ethernet)
+RX packets 7760 bytes 10159304 (10.1 MB)
+RX errors © dropped 36782 overruns 0 frame 0
+TX packets 4038 bytes 431989 (431.9 KB)
+TX errors © dropped 0 overruns 0 carrier © collisions 0
+
+sil
+
+
+

@@ -1,0 +1,39 @@
+
+=== Page 1 ===
+Shenzhen Hiwonder Technology Co,Ltd
+
+1. Start Jetson Orin Nano
+
+Note: If you are using the image that Hiwonder provided, the screen will not
+
+display anything.
+
+1. Insert the SSD that has flashed the system into the SSD slot on the
+
+main board and screw the slot firmly.
+
+JBPUQMIH
+
+iL M.2 2280 NVME 256GB
+1) CETTE AMEE eee oc +a ay ene
+P/N:K785-256GB
+
+We
+
+S/N:24030001033
+
+
+
+
+=== Page 2 ===
+3. Use the provided official 19V 2.37A round-head DC connector power
+
+adapter to power the Jetson Orin Nano.
+
+4. The power supply does not have a switch and it will powers on
+automatically, with DS1 indicator lighting up. Wait for the system to boot into
+
+the desktop; this process will be displayed on the screen.
+
+
+

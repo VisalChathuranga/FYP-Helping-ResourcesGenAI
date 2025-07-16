@@ -1,0 +1,116 @@
+
+=== Page 1 ===
+Hivwoander Shenzhen Hiwonder Technology Co,Ltd
+Lesson 6 ROS2 Package
+
+1. Package Introduction
+
+Each robot may have may functionalities, such as motion control, visual
+perception, autonomous navigation, etc. It's possible to put the source code of
+these functions together, what if we want to share some of these functions with
+
+others? It can be found that the code is all mixed up and difficult to separate.
+
+The principle of packages addresses this issue. The code of different function
+is divided into different packages, aiming to reduce their coupling as much as
+possible. When we need to share some functions with others in the ROS
+community, we only need to explain how to use the package, and others can
+quickly use it. Therefore, the mechanism of packages is one of the important
+
+methods to improve software reusability in ROS.
+
+2. Create and Compile Package
+
+1) Click ® inthe upper-left corner, then select “System Tools and
+
+Terminator” in sequence.
+
+ris
+(¢3) Programming
+FLAN
+(® Internet
+i Sound & Video
+i] Graphics
+{5 system Tools if Rerminator
+
+7] Accessories
+
+ees) Help
+
+=
+= | Preferences
+
+Run
+
+¥
+| Shutdown.
+
+
+
+
+=== Page 2 ===
+L e
+Hivwent ier Shenzhen Hiwonder Technology Co,Ltd
+
+2) Enter the command “cd hiwonder_ws/src/” to switch to the src folder
+within the workspace named hiwonder_ws.
+
+ubuntu@raspberrypi:~$ cd hiwonder_ws/src/
+
+ubuntu@raspberrypi:~/hiwonder_ws/src$ |
+
+3) Enter “ros2 pkg create hello_world_demo --build-type
+ament_python --dependencies rclpy --node-name hello_world” and press
+Enter to create a package named hello_world_demo. Add the dependency
+
+“rclpy” and generate an executable program named “hello_world”.
+
+ubuntu@raspberrypi:~/hiwonder_ws/src$ ros2 pkg create heLllo_world_demo --build-t
+
+ype ament_python --dependencies rclpy --node-name he LLo_wor Ldff
+
+4) Enter “cd ~/hiwonder_ws’” to switch to the root directory of the
+
+workspace.
+
+5) Enter “colcon build” to compile packages in workspace.
+
+6) After successful compilation, enter “cd src/hello_world_demo/” to
+
+enter the directory where the package is located, and press Enter to verify
+
+whether the package is created successfully.
+
+3. Package Instruction
+
+After compilation, enter the command “tree -L 1” to view the root directory of
+
+the workspace.
+
+
+
+=== Page 3 ===
+In ROS system, the structure of a typical package is shown above. The
+
+“hello_world_demo?’ is the root directory of the package, there will be 6 files or
+
+subdirectories inside.
+
+hello_world_demo
+
+Package directory: Python source file directory
+
+Package information, such as package name,
+
+package.xml
+version, author, dependencies.
+resource Resource directory
+setup.cfg Package basic configuration file
+setup.py Similar to CMakeLists.txt file for C++ packages
+
+test
+
+Store test-related files
+
+
+
