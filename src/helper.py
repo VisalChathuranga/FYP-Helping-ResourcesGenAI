@@ -1,12 +1,20 @@
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain.schema import Document
-
 import os
 import sys
 sys.path.append("D:\\Final Year Project\\Resources Gen AI\\src")
 from PDFExtractor import PDFExtractor
 import logging
-logging.basicConfig(level=logging.INFO)
+
+# Configure logging to handle Unicode characters safely
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+    handlers=[
+        logging.StreamHandler(sys.stdout),
+        logging.FileHandler('app.log', encoding='utf-8')
+    ]
+)
 logger = logging.getLogger(__name__)
 
 # Extract Data From the PDF Files
@@ -40,8 +48,8 @@ def get_gemini_embeddings():
             model="models/embedding-001", 
             google_api_key=os.getenv("GOOGLE_API_KEY")
         )
-        logger.info("✅ Gemini embeddings initialized successfully")
+        logger.info("Gemini embeddings initialized successfully")
         return embeddings
     except Exception as e:
-        logger.error(f"❌ Error initializing embeddings: {e}")
+        logger.error(f"Error initializing embeddings: {e}")
         raise
