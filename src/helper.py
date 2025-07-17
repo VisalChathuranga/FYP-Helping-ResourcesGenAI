@@ -5,6 +5,9 @@ import os
 import sys
 sys.path.append("D:\\Final Year Project\\Resources Gen AI\\src")
 from PDFExtractor import PDFExtractor
+import logging
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
 # Extract Data From the PDF Files
 def load_pdf_file(data_dir):
@@ -31,9 +34,14 @@ def text_split(extracted_data):
     return text_chunks
 
 def get_gemini_embeddings():
-    from langchain_google_genai import GoogleGenerativeAIEmbeddings
-    embeddings = GoogleGenerativeAIEmbeddings(
-        model="models/embedding-001", 
-        google_api_key=os.getenv("GOOGLE_API_KEY")
-    )
-    return embeddings
+    try:
+        from langchain_google_genai import GoogleGenerativeAIEmbeddings
+        embeddings = GoogleGenerativeAIEmbeddings(
+            model="models/embedding-001", 
+            google_api_key=os.getenv("GOOGLE_API_KEY")
+        )
+        logger.info("✅ Gemini embeddings initialized successfully")
+        return embeddings
+    except Exception as e:
+        logger.error(f"❌ Error initializing embeddings: {e}")
+        raise

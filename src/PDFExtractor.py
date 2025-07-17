@@ -3,9 +3,8 @@ import os
 import sys
 from pathlib import Path
 from typing import List
-
 import pytesseract
-from langchain.document_loaders import PyPDFium2Loader, UnstructuredFileLoader
+from langchain_community.document_loaders import PyPDFium2Loader, UnstructuredFileLoader
 from langchain.schema import Document
 from pdf2image import convert_from_path
 
@@ -140,7 +139,7 @@ class PDFExtractor:
         try:
             images = convert_from_path(
                 pdf_path,
-                dpi=300,
+                dpi=400,
                 poppler_path=self.poppler_path
             )
             

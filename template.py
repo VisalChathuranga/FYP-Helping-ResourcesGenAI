@@ -9,11 +9,14 @@ list_of_files = [
     "src/__init__.py",
     "src/helper.py",
     "src/prompt.py",
+    "src/PDFExtractor.py",
+    "src/agent.py",
     ".env",
     "setup.py",
     "app.py",
     "research/trials.ipynb",
-   " test.py"
+    "store_index.py",
+    "requirements.txt"
 ]
 
 
@@ -30,7 +33,5 @@ for filepath in list_of_files:
         with open(filepath, "w") as f:
             pass
             logging.info(f"Creating empty file: {filepath}")
-
-
     else:
         logging.info(f"{filename} is already exists")

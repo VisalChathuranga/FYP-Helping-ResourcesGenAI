@@ -2,8 +2,6 @@ from src.helper import load_pdf_file, text_split, get_gemini_embeddings
 from langchain_community.vectorstores import FAISS
 from dotenv import load_dotenv
 import os
-import sys
-sys.path.append("D:\\Final Year Project\\Resources Gen AI\\src")  # Ensure src is in path
 
 load_dotenv()
 

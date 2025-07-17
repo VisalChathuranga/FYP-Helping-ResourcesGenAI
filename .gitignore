@@ -1,0 +1,18 @@
+# Data directories to ignore
+Data/
+extracted_results/
+
+# Log files
+*.log
+pdf_extraction.log
+
+# Python cache
+__pycache__/
+*.py[cod]
+
+# Environment files
+.env
+
+# IDE files
+.vscode/
+.idea/
