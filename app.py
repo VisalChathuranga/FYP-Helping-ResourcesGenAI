@@ -8,6 +8,9 @@ from langchain_core.prompts import ChatPromptTemplate
 from langchain.memory import ConversationBufferMemory
 from dotenv import load_dotenv
 import os
+import markdown
+import bleach
+from markdown.extensions import codehilite
 
 app = Flask(__name__)
 app.secret_key = os.urandom(24)  # Required for session management
@@ -42,7 +45,16 @@ llm = ChatGoogleGenerativeAI(
 system_prompt = (
     "You are an advanced AI assistant specializing in question-answering, code generation, and internet-based research. "
     "Utilize the provided context, conversation history, and collaborate with AI agents to search the internet for the latest information, frameworks, or libraries to generate precise, well-commented code snippets in the most suitable programming language, or provide detailed explanations if code is not applicable. "
-    "Ensure code includes error handling, documentation, and best practices; if the answer or required data is unknown or context is insufficient, state 'I don’t know'; limit responses to three sentences and keep them concise."
+    "Ensure code includes error handling, documentation, and best practices; if the answer or required data is unknown or context is insufficient, state 'I don't know'."
+    "\n\n"
+    "IMPORTANT FORMATTING RULES:"
+    "- Use proper markdown formatting for all responses"
+    "- Wrap code snippets in triple backticks with language specification (e.g., ```python)"
+    "- Use **bold** for important terms and concepts"
+    "- Use *italic* for emphasis"
+    "- Use proper headings with # for structure"
+    "- Use bullet points or numbered lists for step-by-step instructions"
+    "- Ensure code is properly indented and formatted"
     "\n\n"
     "Context: {context}\n"
     "Chat History: {chat_history}"
@@ -57,6 +69,51 @@ prompt = ChatPromptTemplate.from_messages(
 
 question_answer_chain = create_stuff_documents_chain(llm, prompt)
 rag_chain = create_retrieval_chain(retriever, question_answer_chain)
+
+def process_markdown(text):
+    """Convert markdown to HTML with syntax highlighting"""
+    try:
+        # Configure markdown with code highlighting - FIXED VERSION
+        md = markdown.Markdown(extensions=[
+            'codehilite',
+            'fenced_code',
+            'tables',
+            'nl2br'
+        ], extension_configs={
+            'codehilite': {
+                'css_class': 'highlight',
+                'use_pygments': True,
+                'noclasses': True,
+                'pygments_style': 'monokai'  # Changed from 'style' to 'pygments_style'
+            }
+        })
+        
+        # Convert markdown to HTML
+        html = md.convert(text)
+        
+        # Sanitize HTML to prevent XSS (allow common tags)
+        allowed_tags = [
+            'p', 'br', 'strong', 'em', 'u', 'ol', 'ul', 'li', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6',
+            'blockquote', 'code', 'pre', 'table', 'thead', 'tbody', 'tr', 'th', 'td',
+            'div', 'span', 'a', 'img'
+        ]
+        
+        allowed_attributes = {
+            'div': ['class', 'style'],
+            'span': ['class', 'style'],
+            'pre': ['class', 'style'],
+            'code': ['class', 'style'],
+            'a': ['href', 'title'],
+            'img': ['src', 'alt', 'title']
+        }
+        
+        clean_html = bleach.clean(html, tags=allowed_tags, attributes=allowed_attributes)
+        return clean_html
+        
+    except Exception as e:
+        print(f"Error processing markdown: {e}")
+        # Return formatted text as fallback
+        return text.replace('\n', '<br>')
 
 @app.route("/")
 def index():
@@ -79,12 +136,15 @@ def chat():
             "chat_history": chat_history
         })
         
+        # Process the response through markdown
+        processed_response = process_markdown(response["answer"])
+        
         # Update chat history
         chat_history.append({"human": msg, "ai": response["answer"]})
         session['chat_history'] = chat_history[-10:]  # Keep last 10 messages to manage memory
         
         print(f"Response: {response['answer']}")
-        return str(response["answer"])
+        return processed_response
     
     except Exception as e:
         print(f"Error in chat: {str(e)}")

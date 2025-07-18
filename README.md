@@ -8,20 +8,26 @@
 
 ## 📑 Advanced PDF Extraction
 
-CodeGenix's core strength is its robust PDF extraction pipeline, designed to process diverse document types with exceptional accuracy:
+CodeGenix excels with its state-of-the-art PDF extraction pipeline, powered by the `EnhancedPDFExtractor` class, designed to process complex documents with unparalleled accuracy and efficiency:
 
 - **Multi-Strategy Extraction**:
-  - Employs `UnstructuredFileLoader` for high-resolution native text extraction.
-  - Falls back to `PyPDFium2Loader` for superior table and structured data extraction.
-  - Uses OCR (Tesseract and Poppler) for scanned or image-based PDFs, ensuring comprehensive content capture.
+  - Utilizes `UnstructuredFileLoader` for high-resolution native text extraction.
+  - Falls back to `PyPDFium2Loader` for enhanced table and structured data extraction.
+  - Employs OCR (Tesseract and Poppler) for scanned or image-based PDFs, ensuring comprehensive content capture.
 - **Quality Assurance**:
-  - Validates extracted text quality, triggering OCR if text is insufficient or unclear.
-  - Preserves metadata (e.g., source file, page numbers) for traceability and context.
+  - Validates text quality using metrics like character distribution and OCR artifact detection, triggering OCR if quality is below threshold (configurable via `ExtractorConfig`).
+  - Preserves metadata (e.g., source file, page numbers, extraction method) for traceability.
 - **Efficient Indexing**:
   - Splits text into 500-character chunks with 20-character overlap using `RecursiveCharacterTextSplitter`.
-  - Generates embeddings with Google’s `embedding-001` model, stored in a FAISS vector index for fast similarity search.
+  - Generates embeddings with Google’s `embedding-001` model, stored in a FAISS vector index for rapid retrieval.
+- **Enhanced Features**:
+  - **Parallel Processing**: Uses `ThreadPoolExecutor` for concurrent PDF processing, configurable via `max_workers`.
+  - **Caching**: Stores processed file metadata in a JSON cache to skip redundant processing.
+  - **Flexible Output**: Supports `txt`, `json`, and `markdown` output formats with customizable metadata inclusion.
+  - **Retry Logic**: Implements automatic retries for failed extractions with configurable delays.
+  - **Metrics Tracking**: Records processing statistics (success rate, pages processed, OCR usage) in `processing_metrics.json`.
 
-This advanced extraction pipeline enables CodeGenix to process technical PDFs, research papers, and coding documentation, forming a rich knowledge base for the chatbot.
+This advanced pipeline enables CodeGenix to handle technical PDFs, research papers, and coding documentation, creating a robust knowledge base for the chatbot.
 
 ---
 
@@ -77,7 +83,7 @@ CodeGenix/
 
 1. **Clone the Repository**:
    ```bash
-   git clone https://github.com/your-username/CodeGenix.git
+   git clone https://github.com/VisalChathuranga/CodeGenix--AI-Powered-Coding-Assistant-Chatbot.git
    cd CodeGenix
    ```
 

@@ -6,6 +6,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
     <!-- Custom CSS -->
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,7 +21,9 @@
                     <div class="card-header msg_head">
                         <div class="d-flex bd-highlight align-items-center">
                             <div class="img_cont">
-                                <img src="{{ url_for('static', filename='robot.jpg') }}" alt="Bot Icon" class="rounded-circle user_img">
+                                <div class="user_img d-flex align-items-center justify-content-center">
+                                    <i class="fas fa-robot" style="color: #00d4ff; font-size: 35px;"></i>
+                                </div>
                                 <span class="online_icon"></span>
                             </div>
                             <div class="user_info flex-grow-1 text-center">
@@ -29,24 +33,76 @@
                         </div>
                     </div>
                     <div id="messageFormeight" class="card-body msg_card_body">
-                        <!-- Messages will be appended here -->
+                        <!-- Welcome Message -->
+                        <div class="d-flex justify-content-start mb-4">
+                            <div class="img_cont_msg">
+                                <div class="user_img_msg d-flex align-items-center justify-content-center">
+                                    <i class="fas fa-robot" style="color: #00d4ff; font-size: 20px;"></i>
+                                </div>
+                            </div>
+                            <div class="msg_cotainer">
+                                Welcome to G-25 FYP AI Assistant! 🚀 I'm here to help you explore and understand your project. Feel free to ask me anything!
+                                <span class="msg_time">12:00</span>
+                            </div>
+                        </div>
                     </div>
                     <div class="card-footer">
                         <form id="messageArea" class="input-group">
                             <input type="text" id="text" name="msg" placeholder="Type your command..." autocomplete="off" class="form-control type_msg" required/>
-                            <button type="submit" id="send" class="input-group-text send_btn"><i class="fas fa-paper-plane"></i></button>
-                        </div>
-                    </form>
+                            <button type="submit" id="send" class="input-group-text send_btn">
+                                <i class="fas fa-paper-plane"></i>
+                            </button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Bootstrap 5 JS and jQuery -->
+    <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <!-- Bootstrap 5 JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76R4/OM/w73C1cEZ2BDe5jN22oEV6GHsF1h/kc7j/5jv5l9i3LRnHp2i5Crc" crossorigin="anonymous"></script>
+    <!-- Prism.js for additional syntax highlighting -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
 
     <script>
+        // Function to escape HTML for user input
+        function escapeHtml(text) {
+            var map = {
+                '&': '&amp;',
+                '<': '&lt;',
+                '>': '&gt;',
+                '"': '&quot;',
+                "'": '&#039;'
+            };
+            return text.replace(/[&<>"']/g, function(m) { return map[m]; });
+        }
+
+        // Function to add copy buttons to code blocks
+        function addCopyButtons() {
+            const codeBlocks = document.querySelectorAll('pre code');
+            codeBlocks.forEach((block, index) => {
+                const pre = block.parentElement;
+                if (!pre.querySelector('.copy-button')) {
+                    const button = document.createElement('button');
+                    button.className = 'copy-button';
+                    button.textContent = 'Copy';
+                    button.onclick = function() {
+                        navigator.clipboard.writeText(block.textContent).then(function() {
+                            button.textContent = 'Copied!';
+                            setTimeout(function() {
+                                button.textContent = 'Copy';
+                            }, 2000);
+                        });
+                    };
+                    pre.style.position = 'relative';
+                    pre.appendChild(button);
+                }
+            });
+        }
+
         $(document).ready(function() {
             $("#messageArea").on("submit", function(event) {
                 event.preventDefault();
@@ -58,11 +114,16 @@
 
                 if (rawText === "") return;
 
+                // Escape HTML for user input
+                var escapedText = escapeHtml(rawText);
+
                 var userHtml = `
-                    <div class="d-flex justify-content-end mb-3">
-                        <div class="msg_cotainer_send">${rawText}<span class="msg_time_send">${str_time}</span></div>
+                    <div class="d-flex justify-content-end mb-4">
+                        <div class="msg_cotainer_send">${escapedText}<span class="msg_time_send">${str_time}</span></div>
                         <div class="img_cont_msg">
-                            <img src="{{ url_for('static', filename='image.jpg') }}" alt="User Icon" class="rounded-circle user_img_msg">
+                            <div class="user_img_msg d-flex align-items-center justify-content-center">
+                                <i class="fas fa-user" style="color: #2ecc71; font-size: 20px;"></i>
+                            </div>
                         </div>
                     </div>`;
                 
@@ -70,33 +131,68 @@
                 $("#messageFormeight").append(userHtml);
                 $("#messageFormeight").scrollTop($("#messageFormeight")[0].scrollHeight);
 
+                // Show typing indicator
+                var typingHtml = `
+                    <div class="d-flex justify-content-start mb-4" id="typing-indicator">
+                        <div class="img_cont_msg">
+                            <div class="user_img_msg d-flex align-items-center justify-content-center">
+                                <i class="fas fa-robot" style="color: #00d4ff; font-size: 20px;"></i>
+                            </div>
+                        </div>
+                        <div class="typing-indicator"></div>
+                    </div>`;
+                
+                $("#messageFormeight").append(typingHtml);
+                $("#messageFormeight").scrollTop($("#messageFormeight")[0].scrollHeight);
+
+                // AJAX call to get response
                 $.ajax({
                     data: { msg: rawText },
                     type: "POST",
                     url: "/get",
                 }).done(function(data) {
+                    $("#typing-indicator").remove();
                     var botHtml = `
-                        <div class="d-flex justify-content-start mb-3">
+                        <div class="d-flex justify-content-start mb-4">
                             <div class="img_cont_msg">
-                                <img src="{{ url_for('static', filename='robot.jpg') }}" alt="Bot Icon" class="rounded-circle user_img_msg">
+                                <div class="user_img_msg d-flex align-items-center justify-content-center">
+                                    <i class="fas fa-robot" style="color: #00d4ff; font-size: 20px;"></i>
+                                </div>
                             </div>
                             <div class="msg_cotainer">${data}<span class="msg_time">${str_time}</span></div>
                         </div>`;
                     $("#messageFormeight").append(botHtml);
                     $("#messageFormeight").scrollTop($("#messageFormeight")[0].scrollHeight);
+                    
+                    // Add copy buttons to new code blocks
+                    addCopyButtons();
+                    
+                    // Highlight syntax if Prism is available
+                    if (window.Prism) {
+                        Prism.highlightAll();
+                    }
                 }).fail(function(xhr, status, error) {
+                    $("#typing-indicator").remove();
                     console.error("AJAX Error:", status, error);
                     var errorHtml = `
-                        <div class="d-flex justify-content-start mb-3">
+                        <div class="d-flex justify-content-start mb-4">
                             <div class="img_cont_msg">
-                                <img src="{{ url_for('static', filename='robot.jpg') }}" alt="Bot Icon" class="rounded-circle user_img_msg">
+                                <div class="user_img_msg d-flex align-items-center justify-content-center">
+                                    <i class="fas fa-robot" style="color: #00d4ff; font-size: 20px;"></i>
+                                </div>
                             </div>
-                            <div class="msg_cotainer" style="color: #e74c3c;">Error: Unable to process your request.</div>
+                            <div class="msg_cotainer" style="background: linear-gradient(135deg, #e74c3c, #c0392b);">
+                                Error: Unable to process your request. Please try again.
+                                <span class="msg_time">${str_time}</span>
+                            </div>
                         </div>`;
                     $("#messageFormeight").append(errorHtml);
                     $("#messageFormeight").scrollTop($("#messageFormeight")[0].scrollHeight);
                 });
             });
+
+            // Add copy buttons to existing code blocks
+            addCopyButtons();
         });
     </script>
 </body>
