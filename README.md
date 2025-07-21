@@ -33,11 +33,11 @@ This advanced pipeline enables CodeGenix to handle technical PDFs, research pape
 
 ## 📹 Demo Video
 
-Watch a demonstration of CodeGenix in action:
+Watch a demonstration of CodeGenix in action, showcasing its PDF-based query handling and coding assistance capabilities:
 
-<video controls src="static/CodeGenix ChatBot.mp4" type="video/mp4"></video>
+[View CodeGenix ChatBot Demo](https://youtu.be/PZloAqJAn84)
 
-*Note*: Video playback depends on file size and browser support; download from the repository if needed.
+*Note*: Hosted on YouTube for better accessibility.
 
 ---
 
