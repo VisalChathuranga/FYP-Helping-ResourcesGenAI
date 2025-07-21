@@ -31,6 +31,16 @@ This advanced pipeline enables CodeGenix to handle technical PDFs, research pape
 
 ---
 
+## 📹 Demo Video
+
+Watch a demonstration of CodeGenix in action, showcasing its PDF-based query handling and coding assistance capabilities:
+
+[View CodeGenix ChatBot Demo](https://raw.githubusercontent.com/VisalChathuranga/CodeGenix/main/static/CodeGenix%20ChatBot.mp4)
+
+*Note*: If the video doesn’t play directly in the browser, download it or view it on the GitHub repository under `static/CodeGenix ChatBot.mp4`.
+
+---
+
 ## 🚀 Key Features
 
 - **RAG-Powered Retrieval**: Uses FAISS and LangChain to retrieve relevant documents from the PDF knowledge base for accurate responses.
